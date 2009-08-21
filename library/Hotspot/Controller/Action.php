@@ -23,6 +23,12 @@ class Hotspot_Controller_Action extends Zend_Controller_Action
 		$this->cookie->init();
 	}
 	
+    protected function setRequiredParamsToMakeContentHeader(){
+    	// Used by content header.
+    	$this->view->location = new Location(Tag::myUrlDecode($this->_getParam('city')), Tag::myUrlDecode($this->_getParam('state')), Tag::myUrlDecode($this->_getParam('country')), Tag::myUrlDecode($this->_getParam('region')));
+    	$this->view->category = 'Jobs';
+    }
+    	
 	/**
 	 *  Get all parameters from the request object
 	 * 
