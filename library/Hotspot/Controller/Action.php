@@ -25,8 +25,27 @@ class Hotspot_Controller_Action extends Zend_Controller_Action
 	
     protected function setRequiredParamsToMakeContentHeader(){
     	// Used by content header.
+	   	// Using homepage template.
+    	Hotspot_Plugin_ViewSetup::setUpSiteTemplate(Hotspot_Plugin_ViewSetup::FRONTENDVIEW);
+    	$this->_helper->viewRenderer->setNoRender();
+
+    	$this->view->paramsHolder = new StdClass();
+    	
     	$this->view->location = new Location(Tag::myUrlDecode($this->_getParam('city')), Tag::myUrlDecode($this->_getParam('state')), Tag::myUrlDecode($this->_getParam('country')), Tag::myUrlDecode($this->_getParam('region')));
-    	$this->view->category = 'Jobs';
+    	
+		$this->view->paramsHolder = $this->view->location->mergeToAnotherClass($this->view->paramsHolder);
+    	
+    	$this->view->paramsHolder->query =  Tag::myUrlDecode($this->_getParam('query'));
+    	
+    	$this->view->paramsHolder->cat1 =  Tag::myUrlDecode($this->_getParam('cat1'));
+    	$this->view->paramsHolder->cat2 =  Tag::myUrlDecode($this->_getParam('cat2'));
+    	$this->view->paramsHolder->cat3 =  Tag::myUrlDecode($this->_getParam('cat3'));
+    	$this->view->paramsHolder->cat4 =  Tag::myUrlDecode($this->_getParam('cat4'));
+    	$this->view->paramsHolder->cat5 =  Tag::myUrlDecode($this->_getParam('cat5'));
+    	
+    	
+
+    	$this->view->router = Common::getRouteName();
     }
     	
 	/**

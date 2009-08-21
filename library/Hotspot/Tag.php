@@ -203,6 +203,9 @@ class Tag {
 	 */
 	public static function url($routeName = '', $values = null) {
 		// Get URL format from config file
+		try{
+			
+		
 		$tokens				= explode ('/', $routeName);
 		if (sizeof($tokens) > 0 && sizeof($tokens) == 1) {
 			$routeFile		= 'default';
@@ -250,6 +253,11 @@ class Tag {
 		$url = rtrim($url, '/');
 		$url = trim($url, '*');
 		return $url;
+		
+		}catch(Exception $e){
+			logError('Build url error', $e);
+			echo $e;
+		}
 	}
 	
 	public static function myUrlEncode($url) {
