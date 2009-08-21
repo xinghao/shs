@@ -1,0 +1,88 @@
+
+body{
+    margin: 0;
+    padding: 0;
+}
+
+SPAN,DIV,FORM,OL,UL,P,TD,TH,EM,SUP{
+    font-family:verdana,helvetica,arial,sans-serif;
+    color:#000000;
+    font-size:11px;
+}
+INPUT,SELECT{
+    font-size:10px !important;
+	font-family: verdana,helvetica,arial,sans-serif;
+}
+TEXTAREA{
+    font-family:verdana,helvetica,arial,sans-serif;
+    font-size:11px !important;
+}
+STRONG{
+    font-weight:bold;
+    font-style:normal;
+    font-size:12px;
+}
+
+#emailwrapper
+{
+    padding:10px;
+}
+
+.largecopy {
+	font-size: 12px;
+	line-height: 17px;
+}
+.cmPopupText
+{
+	padding-left: 50px; 
+	padding-right: 50px
+}
+
+.heading3 {
+    color:#FE5815;
+    font-weight:bold;
+    font-size: 11px;
+}
+
+.heading4 {
+    color:#FE5815;
+    font-weight:normal;
+    font-size: 11px;
+}
+
+#rateitWrapper
+{
+    width:600px;
+    padding:10px;
+}
+
+td.questionare
+{
+    background:transparent url(../templateimages/bubble-options-separator.gif) repeat-x scroll 0 50%;
+    height:10px;
+}
+td.common
+{
+    /*padding-top:10px;*/
+    height:23px;
+    padding:0px;
+    margin:0px;
+}
+td.question1
+{
+    width:200px;
+	font-weight:bold;
+}
+td.question
+{
+	font-weight:bold;
+}
+a {	
+	text-decoration: none;		
+	color:Gray;
+}
+.star
+{
+    font-weight:bold;
+    color:Red;
+}

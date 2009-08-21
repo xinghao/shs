@@ -1,0 +1,409 @@
+/* CSS Document */
+#content-wrap1 {
+	clear:both;
+/*	position:relative;*/
+	left:0px;
+	top:0px;
+	margin:30px 0px 0px 0px;
+	width: 960px;
+	min-height:460px;
+	background:transparent url(../templateimages/bubble-options-separator.gif) repeat-x scroll 0 0%;
+	padding-top:15px;
+}
+#title
+{
+    text-align:left;
+    width:718px;
+    margin-right:22px; 
+    margin-top:20px;
+}
+#bussName 
+{
+    font-family:verdana,tahoma,arial,helvetica,sans-serif;
+    /*color:#FE5815;*/
+    color:#000;
+    text-decoration:underline;
+    font-size:20px;
+    float:left;
+    max-width:250px;   
+}
+#busrating
+{
+    float:left;
+    padding-left:20px;
+    padding-top:8px;
+   
+}
+#iminfo
+{
+    float:right;
+    width:300px;
+}
+div.relatedLInks
+{
+    clear:both;
+    width:718px;
+    margin-right:22px;
+    text-align:left;
+    padding-top:10px;
+    height:76px;
+}
+td.linkimage
+{
+    width:85px;  /*100->78*/
+    height:38px;
+    text-align:center;
+}
+td.linkimage1
+{
+    width:70px;  /*100->78*/
+    height:38px;
+    text-align:center;
+}
+
+.surrounding
+{
+    font-size:10px;
+}
+.surrounding p
+{
+    font-size:10px;
+    padding:0px;
+    margin:0px;
+}
+.linkimage a:hover, .linkimage1 a:hover
+{
+    text-decoration:none;
+    *text-decoration:underline;
+}
+.linkimage:hover, .linkimage1:hover
+{
+    text-decoration:underline;
+    *text-decoration:none;
+}
+.surrounding p:first-letter
+{
+    color:#FF0000; 
+    font-weight:800;
+}
+div.infobody 
+{
+    clear:both;
+    padding-top:10px;
+    color:black;
+    font-family:verdana,tahoma,arial,helvetica,sans-serif;
+    font-size:11px;
+    font-weight:normal;
+    text-align:left;
+}
+
+div.rrTabbedPanel {
+margin:2px 0 0;
+}
+div.rrTabbedPanel {
+width:718px;
+}
+
+
+
+
+div.rrTabbedPanel div.tabs {
+border-bottom: #DEDEDE 1px solid;
+margin:0;
+padding:0;
+}
+
+
+div.rrTabbedPanel div.tabs a.activeTab:link, div.rrTabbedPanel div.tabs a.activeTab:visited, div.rrTabbedPanel div.tabs a.activeTab:hover {
+background-image:url(../templateimages/img_tabs_bg_active.jpg);
+background-position:left top;
+/*background-repeat:no-repeat;*/
+
+color:#FE5815;
+font-weight:bold;
+padding:7px 20px 6px;
+position:relative;
+top:1px;
+}
+
+
+div.rrTabbedPanel div.tabs a:link, div.rrTabbedPanel div.tabs a.tab:visited {
+background-image:url(../templateimages/img_tabs_bg_inactive.jpg);
+background-position:left center;
+background-repeat:no-repeat;
+color:#000000;
+font-size:11px;
+line-height:22px;
+margin:0;
+padding:5px 20px;
+text-decoration:none;
+}
+
+
+
+a.tab {
+color:#FE5815;
+text-decoration:underline;
+}
+
+
+div.rrTabbedPanel div.tabs {
+border-style:none none solid;
+}
+
+
+div.rrTabbedPanelContent {
+background-color:#F7F7F7;
+border-bottom:1px solid #DEDEDE;
+border-left:1px solid #DEDEDE;
+border-right:1px solid #DEDEDE;
+padding:10px;
+
+}
+
+#gallery
+{
+    clear:both;
+     width:100%;
+}
+div.panelSideDecoration.first {
+margin-top:0;
+}
+div.panelSideDecoration {
+
+margin:15px 0 0;
+padding:0 0px 0 0;
+
+}
+
+td.ininfotd
+{
+ /*      width:120px;*/
+       height:26px;
+    text-align:center; 
+}
+
+td.ininfotd1
+{
+    border-right: #DEDEDE 1px solid;
+    border-bottom: #DEDEDE 1px solid;
+
+}
+td.ininfotd2
+{
+    border-bottom: #DEDEDE 1px solid;
+}
+td.ininfotd3
+{
+        color:#FE5815;
+    border-right: #DEDEDE 1px solid;
+}
+td.ininfotd4
+{
+        color:#FE5815;
+}
+
+#tabcontent1
+{
+    width:100%;
+    min-height:260px;
+    background-color:#fff;
+}
+
+#tabcontent2
+{
+    width:100%;
+    min-height:260px;
+    background-color:#fff;
+}
+#tabcontent3
+{
+    width:100%;
+    min-height:260px;
+    background-color:#fff;
+}
+
+#tabcontent4
+{
+    width:100%;
+    min-height:260px;
+    background-color:#fff;
+}
+
+#tabcontent5
+{
+    width:100%;
+    min-height:260px;
+    background-color:#fff;
+}
+.infolable
+{
+    width:130px;
+    font-weight:bold;
+    padding: 5px 0px 5px 0px;
+}
+
+.infolable1
+{
+    width:110px;
+    font-weight:bold;
+    padding: 5px 0px 5px 0px;
+}
+
+#generalImage
+{
+    float:right;
+    width:180px;
+    padding-top:50px;
+}
+#generalInfo
+{
+    float:left;
+    width:500px;
+}
+
+#generalImage a
+{
+    text-decoration:underline;
+    color:#FE5815;
+}
+
+
+#tabcontent1.hide {
+display:none;
+}
+#tabcontent2.hide {
+display:none;
+}
+#tabcontent3.hide {
+display:none;
+}
+#tabcontent4.hide {
+display:none;
+}
+#tabcontent5.hide {
+display:none;
+}
+
+.onimage
+{
+    width:100%;
+    text-align:center;
+}
+.tabtable
+{
+    padding:10px;
+}
+.imagetd
+{
+    width:420px;
+}
+.thumbimagetd
+{
+    cursor:pointer;
+}
+div.clearall
+{
+    clear:both;
+    width:100%;
+   
+}
+#mapframe
+{
+    float:left;
+    width:400px;
+    height:280px;
+}
+.thunbImage
+{
+    width:80px;
+    height:80px;
+}
+
+div.currentPhoto {
+float:left;
+padding:15px 5px 0px 10px;
+width:400px;
+}
+
+div.thumbnailHolder {
+float:right;
+margin-bottom:40px;    /*20->40px*/
+width:260px;          /*260->170px*/
+padding:15px 10px 0px 0px;
+}
+
+div.thumbnail {
+float:left;
+padding:0 0 3px 6px;
+width:120px;
+height:120px;
+vertical-align:middle;
+}
+#Galleryholder.hide
+{
+    display:none;
+}
+#Galleryholder_no.hide
+{
+    display:none;
+}
+#ctl00_ContentPH_mapframe
+{
+    width:400px;
+    height:280px;
+    float:left;
+}
+#mapdest
+{
+    float:right;
+    width:280px;
+}
+.paymentImg
+{
+    width:60px;
+    height:60px;
+    margin-right:20px;
+}
+#leftlinks
+{
+    float:left;
+}
+#rightlinks
+{
+    float:left;
+    width:80px;  /*100->80*/
+    margin-left:10px;
+}
+a.booklink
+{
+    text-decoration:underline;
+    color:#FE5815;
+    padding:5px;
+}
+
+a.website
+{
+    text-decoration:underline;
+    color:#FE5815;
+}
+td.ultd
+{
+    vertical-align:top;
+    width:300px;
+}
+td.facility
+{
+    font-weight:bold;
+    font-size:12px;
+    padding-left:10px;
+}
+#ctl00_ContentPH_ultable ul
+{
+    list-style-type:disc;
+    margin-left:0px;
+}
+.nesttable
+{
+    width:100%;
+}

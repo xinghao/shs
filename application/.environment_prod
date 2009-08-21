@@ -1,0 +1,3 @@
+env             = PRODUCTION
+log_dir         = /www/hosts/ypex.com/current/log
+geoip.database  = /www/common/maxmind/GeoIPCity.dat

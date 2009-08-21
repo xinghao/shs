@@ -1,0 +1,82 @@
+#homepage_search_form{
+	width:626px;
+	height:100px;
+}
+
+#homepage_search_form #q_location, #homepage_search_form #q_category{
+	width:250px;
+	float:left;
+}
+#homepage_search_form #q_btn{
+	float:left;
+	margin-right:0px;
+	width:76px;
+}
+#homepage_search_form #q_category{
+	margin:0 20px 0 20px;
+}
+
+#homepage_search_form #q_location label.where, #homepage_search_form #q_category label.what,
+#homepage_search_form #q_btn label.btn {
+	display:block;
+	font-size:20px;
+	text-align:left;
+}
+#homepage_search_form #q_location select#select_location, #homepage_search_form #q_category select#select_category{
+	display:block;
+	height:28px;
+	font-size:16px;
+	width:250px;
+	text-align:left;
+}
+#homepage_search_form #q_btn input{
+	display:block;
+	height:26px;	
+}
+
+#searchform {
+	position:relative;
+	top:0px;
+	text-align:center;
+	width:620px;/*add width*/	
+}
+
+
+input.button {
+border:medium none;
+cursor:pointer;
+height:21px;
+overflow:hidden;
+padding:21px 0 0;
+vertical-align:middle;
+}
+input.button:hover {
+text-decoration:underline;
+}
+input.imageButton {
+height:21px;
+}
+input.imageButton:hover {
+text-decoration:underline;
+}
+.no-style-button {
+background:transparent none repeat scroll 0 0;
+border:medium none;
+cursor:pointer;
+}
+a.button {
+display:block;
+height:0 !important;
+overflow:hidden;
+padding:21px 0 0;
+}
+fieldset {
+border:0 none;
+}
+fieldset legend, fieldset legend span, .hidden {
+left:-500em;
+margin:0;
+padding:0;
+position:absolute;
+top:-500em;
+}

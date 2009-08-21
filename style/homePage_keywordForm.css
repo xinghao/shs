@@ -1,0 +1,102 @@
+/* CSS Document */
+#f-searchForm {
+clear:both;
+color:#333333;
+font-size:125%;
+margin:0;
+min-height:140px; /*form 310->140*/
+
+}
+#f-searchForm a {
+color:#333333;
+text-decoration:none;
+}
+#f-searchForm a:hover {
+text-decoration:underline;
+}
+#f-searchForm fieldset {
+border:medium none;
+display:inline;
+float:left;
+margin:28px 0 0;
+padding:0 0 15px;
+position:relative;
+}
+#f-searchForm .businessFields {
+margin-left:0px;
+width:274px;  /*form 380->274*/
+text-align:left;
+/*delete width*/
+}
+#f-searchForm .suburbFields {
+margin-left:15px;/*form 30->15*/
+text-align:left;
+;/*delete width:196px*/
+}
+
+#f-searchForm input {
+font-size:80%;
+}
+#f-searchForm input.textbox {
+border:1px solid #000000;
+font-size:120%;
+padding:3px 0 5px 5px;
+}
+#f-searchForm .textfieldLabels {
+height:22px;
+text-align:left;
+}
+#f-searchForm label {
+font-size:90%;
+}
+#f-searchForm .button {
+border:medium none;
+cursor:pointer;
+font-size:120%;
+height:30px;
+width:123px;
+overflow:hidden;
+padding:0;
+vertical-align:middle;
+}
+#f-searchForm .button:hover {
+text-decoration:underline;
+}
+#fe-business-clue-keyword {
+float:left;
+width:254px;  /*change by yu 303->54*/
+}
+#fe-suburb-clue-keyword {
+float:left;
+width:184px;  /*change by yu 303->54*/
+}
+
+#fe-clueType-keyword, #fe-clueName-keyword {
+position:relative;
+top:1px;
+}
+#fe-clueName-keyword {
+margin-left:10px;
+}
+#btn-search {
+float:left;
+margin:0 0 0 15px;/*20->15 by xinghao*/
+width:88px; /*848->61 by xinghao*/
+}
+#businessExamples {
+margin-top:48px; /*48->8 by xinghao*//*48->56 by xinghao*/
+width:274px;/*48->8 by xinghao*/
+z-index:999;
+}
+#suburbExamples {
+margin-top:48px; /*48->8 by xinghao*//*48->56 by xinghao*/
+width:204px;/*48->8 by xinghao*/
+}
+#locationExamples {
+margin-top:48px;
+width:276px;
+}
+#locationExamples p {
+margin:0;
+padding:0 5px;
+}

@@ -1,0 +1,80 @@
+
+body{
+	font-family:arial,helvetica,sans-serif;
+    margin: 0;
+    padding: 0;
+    width:670px;
+    font-size:12px;
+}
+#resultlist
+{
+    clear:both;
+    width: 100%;  /*    690->730*/
+    height:100%;
+    text-align:left;
+/*    margin-left:100px;
+    margin-right:100px;    */
+}
+
+.ResultRow
+{
+    background-color:#fff;/* #FF8080->#F78989*/
+        font-size:10px;
+    font-family:Arial;
+}
+.ResultRow .forborder
+{
+    border:0px;
+    padding: 5px 0 5px 0;
+    border-bottom:solid 1px #C7292A;
+    height:100%;
+    border-collapse:collapse;
+
+}
+
+.rowtable
+{   
+    margin: 5px 5px 5px 5px;
+
+}
+
+.ResultRow:hove
+{   
+    background-color:#FFFCCC/*#FFFF66;*/
+}
+td.rateVisitDateT
+{
+    width:8%;
+}
+td.recommend
+{
+    text-align:right;
+    font-weight:bold;
+     font-size:11px;
+}
+#reviewhint
+{
+    font-family:verdana,tahoma,arial,helvetica,sans-serif;
+    font-size:10px;
+}
+.reviewtable
+{
+    width:100%;
+            font-size:10px;
+    font-family:Arial;
+}
+#GridView1
+{
+     width:100%
+}
+td.ratetitle
+{
+    font-size:12px;
+    font-weight:bold;
+    width:82%
+}
+td.rating
+{
+    width:18%;
+    text-align:center;  
+}

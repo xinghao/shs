@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>Sydney Hotspot</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <link rel="stylesheet" href="/style/common.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="/style/searchbox.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="/style/autosuggest.css" type="text/css" media="all" />    
+    <link rel="stylesheet" href="/style/homePage_keywordForm.css" type="text/css" media="all" />
+	<link rel="shortcut icon" href="/style/sitetemplateimage/favicon.ico" />    
+
+    <link rel="stylesheet" href="/style/homePage.css" type="text/css" media="all" />
+</head>
+<body>
+
+<center>
+	<div id="wrap">
+		<?php include (WEBSITE_ROOT."/includes/frontend_header.php");?>
+		<?php include (WEBSITE_ROOT."/includes/content_header.php");?>
+		<div id="ContentPHDiv">
+		   	<div id="content-wrap">
+				<?php echo $this->actionTemplate; ?>
+			</div>
+        </div>
+		<?php include (WEBSITE_ROOT."/includes/frontend_footer.php");?>
+	</div>
+</center> 	
+	
+</body>
+</html>

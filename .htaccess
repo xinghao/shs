@@ -1,0 +1,18 @@
+# Rewrite rules for Zend Framework
+# Author:			Tim Woo <tim@airarena.net>
+# Id:				$Author: xinghao $
+# Last updated on:	$Date: 2009-07-08 12:29:39 +1000 (Wed, 08 Jul 2009) $
+# Last revision:	$Revision: 5501 $
+# $Id $
+
+RewriteBase /
+RewriteEngine On
+
+RewriteRule ^aa /info.php
+
+#
+# this is a recommended ZFW handler
+#
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule !\.(pdf|php|js|ico|txt|gif|jpg|png|css|zip|tar\.gz)$ /index.php

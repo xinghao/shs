@@ -1,0 +1,16 @@
+#logindiv{
+	margin:0 auto;
+	margin-top:100px;
+	margin-bottom:50px;
+	border-color:#FFCCFF;
+	border-width:1px;
+	border-style:solid;
+	width:300px;
+	height:220px;	
+}
+.wwFormTable{
+	background-color:#FFCCFF;
+	margin:10px;
+	width:280px;
+	height:200px;
+}

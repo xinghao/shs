@@ -1,0 +1,203 @@
+/*
+#resultheader
+{
+    width: 843px;
+    height:140px;
+    text-align:left;
+  /*  margin-left:58px;
+}
+*/
+#resultheader
+{
+    width: 843px;
+ /*   height:140px;*/
+    text-align:left;
+ /* margin-left:10px;*/
+}
+#homelogo
+{
+    float:left;
+    /*background-image: url(../templateimages/logo-mid.jpg);*/
+    width: 200px;   /*200 ->170*/
+    height:140px;  /*110 ->100*/
+    margin-top:5px;
+}
+#seqrchcntl
+{
+    float:left;/*right ->left*/
+    width:623px;
+    height:140px;
+    margin-left:20px;
+ /*   padding-top:10px;*/
+}
+#SearchResult
+{
+    width: 690px;
+    text-align:left;
+    margin-bottom:5px;
+    color:Gray
+}
+#resultlist
+{
+    clear:both;
+    width: 730px;  /*    690->730*/
+    height:100%;
+    text-align:left;
+        padding-top:5px;
+/*    margin-left:100px;
+    margin-right:100px;    */
+}
+
+.ResultRow1
+{
+    background-color:#FFC1C1;/* #FF8080->#F78989*/
+ 
+ /*   border:0px;
+    border-top:solid 1px black;
+    border-bottom:solid 2px grey;
+*/
+}
+.ResultRow1 .forborder
+{
+    border:0px;
+    border-top:solid 1px black;
+    border-bottom:solid 2px Gray;
+    height:100%;
+    border-collapse:collapse;
+
+}
+.ResultRow2 .forborder
+{
+    border:0px;
+    border-bottom:solid 1px black;
+    height:100%;
+    border-collapse:collapse;
+}
+.ResultRow2
+{
+    border:0px;
+/*    border-bottom:solid 2px black;*/
+}
+.rowtable
+{   
+    width:720px;     /*    680->720*/
+    margin: 5px 5px 5px 5px;
+
+}
+
+.ResultRow1:hover,.ResultRow2:hover
+{   
+    background-color:#FFFCCC/*#FFFF66;*/
+}
+
+
+.txt
+{
+    padding-left:10px;/* 10-->30*/
+    text-align:left;
+}
+.name
+{
+    font-size:14px;
+    width:540px;
+    color:#000000;
+    font-weight:bold;
+}
+.other
+{
+    font-size:12px;
+}
+.cat
+{
+    font-size:12px;
+    width:180px;
+}
+.price
+{
+    font-size:12px;
+    width:110px;
+}
+.rate
+{
+    font-size:12px;
+    width:130px;
+}
+.more
+{
+    font-style:italic;
+    width:120px;
+    text-align:right; 
+}
+
+.more a:hover
+{
+    
+}
+#GVResult
+{
+    font-size:12px;
+}
+.PSdiv
+{
+    margin: 5px 0px 5px 0px;
+    color:Gray;
+    text-align:right;
+    
+}
+.PSdiv a
+{
+    color:Gray;
+   text-decoration: underline;		
+    font-weight:normal;
+}
+.PSdiv a:hover
+{
+    font-style:italic;
+}
+.forborder a:hover
+{
+    
+}
+.name a
+{
+    color:Black;
+    text-decoration:underline;
+}
+.PSdivtd1
+{
+    width:75px;
+}
+.PSdivtd2
+{
+    width:40px;
+}
+.PSdivtd3
+{
+    width:3px;
+}
+.PSdivtd4
+{
+    width:40px;
+}
+.PSdivtd5
+{
+    text-align:right;
+    font-weight:bold; 
+    width:582px;
+}
+.imagefield
+{
+ /*   width:130px;
+    height:96px;
+
+ max-height:80px;
+ min-height:30px;
+ max-width:80px;
+ min-width:30px;*/
+    width:80px;
+    height:80px;
+}
+#Csort
+{
+    font-weight:bold;
+}

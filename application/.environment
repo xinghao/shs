@@ -1,0 +1,3 @@
+env             = DEVELOPMENT
+log_dir         = /Users/xinghao/Documents/test/log
+geoip.database  = /Users/xinghao/Documents/airarena/maxmind/GeoIPCity.dat

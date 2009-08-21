@@ -1,0 +1,37 @@
+﻿body {
+}
+/***** Autosuggest bubble styles *****/
+.bubble .top-left { background: url(../standard/bubble/bubble-top-left.gif) no-repeat 0 0; }
+.bubble .top-right { background: url(../standard/bubble/bubble-top-right.gif) no-repeat 100% 0; }
+.bubble .top-tile { background: url(../standard/bubble/bubble-top-tile.gif) repeat-x 0 0; }
+.bubble .mid-left { background: url(../standard/bubble/bubble-mid-left.gif) repeat-y 0 0; }
+.bubble .mid-right { background: url(../standard/bubble/bubble-mid-right.gif) repeat-y 100% 0; }
+.bubble .bot-left { background: url(../standard/bubble/bubble-bot-left.gif) no-repeat 0 0; }
+.bubble .bot-right { background: url(../standard/bubble/bubble-bot-right.gif) no-repeat 100% 0; }
+.bubble .bot-tile { background: url(../standard/bubble/bubble-bot-tile.gif) repeat-x 0 0; }
+.bubble .opt-left { background: url(../standard/bubble/bubble-options-left.gif) no-repeat 0 100%; }
+.bubble .opt-right { background: url(../standard/bubble/bubble-options-right.gif) no-repeat 100% 100%; }
+.bubble .opt-tile { background: url(../standard/bubble/bubble-options-tile.gif) repeat-x 0 100%; }
+
+.searchAgain .top-left, .searchAgain .top-right, .searchAgain .top-tile,
+.searchAgain .mid-left, .searchAgain .mid-right, .searchAgain .mid-tile,
+.searchAgain .opt-left, .searchAgain .opt-right, .searchAgain .opt-tile { background: none; }
+
+.active .top-left { background: url(../standard/bubble/activeBubble-top-left.gif) no-repeat 0 0; }
+.active .top-right { background: url(../standard/bubble/activeBubble-top-right.gif) no-repeat 100% 0; }
+.active .top-tile { background: url(../standard/bubble/activeBubble-top-tile.gif) repeat-x 0 0; }
+.active .mid-left { background: url(../standard/bubble/activeBubble-mid-left.gif) repeat-y 0 0; }
+.active .mid-right { background: url(../standard/bubble/activeBubble-mid-right.gif) repeat-y 100% 0;}
+.active .bot-left { background: url(../standard/bubble/activeBubble-bot-left.gif) no-repeat 0 0; }
+.active .bot-right { background: url(../standard/bubble/activeBubble-bot-right.gif) no-repeat 100% 0; }
+.active .bot-tile { background: url(../standard/bubble/activeBubble-bot-tile.gif) repeat-x 0 0; }
+.active .opt-left { background: url(../standard/bubble/activeBubble-options-left.gif) no-repeat 0 100%; }
+.active .opt-right { background: url(../standard/bubble/activeBubble-options-right.gif) no-repeat 100% 100%; }
+.active .opt-tile { background: url(../standard/bubble/activeBubble-options-tile.gif) repeat-x 0 100%; }
+#header .active .top-left { background: url(../standard/bubble/activeBubble-top-left-header.gif) no-repeat 0 0; }
+
+/***** Send to Mobile overlay styles *****/
+#stm_header { background-image: url(../standard/bg-stm-top.gif); }
+#stm_body { background-image: url(../standard/bg-stm-tile.gif); }
+#stm_footer { background-image: url(../standard/bg-stm-bot.gif); }
+#stm_footerInfo { background-image: url(../standard/bg-stm-help-tile.gif); }

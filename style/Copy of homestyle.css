@@ -1,0 +1,275 @@
+/********************************************
+	Version : 1.1
+	AUTHOR:			Xinghao Yu 
+	WEBSITE:		http://www.styleshout.com/
+	VERSION:		1.0	
+	DATE:          	August-31-2007          	
+ *******************************************/
+ 
+/*
+----------------------------------------------------------------------------- 
+Global Styles
+-----------------------------------------------------------------------------*/
+
+html, body { margin: 0; padding: 0;}
+
+body {
+-x-system-font:none;
+font-family:arial,helvetica,sans-serif;
+font-size:80%;
+font-size-adjust:none;
+font-stretch:normal;
+font-style:normal;
+font-variant:normal;
+font-weight:normal;
+line-height:normal;
+margin:0;
+padding:0;
+text-align:center;
+}
+
+.clear { clear: both; }
+
+/* links */
+a {	
+	color: #326ea1; 
+	text-decoration: none;		
+}
+a:hover {
+	color: #383d44;
+	padding-bottom: 0;
+	text-decoration: underline;
+}
+
+/*
+----------------------------------------------------------------------------- 
+Headers
+-----------------------------------------------------------------------------*/
+h1, h2, h3 { font-family: Georgia, "Times New Roman", Times, serif;	font-weight: Bold; color: #444;	}
+h1 { font-size: 1.8em; font-weight: bold; border-bottom: 1px solid #dadada; }
+h2 { font-size: 1.5em; }
+h3 { font-size: 1.2em; }
+
+h1, h2, h3, p { padding: 10px 0 10px 0;	margin: 0; }
+ul, ol { margin: 5px 20px; padding: 0 20px; }
+
+/* images */
+img { border: 0; }
+
+
+
+/*
+----------------------------------------------------------------------------- 
+Template Styles
+-----------------------------------------------------------------------------*/
+#wrap {
+	position: relative;
+	left:0px;
+	top:0px;
+	width: 960px;	
+	margin: 0 auto;
+	text-align: center;
+}
+#ContentPHDiv 
+{   
+    clear:both;
+    position:relative;
+	left:0px;
+	top:0px;
+	width: 960px;
+	margin: 0;
+	padding: 0;
+	text-align:left;
+	
+}
+#content-wrap {
+	clear:both;
+	position:relative;
+	left:0px;
+	top:0px;
+	margin:30px 0px 0px 0px;
+	width: 960px;
+	height: 374px; /*--change 474->374*/
+}
+#headerwrap {
+	position: relative;
+	left:0px;
+	top:0px;
+	height: 35px;
+	width: 100%;
+	padding: 0;	
+	margin: 0 auto;
+	border-bottom:#c9d7f1 1px solid;
+}
+#weather {
+	float:left;
+	left:0px;
+	height: 25px;
+	width: 250;
+	/*margin: 10px 0px 0px 0px;*/	
+	padding: 0;
+}
+#newsletter {
+	float: right;
+	right:0px;
+	height: 25px;
+	width: 200;
+	margin: 10px 0px 0px 0px;	
+	padding: 0;
+	display:none;
+}
+#content-left{
+	float: left;
+	left:0px;
+	width:740px;
+}
+#content-left-up{
+	left:0px;
+	width:740px;
+	height:140px;
+	text-align:left;
+}
+#content-left-down{
+	left:0px;
+	width:640px;
+	margin-left:100px;
+	padding-bottom:20px;
+}
+#content-left-up-left
+{
+    float:left;
+	left:0px;
+	width:200px;
+	height:100px;
+	/*background: url(../templateimages/shortcut.jpg) no-repeat left top;	*/
+}
+#content-left-right{
+	width:540px;
+}
+#content-right {
+	float: right;
+	right:0px;
+	width:220px;
+	/*display:none;*/
+}
+#content-mid{
+	float:right;
+	width:540px;
+}
+/* logo */
+#logo 
+{
+    
+	position:relative;
+	top:0px;
+	left:280px;
+	height:140px;
+	text-align:center;
+	width: 200px;
+	background: url(../templateimages/logo.png) no-repeat center top;	
+}
+#searchform {
+	position:relative;
+	top:0px;
+	text-align:center;
+	width:620px;/*add width*/	
+}
+#botimage {
+	position:relative;
+	top:0px;
+	height:61px;
+	text-align:center;
+	width: 100%;	
+	background: url(../templateimages/botimage.jpg) no-repeat center bottom;
+	padding-top:20px; /*---add later*/	
+}
+
+#footer {
+/*	position:relative;*/
+	top:0px;
+	height:37px;  /*26->37*/
+	text-align:center;
+	width: 100%;
+	vertical-align:bottom;
+	margin-top:30px;/* 40->30*/
+	clear:both;
+	/*margin-left:25px;*/
+}
+
+.bottomLinks
+{
+    list-style: none;
+    margin-top: 0;
+    margin-left: 0;
+}
+
+.bottomLinks li
+{
+    display: inline;
+    border-left: 1px solid #527597;
+    padding-right: 1em;
+    padding-left: 1em;
+	font-size:10px;
+}
+
+.bottomLinks li.first
+{
+    border-left: 0 none transparent;
+}
+
+.bottomLinks li a {	
+	color: #000; 
+	text-decoration: none;		
+}
+.bottomLinks li a:hover {
+	color: #000;
+	padding-bottom: 0;
+}
+
+img {
+border:medium none;
+}
+input.button {
+border:medium none;
+cursor:pointer;
+height:21px;
+overflow:hidden;
+padding:21px 0 0;
+vertical-align:middle;
+}
+input.button:hover {
+text-decoration:underline;
+}
+input.imageButton {
+height:21px;
+}
+input.imageButton:hover {
+text-decoration:underline;
+}
+.no-style-button {
+background:transparent none repeat scroll 0 0;
+border:medium none;
+cursor:pointer;
+}
+a.button {
+display:block;
+height:0 !important;
+overflow:hidden;
+padding:21px 0 0;
+}
+fieldset {
+border:0 none;
+}
+fieldset legend, fieldset legend span, .hidden {
+left:-500em;
+margin:0;
+padding:0;
+position:absolute;
+top:-500em;
+}
+
+#errorwrap
+{
+    text-align:left;
+    padding-left:10px;
+}

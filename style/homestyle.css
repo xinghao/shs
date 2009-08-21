@@ -1,0 +1,76 @@
+.homepagelogo{
+	height:190px;
+	width:240px;
+	display:block;
+	background-image:url(../images/sitetemplate/homepage_logo.png);
+	background-repeat:no-repeat;	
+}
+.homepagelogowrap{
+	padding:50px 0px 50px 0px;
+	width:100%;
+	text-align:center;
+}
+.homepagesearchpanel{
+	width:100%;
+	text-align:center;
+	padding-bottom:100px;
+}
+
+
+
+#content-left{
+	float: left;
+	left:0px;
+	width:740px;
+}
+#content-left-up{
+	left:0px;
+	width:740px;
+	height:140px;
+	text-align:left;
+}
+#content-left-down{
+	left:0px;
+	width:640px;
+	margin-left:100px;
+	padding-bottom:20px;
+}
+#content-left-up-left
+{
+    float:left;
+	left:0px;
+	width:200px;
+	height:100px;
+	/*background: url(../templateimages/shortcut.jpg) no-repeat left top;	*/
+}
+#content-left-right{
+	width:540px;
+}
+#content-right {
+	float: right;
+	right:0px;
+	width:220px;
+	/*display:none;*/
+}
+#content-mid{
+	float:right;
+	width:540px;
+}
+/* logo */
+#logo 
+{
+    
+	position:relative;
+	top:0px;
+	left:280px;
+	height:140px;
+	text-align:center;
+	width: 200px;
+	background: url(../templateimages/logo.png) no-repeat center top;	
+}
+
+#errorwrap
+{
+    text-align:left;
+    padding-left:10px;
+}
