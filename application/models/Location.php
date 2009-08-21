@@ -57,5 +57,25 @@ class Location
 		return $this->_region;
 	}
 	
+	public function toStdClass()
+	{
+		$stdc1 = new StdClass();
+		$stdc1->city = $this->getCity();
+		$stdc1->state = $this->getState();
+		$stdc1->country = $this->getCountry();
+		$stdc1->region = $this->getRegion();
+		
+		return $stdc1;
+	}
+	
+	public function mergeToAnotherClass($outClass)
+	{
+		$outClass->city = $this->getCity();
+		$outClass->state = $this->getState();
+		$outClass->country = $this->getCountry();
+		$outClass->region = $this->getRegion();
+		
+		return $outClass;		
+	}
 }    
 ?>

@@ -21,22 +21,25 @@ class JobsController extends Hotspot_Controller_Action {
      */
     function  jobsAction()
     {
-	   	// Using homepage template.
-    	Hotspot_Plugin_ViewSetup::setUpSiteTemplate(Hotspot_Plugin_ViewSetup::FRONTENDVIEW);
-    	$this->_helper->viewRenderer->setNoRender();
+   	
+    	//echo   "jobs";
+    	$this->setRequiredParamsToMakeContentHeader();
     	
-    	echo "jobs";
-    	//$this->setRequiredParamsToMakeContentHeader();
+ //   	$this->view->location = new Location(Tag::myUrlDecode($this->_getParam('city')), Tag::myUrlDecode($this->_getParam('state')), Tag::myUrlDecode($this->_getParam('country')), Tag::myUrlDecode($this->_getParam('region')));
+    	$this->view->category = 'Jobs';
+ 
+  //  	echo Tag::link('jobsbasic',$this->view->location->toStdClass(),'test'); 
     	
     }
     
     
     function  jobssearchAction()
     {
-	   	// Using homepage template.
-    	Hotspot_Plugin_ViewSetup::setUpSiteTemplate(Hotspot_Plugin_ViewSetup::FRONTENDVIEW);
-    	$this->_helper->viewRenderer->setNoRender();
+    	$this->setRequiredParamsToMakeContentHeader();
     	
+ //   	$this->view->location = new Location(Tag::myUrlDecode($this->_getParam('city')), Tag::myUrlDecode($this->_getParam('state')), Tag::myUrlDecode($this->_getParam('country')), Tag::myUrlDecode($this->_getParam('region')));
+    	$this->view->category = 'Jobs';
+    	    	
     	echo "jobssearch";
     	//$this->setRequiredParamsToMakeContentHeader();
     	
@@ -45,7 +48,7 @@ class JobsController extends Hotspot_Controller_Action {
     function  jobsrefineAction()
     {
 	   	// Using homepage template.
-    	Hotspot_Plugin_ViewSetup::setUpSiteTemplate(Hotspot_Plugin_ViewSetup::FRONTENDVIEW);
+    	//Hotspot_Plugin_ViewSetup::setUpSiteTemplate(Hotspot_Plugin_ViewSetup::FRONTENDVIEW);
     	$this->_helper->viewRenderer->setNoRender();
     	
     	echo "jobsrefine";
@@ -56,7 +59,7 @@ class JobsController extends Hotspot_Controller_Action {
     function  jobssearchrefineAction()
     {
 	   	// Using homepage template.
-    	Hotspot_Plugin_ViewSetup::setUpSiteTemplate(Hotspot_Plugin_ViewSetup::FRONTENDVIEW);
+    	//Hotspot_Plugin_ViewSetup::setUpSiteTemplate(Hotspot_Plugin_ViewSetup::FRONTENDVIEW);
     	$this->_helper->viewRenderer->setNoRender();
     	
     	echo "jobssearchrefine";

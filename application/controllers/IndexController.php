@@ -37,7 +37,7 @@ class IndexController extends Hotspot_Controller_Action {
     	else
     	{
     		$locationArray = explode('|', $location);
-    		$this->_redirect("/" . Tag::myUrlEncode($category) . "/" . Tag::myUrlEncode($locationArray[0]). "/" . Tag::myUrlEncode($locationArray[1]) . "/" . Tag::myUrlEncode($locationArray[2]));
+    		$this->_redirect("/" . Tag::myUrlEncode($category) . "/" . Tag::myUrlEncode($locationArray[0]). "/" . Tag::myUrlEncode($locationArray[1]) . "/" . Tag::myUrlEncode($locationArray[2]) .  "/" . Tag::myUrlEncode($locationArray[0]));
     		
     		/*
     		$routerParams = array(
