@@ -87,7 +87,7 @@ Template Styles
 	position:relative;
 	left:0px;
 	top:0px;
-	margin:30px 0px 0px 0px;
+	margin:10px 0px 0px 0px;
 	width: 960px;
 	/*height: 374px; /*--change 474->374*/
 }
@@ -193,6 +193,16 @@ border:medium none;
     padding-left:10px;
 }
 
+
+div.smalllogo{
+	width:98px;
+	height:60px;
+	display:block;
+	float:left;
+	background: url(../images/sitetemplate/spot101_60.png) no-repeat;
+}
+
+
 ul#locationnav, ul#categorynav {
 	display:block;
 	margin:0px;
@@ -203,7 +213,6 @@ ul#locationnav, ul#categorynav {
 ul#locationnav li, ul#categorynav li{
 	float:left;
 	display:block;
-	font-size:14px;
 }
 ul#locationnav li a, ul#categorynav li a{
     padding:5px 10px 5px 10px;
@@ -220,11 +229,135 @@ ul#categorynav li a:hover, ul#categorynav li a.menu_on{
 	color:#000;
 }
 
-div.resultlocation{
+div.resultlocation, div.locationswrap{
 	float:left;
 	padding:8px 10px 8px 10px;
-	font-size:14px;
+	font-size:15px;
+}
+
+div.resultlocation{
+	padding-top:16px;
+}
+
+div#secondline{
+	clear:both;
+	font-size:15px;
+	margin-top:5px;
+
 }
 div#contendheaderwrapper{
 	margin: 20px 0px 0px 0px;
 }
+
+div.headbotline{
+	clear:both;
+	margin:20px 5px 0px 5px;
+	border-bottom: 1px solid #ccc;
+}
+
+/* -------------- result page start--------------------*/
+div.searchresult{
+	font-weight:bold;
+}
+div.searchresult span.emphasis{
+	font-weight:bold;
+	font-style: italic;
+	font-size:14px;
+}
+
+
+div.formandresultlistwrap{
+	margin-top:10px;
+}
+
+div.formandresultlistwrap div.refineformwrap{
+	float:left;
+	margin-left:0px;
+	width:220px;
+	margin-right:20px;
+}
+div.formandresultlistwrap div.resultlistwrap{
+	float:right;
+	margion-right:0px;
+	width:710px;
+	test-align:left;
+}
+
+
+
+/* -------------- result page end--------------------*/	
+
+/* -------------- refine form start--------------------*/
+div.refineform{
+  	background-color: #cccbcb;
+}
+div.refineform div.formcontent{
+	padding:5px 15px;
+	font-size:14px;
+}
+
+div.refineform div.formtop{
+	width:100%;
+  	background-image: url(../images/sitetemplate/form_right_top.jpg);
+  	background-position: 100% 0;
+  	background-repeat:no-repeat;
+	
+}
+div.refineform div.formtop div.formtopleft{
+	height:18px;
+	width:27px;
+	display:block;
+  	background-image: url(../images/sitetemplate/form_left_top.jpg);
+  	background-position: 100% 0;
+  	background-repeat:no-repeat;
+}
+
+
+div.refineform div.formbot{
+	width:100%;
+  	background-image: url(../images/sitetemplate/form_right_bot.jpg);
+  	background-position: 100% 0;
+  	background-repeat:no-repeat;
+	
+}
+div.refineform div.formbot div.formbotleft{
+	height:16px;
+	width:27px;
+	display:block;
+  	background-image: url(../images/sitetemplate/form_left_bot.jpg);
+  	background-position: 100% 0;
+  	background-repeat:no-repeat;
+}
+
+input.refineforminput, select.refineformselect{
+	width:180px;
+	font-size:12px;
+}
+
+/* for radio box's option label and value */
+div.refineform div.cat1 input.refineformselect{
+	margin-right:20px;
+}
+
+div.refineform dt{
+	margin-bottom:4px;
+}
+div.refineform dd{
+	margin-left:0px;
+	margin-bottom:10px;
+}
+div.refineform div.quicksearchbtn, div.refineform div.submitbtn{
+	text-align:right;
+	margin-right:5px;
+}
+div.refineform div.submitbtn{
+	margin-right:10px;
+}
+
+div.refineform div.or{
+	font-size:15px;
+	text-align:center;
+	font-weight:bold;
+}
+
+/* -------------- refine form end--------------------*/
