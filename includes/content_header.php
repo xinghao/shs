@@ -1,7 +1,6 @@
 		<div id="contendheaderwrapper">
 			<div id="firstline">
-				<div id="resultpagelogo" class="smalllogo">
-				</div>
+				<a href="/"><div id="resultpagelogo" class="smalllogo"></div></a>
 				<div class="resultlocation">
 					<?php echo $this->location->getCity() . ' ' . $this->location->getState() . ', ' . $this->location->getCountry()?>
 				</div>
@@ -33,4 +32,5 @@
 					</ul>
 					<div class="clear"></div>
 			</div>
+			<div class="headbotline"></div>
 		</div>
