@@ -77,5 +77,35 @@ class Location
 		
 		return $outClass;		
 	}
+	
+	
+	/**
+	 * Get all states of country
+	 * @return unknown_type
+	 */
+	public function getAllStateInCountry($country = null)
+	{
+		$refloc = new Refloc();
+		
+		if(empty($country))
+		{
+			$country = $this->getCountry();
+		}
+		
+		return $states = $refloc->getAllStatesInCountry($country);
+			
+	}
+
+	/**
+	 * Get all states of country
+	 * @return unknown_type
+	 */
+	public function getAllCityByStateId($stateid)
+	{
+		$refloc = new Refloc();
+		
+		return $states = $refloc->getAllCityByStateId($stateid);
+			
+	}	
 }    
 ?>

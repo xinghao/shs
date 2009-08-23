@@ -1,0 +1,52 @@
+<div class="refineform">
+	<div class="formtop">
+		<div class="formtopleft">
+		</div>
+	</div>
+	<div class="formcontent">
+
+		<div class="quicksearch">
+			<?php echo $this->element->query;?>
+		</div>
+		<div class="quicksearchbtn">
+			<?php 
+			echo $this->{$this->element->quicksearchbtn->helper}($this->element->quicksearchbtn->getName(),$this->element->quicksearchbtn->getImageValue(),$this->element->quicksearchbtn->getAttribs());
+			//echo $this->element->quicksearchbtn;
+			?>
+		</div>
+		<div class="or">
+			OR
+		</div>
+		<div class="cat1">
+			<?php echo $this->element->cat1;?>
+		</div>
+		<div class="cat2">
+			<?php echo $this->element->cat2;?>
+		</div>	
+		<div class="cat3">
+			<?php echo $this->element->cat3;?>
+		</div>
+		<div class="cat4">
+			<?php echo $this->element->cat4;?>
+		</div>		
+		<div class="cat5">
+			<?php echo $this->element->cat5;?>
+		</div>			
+		<div class="submitbtn">
+			<?php 
+			echo $this->{$this->element->submit->helper}($this->element->submit->getName(),$this->element->submit->getImageValue(),$this->element->submit->getAttribs());
+			//echo $this->element->quicksearchbtn;
+			?>
+		</div>		
+	</div>
+	<div class="formbot">
+		<div class="formbotleft">
+		</div>
+	</div>			
+</div>
+
+
+
+
+
+

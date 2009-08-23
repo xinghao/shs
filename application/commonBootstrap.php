@@ -24,6 +24,7 @@ set_include_path(
 	. PATH_SEPARATOR . APPLICATION_PATH . '/../library/Zend'
     . PATH_SEPARATOR . APPLICATION_PATH . '/models'
     . PATH_SEPARATOR . APPLICATION_PATH . '/models/tables'
+    . PATH_SEPARATOR . APPLICATION_PATH . '/models/forms'
     . PATH_SEPARATOR . APPLICATION_PATH . '/models/exceptions'
     . PATH_SEPARATOR . APPLICATION_PATH . '/views/helpers'
     . PATH_SEPARATOR . get_include_path()
