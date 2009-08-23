@@ -27,7 +27,7 @@ class Hotspot_Controller_Action extends Zend_Controller_Action
     	// Used by content header.
 	   	// Using homepage template.
     	Hotspot_Plugin_ViewSetup::setUpSiteTemplate(Hotspot_Plugin_ViewSetup::FRONTENDVIEW);
-    	$this->_helper->viewRenderer->setNoRender();
+    	//$this->_helper->viewRenderer->setNoRender();
 
     	$this->view->paramsHolder = new StdClass();
     	
