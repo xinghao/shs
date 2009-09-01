@@ -104,6 +104,72 @@ class Common {
 		return $router->getCurrentRouteName();
 	}
 	
+	/**
+	 * 
+	 * @param $name
+	 * @param $value
+	 * @return unknown_type
+	 */
+	public static function createHiddenElement($name,$value){
+		$hidden = new Zend_Form_Element_Hidden($name);
+		$hidden ->setValue($value);
+		return $hidden;
+	}
+	
+	public static function arrayToStdClass($dataArray)
+	{
+		if (empty($dataArray))
+		{
+			return null;
+		}
+		
+		$retClass = new StdClass();
+		foreach($dataArray as $key=>$value)
+		{
+			$retClass->$key = $value;
+		}
+		return $retClass;
+	}
+
+	public static function stdClassToArray($dataObject)
+	{
+		if (empty($dataObject))
+		{
+			return null;
+		}
+		
+		$retArray = array();
+		
+		foreach($dataObject as $key=>$value)
+		{
+			$retArray[$key] = $value;
+		}
+		return $retArray;
+	}
+	
+	
+	public static function encodeUriParams($values)
+	{
+		
+		for($i=1;$i<6;$i++)
+		{
+			if(array_key_exists('cat'.$i.'name',$values) && !empty($values['cat'.$i.'name']))
+			{
+		
+				$values['cat'.$i.'name'] = str_replace('/', ' ', $values['cat'.$i.'name']);
+			}
+		}
+
+		if(array_key_exists('query',$values) && !empty($values['query']))
+		{
+		
+			$values['query'] = str_replace('/', ' ', $values['query']);
+		}		
+		
+		
+		return $values;
+		
+	}
 	
 }
 

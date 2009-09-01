@@ -232,6 +232,7 @@ class Tag {
 			if (strncmp(':', $token, 1) == 0) { // only process parameters
 				$paramName	= substr($token, 1, strlen($token)-1);
 				$paramValue	= isset($values->$paramName) ? $values -> $paramName:'';
+				//echo $paramValue;
 				// Apply filters, if any
 				$filtersConfig = $routes->$routeName->$paramName;
 				if ($filtersConfig != null) {

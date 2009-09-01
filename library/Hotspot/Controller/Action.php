@@ -42,9 +42,23 @@ class Hotspot_Controller_Action extends Zend_Controller_Action
     	$this->view->paramsHolder->cat3 =  Tag::myUrlDecode($this->_getParam('cat3'));
     	$this->view->paramsHolder->cat4 =  Tag::myUrlDecode($this->_getParam('cat4'));
     	$this->view->paramsHolder->cat5 =  Tag::myUrlDecode($this->_getParam('cat5'));
+    	    	
+  		$registry = Zend_Registry::getInstance();
+		$config = $registry->get('CONFIG');
+        $this->view->limit = $config->search->pagelimit;
+        
+    	$this->view->offset = $this->_getParam('page');
+		
+		if (empty($this->view->offset))
+		{
+			$this->view->offset = 0;
+		}
+		else
+		{
+			$this->view->offset = ($this->view->offset - 1) * 10;
+		}
     	
-    	
-
+		
     	$this->view->router = Common::getRouteName();
     }
     	
