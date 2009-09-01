@@ -31,6 +31,19 @@
 		</div>		
 		<div class="cat5">
 			<?php echo $this->element->cat5;?>
+			<?php 
+				$el = $this->element->city;
+			    echo $this->{$el->helper}($el->getName(),$el->getValue(),$el->getAttribs());
+				$el = $this->element->state;
+			    echo $this->{$el->helper}($el->getName(),$el->getValue(),$el->getAttribs());
+				$el = $this->element->country;
+			    echo $this->{$el->helper}($el->getName(),$el->getValue(),$el->getAttribs());
+				$el = $this->element->region;
+			    echo $this->{$el->helper}($el->getName(),$el->getValue(),$el->getAttribs());
+			   // $el = $this->element->businessType;
+			  //  echo $this->{$el->helper}($el->getName(),$el->getValue(),$el->getAttribs());
+			?>
+			
 		</div>			
 		<div class="submitbtn">
 			<?php 

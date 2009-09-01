@@ -1,12 +1,11 @@
 <!--<div class="pagination" style="width:100%">  -->
 <!-- <div style="float:left;width:28%"> -->
 <?php if($this->last > 1) {?>
-<table class="pagination">
-	<tr>
-	<td class="paginatorsummary">	
+<div class="pagination">
+	<div class="paginatorsummary">	
 		Showing page <?= $this->current ?> of <?= $this->last ?>
-    </td>
-    <td class="paginator">
+    </div>
+    <div class="paginator">
 		
     	<!-- First page link -->
   
@@ -56,12 +55,15 @@
 
 
 	    <?php } ?>
-
+    	</div>
+    	<div class="clear"></div>
+    </div>
 <?php }
 elseif($this->currentItemCount == 0) 
 {
+	echo '<div class="pagination">';
 	echo 'No result.';	
+	echo '</div>';
 }?>
-    	</td>
-	</tr>
-</table>
+
+

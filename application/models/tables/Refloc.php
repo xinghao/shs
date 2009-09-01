@@ -6,6 +6,11 @@ class Refloc extends Zend_Db_Table
 	protected $_name = 'ref_loc';
     protected $_primary = 'id';
     
+    public  function getTableName()
+    {
+    	return $this->_name;
+    }
+    
     // Use the Book class for returned rows, to add utility methods, like getting zips covered by the book.
     //protected $_rowClass = 'Book';      
     
@@ -74,5 +79,163 @@ class Refloc extends Zend_Db_Table
  			throw $e;
  		}   	
     }
+    
+    /**
+     * Get State id by name
+     * @param $stateid
+     * @return integer
+     */
+    public function getStateIdByName($stateName)
+    {
+        try{
+	    	$select = $this->select();
+	    	$select->from($this->_name, array('stateid'))
+	    	       ->distinct(true)
+	    	       ->where('state = ?', Common::titleCaseUpper($stateName));
+	    	    
+	    	
+	    	logfire('select', $select->__toString());
+	    	$state = $this->fetchRow($select);
+	    	
+	    	if (empty($state))
+	    	{
+	    		return null;
+	    	}
+	    	else
+	    	{
+	    		return $state->stateid;
+	    	}
+    	}catch(Exception $e)
+ 		{
+ 			logError('Refloc failed!', $e);
+ 			throw $e;
+ 		}   	
+    }
+
+        /**
+     * Get State id by name
+     * @param $stateid
+     * @return integer
+     */
+    public function getStateNameById($stateid)
+    {
+        try{
+	    	$select = $this->select();
+	    	$select->from($this->_name, array('state'))
+	    	       ->distinct(true)
+	    	       ->where('stateid = ?', $stateid);
+	    	    
+	    	
+	    	logfire('select', $select->__toString());
+	    	$state = $this->fetchRow($select);
+	    	
+	    	if (empty($state))
+	    	{
+	    		return null;
+	    	}
+	    	else
+	    	{
+	    		return $state->state;
+	    	}
+    	}catch(Exception $e)
+ 		{
+ 			logError('Refloc failed!', $e);
+ 			throw $e;
+ 		}   	
+    }
+    
+    
+    /**
+     * Get State id by name
+     * @param $stateid
+     * @return integer
+     */
+    public function getCityIdByName($cityName)
+    {
+        try{
+	    	$select = $this->select();
+	    	$select->from($this->_name, array('cityid'))
+	    	       ->distinct(true)
+	    	       ->where('city = ?', Common::titleCase($cityName));
+	    	    
+	    	
+	    	logfire('select', $select->__toString());
+	    	$city = $this->fetchRow($select);
+	    	
+	    	if (empty($city))
+	    	{
+	    		return null;
+	    	}
+	    	else
+	    	{
+	    		return $city->cityid;
+	    	}
+    	}catch(Exception $e)
+ 		{
+ 			logError('Refloc failed!', $e);
+ 			throw $e;
+ 		}   	
+    } 
+
+       /**
+     * Get State id by name
+     * @param $stateid
+     * @return integer
+     */
+    public function getCityNameById($cityid)
+    {
+        try{
+	    	$select = $this->select();
+	    	$select->from($this->_name, array('city'))
+	    	       ->distinct(true)
+	    	       ->where('cityid = ?', Common::titleCase($cityid));
+	    	    
+	    	
+	    	logfire('select', $select->__toString());
+	    	$city = $this->fetchRow($select);
+	    	
+	    	if (empty($city))
+	    	{
+	    		return null;
+	    	}
+	    	else
+	    	{
+	    		return $city->city;
+	    	}
+    	}catch(Exception $e)
+ 		{
+ 			logError('Refloc failed!', $e);
+ 			throw $e;
+ 		}   	
+    } 
+    
+    
+    public function getRegionIdByName($regionName)
+    {
+        try{
+	    	$select = $this->select();
+	    	$select->from($this->_name, array('regionid'))
+	    	       ->distinct(true)
+	    	       ->where('region = ?', Common::titleCase($regionName));
+	    	    
+	    	
+	    	logfire('region select', $select->__toString());
+	    	$region = $this->fetchRow($select);
+	    	
+	    	if (empty($region))
+	    	{
+	    		return null;
+	    	}
+	    	else
+	    	{
+	    		return $region->regionid;
+	    	}
+    	}catch(Exception $e)
+ 		{
+ 			logError('Refloc failed!', $e);
+ 			throw $e;
+ 		}   	
+    }     
+    
 }
 

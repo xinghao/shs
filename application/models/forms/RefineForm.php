@@ -22,6 +22,7 @@ class RefineForm extends Zend_Form
 	}
 	
 	
+    
 	protected function buildQuickSearchElements()
 	{
 		// Quick search field
@@ -61,7 +62,6 @@ class RefineForm extends Zend_Form
        	}
        	*/
        	$this->addElement($cat1);
-		
 	}
 	
 	protected function buildCat2Element()
@@ -69,7 +69,9 @@ class RefineForm extends Zend_Form
        	$cat2 = new Zend_Form_Element_Select('cat2');
        	$cat2->setLabel($this->_business->getCat2Name());
        	$cat2->addMultiOptions($this->_business->getCat2Array());
+       	$cat2->setValue($this->_business->getFirstCat2());
        	$cat2->setAttrib('class','refineformselect');
+       	$cat2->setAttrib('onchange','changeCat2(this.id,this.options[this.selectedIndex].value)');
        	$this->addElement($cat2);
 		
 	}
@@ -79,8 +81,8 @@ class RefineForm extends Zend_Form
        	$cat3 = new Zend_Form_Element_Select('cat3');
        	$cat3->setLabel($this->_business->getCat3Name());
        	$cat3->setAttrib('class','refineformselect');
-       	$cat1selected = $this->_business->getFirstCat2();
-       	$cat3->addMultiOptions($this->_business->getCat3Array($cat1selected));
+       	$cat2selected = $this->cat2->getValue();
+       	$cat3->addMultiOptions($this->_business->getCat3Array($cat2selected));
        	$this->addElement($cat3);
 		
 	}
@@ -90,6 +92,7 @@ class RefineForm extends Zend_Form
        	$cat4 = new Zend_Form_Element_Select('cat4');
        	$cat4->setLabel($this->_business->getCat4Name());
        	$cat4->setAttrib('class','refineformselect');
+       	$cat4->setAttrib('onchange','changeState("cat5",this.options[this.selectedIndex].value)');
        	$cat4->addMultiOptions($this->_business->getCat4Array());
        	$this->addElement($cat4);		
 	}
@@ -104,12 +107,44 @@ class RefineForm extends Zend_Form
        	$this->addElement($cat5);		
 	}
 	
+	protected function buildLocationElements()
+	{
+		$location = $this->_business->getLocation();
+		if (!empty($location))
+		{
+			$this->addElement(Common::createHiddenElement('city', $location->getCity()));
+			$this->addElement(Common::createHiddenElement('state', $location->getState()));
+			$this->addElement(Common::createHiddenElement('country', $location->getCountry()));
+			$this->addElement(Common::createHiddenElement('region', $location->getRegion()));
+		}
+		else
+		{
+			$this->addElement(Common::createHiddenElement('city', ''));
+			$this->addElement(Common::createHiddenElement('state', ''));
+			$this->addElement(Common::createHiddenElement('country', ''));
+			$this->addElement(Common::createHiddenElement('region', ''));
+		}
+	}
+	
+	/*
+	public function printLocationElements()
+	{
+		echo 
+		
+		echo $this->city;
+	    echo $this->state;
+		echo $this->country;
+		echo $this->region;
+
+	}
+	*/	
 	/**
 	 * build Listing Form
 	 * @see library/CrFramework/CrFramework_Form#init()
 	 */
 	public function init()
 	{
+		logfire('dsfsdf','sdfsdfdsfs');
 		$this->setMethod('post');
 		$this->setName('refineform');
 
@@ -127,7 +162,11 @@ class RefineForm extends Zend_Form
 		$this->buildCat5Element();
 		
        	
+       	$this->buildLocationElements();
        	
+       //	$this->addElement(Common::createHiddenElement('businessType', $this->_business->getBusinessType()));
+       
+       	$this->setAction('/refine/'.strtolower($this->_business->getBusinessType()));
        	
        	
        	/*
@@ -170,6 +209,45 @@ class RefineForm extends Zend_Form
 			'Form'
 		));
         
+	}
+	
+	/**
+	 * (non-PHPdoc)
+	 * @see library/Zend/Zend_Form#populate()
+	 */
+	public function populate(array $values)
+	{
+		// Job specifically.
+		if ( (!array_key_exists('cat4',$values) || empty($values['cat4'])) && array_key_exists('state',$values) && !empty($values['state']) )
+		{
+			$values['cat4'] = Location::getStateIdByName($values['state']);
+		}
+
+		// Job specifically.
+		if ( (!array_key_exists('cat5',$values) || empty($values['cat5'])) && array_key_exists('city',$values) && !empty($values['city']) )
+		{
+			$values['cat5'] = Location::getCityIdByName($values['city']);
+			
+		}
+		
+		
+		if(array_key_exists('cat2',$values) && !empty($values['cat2']))
+		{
+			$this->cat3->setMultiOptions($this->_business->getCat3Array($values['cat2']));
+		}
+			
+		if(array_key_exists('cat4',$values) && !empty($values['cat4']))
+		{
+			$this->cat5->setMultiOptions($this->_business->getCat5Array($values['cat4']));
+		}
+
+		if(array_key_exists('cat1',$values) && empty($values['cat1']))
+		{
+			unset($values['cat1']);
+		}
+		
+		// Call the father's render function.
+		return parent::populate($values);
 	}
 	
 }

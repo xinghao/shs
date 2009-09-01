@@ -24,13 +24,22 @@ class Jobs
 	protected $_cat5Name = 'City';
 	
 	
-	public function __construct($location)
+	public function __construct($location = null)
 	{	
 		$this->_location = $location;
 		$this->_busTypeId = 5;
 		//parent::__construct();
 	}
 	
+	public function getLocation()
+	{
+		return $this->_location;	
+	}
+	
+	public function getBusinessType()
+	{
+		return 'Jobs';
+	}
 	
 	public function getCat1Name(){
 		return $this->_cat1Name;
@@ -259,6 +268,42 @@ class Jobs
 		
 		return $retArray;
 	}	
+	
+	
+	public function search($location, $limit, $offset = 0, $query = null, $cat1 = null, $cat2 = null, $cat3 = null, $cat4 = null, $cat5 = null)
+	{
+		
+		
+		$countryid = null;
+		$stateid = null;
+		$cityid = null;
+		$regionid = null;
+		$suburbid = null;
 
+		$suburbid = $location->getSuburbId();
+		if (empty($suburbid))
+		{
+			$regionid = $location->getRegionId();
+			if (empty($regionid))
+			{
+				$cityid = $location->getCityId();
+				if (empty($cityid))
+				{
+					$stateid = $location->getStateId();
+					if (empty($statid))
+					{
+						$countryid = $location->getCountryId();
+					}
+				}
+			}
+		}
+		$pstitleTable = new Pstposting();
+		return $pstitleTable->search($limit,$offset, $countryid, $stateid, $cityid, $regionid, $suburbid, $query, $cat1, $cat2, $cat3, $cat4, $cat5);
+	}
+
+	protected function getBusiness()
+	{
+		
+	}
 }    
 ?>

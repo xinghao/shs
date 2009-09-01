@@ -1,10 +1,58 @@
 <?php echo $this->searchResults($this->paramsHolder->cat1, $this->category, $this->paramsHolder->region, $this->paramsHolder->city);?>
 <div class="formandresultlistwrap">
 	<div class="refineformwrap">
-		<?php echo $this->form;?>
+		<?php echo $this->form->populate(Common::stdClassToArray($this->paramsHolder));?>
 	</div>
 	<div class="resultlistwrap">
-	sdfsdfsd
+		<div class="topbar">
+			<div class="leftcolumn topleft">
+			</div>
+			<div class="centercolumn topcenter">
+				<div class="resultsummary">
+					Showing <?=$this->currentItemCount?> of <?=$this->itemCount?>
+				</div>
+				<div class="resultheader">
+					<span class="date">
+						Data			
+					</span>
+					<span class="title">
+						Title	
+					</span>
+					<span class="category">
+						Category			
+					</span>
+					<span class="other">
+						Salary			
+					</span>				
+				</div>
+			</div>
+			<div class="rightcolumn topright">
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="resultbar">
+		<?php 
+			foreach($this->postings as $key=>$value)
+			{
+				echo '<div class="postingrow">' . "\n";
+				echo '<span class="date">' . $value->lastUpdateDate . '</span>' . "\n";
+				echo '<span class="title">' . $value->title . '</span>' . "\n";
+				echo '<span class="category">' . $value->cat1name . '/'. $value->cat2name. '</span>' . "\n";
+				echo '<span class="other">' . $value->priceDisplay . '</span>' . "\n";
+				echo '</div>';
+			}
+		?>
+		</div>
+		<div class="botbar">
+			<div class="leftcolumn botleft">
+			</div>
+			<div class="centercolumn botcenter">
+				<?php echo $this->postings ;?>
+			</div>
+			<div class="rightcolumn botright">
+			</div>
+			<div class="clear"></div>				
+		</div>
 	</div>
 	<div class="clear"></div>
 </div>

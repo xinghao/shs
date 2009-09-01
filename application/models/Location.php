@@ -5,7 +5,13 @@ class Location
 	protected $_state;
 	protected $_city;
 	protected $_region;
-	
+	protected $_suburb = null;
+
+	protected $_countryid;
+	protected $_stateid;
+	protected $_cityid;
+	protected $_regionid;
+	protected $_suburbid = null;
 	/**
 	 * 
 	 * @param $city
@@ -41,22 +47,83 @@ class Location
 	{
 		return $this->_city;
 	}
+
+	/**
+	 * 
+	 * @return unknown_type
+	 */
+	public function getSuburb()
+	{
+		return $this->_suburb;
+	}
+
+	public function getSuburbId()
+	{
+		return null;
+	}
 	
 	public function getState()
 	{
 		return $this->_state;
 	}
 	
+	public function getStateId()
+	{
+		if (empty($this->_stateid))
+		{
+			$this->_stateid = self::getStateIdByName($this->_state);
+		}
+		return $this->_stateid;
+	}
+
+	public function setStateId($stateid)
+	{
+		$this->_stateid = $stateid;
+	}
+
+	public function getCityId()
+	{
+		if (empty($this->_cityid))
+		{
+			$this->_cityid = self::getCityIdByName($this->_city);
+		}
+		return $this->_cityid;
+	}
+
+	public function setCityId($cityid)
+	{
+		$this->_cityid = $cityid;
+	}
+	
 	public function getCountry()
 	{
 		return $this->_country;
+	}
+
+	public function getCountryId()
+	{
+		return $this->_countryid;
 	}
 	
 	public function getRegion()
 	{
 		return $this->_region;
 	}
-	
+
+	public function getRegionId()
+	{
+		if (empty($this->_regionid))
+		{
+			$this->_regionid = self::getCityIdByName($this->_region);
+		}
+		return $this->_regionid;
+	}
+
+	public function setRegionId($regionid)
+	{
+		$this->_regionid = $regionid;
+	}
+		
 	public function toStdClass()
 	{
 		$stdc1 = new StdClass();
@@ -106,6 +173,46 @@ class Location
 		
 		return $states = $refloc->getAllCityByStateId($stateid);
 			
+	}	
+	
+	public static function getStateIdByName($stateName)
+	{
+		$refloc = new Refloc();
+		
+		return $refloc->getStateIdByName($stateName);
+		
+	}
+
+	public static function getStateNameById($stateid)
+	{
+		$refloc = new Refloc();
+		
+		return $refloc->getStateNameById($stateid);
+		
+	}
+	
+	public static function getCityIdByName($cityName)
+	{
+		$refloc = new Refloc();
+		
+		return $refloc->getCityIdByName($cityName);
+		
+	}
+	
+	public static function getCityNameById($cityid)
+	{
+		$refloc = new Refloc();
+		
+		return $refloc->getCityNameById($cityid);
+		
+	}	
+	
+	public static function getRegionIdByName($regionName)
+	{
+		$refloc = new Refloc();
+		
+		return $refloc->getRegionIdByName($regionName);
+		
 	}	
 }    
 ?>

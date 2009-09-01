@@ -5,6 +5,11 @@ class Refcategory extends Zend_Db_Table
 {
 	protected $_name = 'ref_category_en';
     protected $_primary = 'id';
+
+    public  function getTableName()
+    {
+    	return $this->_name;
+    }
     
  	public function getAllCat2OfSpecificCategory($busTypeId)
  	{
@@ -34,6 +39,28 @@ class Refcategory extends Zend_Db_Table
  			throw $e;
  		}		
  	}
-    
+
+	public function getCatNameById($catId)
+ 	{
+ 	 	try{
+ 			$select = $this->select();
+ 			$select->where('id = ?', $catId);
+ 			logfire('select', $select->__toString());
+ 			$cat =  $this->fetchRow($select);
+ 			
+ 			if(empty($cat))
+ 			{
+ 				return null;
+ 			}
+ 			else
+ 			{
+ 				return $cat->name;
+ 			}
+ 		}catch(Exception $e)
+ 		{
+ 			logError('ref_cat1 failed!', $e);
+ 			throw $e;
+ 		}		
+ 	}
 }
 
