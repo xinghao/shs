@@ -10,6 +10,9 @@ RewriteEngine On
 
 RewriteRule ^aa /info.php
 
+
+RewriteRule ^Mehdone/([^/]+)/?$          Mehdone/$1 [L]
+
 #
 # this is a recommended ZFW handler
 #
