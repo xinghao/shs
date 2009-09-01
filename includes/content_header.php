@@ -6,6 +6,7 @@
 				</div>
 				<div class="locationswrap">
 					<ul id="locationnav">
+						
 						<li><?php echo $this->replaceRegionInUri($this->router, $this->paramsHolder, 'City Center', $this->location->getRegion())?><li>
 						<li><?php echo $this->replaceRegionInUri($this->router, $this->paramsHolder, 'North', $this->location->getRegion())?><li>
 						<li><?php echo $this->replaceRegionInUri($this->router, $this->paramsHolder, 'South', $this->location->getRegion())?><li>
@@ -13,10 +14,15 @@
 						<li><?php echo $this->replaceRegionInUri($this->router, $this->paramsHolder, 'West', $this->location->getRegion())?><li>
 						<li><?php echo $this->replaceRegionInUri($this->router, $this->paramsHolder, $this->location->getCity(), $this->location->getRegion())?><li>
 						<li><?php echo $this->replaceRegionInUri($this->router, $this->paramsHolder, 'Other', $this->location->getRegion())?><li>
+						
+						<?php 
+						// We change regin variable at above so we needs change it back.
+						$this->paramsHolder->region = $this->location->getRegion();?>
 						</ul>
 					<div class="clear"></div>
 				</div>
 			</div>
+
 			<div id="secondline">
 					<ul id="categorynav">
 						<li><?php echo $this->basicCategoryUri('Real Estate', $this->paramsHolder,  $this->category);?><li>
