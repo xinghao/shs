@@ -361,3 +361,100 @@ div.refineform div.or{
 }
 
 /* -------------- refine form end--------------------*/
+
+
+/* --------------  results table bagin--------------------*/
+div.resultlistwrap div.leftcolumn,
+div.resultlistwrap div.centercolumn{
+	display:block;
+	float:left;
+}
+div.resultlistwrap div.rightcolumn{
+
+}	
+div.resultlistwrap div.botleft,
+div.resultlistwrap div.botright{
+	width:11px;
+	height:27px;
+  	background-image: url(../images/sitetemplate/leftbotcorner.jpg);
+  	background-position: 100% 0;
+  	background-repeat:no-repeat;	
+	
+}
+div.resultlistwrap div.botright{
+	display:block;
+	float:right;
+	margin-right:0px;
+    background-image: url(../images/sitetemplate/rightbotcorner.jpg);		
+}
+
+div.resultlistwrap div.botbar{
+	width:100%;
+	height:27px;
+	background-color:#ccc;
+}
+
+div.resultlistwrap div.topbar{
+	width:100%;
+	height:54px;
+	background-color:#ccc;
+}
+
+div.resultlistwrap div.resultbar{
+	margin-bottom:10px;
+}
+div.resultlistwrap div.topleft,
+div.resultlistwrap div.topright{
+	width:13px;
+	height:54px;
+  	background-image: url(../images/sitetemplate/leftcorner.jpg);
+  	background-position: 100% 0;
+  	background-repeat:no-repeat;	
+	
+}
+div.resultlistwrap div.topright{
+	display:block;
+	float:right;
+	margin-right:0px;
+    background-image: url(../images/sitetemplate/rightcorner.jpg);		
+}
+
+div.resultheader{
+	font-weight:bold;
+}
+div.resultlistwrap span{
+	display:inline-block;
+}
+div.resultlistwrap span.date{
+	width:100px;
+}
+div.resultlistwrap span.title{
+	width:320px;
+}
+div.resultlistwrap span.category{
+	width:200px;
+}
+div.resultlistwrap span.other{
+	width:50px;
+}
+div.resultlistwrap div.postingrow{
+	padding:5px 0px 5px 0px;
+	margin:0px 13px 0px 11px;
+	border-bottom:#ccc 1px solid;
+}
+
+div.resultsummary{
+	font-wight:bold;
+	text-align:center;
+	font-style:italic;
+	margin:10px 0px 0px 10px;
+}
+div.pagination{
+	width:670px;
+	padding-top:5px;
+}
+div.pagination div.paginatorsummary{
+	float:left;
+}
+div.pagination div.paginator{
+	float:right;
