@@ -14,10 +14,10 @@ class Zend_View_Helper_SearchResults {
 		}  
 		else
 		{
-			$findstr = $cat1 . ' ' . $categoty;	
+			$findstr = Jobs::getCat1NameById($cat1) . ' ' . $categoty;	
 		}
 		
-		
+		/*
 		if (strtolower($region) == strtolower($city))
 		{
 			$location = 'All ' . $city;
@@ -26,8 +26,10 @@ class Zend_View_Helper_SearchResults {
 		{
 			$location = $region . ' of ' . $city;
 		}
+		*/
+		
 		$retstr .= '<span class="emphasis">' . $findstr  . '</span> ';
-		$retstr .= 'in <span class="emphasis">' . $location .'</span>. ';
+		$retstr .= 'in <span class="emphasis">' . $city .'</span>. ';
 		$retstr .= 'Please refine your search:</div>';	
 		
 		return $retstr;
