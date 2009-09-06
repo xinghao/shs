@@ -217,6 +217,7 @@ class RefineForm extends Zend_Form
 	 */
 	public function populate(array $values)
 	{
+		
 		// Job specifically.
 		if ( (!array_key_exists('cat4',$values) || empty($values['cat4'])) && array_key_exists('state',$values) && !empty($values['state']) )
 		{
@@ -224,7 +225,9 @@ class RefineForm extends Zend_Form
 		}
 
 		// Job specifically.
-		if ( (!array_key_exists('cat5',$values) || empty($values['cat5'])) && array_key_exists('city',$values) && !empty($values['city']) )
+		//	if ( (!array_key_exists('cat5',$values) || empty($values['cat5'])) && array_key_exists('city',$values) && !empty($values['city']) )
+		// In case it comes from the links on the header.
+		if ( array_key_exists('city',$values) && !empty($values['city']) )
 		{
 			$values['cat5'] = Location::getCityIdByName($values['city']);
 			

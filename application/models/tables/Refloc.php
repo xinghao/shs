@@ -80,20 +80,20 @@ class Refloc extends Zend_Db_Table
  		}   	
     }
     
-    /**
-     * Get State id by name
-     * @param $stateid
-     * @return integer
-     */
-    public function getStateIdByName($stateName)
+	/**
+	 * 
+	 * @param $stateName
+	 * @param $country  mixed   country_id or country_name.
+	 * @return unknown_type
+	 */
+    public function getStateIdByName($stateName, $country = null)
     {
         try{
 	    	$select = $this->select();
 	    	$select->from($this->_name, array('stateid'))
 	    	       ->distinct(true)
-	    	       ->where('state = ?', Common::titleCaseUpper($stateName));
-	    	    
-	    	
+	    	       ->where('lower(state) = lower(?)', Common::titleCaseUpper($stateName));
+	    	       //->where('country = ? or countryid = ?', Common::titleCaseUpper($country));
 	    	logfire('select', $select->__toString());
 	    	$state = $this->fetchRow($select);
 	    	
@@ -235,7 +235,14 @@ class Refloc extends Zend_Db_Table
  			logError('Refloc failed!', $e);
  			throw $e;
  		}   	
-    }     
+    }   
+
+    public function getAllCityByCountryAndStateName($state, $country = null)
+    {
+    	$stateId = $this->getStateIdByName($state, $country);
+    	
+    	return $this->getAllCityByStateId($stateId);
+    }
     
 }
 

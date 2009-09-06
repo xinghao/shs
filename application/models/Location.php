@@ -27,7 +27,7 @@ class Location
 		$this->_country = $country;
 		
 		logfire('region1', $region);
-		
+		/*
 		if (empty($region))
 		{
 			$this->_region = $city;
@@ -36,6 +36,8 @@ class Location
 		{
 			$this->_region = $region;
 		}
+		*/
+		$this->_region = null;
 		logfire('region2', $this->_region);
 	}
 	
@@ -213,6 +215,14 @@ class Location
 		
 		return $refloc->getRegionIdByName($regionName);
 		
-	}	
+	}
+
+	public static function getAllcitiesByCountryAndState($state, $country)
+	{
+		$refloc = new Refloc();
+		
+		return $refloc->getAllCityByCountryAndStateName($state, $country);
+	
+	}
 }    
 ?>

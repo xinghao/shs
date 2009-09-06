@@ -45,6 +45,12 @@ class Jobs
 		return $this->_cat1Name;
 	}
 
+	public static function getCat1NameById($cat1)
+	{
+		$refCat1Tables = new Refcat1();
+		return $refCat1Tables->getCatNameById($cat1);
+	}
+	
 	public function getCat2Name(){
 		return $this->_cat2Name;
 	}
