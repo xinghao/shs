@@ -24,7 +24,7 @@ class IndexController extends Hotspot_Controller_Action {
     {
     	try{
  		$this->_helper->viewRenderer->setNoRender();
-    	$location = $this->_getParam('qlocation');
+    	$location = $this->_getParam('qloc');
     	$category = $this->_getParam('qcategory');
 
     	//echo $location;
