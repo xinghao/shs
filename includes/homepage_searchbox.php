@@ -2,8 +2,8 @@
 				<form action="/search" method="post">
 			  		<div id="q_location">
 			  			<label class="where">Location</label>
-			  			<select id="select_location" class="formselect"  name="qlocation">
-							<?php echo TemplatingManager::getLocationOption(TemplatingManager::HTMLTEMPLATE);?>
+			  			<select id="select_location" class="formselect"  name="qloc">
+							<?php echo TemplatingManager::getLocationOption(null, TemplatingManager::HTMLTEMPLATE);?>
 						</select>
 			   		</div>
 					<div id="q_category">

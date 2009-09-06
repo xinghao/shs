@@ -2,7 +2,10 @@
 			<div id="firstline">
 				<a href="/"><div id="resultpagelogo" class="smalllogo"></div></a>
 				<div class="resultlocation">
-					<?php echo $this->location->getCity() . '<br />' . $this->location->getState() . ', ' . $this->location->getCountry()?>
+					<?php //echo $this->location->getCity() . '<br />' . $this->location->getState() . ', ' . $this->location->getCountry()
+						 include (WEBSITE_ROOT."/includes/location_dropdown.php");
+					?>
+
 				</div>
 				<div class="locationswrap">
 					<ul id="locationnav">				
