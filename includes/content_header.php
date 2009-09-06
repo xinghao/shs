@@ -2,25 +2,18 @@
 			<div id="firstline">
 				<a href="/"><div id="resultpagelogo" class="smalllogo"></div></a>
 				<div class="resultlocation">
-					<?php echo $this->location->getCity() . ' ' . $this->location->getState() . ', ' . $this->location->getCountry()?>
+					<?php echo $this->location->getCity() . '<br />' . $this->location->getState() . ', ' . $this->location->getCountry()?>
 				</div>
 				<div class="locationswrap">
-					<ul id="locationnav">
-						
-						<li><?php echo $this->replaceRegionInUri($this->router, $this->paramsHolder, 'City Center', $this->location->getRegion())?><li>
-						<li><?php echo $this->replaceRegionInUri($this->router, $this->paramsHolder, 'North', $this->location->getRegion())?><li>
-						<li><?php echo $this->replaceRegionInUri($this->router, $this->paramsHolder, 'South', $this->location->getRegion())?><li>
-						<li><?php echo $this->replaceRegionInUri($this->router, $this->paramsHolder, 'East', $this->location->getRegion())?><li>
-						<li><?php echo $this->replaceRegionInUri($this->router, $this->paramsHolder, 'West', $this->location->getRegion())?><li>
-						<li><?php echo $this->replaceRegionInUri($this->router, $this->paramsHolder, $this->location->getCity(), $this->location->getRegion())?><li>
-						<li><?php echo $this->replaceRegionInUri($this->router, $this->paramsHolder, 'Other', $this->location->getRegion())?><li>
-						
+					<ul id="locationnav">				
 						<?php 
 						// We change regin variable at above so we needs change it back.
-						$this->paramsHolder->region = $this->location->getRegion();?>
+						//$this->paramsHolder->region = $this->location->getRegion();
+						echo $this->listAllCitiesInState($this->router, $this->paramsHolder);?>
 						</ul>
 					<div class="clear"></div>
 				</div>
+				<div class="clear"></div>
 			</div>
 
 			<div id="secondline">
