@@ -4,7 +4,7 @@
  * @author	Tim Woo <tim@airarena.net>
  */
 class Zend_View_Helper_SearchResults {
-    function searchResults($cat1 = 'ALL', $categoty = '',  $region, $city){
+    function searchResults($cat1 = 'ALL', $categoty = '',  $region, $city, $state, $coutry){
 		$retstr = '<div class="searchresult">';
 		$retstr .= 'Below shows the <span class="emphasis">lastest</span> postings for ';
 		
@@ -27,9 +27,40 @@ class Zend_View_Helper_SearchResults {
 			$location = $region . ' of ' . $city;
 		}
 		*/
+		$location = "";
+		
+		if (!empty($city))
+		{
+			$location = $city;
+		}
+		
+		if (!empty($state))
+		{
+			if (empty($location))
+			{
+				$location = $state;
+			}
+			else
+			{
+				$location .= ' ' .$state;
+			}
+		}
+		
+		if (!empty($coutry))
+		{
+			if (empty($location))
+			{
+				$location = $coutry;
+			}
+			else
+			{
+				$location .= ', ' .$coutry;
+			}
+		}
+		
 		
 		$retstr .= '<span class="emphasis">' . $findstr  . '</span> ';
-		$retstr .= 'in <span class="emphasis">' . $city .'</span>. ';
+		$retstr .= 'in <span class="emphasis">' . $location .'</span>. ';
 		$retstr .= 'Please refine your search:</div>';	
 		
 		return $retstr;
