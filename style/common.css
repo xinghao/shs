@@ -28,7 +28,7 @@ padding:0;
 text-align:center;
 }
 
-.clear { clear: both; }
+.clear { clear: both;}
 
 /* links */
 a {	
@@ -196,10 +196,11 @@ border:medium none;
 
 div.smalllogo{
 	width:98px;
-	height:60px;
+	height:70px;
 	display:block;
 	float:left;
 	background: url(../images/sitetemplate/spot101_60.png) no-repeat;
+	margin-top:10px;
 }
 
 
@@ -229,14 +230,20 @@ ul#categorynav li a:hover, ul#categorynav li a.menu_on{
 	color:#000;
 }
 
-div.resultlocation, div.locationswrap{
-	float:left;
-	padding:8px 10px 8px 10px;
+div.locationswrap{
+	float:right;
+	padding:0px;
+	margin-right:0px;
 	font-size:15px;
+	width:700px;
 }
 
 div.resultlocation{
 	padding-top:16px;
+	float:left;
+	padding:18px 10px 8px 10px;
+	font-size:15px;
+	width:110px;
 }
 
 div#secondline{
@@ -246,13 +253,14 @@ div#secondline{
 
 }
 div#contendheaderwrapper{
-	margin: 20px 0px 0px 0px;
+	margin: 0px 0px 0px 0px;
 }
 
 div.headbotline{
 	clear:both;
-	margin:20px 5px 0px 5px;
+	margin:0px 5px 0px 5px;
 	border-bottom: 1px solid #ccc;
+	padding-top:20px;
 }
 
 /* -------------- result page start--------------------*/
@@ -262,7 +270,7 @@ div.searchresult{
 div.searchresult span.emphasis{
 	font-weight:bold;
 	font-style: italic;
-	font-size:14px;
+	font-size:16px;
 }
 
 
