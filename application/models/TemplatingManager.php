@@ -26,7 +26,7 @@ class TemplatingManager
 	 * @param $templateType
 	 * @return String
 	 */
-	public static function getLocationOption($templateType = null)
+	public static function getLocationOption($currentLoc, $templateType = null)
 	{
 		try{
 			// Get Templating script path.
@@ -35,6 +35,12 @@ class TemplatingManager
 			
 			// Set view path.
 			$view = new Zend_View();
+			
+			if (empty($currentLoc))
+			{
+				$currentLoc = "Sydney|NSW|Australia";
+			}
+			$view->currentLoc = $currentLoc;
 			$view->addScriptPath($scriptPath);
 			
 			// Get html/text template file name
