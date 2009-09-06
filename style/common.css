@@ -200,7 +200,6 @@ div.smalllogo{
 	display:block;
 	float:left;
 	background: url(../images/sitetemplate/spot101_60.png) no-repeat;
-	margin-top:10px;
 }
 
 
@@ -235,7 +234,7 @@ div.locationswrap{
 	padding:0px;
 	margin-right:0px;
 	font-size:15px;
-	width:700px;
+	width:680px;
 }
 
 div.resultlocation{
@@ -243,9 +242,11 @@ div.resultlocation{
 	float:left;
 	padding:18px 10px 8px 10px;
 	font-size:15px;
-	width:110px;
+	width:150px;
 }
-
+select.shortselect{
+	width:150px;
+}
 div#secondline{
 	clear:both;
 	font-size:15px;
@@ -466,3 +467,6 @@ div.pagination div.paginatorsummary{
 }
 div.pagination div.paginator{
 	float:right;
+}
+
+
