@@ -43,8 +43,14 @@ class Location
 		logfire('region2', $this->_region);
 	}
 	
-	public static function getSearchRule()
+	public static function getSearchRule($country = null)
 	{
+		if (empty(self::$_searchRule))
+		{			
+			$refloccountryTable = new Refloccountry();
+		
+			self::$_searchRule = $refloccountryTable->getSearchRule($country);
+		}
 		return self::$_searchRule;
 	}
 	
@@ -251,11 +257,10 @@ class Location
 		$retArray = array();
 		$current = false;
 		try{
-			$refloccountryTable = new Refloccountry();
-		
-			$searchRule = $refloccountryTable->getSearchRule($country);
+			
+			$searchRule = self::getSearchRule($country);
 			logfire('searchrule', $searchRule);
-			self::$_searchRule = $searchRule;
+			
 			$currentloc = '';
 			
 			Switch ($searchRule) {
