@@ -28,7 +28,7 @@ class Zend_View_Helper_SearchResults {
 		}
 		*/
 		$location = "";
-		$searchRule = Location::getSearchRule();
+		$searchRule = Location::getSearchRule($coutry);
 		
 		logfire('search resutl searchrule', $searchRule);
 		if ($searchRule == 1 || $searchRule == 2)
