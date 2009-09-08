@@ -12,6 +12,8 @@ class Location
 	protected $_cityid;
 	protected $_regionid;
 	protected $_suburbid = null;
+	
+	protected static $_searchRule;
 	/**
 	 * 
 	 * @param $city
@@ -39,6 +41,11 @@ class Location
 		*/
 		$this->_region = null;
 		logfire('region2', $this->_region);
+	}
+	
+	public static function getSearchRule()
+	{
+		return self::$_searchRule;
 	}
 	
 	/**
@@ -223,6 +230,90 @@ class Location
 		
 		return $refloc->getAllCityByCountryAndStateName($state, $country);
 	
+	}
+
+	public static function getAllcitiesByCountry($country)
+	{
+		$refloc = new Refloc();
+		
+		return $refloc->getAllCityByCountry($country);
+	
+	}	
+	/**
+	 * 
+	 * @param $city
+	 * @param $state
+	 * @param $country
+	 * @return array(array('location'=location, current=true/false))
+	 */
+	public static function getLocations($city, $state, $country)
+	{
+		$retArray = array();
+		$current = false;
+		try{
+			$refloccountryTable = new Refloccountry();
+		
+			$searchRule = $refloccountryTable->getSearchRule($country);
+			logfire('searchrule', $searchRule);
+			self::$_searchRule = $searchRule;
+			$currentloc = '';
+			
+			Switch ($searchRule) {
+				case 1:
+					$cities = self::getAllcitiesByCountryAndState($state, $country);
+					$currentloc = $city;
+					break;
+				case 2:
+					$cities = self::getAllcitiesByCountry($country);
+					$currentloc = $city;
+					break;
+				case 3:
+					$loc = new Location();
+					$currentloc = $state;
+					$cities = $loc->getAllStateInCountry($country);
+					break;
+				default:
+					throw new Exception("No rule " . $searchRule . " handler exists.");
+			}
+			
+			if (empty($cities)){
+				throw new Exception("No cities exist in state: ". $state);
+			}
+			
+			logfire('currentloc', $currentloc);
+			foreach($cities as $row)
+			{
+				$rowloc = '';
+				if($searchRule ==1 || $searchRule ==2)
+				{
+					$rowloc = $row->city;
+				}
+				elseif($searchRule ==3)
+				{
+					$rowloc = $row->state;
+				}
+				if ( trim($rowloc) == trim($currentloc))
+				{
+					$current = true;
+				}
+				else
+				{
+					$current = false;
+				}
+				$retArray[] = array('location' => $rowloc, 'current' => $current);
+			}
+			
+		}catch(Exception $e)
+		{
+			logError('', $e);
+			echo $e;
+		}
+		
+		foreach($retArray as $q)
+		{
+			logfire($q['location'], $q['current']);
+		}
+		return $retArray;
 	}
 }    
 ?>

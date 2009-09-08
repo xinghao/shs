@@ -34,7 +34,28 @@ class Refloc extends Zend_Db_Table
  			throw $e;
  		}    	
     }
-    
+
+    /**
+     * Get all cities by countryid.
+     * Called to generate location drop down list.
+     * @return Zend_Db_TableRowSet
+     */
+    public function getAllCityByCountryId($country_id)
+    {
+    	try{
+	    	$select = $this->select();
+	    	$select->from($this->_name, array('city', 'cityid'))
+	    	       ->distinct(true)
+	    	       ->where('countryid = ?', $country_id);
+	    	       
+	    	logfire('country select', $select->__toString());
+	    	return $cities = $this->fetchAll($select);
+    	}catch(Exception $e)
+ 		{
+ 			logError('Refloc failed!', $e);
+ 			throw $e;
+ 		}    	
+    } 
     /**
      * Get all states in country
      * @return unknown_type
@@ -71,7 +92,7 @@ class Refloc extends Zend_Db_Table
 	    	       ->where('stateid = ?', $stateid);
 	    	    
 	    	
-	    	logfire('select', $select->__toString());
+	    	logfire('state select', $select->__toString());
 	    	return $states = $this->fetchAll($select);
     	}catch(Exception $e)
  		{
@@ -112,6 +133,7 @@ class Refloc extends Zend_Db_Table
  		}   	
     }
 
+    
         /**
      * Get State id by name
      * @param $stateid
@@ -144,7 +166,37 @@ class Refloc extends Zend_Db_Table
  		}   	
     }
     
-    
+	/**
+	 * 
+	 * @param $stateName
+	 * @param $country  mixed   country_id or country_name.
+	 * @return unknown_type
+	 */
+    public function getCountryIdByName($country)
+    {
+        try{
+	    	$select = $this->select();
+	    	$select->from($this->_name, array('countryid'))
+	    	       ->distinct(true)
+	    	       ->where('lower(country) = lower(?)', $country);
+	    	       //->where('country = ? or countryid = ?', Common::titleCaseUpper($country));
+	    	//logfire('select', $select->__toString());
+	    	$country = $this->fetchRow($select);
+	    	
+	    	if (empty($country))
+	    	{
+	    		return null;
+	    	}
+	    	else
+	    	{
+	    		return $country->countryid;
+	    	}
+    	}catch(Exception $e)
+ 		{
+ 			logError('Refloc failed!', $e);
+ 			throw $e;
+ 		}   	
+    }    
     /**
      * Get State id by name
      * @param $stateid
@@ -244,5 +296,12 @@ class Refloc extends Zend_Db_Table
     	return $this->getAllCityByStateId($stateId);
     }
     
+    
+    public function getAllCityByCountry($country)
+    {
+    	$countryId = $this->getCountryIdByName($country);
+    	
+    	return $this->getAllCityByCountryId($countryId);
+    }    
 }
 

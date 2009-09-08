@@ -54,7 +54,10 @@ class Pstposting extends Zend_Db_Table
 	    				    			
 	    	if (!empty($title))
 	    	{
-	    		$select->where('match (title) against(?)', $title);
+	    		//$select->where('match (title) against(?)', $title);
+	    		$title = str_replace(' ', '%', $title);
+	    		$select->where('title like ? or a.id = ?', '%' . $title . '%');
+	    		
 	    	}
 
            	if (!empty($stateid))

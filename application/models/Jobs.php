@@ -304,6 +304,11 @@ class Jobs
 			}
 		}
 		$pstitleTable = new Pstposting();
+		
+		if ($cat1 == 12)
+		{
+			$cat1 = null;
+		}
 		return $pstitleTable->search($limit,$offset, $countryid, $stateid, $cityid, $regionid, $suburbid, $query, $cat1, $cat2, $cat3, $cat4, $cat5);
 	}
 
