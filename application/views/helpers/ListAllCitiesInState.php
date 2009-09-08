@@ -8,14 +8,16 @@ class Zend_View_Helper_ListAllCitiesInState
     function listAllCitiesInState($routerName, $value){
     	
     	$retStr = '';
+
     	
     	$currentCity = $value->city;
-    	
-    	$cities = Location::getAllcitiesByCountryAndState($value->state,$value->country);
-    	
+    	$currentState = $value->state;
+    	$cities = Location::getLocations($value->city, $value->state,$value->country);
+		$searchRule = Location::getSearchRule();
+		    	
     	foreach($cities as $city)
     	{
-    		if (strtolower($currentCity) == strtolower($city->city))
+    		if ($city["current"])
     		{	
     	    	$attributes = 'class="menu_on"';
 	    	}
@@ -24,11 +26,19 @@ class Zend_View_Helper_ListAllCitiesInState
 	    		$attributes = '';
 	    	} 
 	    	
-	    	$value->city = $city->city;
-	    	$retStr .= '<li>' . Tag::link($routerName, $value, $city->city, $attributes) . '</li>' . "\n" ; 
+	    	if ($searchRule == 1 || $searchRule ==2)
+	    	{
+	    		$value->city = $city["location"];
+	    	}
+	    	elseif($searchRule ==3)
+	    	{
+	    		$value->city = $value->state = $city["location"];
+	    	}
+	    	$retStr .= '<li>' . Tag::link($routerName, $value, $city["location"], $attributes) . '</li>' . "\n" ; 
     	}
     	
     	$value->city = $currentCity;
+    	$value->state = $currentState;
     	//$value->city = strtolower($showRegion);
 		return $retStr;
     }

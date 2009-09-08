@@ -28,10 +28,15 @@ class Zend_View_Helper_SearchResults {
 		}
 		*/
 		$location = "";
+		$searchRule = Location::getSearchRule();
 		
-		if (!empty($city))
+		logfire('search resutl searchrule', $searchRule);
+		if ($searchRule == 1 || $searchRule == 2)
 		{
-			$location = $city;
+			if (!empty($city))
+			{
+				$location = $city;
+			}
 		}
 		
 		if (!empty($state))
