@@ -66,7 +66,7 @@ class Zend_View_Helper_SearchResults {
 		
 		$retstr .= '<span class="emphasis">' . $findstr  . '</span> ';
 		$retstr .= 'in <span class="emphasis">' . $location .'</span>. ';
-		$retstr .= 'Please refine your search:</div>';	
+		$retstr .= '</div>';	
 		
 		return $retstr;
     }
