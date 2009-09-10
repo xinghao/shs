@@ -27,7 +27,7 @@ class RefineForm extends Zend_Form
 	{
 		// Quick search field
 		$query = new Zend_Form_Element_Text('query');
-		$query->setLabel('Keywords or posting id:');
+		$query->setLabel('Refine Search:');
 		$query->setAttrib('class','refineforminput');
 		$this->addElement($query);
 
