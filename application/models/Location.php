@@ -22,11 +22,13 @@ class Location
 	 * @param $region
 	 * @return unknown_type
 	 */
-	public function __construct($city = null, $state = null, $country = null, $region = null)
+	public function __construct($city = null, $state = null, $country = null, $region = null, $suburb = null)
 	{
 		$this->_city = $city;
 		$this->_state = $state;
 		$this->_country = $country;
+		$this->_region = $region;
+		$this->_suburb = $suburb;
 		
 		logfire('region1', $region);
 		/*
