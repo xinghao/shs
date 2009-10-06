@@ -38,9 +38,34 @@ class TemplatingManager
 			
 			if (empty($currentLoc))
 			{
-				$currentLoc = "Sydney|NSW|Australia";
+				$locationId = "Aus28";
 			}
-			$view->currentLoc = $currentLoc;
+			else
+			{
+				/*
+				$searchRule = $currentLoc->getSearchRule();
+	
+		    	if ($searchRule == 1 || $searchRule ==2)
+		    	{
+		    		$locationId = $currentLoc->getCityId();
+		    	}
+		    	elseif($searchRule ==3)
+		    	{
+		    		$locationId = $currentLoc->getStateId();
+		    	}
+				*/			
+				// even search rule 3 has city id.
+				$locationId = $currentLoc->getCityId();
+			}
+			
+			//logFire('result page dropdown current locationId', $locationId);
+			//logFire('result page searchRule', $searchRule);
+			//logFire('result page dropdown cityid', $currentLoc->getCityId());
+			//logFire('result page dropdown stateid', $currentLoc->getStateId());
+			//logFire('result page dropdown locationid', $locationId);
+			
+			
+			$view->locationId = $locationId;
 			$view->addScriptPath($scriptPath);
 			
 			// Get html/text template file name

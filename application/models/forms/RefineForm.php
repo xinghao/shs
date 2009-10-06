@@ -11,13 +11,14 @@ class RefineForm extends Zend_Form
 {
 	
 	protected $_business;
+	protected $_location;
 
 
 	
-	public function __construct($business)
+	public function __construct($business, $location)
 	{
 		$this->_business = 	$business;	
-		
+		$this->_location =  $location;
 		parent::__construct();
 	}
 	
@@ -38,6 +39,7 @@ class RefineForm extends Zend_Form
         	'rows' => 22,
         	'cols' => 60
     	)); 
+    	$quick_search->setAttrib('onclick', 'return setsearch(1);');
        	$quick_search->setImageValue(true);
        	$this->addElement($quick_search);
 		
@@ -53,77 +55,158 @@ class RefineForm extends Zend_Form
        	//logfire('key',$this->_business->getFirstCat1());
        	$cat1->setValue($this->_business->getFirstCat1());
        	$cat1->setAttrib('class','refineformselect');
-       	/*
-       	if($this->_business->getCat1AsArray())
-       	echo 'empty!!!!!!!!!!!!!!!!';
-       	foreach ($this->_business->getCat1AsArray() as $key=>$value)
-       	{
-       		echo $key . '=>' . $value . "\n";
-       	}
-       	*/
        	$this->addElement($cat1);
 	}
 	
 	protected function buildCat2Element()
 	{
-       	$cat2 = new Zend_Form_Element_Select('cat2');
+		/*
+		$cat2 = new Zend_Form_Element_Select('cat2');
        	$cat2->setLabel($this->_business->getCat2Name());
        	$cat2->addMultiOptions($this->_business->getCat2Array());
        	$cat2->setValue($this->_business->getFirstCat2());
        	$cat2->setAttrib('class','refineformselect');
        	$cat2->setAttrib('onchange','changeCat2(this.id,this.options[this.selectedIndex].value)');
        	$this->addElement($cat2);
-		
+		*/
+		return null;
 	}
 	
 	protected function buildCat3Element()
 	{
+		/*
        	$cat3 = new Zend_Form_Element_Select('cat3');
        	$cat3->setLabel($this->_business->getCat3Name());
        	$cat3->setAttrib('class','refineformselect');
        	$cat2selected = $this->cat2->getValue();
        	$cat3->addMultiOptions($this->_business->getCat3Array($cat2selected));
        	$this->addElement($cat3);
-		
+		*/
+		return null;
 	}
 	
 	protected function buildCat4Element()
 	{
+		/*
        	$cat4 = new Zend_Form_Element_Select('cat4');
        	$cat4->setLabel($this->_business->getCat4Name());
        	$cat4->setAttrib('class','refineformselect');
        	$cat4->setAttrib('onchange','changeState("cat5",this.options[this.selectedIndex].value)');
        	$cat4->addMultiOptions($this->_business->getCat4Array());
-       	$this->addElement($cat4);		
+       	$this->addElement($cat4);
+       	*/
+		return null;		
 	}
 	
 	protected function buildCat5Element()
 	{
+		/*
        	$cat5 = new Zend_Form_Element_Select('cat5');
        	$cat5->setLabel($this->_business->getCat5Name());
        	$cat5->setAttrib('class','refineformselect');
        	$cat4selected = $this->_business->getFirstCat4();
        	$cat5->addMultiOptions($this->_business->getCat5Array($cat4selected));
-       	$this->addElement($cat5);		
+       	$this->addElement($cat5);
+       	*/
+		return null;		
 	}
 	
+	
+	protected function  buildExtraElements()
+	{
+		return null;
+	}
+	
+	public function printExtraElements()
+	{
+		return null;
+	}
+		
 	protected function buildLocationElements()
 	{
-		$location = $this->_business->getLocation();
-		if (!empty($location))
+		//$location = $this->_business->getLocation();
+		$location = $this->_location;
+    	
+		// the rule number such 1,2 ,3,4
+		$searchRule = $location->getSearchRule();
+		
+		// the rule Row include city, state,...
+    	$searchRules = $location->getSearchRules();
+    	
+		// Some locaiton only has state.
+    	if (!empty($searchRules->state))
+    	{
+	      	$state = new Zend_Form_Element_Select('stateid');
+	       	$state->setLabel('State');
+	       	$state->setAttrib('class','refineformselect');
+	       	$state->addMultiOptions($location->getStateOptionsBycountryId());
+	       	$state->setValue($location->getStateId());
+	       	if (!empty($searchRules->city))
+	       	{
+	       		$state->setAttrib('onchange',"changeLocation('cityid',this.options[this.selectedIndex].value, '/ajax/location/changestate/')");
+	       	}
+	       	$this->addElement($state);    	
+	       		
+    	}
+		
+    	
+		if (!empty($searchRules->city))
 		{
-			$this->addElement(Common::createHiddenElement('city', $location->getCity()));
-			$this->addElement(Common::createHiddenElement('state', $location->getState()));
-			$this->addElement(Common::createHiddenElement('country', $location->getCountry()));
-			$this->addElement(Common::createHiddenElement('region', $location->getRegion()));
+	      	$city = new Zend_Form_Element_Select('cityid');
+	       	$city->setLabel('City');
+	       	$city->setAttrib('class','refineformselect');
+	       	if ($searchRule == 1)
+	       	{
+	       		$city->addMultiOptions($location->getCityOptionsByStateId());
+	       	}
+	       	elseif($searchRule == 2)
+	       	{
+	       		$city->addMultiOptions($location->getCityOptionsBycountryId());
+	       	}
+	       	else
+	       	{
+	       		throw new Exception('Search rule design error for '. $location->getCountry());
+	       	}
+	       	$city->setValue($location->getCityId());
+	       	if (!empty($searchRules->region))
+	       	{
+	       		$city->setAttrib('onchange',"changeLocation('regionid',this.options[this.selectedIndex].value, '/ajax/location/changecity/')");
+	       	}
+	       	
+	       	$this->addElement($city);  
+
+	     
 		}
-		else
-		{
-			$this->addElement(Common::createHiddenElement('city', ''));
-			$this->addElement(Common::createHiddenElement('state', ''));
-			$this->addElement(Common::createHiddenElement('country', ''));
-			$this->addElement(Common::createHiddenElement('region', ''));
-		}
+
+		
+		
+		// Some locaiton only has state.
+    	if (!empty($searchRules->region))
+    	{
+	      	$region = new Zend_Form_Element_Select('regionid');
+	       	$region->setLabel('Region');
+	       	$region->setAttrib('class','refineformselect');
+	       	$region->addMultiOptions($location->getRegionOptionsByCityId());
+	       	$region->setValue($location->getRegionId());
+	       	//$region->setValue($location->getState());
+    		if (!empty($searchRules->suburb))
+	       	{
+	       		$region->setAttrib('onchange',"changeLocation('suburbid',this.options[this.selectedIndex].value, '/ajax/location/changeregion/')");
+	       	}	       	
+	       	$this->addElement($region);    		
+    	}
+		
+		// Some locaiton only has state.
+    	if (!empty($searchRules->suburb))
+    	{
+	      	$suburb = new Zend_Form_Element_Select('suburbid');
+	       	$suburb->setLabel('Suburb');
+	       	$suburb->setAttrib('class','refineformselect');
+	       	$suburb->addMultiOptions($location->getSuburbOptionsByRegionId());
+	       	$suburb->setValue($location->getSuburbId());
+	       	$this->addElement($suburb);    		
+    	}
+    	
 	}
 	
 	/*
@@ -161,10 +244,12 @@ class RefineForm extends Zend_Form
 		
 		$this->buildCat5Element();
 		
+		$this->buildExtraElements();
        	
        	$this->buildLocationElements();
        	
-       //	$this->addElement(Common::createHiddenElement('businessType', $this->_business->getBusinessType()));
+       	$this->addElement(Common::createHiddenElement('searchtype', ''));
+       	$this->addElement(Common::createHiddenElement('locationid', $this->_location->getLocationId()));
        
        	$this->setAction('/refine/'.strtolower($this->_business->getBusinessType()));
        	
@@ -190,7 +275,8 @@ class RefineForm extends Zend_Form
        	$submit->setAttribs(array(
         	'rows' => 22,
         	'cols' => 80
-    	)); 
+    	));
+    	$submit->setAttrib('onclick', 'return setsearch(2);'); 
        	$submit->setImageValue(true);
        	$this->addElement($submit);
        	
@@ -217,7 +303,7 @@ class RefineForm extends Zend_Form
 	 */
 	public function populate(array $values)
 	{
-		
+		/*
 		// Job specifically.
 		if ( (!array_key_exists('cat4',$values) || empty($values['cat4'])) && array_key_exists('state',$values) && !empty($values['state']) )
 		{
@@ -243,14 +329,142 @@ class RefineForm extends Zend_Form
 		{
 			$this->cat5->setMultiOptions($this->_business->getCat5Array($values['cat4']));
 		}
-
+*/
 		if(array_key_exists('cat1',$values) && empty($values['cat1']))
 		{
 			unset($values['cat1']);
 		}
+
+		if(array_key_exists('cat2',$values) && empty($values['cat2']))
+		{
+			unset($values['cat2']);
+		}
+
+		if(array_key_exists('cat3',$values) && empty($values['cat3']))
+		{
+			unset($values['cat3']);
+		}
+			
+		if(array_key_exists('cat4',$values) && empty($values['cat4']))
+		{
+			unset($values['cat4']);
+		}
+
+		if(array_key_exists('cat5',$values) && empty($values['cat5']))
+		{
+			unset($values['cat5']);
+		}		
+		
 		
 		// Call the father's render function.
 		return parent::populate($values);
 	}
 	
+	public function getSearchResultsWrap($hintResult)
+	{
+		$retstr = '<div class="searchresult">';
+		$retstr .= 'Below shows the <span class="emphasis">lastest</span> postings for ';
+		
+		
+		$location = '';
+		$searchRules = $this->_location->getSearchRules();
+		
+		//if (!empty())
+		
+		
+	//	logfire('search resutl searchrule', $searchRule);
+		
+		$suburb = $this->_location->getSuburb();
+		if (!empty($searchRules->suburb) || !empty($suburb))
+		{
+
+			$location = $suburb;
+		}
+		
+		$region = $this->_location->getRegion();
+		if (!empty($searchRules->region) || !empty($region))
+		{
+			if (empty($location))
+			{
+				$location = $region;
+			}
+			else
+			{
+				$location .= ', ' .$region;
+			}
+		}
+		
+		$city = $this->_location->getCity();
+		if (!empty($searchRules->city) || !empty($city))
+		{
+			if (empty($location))
+			{
+				$location = $city;
+			}
+			else
+			{
+				$location .= ', ' . $city;
+			}
+		}
+		
+		$state = $this->_location->getState();
+		if (!empty($searchRules->state) || !empty($state))
+		{
+			if (empty($location))
+			{
+				$location = $state;
+			}
+			else
+			{
+				$location .= ', ' . $state;
+			}
+		}
+
+		$country = $this->_location->getCountry();
+		if (!empty($country))
+		{
+			if (empty($location))
+			{
+				$location = $country;
+			}
+			else
+			{
+				$location .= ', ' . $country;
+			}
+		}		
+		
+		$retstr .= '<span class="emphasis">' . $hintResult  . '</span> ';
+		$retstr .= 'in <span class="emphasis">' . $location .'</span>. ';
+		$retstr .= '</div>';	
+		
+		return $retstr;
+		
+	}
+	
+	public function getSearchResults($categoty, $cat1 = null, $cat2 = null, $cat3 = null, $cat4 = null, $cat5 = null)
+	{
+		
+		if (empty($cat1))
+		{
+			$findstr = 'ALL ' .  $categoty;
+		}  
+		else
+		{
+			$findstr = $this->_business->getCat1NameById($cat1) . ' ' . $categoty;	
+		}
+		
+		/*
+		if (strtolower($region) == strtolower($city))
+		{
+			$location = 'All ' . $city;
+		}
+		else
+		{
+			$location = $region . ' of ' . $city;
+		}
+		*/
+		
+		return $this->getSearchResultsWrap($findstr);
+	}
+
 }

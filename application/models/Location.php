@@ -1,19 +1,39 @@
 <?php
+/**
+ * ref_loc_country:searchRule = 1
+ * show distinct city from home search's state)     - eg if home page we choose "<option value="Lake Macquarie|NSW|Australia">Lake Macquarie - Australia</option>"... the resulty page shoudl show distinct NSW cities (as NSW was lake maquiries state
+ * 
+ * ref_loc_country:searchRule = 2
+ * distinct city from home search country
+ * 
+ * ref_loc_country:searchRule = 3
+ * distinct state from home search country
+ 
+ * @author xinghao
+ *
+ */
 class Location 
 {
-	protected $_country;
-	protected $_state;
-	protected $_city;
-	protected $_region;
+	/**
+	 * Basic id to construct the Location.
+	 * @var string
+	 */
+	protected $_location_id;
+	
+	protected $_country = null;
+	protected $_state = null;
+	protected $_city = null;
+	protected $_region = null;
 	protected $_suburb = null;
 
-	protected $_countryid;
-	protected $_stateid;
-	protected $_cityid;
-	protected $_regionid;
+	protected $_countryid = null;
+	protected $_stateid = null;
+	protected $_cityid = null;
+	protected $_regionid = null;
 	protected $_suburbid = null;
 	
-	protected static $_searchRule;
+	protected $_searchRule;
+	protected $_loc;
 	/**
 	 * 
 	 * @param $city
@@ -22,73 +42,98 @@ class Location
 	 * @param $region
 	 * @return unknown_type
 	 */
-	public function __construct($city = null, $state = null, $country = null, $region = null, $suburb = null)
+	public function __construct($location_id)
 	{
-		$this->_city = $city;
-		$this->_state = $state;
-		$this->_country = $country;
-		$this->_region = $region;
-		$this->_suburb = $suburb;
-		
-		logfire('region1', $region);
-		/*
-		if (empty($region))
-		{
-			$this->_region = $city;
-		}
-		else
-		{
-			$this->_region = $region;
-		}
-		*/
-		$this->_region = null;
-		logfire('region2', $this->_region);
+		$this->_location_id = $location_id;
+		logfire('$this->_location_id', $this->_location_id);
 	}
 	
-	public static function getSearchRule($country = null)
+	public function getLocationId()
 	{
-		if (empty(self::$_searchRule))
-		{			
-			$refloccountryTable = new Refloccountry();
-		
-			self::$_searchRule = $refloccountryTable->getSearchRule($country);
-		}
-		return self::$_searchRule;
+		return $this->_location_id;
 	}
 	
 	/**
-	 * 
+	 * Get all the location info by locaiton id
 	 * @return unknown_type
 	 */
-	public function getCity()
+	protected function _fetchLocation()
 	{
-		return $this->_city;
-	}
+		$loc = $this->_getLocation();
+		$searchRules = $this->getSearchRules();
+		
+		if (!empty($searchRules->city))
+		{
+			$this->_city = $loc->city;
+			
+		}
+		$this->_cityid = $loc->cityid;
+		
+		if (!empty($searchRules->state))
+		{
+			$this->_state = $loc->state;
+			$this->_stateid = $loc->stateid;
+		}
+		
+		$this->_country = $loc->country;
+		$this->_countryid = $loc->countryid;
+		
+		if (!empty($searchRules->region) && ($this->_location_id == $loc->suburbid || $this->_location_id == $loc->regionid))
+		{		
+			$this->_region = $loc->region;
+			$this->_regionid = $loc->regionid;
+		}
+		
+		if (!empty($searchRules->suburb) && $this->_location_id == $loc->suburbid)
+		{
+			$this->_suburb = $loc->suburb;
+			$this->_suburbid = $loc->suburbid;
+		}
+		
 
-	/**
-	 * 
-	 * @return unknown_type
-	 */
-	public function getSuburb()
-	{
-		return $this->_suburb;
-	}
-
-	public function getSuburbId()
-	{
-		return null;
-	}
+			
+	}  
 	
+
+	
+	/**
+	 * Get country id
+	 * @return string
+	 */
+	public function getCountryId()
+	{
+		if (empty($this->_loc))
+		{
+			$this->_fetchLocation();
+		}
+		return $this->_countryid;
+	}	
+
+	public function getCountry()
+	{
+		if (empty($this->_loc))
+		{
+			$this->_fetchLocation();
+		}
+		return $this->_country;
+		
+	}
+
 	public function getState()
 	{
+		if (empty($this->_loc))
+		{
+			$this->_fetchLocation();
+		}
 		return $this->_state;
+		
 	}
 	
 	public function getStateId()
 	{
-		if (empty($this->_stateid))
+		if (empty($this->_loc))
 		{
-			$this->_stateid = self::getStateIdByName($this->_state);
+			$this->_fetchLocation();
 		}
 		return $this->_stateid;
 	}
@@ -97,12 +142,22 @@ class Location
 	{
 		$this->_stateid = $stateid;
 	}
+	
+	
+	public function getCity()
+	{
+		if (empty($this->_loc))
+		{
+			$this->_fetchLocation();
+		}
+		return $this->_city;
+	}
 
 	public function getCityId()
 	{
-		if (empty($this->_cityid))
+		if (empty($this->_loc))
 		{
-			$this->_cityid = self::getCityIdByName($this->_city);
+			$this->_fetchLocation();
 		}
 		return $this->_cityid;
 	}
@@ -111,46 +166,368 @@ class Location
 	{
 		$this->_cityid = $cityid;
 	}
-	
-	public function getCountry()
-	{
-		return $this->_country;
-	}
-
-	public function getCountryId()
-	{
-		return $this->_countryid;
-	}
-	
+		
 	public function getRegion()
 	{
+		if (empty($this->_loc))
+		{
+			$this->_fetchLocation();
+		}
 		return $this->_region;
 	}
 
 	public function getRegionId()
 	{
-		if (empty($this->_regionid))
+		if (empty($this->_loc))
 		{
-			$this->_regionid = self::getCityIdByName($this->_region);
+			$this->_fetchLocation();
 		}
-		return $this->_regionid;
+		return $this->_regionid;	
 	}
 
-	public function setRegionId($regionid)
+	
+	public function getSuburb()
 	{
-		$this->_regionid = $regionid;
-	}
+		if (empty($this->_loc))
+		{
+			$this->_fetchLocation();
+		}
+		return $this->_suburb;
 		
+	}
+
+	public function getSuburbId()
+	{
+		if (empty($this->_loc))
+		{
+			$this->_fetchLocation();
+		}
+		return $this->_suburbid;
+		
+	}
+	
+
+	protected function _getLocation()
+	{
+		if (empty($this->_loc))
+		{
+			$reflocTable = new Refloc();
+			$this->_loc = $reflocTable->getLocationById($this->_location_id);
+		}
+		
+		return $this->_loc;
+		
+	}
+	/**
+	 * Get search rule
+	 * @return unknown_type
+	 */
+	protected function _fetchSearchRule()
+	{
+		
+		$country_id = $this->_getLocation()->countryid;
+		
+		$refloccountryTable = new Refloccountry();
+		$this->_searchRule = $refloccountryTable->getSearchRule($country_id);
+	}
+	
+	/**
+	 * Return the search rule.
+	 * @return integer
+	 */
+	public function getSearchRule()
+	{
+		if (empty($this->_searchRule))
+		{
+			$this->_fetchSearchRule();
+		}
+		
+		return $this->_searchRule->searchRule;
+	}
+
+		/**
+	 * Return the search rules.
+	 * @return integer
+	 */
+	public function getSearchRules()
+	{
+		if (empty($this->_searchRule))
+		{
+			$this->_fetchSearchRule();
+		}
+		
+		return $this->_searchRule;
+	}
+	
+	
 	public function toStdClass()
 	{
 		$stdc1 = new StdClass();
-		$stdc1->city = $this->getCity();
-		$stdc1->state = $this->getState();
+	    
+		$city = $this->getCity();
+    	$state = $this->getState();
+    		
+		// Some locaiton only has state.
+    	if (empty($city))
+    	{
+    		$city = $state;
+    	}
+    	
+    	// Some locaiton only has city.
+    	if (empty($state))
+    	{
+    		$state = $city;
+    	}
+    		
+		$stdc1->city = $city;
+		$stdc1->state = $state;
 		$stdc1->country = $this->getCountry();
 		$stdc1->region = $this->getRegion();
-		
+		$stdc1->suburb = $this->getSuburb();
+						
 		return $stdc1;
 	}
+
+	public function getLocations()
+	{
+		$retArray = array();
+		$current = false;
+		try{
+			
+			$searchRule = $this->getSearchRule();
+			logfire('searchrule', $searchRule);
+			
+			$currentloc = '';
+			
+			Switch ($searchRule) {
+				case 1:
+					$cities = $this->getAllCityByStateId();
+					$currentloc = $this->getCity();
+					break;
+				case 2:
+					$cities = $this->getAllCityBycountryId();
+					$currentloc = $this->getCity();
+					break;
+				case 3:
+					$currentloc = $this->getState();
+					$cities = $this->getAllStateBycountryId();
+					break;
+				default:
+					throw new Exception("No rule " . $searchRule . " handler exists.");
+			}
+			
+			if (empty($cities)){
+				throw new Exception("No cities exist");
+			}
+			
+			logfire('currentloc', $currentloc);
+			foreach($cities as $row)
+			{
+				$rowloc = '';
+				$rowlocid = '';
+				if($searchRule ==1 || $searchRule ==2)
+				{
+					$rowloc = $row->city;
+					$rowlocid = $row->cityid;
+				}
+				elseif($searchRule ==3)
+				{
+					$rowloc = $row->state;
+					$rowlocid = $row->stateid;
+				}
+				if ( trim($rowloc) == trim($currentloc))
+				{
+					$current = true;
+				}
+				else
+				{
+					$current = false;
+				}
+				$retArray[] = array('location' => $rowloc,'locationid' =>$rowlocid,  'current' => $current);
+			}
+			
+		}catch(Exception $e)
+		{
+			logError('', $e);
+			echo $e;
+		}
+		
+		foreach($retArray as $q)
+		{
+			logfire($q['location'], $q['current']);
+		}
+		return $retArray;
+	}
+
+	
+	public function getAllCityByStateId($stateid = null)
+	{
+		if (empty($stateid))
+		{
+			$stateid = $this->_stateid;	
+		}
+		
+		$refloc = new Refloc();
+		
+		return $refloc->getAllCityByStateId($stateid);
+			
+	}
+
+	public function getAllRegionByCityId($cityid = null)
+	{
+		if (empty($cityid))
+		{
+			$cityid = $this->_cityid;	
+		}
+		
+		$refloc = new Refloc();
+		
+		return $refloc->getAllRegionByCityId($cityid);
+			
+	}
+
+	public function getAllSuburbByRegionId($region = null)
+	{
+		if (empty($region))
+		{
+			$region = $this->_regionid;	
+		}
+		
+		if (empty($region))
+		{
+			return array();
+		}
+		
+		$refloc = new Refloc();
+		
+		return $refloc->getAllSuburbByRegionId($region);
+			
+	}
+		
+	public function getCityOptionsByStateId($stateid = null)
+	{
+		$retArray = array();
+		
+		foreach($this->getAllCityByStateId($stateid) as $city)
+		{
+			$retArray[$city->cityid] = $city->city;
+		}
+		return $retArray;
+			
+	}	
+		
+	public function getRegionOptionsByCityId($cityid = null)
+	{
+		$retArray = array();
+		
+		$retArray['ALL'] = 'ALL';
+		
+		foreach($this->getAllRegionByCityId($cityid) as $region)
+		{
+			$retArray[$region->regionid] = $region->region;
+		}
+		return $retArray;
+			
+	}	
+
+	public function getSuburbOptionsByRegionId($regionid = null)
+	{
+		$retArray = array();
+		
+		$retArray['ALL'] = 'ALL';
+		
+		foreach($this->getAllSuburbByRegionId($regionid) as $suburb)
+		{
+			$retArray[$suburb->suburbid] = $suburb->suburb;
+		}
+		return $retArray;
+			
+	}		
+	
+	public function getAllCityBycountryId($countryid = null)
+	{
+		if (empty($countryid))
+		{
+			$countryid = $this->_countryid;	
+		}
+		
+		$refloc = new Refloc();
+		
+		return $refloc->getAllCityByCountryId($countryid);
+			
+	}
+	
+	public function getCityOptionsBycountryId($countryid = null)
+	{
+		$retArray = array();
+		
+		foreach($this->getAllCityBycountryId($countryid) as $city)
+		{
+			$retArray[$city->cityid] = $city->city;
+		}
+		return $retArray;
+			
+	}	
+	
+	public function getAllStateBycountryId($countryid = null)
+	{
+		if (empty($countryid))
+		{
+			$countryid = $this->_countryid;	
+		}
+		
+		$refloc = new Refloc();
+		
+		return $refloc->getAllStatesByCountryId($countryid);
+			
+	}		
+	
+
+	public function getStateOptionsBycountryId($countryid = null)
+	{
+		$retArray = array();
+		
+		foreach($this->getAllStateBycountryId($countryid) as $state)
+		{
+			$retArray[$state->stateid] = $state->state;
+		}
+		return $retArray;
+			
+	}		
+	
+	
+	public function getUriCity()
+	{
+		$searchRules = $this->getSearchRules();
+			// Some locaiton only has state.
+    	if (empty($searchRules->city))
+    	{
+    		return $this->getState();
+    	}
+    	else
+    	{
+    		return $this->getCity();
+    	}
+	}
+	
+	public function getUriState()
+	{
+		$searchRules = $this->getSearchRules();
+			// Some locaiton only has state.
+    	if (empty($searchRules->state))
+    	{
+    		return $this->getCity();
+    	}
+    	else
+    	{
+    		return $this->getState();
+    	}
+	}
+	
+	/*
+
+		
+
 	
 	public function mergeToAnotherClass($outClass)
 	{
@@ -162,11 +539,7 @@ class Location
 		return $outClass;		
 	}
 	
-	
-	/**
-	 * Get all states of country
-	 * @return unknown_type
-	 */
+
 	public function getAllStateInCountry($country = null)
 	{
 		$refloc = new Refloc();
@@ -180,10 +553,7 @@ class Location
 			
 	}
 
-	/**
-	 * Get all states of country
-	 * @return unknown_type
-	 */
+
 	public function getAllCityByStateId($stateid)
 	{
 		$refloc = new Refloc();
@@ -247,13 +617,7 @@ class Location
 		return $refloc->getAllCityByCountry($country);
 	
 	}	
-	/**
-	 * 
-	 * @param $city
-	 * @param $state
-	 * @param $country
-	 * @return array(array('location'=location, current=true/false))
-	 */
+
 	public static function getLocations($city, $state, $country)
 	{
 		$retArray = array();
@@ -322,5 +686,6 @@ class Location
 		}
 		return $retArray;
 	}
+	*/
 }    
 ?>

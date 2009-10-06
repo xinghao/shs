@@ -6,6 +6,10 @@ class Pstposting extends Zend_Db_Table
 	protected $_name = 'pst_posting';
     protected $_primary = 'id';
     
+    public  function getTableName()
+    {
+    	return $this->_name;
+    } 
 	 /**
 	  * 
 	  * @param $limit
@@ -85,29 +89,39 @@ class Pstposting extends Zend_Db_Table
 	    		$select->where('suburbid = ?', $suburbid);
 	    	}
 	    	
-           	if (!empty($cat1) && $cat1 != 'ALL' )
+	    	logfire('cat1', $cat1);
+           	if (!empty($cat1) && $cat1 != 'ALL' && $cat1 != 'Any')
 	    	{
 	    		$select->where('cat1 = ?', $cat1);
 	    	}
 
-           	if (!empty($cat2)  && $cat2 != 'ALL' )
+           	if (!empty($cat2)  && $cat2 != 'ALL' && $cat2 != 'Any')
 	    	{
 	    		$select->where('cat2 = ?', $cat2);
 	    	}
 
-	    	if (!empty($cat3)  && $cat3 != 'ALL' )
+	    	if (!empty($cat3)  && $cat3 != 'ALL' && $cat3 != 'Any')
 	    	{
 	    		$select->where('cat3 = ?', $cat3);
 	    	}
 	    	
-	    	if (!empty($cat4)  && $cat4 != 'ALL' )
+	    	if (!empty($cat4)  && $cat4 != 'ALL' && $cat4 != 'Any')
 	    	{
 	    		$select->where('cat4 = ?', $cat4);
 	    	}
 	    	
-           	if (!empty($cat5)  && $cat5 != 'ALL' )
+           	if (!empty($cat5)  && $cat5 != 'ALL' && $cat5 != 'Any')
 	    	{
 	    		$select->where('cat5 = ?', $cat5);
+	    	}
+	    	
+	    	
+	    	if (!empty($addtionalData))
+	    	{
+	    		foreach($addtionalData as $key=>$value)
+	    		{
+	    			$select->where($key, $value);
+	    		}
 	    	}
 	    	
 	    	logfire('searchselect', $select->__toString());

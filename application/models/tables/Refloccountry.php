@@ -11,7 +11,7 @@ class Refloccountry extends Zend_Db_Table
     	return $this->_name;
     }
     
-	public function getSearchRule($country)
+	public function getSearchRuleByCountryName($country)
 	{
 		try
 		{
@@ -31,6 +31,29 @@ class Refloccountry extends Zend_Db_Table
  			logError('ref_loc_country', $e);
  			throw $e;
  		} 
+	}
+
+	public function getSearchRule($country_id)
+	{
+		try
+		{
+			$select = $this->select();
+			$select->where('lower(countryid) = lower(?)', $country_id);
+			
+			$row = $this->fetchRow($select);
+			
+			if (empty($row))
+			{
+				throw new Exception("No search rule exists for " . $country_id);
+			}
+		
+			return $row;
+	  	}catch(Exception $e)
+ 		{
+ 			logError('ref_loc_country', $e);
+ 			throw $e;
+ 		} 
 	}    
+	
 }
 
