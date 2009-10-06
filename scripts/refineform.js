@@ -1,10 +1,10 @@
-	function changeCat2(id, value)
+	function changeCat2(id, value, uri)
 	{
 		//alert(id);
 		//alert(value);
 		
 		$("select#cat3").html('');
-		$.getJSON("/ajax/jobs/changecat2/" + value, 
+		$.getJSON(uri + value, 
 				{ ajax: 'true' },
 				function(data){
 
@@ -21,13 +21,13 @@
 	}
 	
 	
-	function changeState(id, value)
+	function changeLocation(id, value, uri)
 	{
 		//alert(id);
 		//alert(value);
 		
 		$("select#"+id).html('');
-		$.getJSON("/ajax/jobs/changestate/" + value, 
+		$.getJSON(uri + value, 
 				{ ajax: 'true' },
 				function(data){
 
@@ -42,3 +42,10 @@
 				
 		
 	}	
+	
+	
+	function setsearch(searchType)
+	{
+		$("input#searchtype").attr('value', searchType);
+		return true;
+	}
