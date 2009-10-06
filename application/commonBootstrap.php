@@ -23,6 +23,7 @@ set_include_path(
     . PATH_SEPARATOR . APPLICATION_PATH . '/../library/Hotspot'
 	. PATH_SEPARATOR . APPLICATION_PATH . '/../library/Zend'
     . PATH_SEPARATOR . APPLICATION_PATH . '/models'
+    . PATH_SEPARATOR . APPLICATION_PATH . '/controllers'
     . PATH_SEPARATOR . APPLICATION_PATH . '/models/tables'
     . PATH_SEPARATOR . APPLICATION_PATH . '/models/forms'
     . PATH_SEPARATOR . APPLICATION_PATH . '/models/exceptions'
