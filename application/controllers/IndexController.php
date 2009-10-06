@@ -24,21 +24,43 @@ class IndexController extends Hotspot_Controller_Action {
     {
     	try{
  		$this->_helper->viewRenderer->setNoRender();
-    	$location = $this->_getParam('qloc');
+    	$locationid = $this->_getParam('qloc');
     	$category = $this->_getParam('qcategory');
 
     	//echo $location;
     	//echo $category;
-    	if (empty($location) || empty($category))
+    	if (empty($locationid) || empty($category))
     	{
     					
 			$this->_redirect('/');
     	}
     	else
     	{
+    		$location = new Location($locationid);
+    		$country = $location->getCountry();
+    		$city = $location->getUriCity();
+    		$state = $location->getUriState();
+    		
+    		/*
+    		$searchRules = $location->getSearchRules();
+    		
+			// Some locaiton only has state.
+    		if (empty($searchRules->city))
+    		{
+    			$city = $state;
+    		}
+    		
+    		// Some locaiton only has city.
+    		if (empty($searchRules->state))
+    		{
+    			$state = $city;
+    		}
+    		*/
+    		$this->_redirect("/" . Tag::myUrlEncode($category) . "/" . $city . "/" . $state . "/". $country . "/" . $locationid);
+    		/*
     		$locationArray = explode('|', $location);
     		$this->_redirect("/" . Tag::myUrlEncode($category) . "/" . Tag::myUrlEncode($locationArray[0]). "/" . Tag::myUrlEncode($locationArray[1]) . "/" . Tag::myUrlEncode($locationArray[2]) .  "/");
-    		
+    		*/
     		/*
     		$routerParams = array(
     			'query' => $category,

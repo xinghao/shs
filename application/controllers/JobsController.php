@@ -9,10 +9,30 @@
  *      @copyright	Copyright (c) 2009 Creagency (www.creagency.com.au)
  */
 
-class JobsController extends Hotspot_Controller_Action {
+class JobsController extends BusinessController {
     
+		
+	protected $_busTypeId = 5;
+	protected $_busType = 'Jobs';
     
-
+    public function getBusiness()
+    {
+    	return new Jobs();
+    } 
+    
+    public function getForm($business, $location)
+    {
+    	return new JobsRefineForm($business, $location);
+    }
+    
+    protected function _setRequiredParamsToView($view){
+    	
+    	$view = parent::_setRequiredParamsToView($view);
+        	
+    	$view->paramsHolder->cat1 = ($view->paramsHolder->cat1)?($view->paramsHolder->cat1):12;
+    	
+    	return $view;
+    }  
     
     /**
      * Job basic for seo.
@@ -21,7 +41,7 @@ class JobsController extends Hotspot_Controller_Action {
      */
     function  jobsAction()
     {
-   	
+/*   	
     	//echo   "jobs";
     	$this->setRequiredParamsToMakeContentHeader();
     	
@@ -66,18 +86,14 @@ class JobsController extends Hotspot_Controller_Action {
 	
 	$this->view->postings = $paginator;
 	    	       
-		/*
-	    	foreach($this->view->postings as $key=>$value)
-	    	{
-	    		echo $key .'=>'.$value->title."<br />";	
-	    	}
-	    	*/
+
     	}
     	catch(Exception $e)
     	{
     		echo $e;
     	}
-    				
+ */   	
+    	$this->businessAction();			
     	$this->renderScript('jobs/index.phtml');
     	
   //  	echo Tag::link('jobsbasic',$this->view->location->toStdClass(),'test'); 
@@ -123,187 +139,27 @@ class JobsController extends Hotspot_Controller_Action {
     	
     }
     
-	public function changecat2Action()
-	{
-		$this->_helper->viewRenderer->setNoRender();
-		
-		$param1 = $this->_getParam('param1', 0);
-		logfire('param1', $param1);
-		
-		$cat3 = array();
-		
-		$jobs = new Jobs(); 
-		
-		$cat3 = $jobs->getCat3Array($param1);
-				
-		if (!empty($cat3))
-		{
 
-			$jsonArray = array();
-			foreach($cat3 as $id=>$name)
-			{
-				$cat3row = array('id' => $id, 'name' => $name);
-				$jsonArray[] = $cat3row;
-			}
-			
-		
-			$json = Zend_Json::encode($jsonArray);			
-			echo $json;
-			unset($json);
-		}
-		
-	}   
-
-	
-	public function changestateAction()
-	{
-		$this->_helper->viewRenderer->setNoRender();
-		
-		$param1 = $this->_getParam('param1', 0);
-		logfire('param1', $param1);
-		
-		$location = new Location(); 
-		
-		$cities = $location->getAllCityByStateId($param1);
-			
-				
-		if (!empty($cities))
-		{
-
-			
-			$jsonArray = array();
-			foreach($cities as $city)
-			{
-				$cityrow = array('id' => $city->cityid, 'name' => $city->city);
-				$jsonArray[] = $cityrow;
-			}
-			
-			
-		
-			$json = Zend_Json::encode($jsonArray);			
-			echo $json;
-			unset($json);
-		}
-		
-		
-	}
-    
-	
-	function refinedispatchAction()
-	{
-		$this->_helper->viewRenderer->setNoRender();
-		echo $businessType = $this->_getParam('controller');
-		
-		$formData = array();
-    	    	
-    	$request = $this->getRequest();
-
-		// Init lisitng form.
-		//$this->form = new RefineForm();
-		
-		if ($request->isPost()) 
-		// User submit listing form.
-		// We add new listing into the database.	
-		{
-			// Get the form data form post.
-			$formData = $request->getPost();
-			foreach($formData as $key=>$value)
-				echo $key . '=>'. $value . "<br />";
-			
-			if (array_key_exists('quicksearchbtn' ,$formData))
-			{
-				//echo $this->buildSearchUri($businessType, $formData);
-				$this->_redirect($this->buildSearchUri($businessType, $formData));
-			}
-			if (array_key_exists('submit' ,$formData))
-			{ 
-				//echo $this->buildRefineUri($businessType, $formData);
-				$this->_redirect($this->buildRefineUri($businessType, $formData));
-				
-			}
-			
-		}
-		
-	}
-	
-	
-	protected function buildSearchUri($businessType, $formData)
-	{
-		try{
-		echo strtolower($businessType). 'search';
-		
-/*		$refcat1 = new Refcat1();
-		$formData['cat1name'] = $refcat1->getCatNameById($formData['cat1']);
-		
-		if (strtolower($formData['cat2']) == strtolower('ALL'))
-		{
-			$formData['cat2name'] = 'ALL';	
-		}
-		else{
-			$refcat2 = new Refcategory();
-			$formData['cat2name'] = $refcat2->getCatNameById($formData['cat2']);			
-		}
-
-		if (strtolower($formData['cat3']) == strtolower('ALL'))
-		{
-			$formData['cat3name'] = 'ALL';	
-		}
-		else{
-			$refcat3 = new Refcategory();
-			$formData['cat3name'] = $refcat3->getCatNameById($formData['cat3']);			
-		}
-		
-		echo 'sss'.'1';
-*/		
-		$formData = Common::encodeUriParams($formData);
-		return Tag::url(strtolower($businessType). 'search', Common::arrayToStdClass($formData));
-		}catch(Exception $e)
-		{
-			echo $e;
-		}
-	}
-	
 	protected function buildRefineUri($businessType, $formData)
 	{
-		try{
-		echo strtolower($businessType). 'jobsbasicrefine';
-		
-		$refcat1 = new Refcat1();
-		$formData['cat1name'] = $refcat1->getCatNameById($formData['cat1']);
-		
-		if (strtolower($formData['cat2']) == strtolower('ALL'))
+		if (strtolower($formData['cat2']) == strtolower('ALL') || strtolower($formData['cat2']) == strtolower('Any'))
 		{
-			$formData['cat2name'] = 'ALL';	
+			$formData['cat2name'] = 'Any';	
 		}
 		else{
 			$refcat2 = new Refcategory();
 			$formData['cat2name'] = $refcat2->getCatNameById($formData['cat2']);			
 		}
 
-		if (strtolower($formData['cat3']) == strtolower('ALL'))
+		if (strtolower($formData['cat3']) == strtolower('ALL') || strtolower($formData['cat3']) == strtolower('Any'))
 		{
-			$formData['cat3name'] = 'ALL';	
+			$formData['cat3name'] = 'Any';	
 		}
 		else{
 			$refcat3 = new Refcategory();
 			$formData['cat3name'] = $refcat3->getCatNameById($formData['cat3']);			
 		}
 		
-		$formData['city'] = Location::getCityNameById($formData['cat5']);
-		$formData['state'] = Location::getStateNameById($formData['cat4']);
-		$formData['region'] = null;
-		
-		logfire('city', $formData['city']);
-		logfire('state', $formData['state']);
-		logfire('cat3name', $formData['cat3name']);
-		echo 'sss'.'1';
-		
-		$formData = Common::encodeUriParams($formData);
-		return Tag::url(strtolower($businessType). 'basicrefine', Common::arrayToStdClass($formData));
-		}catch(Exception $e)
-		{
-			echo $e;
-		}
-	}
-	
+		return parent::buildRefineUri($businessType, $formData);		
+	}	
 }
