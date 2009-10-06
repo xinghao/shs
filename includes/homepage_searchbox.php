@@ -11,6 +11,7 @@
 			  			<select id="select_category" class="formselect"  name="qcategory">
 							<!-- <option value="All"  selected="selected">All</option> -->
 							<option value="Jobs">Jobs</option>
+							<option value="Real Estate">Real Estate</option>
 						</select>
 					</div>
 					<div id="q_btn">

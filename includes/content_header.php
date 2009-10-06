@@ -12,7 +12,7 @@
 						<?php 
 						// We change regin variable at above so we needs change it back.
 						//$this->paramsHolder->region = $this->location->getRegion();
-						echo $this->listAllCitiesInState($this->router, $this->paramsHolder);?>
+						echo $this->listAllCitiesInState($this->router, $this->paramsHolder, $this->location);?>
 						</ul>
 					<div class="clear"></div>
 				</div>
