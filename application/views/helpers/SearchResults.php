@@ -4,7 +4,12 @@
  * @author	Tim Woo <tim@airarena.net>
  */
 class Zend_View_Helper_SearchResults {
-    function searchResults($cat1 = 'ALL', $categoty = '',  $region, $city, $state, $coutry){
+    function searchResults($cat1 = 'ALL', $categoty = '',  $loc){
+    	
+    	
+    	
+    	
+    	
 		$retstr = '<div class="searchresult">';
 		$retstr .= 'Below shows the <span class="emphasis">lastest</span> postings for ';
 		

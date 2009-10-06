@@ -30,21 +30,28 @@
 			<?php echo $this->element->cat4;?>
 		</div>		
 		<div class="cat5">
-			<?php echo $this->element->cat5;?>
-			<?php 
-				$el = $this->element->city;
-			    echo $this->{$el->helper}($el->getName(),$el->getValue(),$el->getAttribs());
-				$el = $this->element->state;
-			    echo $this->{$el->helper}($el->getName(),$el->getValue(),$el->getAttribs());
-				$el = $this->element->country;
-			    echo $this->{$el->helper}($el->getName(),$el->getValue(),$el->getAttribs());
-				$el = $this->element->region;
-			    echo $this->{$el->helper}($el->getName(),$el->getValue(),$el->getAttribs());
-			   // $el = $this->element->businessType;
-			  //  echo $this->{$el->helper}($el->getName(),$el->getValue(),$el->getAttribs());
-			?>
-			
+			<?php echo $this->element->cat5;?>			
 		</div>			
+		<?php $this->element->printExtraElements()?>
+		<div class="cat6">
+			<?php echo $this->element->stateid;?>
+		</div>	
+		<div class="cat6">
+			<?php echo $this->element->cityid;?>
+		</div>
+		<div class="cat6">
+			<?php echo $this->element->regionid;?>
+		</div>		
+		<div class="cat6">
+			<?php echo $this->element->suburbid;?>			
+		</div>
+		<?php 
+			$el = $this->element->searchtype;
+          	echo $this->{$el->helper}($el->getName(),$el->getValue(),$el->getAttribs());
+			$el = $this->element->locationid;
+			echo $this->{$el->helper}($el->getName(),$el->getValue(),$el->getAttribs());
+		?>			
+		
 		<div class="submitbtn">
 			<?php 
 			echo $this->{$this->element->submit->helper}($this->element->submit->getName(),$this->element->submit->getImageValue(),$this->element->submit->getAttribs());

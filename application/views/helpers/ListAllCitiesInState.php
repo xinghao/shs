@@ -5,15 +5,16 @@
  */
 class Zend_View_Helper_ListAllCitiesInState
 {
-    function listAllCitiesInState($routerName, $value){
+    function listAllCitiesInState($routerName, $value, $loc){
     	
     	$retStr = '';
 
     	
     	$currentCity = $value->city;
     	$currentState = $value->state;
-    	$cities = Location::getLocations($value->city, $value->state,$value->country);
-		$searchRule = Location::getSearchRule();
+    	    	
+    	$cities = $loc->getLocations();
+		$searchRule = $loc->getSearchRule();
 		    	
     	foreach($cities as $city)
     	{
@@ -34,6 +35,7 @@ class Zend_View_Helper_ListAllCitiesInState
 	    	{
 	    		$value->city = $value->state = $city["location"];
 	    	}
+	    	$value->locationid = $city['locationid'];
 	    	$retStr .= '<li>' . Tag::link($routerName, $value, $city["location"], $attributes) . '</li>' . "\n" ; 
     	}
     	

@@ -15,7 +15,6 @@ class Zend_View_Helper_BasicCategoryUri
     		$attributes = '';
     	} 
     	
-
 		return Tag::link(str_replace(' ', '', str_replace('&', '', strtolower($showCategory))) . 'basic', $value, $showCategory, $attributes);
     }
 }
