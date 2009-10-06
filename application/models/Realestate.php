@@ -98,7 +98,6 @@ class Realestate extends Business
 		}
 		*/
 		
-		echo $select;
 		return $select;
 		
 	}
