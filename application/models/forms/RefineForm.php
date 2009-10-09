@@ -443,15 +443,8 @@ class RefineForm extends Zend_Form
 	
 	public function getSearchResults($categoty, $cat1 = null, $cat2 = null, $cat3 = null, $cat4 = null, $cat5 = null)
 	{
-		
-		if (empty($cat1))
-		{
-			$findstr = 'ALL ' .  $categoty;
-		}  
-		else
-		{
-			$findstr = $this->_business->getCat1NameById($cat1) . ' ' . $categoty;	
-		}
+				
+		$findstr = $this->_getSearchHint($categoty, $cat1, $cat2, $cat3, $cat4, $cat5);
 		
 		/*
 		if (strtolower($region) == strtolower($city))
@@ -465,6 +458,18 @@ class RefineForm extends Zend_Form
 		*/
 		
 		return $this->getSearchResultsWrap($findstr);
+	}
+	
+	protected function _getSearchHint($category, $cat1 = null, $cat2 = null, $cat3 = null, $cat4 = null, $Cat5 = null)
+	{
+		if (empty($cat1))
+		{
+			return 'ALL ' .  $category;
+		}  
+		else
+		{
+			return  $this->_business->getCat1NameById($cat1) . ' ' . $category;	
+		}		
 	}
 
 }

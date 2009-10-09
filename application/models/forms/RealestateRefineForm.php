@@ -159,5 +159,29 @@ class RealestateRefineForm extends RefineForm
 		return parent::populate($values);
 	}
 
-	
+	protected function _getSearchHint($category, $cat1 = null, $cat2 = null, $cat3 = null, $cat4 = null, $Cat5 = null)
+	{
+		if (empty($cat2))
+		{
+			return  $category;
+		}  
+		
+		if ($cat2 == '630')
+		{
+			$cat2Name = 'For SALE';
+		}
+		else
+		{
+			$cat2Name = 'For ' . $this->_business->getCat2NameById($cat2);
+		}
+		
+		if ($cat3 == '631')
+		{
+			return 'ALL ' . $cat2Name;
+		}
+		else
+		{
+			return  $this->_business->getCat3NameById($cat3) . ' ' . $cat2Name;	
+		}		
+	}	
 }

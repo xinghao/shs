@@ -146,6 +146,7 @@ class Realestate extends Business
 
 	public function getResultTable($posting, $location = null)
 	{
+		try{
 		echo '<table class="resultheader" id="realesate" cellspacing=0>';
 			echo '<tr>';
 				echo '<th class="date">';
@@ -180,7 +181,14 @@ class Realestate extends Business
 					echo $value->lastUpdateDate;
 				echo '</td>';
 				echo '<td>';
-					echo $value->photo;	
+					if (empty($value->photo) || $value->photo == '0000')
+					{
+						echo 'No';
+					}	
+					else
+					{
+						echo 'Yes';
+					}
 				echo '</td>';
 				echo '<td>';
 					echo $value->title;	
@@ -189,13 +197,13 @@ class Realestate extends Business
 					echo $value->cat3name;			
 				echo '</td>';
 				echo '<td>';
-					echo $value->rooms;			
+					echo $value->bed;			
 				echo '</td>';
 				echo '<td>';
-					echo $value->parking;
+					echo $value->cars;
 				echo '</td>';	
 				echo '<td>';
-					echo $value->baths;			
+					echo $value->bath;			
 				echo '</td>';
 				echo '<td>';
 					echo $value->priceDisplay;			
@@ -203,7 +211,12 @@ class Realestate extends Business
 			echo '</tr>';
 		}
 	
-		echo '</table>';		
+		echo '</table>';
+		}catch(Exception $e)
+		{
+			logError('get results for realestate', $e);
+			echo $e;
+		}		
 		return parent::getResultTable($posting);
 	}
 		

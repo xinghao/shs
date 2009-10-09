@@ -52,6 +52,17 @@ class Business
 		return $refCat1Tables->getCatNameById($cat1);
 	}
 	
+	public function getCat2NameById($cat2)
+	{
+		$refCat2Tables = new Refcategory();
+		return $refCat2Tables->getCatNameById($cat2);
+	}
+
+	public function getCat3NameById($cat3)
+	{
+		$refCat3Tables = new Refcategory();
+		return $refCat3Tables->getCatNameById($cat3);
+	}	
 	public function getCat2Name(){
 		return $this->_cat2Name;
 	}
