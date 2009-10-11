@@ -238,12 +238,12 @@ class BusinessController extends Zend_Controller_Action {
 			if ($formData['searchtype'] == 1)
 			{
 				echo $this->buildSearchUri($businessType, $formData);
-				//$this->_redirect($this->buildSearchUri($businessType, $formData));
+				$this->_redirect($this->buildSearchUri($businessType, $formData));
 			}
 			elseif ($formData['searchtype'] == 2)
 			{
 				echo $this->buildRefineUri($businessType, $formData);
-				//$this->_redirect($this->buildRefineUri($businessType, $formData));
+				$this->_redirect($this->buildRefineUri($businessType, $formData));
 				
 			}
 			
