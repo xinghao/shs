@@ -431,7 +431,7 @@ class Business
 	    	logfire('cat1', $cat1);
            	if (!empty($cat1) && $cat1 != 'ALL' && $cat1 != 'Any')
 	    	{
-	    		$select->where('cat1 = ? and cat1 <> 0', $cat1);
+	    		$select->where('cat1 = ?', $cat1);
 	    	}
 
            	if (!empty($cat2)  && $cat2 != 'ALL' && $cat2 != 'Any')

@@ -78,7 +78,15 @@ class Realestate extends Business
 		if (!empty($addtionalData['bath']) && $addtionalData['bath'] != 'Any' && $addtionalData['bath'] != 'ALL')
 		{
 			$select->where('i.baths = ?', $addtionalData['bath']);
-		}		
+		}	
+		if (!empty($addtionalData['min']) && $addtionalData['min'] != 'Any' && $addtionalData['min'] != 'ALL')
+		{
+			$select->where('a.priceCalculate >= ?', $addtionalData['min']);
+		}	
+		if (!empty($addtionalData['max']) && $addtionalData['max'] != 'Any' && $addtionalData['max'] != 'ALL')
+		{
+			$select->where('a.priceCalculate <= ?', $addtionalData['max']);
+		}
 		/*
 		if ($cat3 == 631||$cat3 == 639)
 		{
@@ -98,6 +106,7 @@ class Realestate extends Business
 		}
 		*/
 		
+		//echo $select;
 		return $select;
 		
 	}
