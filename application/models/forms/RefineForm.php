@@ -251,7 +251,7 @@ class RefineForm extends Zend_Form
        	$this->addElement(Common::createHiddenElement('searchtype', ''));
        	$this->addElement(Common::createHiddenElement('locationid', $this->_location->getLocationId()));
        
-       	$this->setAction('/refine/'.strtolower($this->_business->getBusinessType()));
+       	$this->setAction('/refine/'.str_replace(' ','',strtolower($this->_business->getBusinessType())));
        	
        	
        	/*
