@@ -113,7 +113,7 @@ class BusinessController extends Zend_Controller_Action {
 	    	       $this->view->paramsHolder->query, $cat1, $this->view->paramsHolder->cat2, 
 	    	       $this->view->paramsHolder->cat3, $this->view->paramsHolder->cat4, $this->view->paramsHolder->cat5, $additonalData);
 	    	       
-	//echo '------select: '.$select->__toString() . "\n";
+	logfire('------select: ', $select->__toString() );
 	$adapter = new Zend_Paginator_Adapter_DbTableSelect($select);
   	
     $paginator = new Zend_Paginator($adapter);
@@ -131,12 +131,8 @@ class BusinessController extends Zend_Controller_Action {
 	
 	$this->view->postings = $paginator;
 	    	       
-		/*
-	    	foreach($this->view->postings as $key=>$value)
-	    	{
-	    		echo $key .'=>'.$value->title."<br />";	
-	    	}
-	    	*/
+	
+	    	
     	}
     	catch(Exception $e)
     	{
