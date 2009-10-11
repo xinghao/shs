@@ -137,7 +137,7 @@ class Realestate extends Business
 				echo 'Bath';			
 			echo '</span>';
 			echo '<span class="price">';
-				echo 'Price ('. $location->getSearchRules()->currency .')';			
+				echo 'Price ('. $location->getCurrencySymbol() .')';			
 			echo '</span>';										
 		echo '</div>';
 
@@ -171,7 +171,7 @@ class Realestate extends Business
 					echo 'Bath';			
 				echo '</th>';
 				echo '<th class="price">';
-					echo 'Price ('. $location->getSearchRules()->currency .')';			
+					echo 'Price ('. $location->getCurrencySymbol() .')';			
 				echo '</th>';	
 			echo '</tr>';
 		foreach($posting as $key=>$value)

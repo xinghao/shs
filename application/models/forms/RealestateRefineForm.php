@@ -90,7 +90,7 @@ class RealestateRefineForm extends RefineForm
 	public function printExtraElements()
 	{
 		echo '<div class="priceselectdiv">';
-		echo '<div class="priceselectdivtitle">Select Price Range: (' . $this->_location->getSearchRules()->currency . ')</div>';
+		echo '<div class="priceselectdivtitle">Select Price Range: (' . $this->_location->getCurrencySymbol() . ')</div>';
 		echo '<div class="virticalgap"></div>';
 		echo '<div class="priceselectdivbox">';
 		echo '<span class="min">';

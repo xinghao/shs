@@ -16,7 +16,7 @@ class Refcat1 extends Zend_Db_Table
  		try{
  			$select = $this->select();
  			$select->where('busTypeId = ?', $busTypeId);
- 			logfire('select', $select->__toString());
+ 			logfire('cat1 select', $select->__toString());
  			return $this->fetchAll($select);
  		}catch(Exception $e)
  		{

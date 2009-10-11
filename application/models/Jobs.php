@@ -48,6 +48,8 @@ class Jobs extends Business
 	public function search($location, $limit, $offset = 0, $query = null, $cat1 = null, $cat2 = null, $cat3 = null, $cat4 = null, $cat5 = null, $addtionalData = null)
 	{
 		
+		$orginalCat1 = $cat1;
+		
 		if ($cat1 == 12)
 		{
 			$cat1 = null;
@@ -55,9 +57,11 @@ class Jobs extends Business
 		
 		$select = parent::search($location, $limit, $offset, $query, $cat1, $cat2, $cat3, $cat4, $cat5, $addtionalData);
 
-		if ($cat1 == 12)
+		if ($orginalCat1 == 12)
 		{
+			logfire('sdfsdfsdfdsfdsfs',sizeof($this->getCat1Array()));
 			$keys = '';
+			
 			foreach($this->getCat1Array() as $key=>$value)
 			{
 				if (empty($keys))
@@ -72,6 +76,7 @@ class Jobs extends Business
 			$select->where('cat1 in ('.$keys.')');
 		}
 		
+		logfire('job select', $select);
 		return $select;
 		
 	}
@@ -90,7 +95,7 @@ class Jobs extends Business
 					echo 'Category';			
 				echo '</th>';
 				echo '<th class="other">';
-					echo 'Salary';			
+					echo 'Salary ('. $location->getCurrencySymbol() .')';			
 				echo '</th>';				
 			echo '</tr>';
 		foreach($posting as $key=>$value)

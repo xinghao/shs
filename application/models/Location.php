@@ -687,5 +687,17 @@ class Location
 		return $retArray;
 	}
 	*/
+	
+	public function getCurrencySymbol()
+	{
+		if (!empty($this->getSearchRules()->currencySymbol))
+		{
+			return $this->getSearchRules()->currencySymbol;
+		}
+		else
+		{
+			return $this->getSearchRules()->currency;
+		}
+	}
 }    
 ?>
