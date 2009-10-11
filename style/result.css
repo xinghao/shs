@@ -115,7 +115,8 @@
 .price
 {
     font-size:12px;
-    width:110px;
+    /*width:110px;*/
+    width:80px;
 }
 .rate
 {
