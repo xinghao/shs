@@ -146,7 +146,7 @@ class Realestate extends Business
 				echo 'Bath';			
 			echo '</span>';
 			echo '<span class="price">';
-				echo 'Price ('. $location->getCurrencySymbol() .')';			
+				echo 'Price ('. iconv("Windows-1252", "UTF-8", $location->getCurrencySymbol()) .')';			
 			echo '</span>';										
 		echo '</div>';
 
