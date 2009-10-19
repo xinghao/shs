@@ -120,7 +120,7 @@ class Realestate extends Business
 		    					array('bed' => 'rooms', 'cars'=>'parking', 'bath'=>'baths'));
 		return $select;
 	}
-
+/*
 	public function getResultTableHeader($location = null)
 	{
 		echo '<div class="resultheader" id="realesate">';
@@ -152,6 +152,8 @@ class Realestate extends Business
 
 		return parent::getResultTableHeader();
 	}
+*/
+
 
 	public function getResultTable($posting, $location = null)
 	{
@@ -180,7 +182,7 @@ class Realestate extends Business
 					echo 'Bath';			
 				echo '</th>';
 				echo '<th class="price">';
-					echo 'Price ('. $location->getCurrencySymbol() .')';			
+					echo 'Price ('. iconv("Windows-1252", "UTF-8", $location->getCurrencySymbol()) .')';			
 				echo '</th>';	
 			echo '</tr>';
 		foreach($posting as $key=>$value)
