@@ -112,11 +112,15 @@
     font-size:12px;
     width:180px;
 }
+#jobs .title
+{
+	width:300px;
+}
 .price
 {
     font-size:12px;
     /*width:110px;*/
-    width:80px;
+    width:100px;
 }
 .rate
 {

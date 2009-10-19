@@ -347,6 +347,14 @@ select.refineformmoneyselect{
 	width:60px;
 	font-size:12px;
 }
+span.min select.refineformmoneyselect,
+span.max select.refineformmoneyselect,
+span.max dt, span.max dd,
+span.min dt, span.min dd
+{
+	width:90px;
+}
+
 span.facilityselect{
 	width:60px;
 	font-size:14px;
@@ -502,6 +510,10 @@ div.pagination div.paginator{
 	float:right;
 }
 
+div.priceselectdivbox span.min, div.priceselectdivbox span.max{
+	display:inline;
+	float:left;
+}
 div.priceselectdivbox span.min{
 	margin-right:16px;
 }
