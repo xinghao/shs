@@ -95,7 +95,7 @@ class Jobs extends Business
 					echo 'Category';			
 				echo '</th>';
 				echo '<th class="other">';
-					echo 'Salary ('. $location->getCurrencySymbol() .')';			
+					echo 'Salary ('. $location->getCurrencyAndSymbol() .')';			
 				echo '</th>';				
 			echo '</tr>';
 		foreach($posting as $key=>$value)

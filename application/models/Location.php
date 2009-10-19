@@ -699,5 +699,18 @@ class Location
 			return $this->getSearchRules()->currency;
 		}
 	}
+
+	public function getCurrencyAndSymbol()
+	{
+
+		if (!empty($this->getSearchRules()->currencySymbol))
+		{
+			return $this->getSearchRules()->currency.$this->getSearchRules()->currencySymbol;
+		}
+		else
+		{
+			return $this->getSearchRules()->currency;
+		}
+	}	
 }    
 ?>
