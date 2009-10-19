@@ -182,7 +182,7 @@ class Realestate extends Business
 					echo 'Bath';			
 				echo '</th>';
 				echo '<th class="price">';
-					echo 'Price ('. iconv("Windows-1252", "UTF-8", $location->getCurrencySymbol()) .')';			
+					echo 'Price ('. iconv("ISO-8859-1", "UTF-8", trim($location->getCurrencySymbol())) .')';			
 				echo '</th>';	
 			echo '</tr>';
 		foreach($posting as $key=>$value)
