@@ -391,6 +391,9 @@ div.refineform div.or{
 	font-weight:bold;
 }
 
+table.resultheader th{
+	background-color:#eee;
+}
 /* -------------- refine form end--------------------*/
 
 
