@@ -25,6 +25,22 @@ class Refcategory extends Zend_Db_Table
  	}
  	
  	
+ 	public function getAllCatsBySubPrimIdBusinessTypeId($SubPrimId, $busTypeId)
+ 	{
+		try{
+	 		$select = $this->select();
+	 		$select->where('busPostTypeId = ?', $busTypeId);
+	 		$select->where('SubPrimCatId = ?', $SubPrimId);
+	 		$select->order('name');
+	 		
+	 		return $this->fetchAll($select);
+ 	 	}catch(Exception $e)
+ 		{
+ 			logError('Refcategory failed!', $e);
+ 			throw $e;
+ 		}
+ 	}	
+ 	
  	public function getAllCat3OfSpecificCat2($cat2)
  	{
  		try{

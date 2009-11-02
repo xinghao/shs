@@ -23,6 +23,8 @@ class Business
 	
 	protected $_cat5Name;
 	
+	protected $_cat3_col_id = 'id';
+	protected $_cat3_col_name = 'name';
 
 	
 	
@@ -217,8 +219,10 @@ class Business
 		{			
 			foreach($cat3 as $cat3row)
 			{
+				$col_id = $this->_cat3_col_id;
+				$col_name = $this->_cat3_col_name;
 				// $retArray[$cat3row->id . '|' . $cat3row->name] = $cat3row->name;
-				$retArray[$cat3row->id] = $cat3row->name;
+				$retArray[$cat3row->$col_id] = $cat3row->$col_name;
 			}
 		}
 
