@@ -224,6 +224,7 @@ class Tag {
 			$routes		= $routes->routes;
 			$registry->set($routeFile, $routes);
 		}
+		//logfire('route name', $routeName);
 		$route			= $routes->$routeName->route;
 		$url			= '';
 		// construct the url with supplied input values
