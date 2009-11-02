@@ -12,6 +12,8 @@
 							<!-- <option value="All"  selected="selected">All</option> -->
 							<option value="Jobs">Jobs</option>
 							<option value="Real Estate">Real Estate</option>
+							<option value="Restaurants">Restaurants</option>
+							<option value="Activities">Activities</option>
 						</select>
 					</div>
 					<div id="q_btn">
