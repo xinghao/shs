@@ -28,7 +28,7 @@ class Activities extends Business
 		if (empty($this->_cat2))
 		{
 			$refcat2 = new Refcategory();
-			return $this->_cat2 = $refcat2->getAllCatsBySubPrimIdBusinessTypeId(1, $this->_busTypeId);
+			return $this->_cat2 = $refcat2->getAllCatsBySubPrimIdBusinessTypeId($this->_busTypeId, $this->_busTypeId);
 		}
 		else
 		{
@@ -61,7 +61,7 @@ class Activities extends Business
 			$cat2 = null;
 		}
 		
-		if (empty($cat3) || $cat3 == 'Any' || $cat3 == 'ALL' || $cat3 == 28)
+		if (empty($cat3) || $cat3 == 'Any' || $cat3 == 'ALL' || $cat3 == 26)
 		{
 			$cat3 = null;	
 		}
