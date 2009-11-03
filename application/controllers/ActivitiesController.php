@@ -32,7 +32,7 @@ class ActivitiesController extends BusinessController {
     	
     	
     	//$view->paramsHolder->cat2 = ($view->paramsHolder->cat2)?($view->paramsHolder->cat2):nul;
-    	$view->paramsHolder->cat1 = ($view->paramsHolder->cat1)?($view->paramsHolder->cat1):28;
+    	//$view->paramsHolder->cat1 = ($view->paramsHolder->cat1)?($view->paramsHolder->cat1):28;
     	
     	return $view;
     }  
@@ -60,13 +60,13 @@ class ActivitiesController extends BusinessController {
     function  activitiessearchAction()
     {
     	
-    	$this->restaurantsAction();
+    	$this->activitiesAction();
     	
     }
 
     function  activitiesrefineAction()
     {
-    	$this->restaurantsAction();
+    	$this->activitiesAction();
     	
     }
     
@@ -91,7 +91,7 @@ class ActivitiesController extends BusinessController {
 			$formData['cat2name'] = $refcat2->getCatNameById($formData['cat2']);			
 		}
 
-		if (strtolower($formData['cat3']) == 28)
+		if (strtolower($formData['cat3']) == 26)
 		{
 			$formData['cat3name'] = 'Any';	
 		}
