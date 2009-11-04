@@ -148,7 +148,7 @@ class Restaurants extends Business
 					echo 'Rating';			
 				echo '</th>';	
 				echo '<th class="price">';
-					echo 'Price ('. $location->getCurrencyAndSymbol() .')';			
+					echo 'Price <br />('. $location->getCurrencyAndSymbol() .')';			
 				echo '</th>';	
 			echo '</tr>';
 		foreach($posting as $key=>$value)

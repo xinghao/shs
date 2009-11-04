@@ -160,17 +160,14 @@ class Realestate extends Business
 		try{
 		echo '<table class="resultheader" id="realesate" cellspacing=0>';
 			echo '<tr>';
-				echo '<th class="date">';
-					echo 'Data';			
-				echo '</th>';
-				echo '<th class="photo">';
-					echo 'Photo';	
-				echo '</th>';				
-				echo '<th class="title">';
-					echo 'Title';	
-				echo '</th>';
 				echo '<th class="property">';
 					echo 'Property Type';			
+				echo '</th>';			
+				echo '<th class="location">';
+					echo 'Location';			
+				echo '</th>';			
+				echo '<th class="title">';
+					echo 'Title';	
 				echo '</th>';
 				echo '<th class="bed">';
 					echo 'Bed';			
@@ -181,15 +178,33 @@ class Realestate extends Business
 				echo '<th class="bath">';
 					echo 'Bath';			
 				echo '</th>';
+				echo '<th class="photo">';
+					echo 'Photo';	
+				echo '</th>';					
 				echo '<th class="price">';
-					echo 'Price ('. $location->getCurrencyAndSymbol() .')';			
+					echo 'Price <br />('. $location->getCurrencyAndSymbol() .')';			
 				echo '</th>';	
 			echo '</tr>';
 		foreach($posting as $key=>$value)
 		{
 			echo '<tr class="postingrow">';		
 				echo '<td>';
-					echo $value->lastUpdateDate;
+					echo $value->cat3name;			
+				echo '</td>';
+				echo '<td>';
+					echo $value->state;			
+				echo '</td>';				
+				echo '<td>';
+					echo $value->title;	
+				echo '</td>';			
+				echo '<td>';
+					echo $value->bed;			
+				echo '</td>';
+				echo '<td>';
+					echo $value->cars;
+				echo '</td>';	
+				echo '<td>';
+					echo $value->bath;			
 				echo '</td>';
 				echo '<td>';
 					if (empty($value->photo) || $value->photo == '0000')
@@ -201,21 +216,7 @@ class Realestate extends Business
 						echo 'Yes';
 					}
 				echo '</td>';
-				echo '<td>';
-					echo $value->title;	
-				echo '</td>';			
-				echo '<td>';
-					echo $value->cat3name;			
-				echo '</td>';
-				echo '<td>';
-					echo $value->bed;			
-				echo '</td>';
-				echo '<td>';
-					echo $value->cars;
-				echo '</td>';	
-				echo '<td>';
-					echo $value->bath;			
-				echo '</td>';
+				
 				echo '<td>';
 					echo $value->priceDisplay;			
 				echo '</td>';								

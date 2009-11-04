@@ -85,25 +85,29 @@ class Jobs extends Business
 	{
 		echo '<table class="resultheader" id="jobs" cellspacing=0>';
 			echo '<tr>';
-				echo '<th class="date">';
-					echo 'Data';			
+				echo '<th class="jobtype">';
+					echo 'Job Type';			
 				echo '</th>';
+				echo '<th class="jobcategory1">';
+					echo 'Category1';			
+				echo '</th>';
+				echo '<th class="jobcategory2">';
+					echo 'Category2';			
+				echo '</th>';								
 				echo '<th class="title">';
 					echo 'Title';	
 				echo '</th>';
-				echo '<th class="category">';
-					echo 'Category';			
-				echo '</th>';
 				echo '<th class="other">';
-					echo 'Salary ('. $location->getCurrencyAndSymbol() .')';			
+					echo 'Salary <br />('. $location->getCurrencyAndSymbol() .')';			
 				echo '</th>';				
 			echo '</tr>';
 		foreach($posting as $key=>$value)
 		{
 				echo '<tr class="postingrow">';
-				echo '<td>' . $value->lastUpdateDate . '</td>' . "\n";
+				echo '<td>' . $value->cat1name . '</td>' . "\n";
+				echo '<td>' . $value->cat2name . '</td>' . "\n";
+				echo '<td>' . $value->cat3name . '</td>' . "\n";
 				echo '<td>' . $value->title . '</td>' . "\n";
-				echo '<td>' . $value->cat1name . '/'. $value->cat2name. '</td>' . "\n";
 				echo '<td>' . $value->priceDisplay . '</td>' . "\n";
 				echo '</tr>';
 		}
