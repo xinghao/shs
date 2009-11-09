@@ -158,7 +158,7 @@ class Restaurants extends Business
 					echo $value->cat2name;
 				echo '</td>';
 				echo '<td>';
-				     echo 'sdfsdf';
+				     echo $value->state;
 				echo '</td>';
 				echo '<td>';
 					echo $value->title;	

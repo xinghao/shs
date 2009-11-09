@@ -1,21 +1,19 @@
 <?php
-class Activities extends Business
+class Classifieds extends Business
 {
 	
-	protected $_busTypeId = 2;
+	protected $_busTypeId = 6;
 	
-	protected $_cat2Name = 'Activity';
+	protected $_cat2Name = 'Category';
 
-	protected $_cat3Name = 'Special Feature';
+
 	
-	protected $_cat3_col_id = 'cat1Id';
-	protected $_cat3_col_name = 'catName';
 	
 	
 	
 	public function getBusinessType()
 	{
-		return 'Activities';
+		return 'Classifieds';
 	}
 	
 	public function getCat1Name(){
@@ -28,7 +26,7 @@ class Activities extends Business
 		if (empty($this->_cat2))
 		{
 			$refcat2 = new Refcategory();
-			return $this->_cat2 = $refcat2->getAllCatsBySubPrimIdBusinessTypeId($this->_busTypeId, $this->_busTypeId);
+			return $this->_cat2 = $refcat2->getAllCat2OfSpecificCategory($this->_busTypeId);
 		}
 		else
 		{
@@ -37,19 +35,7 @@ class Activities extends Business
 		
 	}
 
-	protected function _getCat3($cat2 = null)
-	{
-		if (empty($this->_cat3))
-		{
-			$refcat3 = new Refcat1();
-			return $this->_cat3 = $refcat3->getAllCat1OfSpecificCategory($this->_busTypeId);
-		}
-		else
-		{
-			return $this->_cat3; 
-		}
-				
-	}
+
 	
 	
 	
@@ -61,29 +47,25 @@ class Activities extends Business
 			$cat2 = null;
 		}
 		
-		if (empty($cat3) || $cat3 == 'Any' || $cat3 == 'ALL' || $cat3 == 26)
-		{
-			$cat3 = null;	
-		}
-		
+
 		$select = parent::search($location, $limit, $offset, $query, $cat1, $cat2, $cat3, $cat4, $cat5, $addtionalData);
 
 		
-		if ($cat3 == null)
+		if ($cat2 == null)
 		{
 			$keys = '';
-			foreach($this->getCat1Array() as $key=>$value)
+			foreach($this->getCat2Array() as $key=>$value)
 			{
-				if (empty($keys))
+				if (empty($keys) && $key != 'Any' && $key != 'ALL')
 				{
 					$keys = $key;
 				}
-				else
+				elseif($key != 'Any' && $key != 'ALL')
 				{
 					$keys .= ','.$key;
 				}
 			}
-			$select->where('cat1 in ('.$keys.')');
+			$select->where('cat2 in ('.$keys.')');
 		}
 			
 		echo $select;
@@ -133,20 +115,14 @@ class Activities extends Business
 		try{
 		echo '<table class="resultheader" id="realesate" cellspacing=0>';
 			echo '<tr>';
-				echo '<th class="cuisine">';
-					echo 'Activity';			
+				echo '<th class="Category">';
+					echo 'Category';			
 				echo '</th>';
 				echo '<th class="location">';
 					echo 'Location';	
 				echo '</th>';				
 				echo '<th class="title">';
 					echo 'Title';	
-				echo '</th>';
-				echo '<th class="photo">';
-					echo 'Photo';			
-				echo '</th>';
-				echo '<th class="rating">';
-					echo 'Rating';			
 				echo '</th>';	
 				echo '<th class="price">';
 					echo 'Price <br />('. $location->getCurrencyAndSymbol() .')';			
@@ -175,9 +151,6 @@ class Activities extends Business
 					}
 				echo '</td>';
 				echo '<td>';
-					echo $value->rateNum;			
-				echo '</td>';
-				echo '<td>';
 					echo $value->priceDisplay;			
 				echo '</td>';								
 			echo '</tr>';
@@ -186,7 +159,7 @@ class Activities extends Business
 		echo '</table>';
 		}catch(Exception $e)
 		{
-			logError('get results for restaurants', $e);
+			logError('get results for classifieds', $e);
 			echo $e;
 		}		
 		return parent::getResultTable($posting);
