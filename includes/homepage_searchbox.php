@@ -14,6 +14,7 @@
 							<option value="Real Estate">Real Estate</option>
 							<option value="Restaurants">Restaurants</option>
 							<option value="Activities">Activities</option>
+							<option value="Classifieds">Classifieds</option>
 						</select>
 					</div>
 					<div id="q_btn">
