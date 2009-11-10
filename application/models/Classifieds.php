@@ -141,16 +141,6 @@ class Classifieds extends Business
 					echo $value->title;	
 				echo '</td>';				
 				echo '<td>';
-					if (empty($value->photo) || $value->photo == '0000')
-					{
-						echo 'No';
-					}	
-					else
-					{
-						echo 'Yes';
-					}
-				echo '</td>';
-				echo '<td>';
 					echo $value->priceDisplay;			
 				echo '</td>';								
 			echo '</tr>';
