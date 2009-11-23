@@ -1,26 +1,21 @@
 <?php
-class Cars extends Business
+class HealthAndFitness extends Business
 {
 	
-	protected $_busTypeId = 9;
+	protected $_busTypeId = 7;
 	
-	protected $_cat1Name = 'TYPE';
-	
-	protected $_cat2Name = 'Make';
+	protected $_cat2Name = 'Health Category';
 
-	protected $_cat3Name = 'Model';
+	protected $_cat3Name = 'Sub Category';
 	
 	
 	
 	
 	public function getBusinessType()
 	{
-		return 'Cars';
+		return 'Healthandfitness';
 	}
 	
-	public function getCat1Name(){
-		return $this->_cat1Name;
-	}
 
 	
 	protected function _getCat2($cat1 = null)
@@ -61,10 +56,7 @@ class Cars extends Business
 	public function search($location, $limit, $offset = 0, $query = null, $cat1 = null, $cat2 = null, $cat3 = null, $cat4 = null, $cat5 = null, $addtionalData = null)
 	{
 		
-		if ($cat1 == 22)
-		{
-			$cat1 = null;	
-		}
+
 		
 		logfire('realstatesearch cat2', $cat2);
 		if (empty($cat2) || $cat2 == 'Any' || $cat2 == 'ALL')
@@ -78,24 +70,12 @@ class Cars extends Business
 		
 		$select = parent::search($location, $limit, $offset, $query, $cat1, $cat2, $cat3, $cat4, $cat5, $addtionalData);
 
-		// TODO price;
-		foreach($addtionalData as $key=>$value)
-		{
-			logfire($key,$value);	
-		}
-		if (!empty($addtionalData['min']) && $addtionalData['min'] != 'Any' && $addtionalData['min'] != 'ALL')
-		{
-			$select->where('a.priceCalculate >= ?', $addtionalData['min']);
-		}	
-		if (!empty($addtionalData['max']) && $addtionalData['max'] != 'Any' && $addtionalData['max'] != 'ALL')
-		{
-			$select->where('a.priceCalculate <= ?', $addtionalData['max']);
-		}
+
 		
-		if (empty($cat1))
+		if (empty($cat2))
 		{
 			$keys = '';
-			foreach($this->getCat1Array() as $key=>$value)
+			foreach($this->getCat2Array(null,false) as $key=>$value)
 			{
 				if (empty($keys))
 				{
@@ -106,11 +86,11 @@ class Cars extends Business
 					$keys .= ','.$key;
 				}
 			}
-			$select->where('cat1 in ('.$keys.')');
+			$select->where('cat2 in ('.$keys.')');
 		}
 		
 		
-		//echo $select;
+		echo $select;
 		return $select;
 		
 	}
@@ -165,28 +145,18 @@ class Cars extends Business
 		try{
 		echo '<table class="resultheader" id="realesate" cellspacing=0>';
 			echo '<tr>';
-				echo '<th class="type">';
-					echo 'Type';			
+				echo '<th class="category">';
+					echo 'Category';			
 				echo '</th>';			
-				echo '<th class="make">';
-					echo 'Make';			
+				echo '<th class="location">';
+					echo 'Location';			
 				echo '</th>';
-				echo '<th class="model">';
-					echo 'Model';			
-				echo '</th>';	
 				echo '<th class="title">';
-					echo 'Title';	
-				echo '</th>';
-
-				echo '<th class="cars">';
-					echo 'Cars';			
-				echo '</th>';
-				echo '<th class="bath">';
-					echo 'Bath';			
-				echo '</th>';
-				echo '<th class="photo">';
-					echo 'Photo';	
-				echo '</th>';					
+					echo 'Title';			
+				echo '</th>';	
+				echo '<th class="Rating">';
+					echo 'Rating';	
+				echo '</th>';			
 				echo '<th class="price">';
 					echo 'Price <br />('. $location->getCurrencyAndSymbol() .')';			
 				echo '</th>';	
@@ -195,17 +165,17 @@ class Cars extends Business
 		{
 			echo '<tr class="postingrow">';		
 				echo '<td>';
-					echo $value->cat1name;			
+					echo $value->cat1name . '<br />' . $value->cat2name;			
 				echo '</td>';
 				echo '<td>';
-					echo $value->cat2name;			
-				echo '</td>';
-				echo '<td>';
-					echo $value->cat3name;			
+					echo $value->state; 			
 				echo '</td>';
 				echo '<td>';
 					echo $value->title;	
-				echo '</td>';							
+				echo '</td>';
+				echo '<td>';
+					echo $value->rateNum;			
+				echo '</td>';											
 				echo '<td>';
 					echo $value->priceDisplay;			
 				echo '</td>';								
@@ -215,7 +185,7 @@ class Cars extends Business
 		echo '</table>';
 		}catch(Exception $e)
 		{
-			logError('get results for realestate', $e);
+			logError('get results for health and fitness', $e);
 			echo $e;
 		}		
 		return parent::getResultTable($posting);
