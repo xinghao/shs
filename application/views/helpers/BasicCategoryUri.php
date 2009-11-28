@@ -19,12 +19,13 @@ class Zend_View_Helper_BasicCategoryUri
     	
     	switch ($showCategory)
     	{
-    		case 'Car sale' : 
-    			$showCategory = 'cars';
+    		case 'Car Sale' : 
+    			$CategoryForUri = 'Cars';
     			break;
-    		
+    		default:
+    			$CategoryForUri = $showCategory;    		
     	}
     	//echo str_replace(' ', '', str_replace('&', 'and', strtolower($showCategory))) . 'basic' . "     ";
-		return Tag::link(str_replace(' ', '', str_replace('&', 'and', strtolower($showCategory))) . 'basic', $value, $showCategory, $attributes);
+		return Tag::link(str_replace(' ', '', str_replace('&', 'and', strtolower($CategoryForUri))) . 'basic', $value, $showCategory, $attributes);
     }
 }
