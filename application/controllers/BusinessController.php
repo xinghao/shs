@@ -332,7 +332,7 @@ class BusinessController extends Zend_Controller_Action {
 		
 		logfire('city', $formData['city']);
 		logfire('state', $formData['state']);
-		logfire('cat3name', $formData['cat3name']);
+		//logfire('cat3name', $formData['cat3name']);
 		echo 'sss'.'1';
 		
 		$formData = Common::encodeUriParams($formData);
