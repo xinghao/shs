@@ -24,7 +24,7 @@
 						<li><?php echo $this->basicCategoryUri('Real Estate', $this->paramsHolder,  $this->category);?><li>
 						<li><?php echo $this->basicCategoryUri('Jobs', $this->paramsHolder,  $this->category);?><li>
 						<li><?php echo $this->basicCategoryUri('Classifieds', $this->paramsHolder,  $this->category);?><li>
-						<li><?php echo $this->basicCategoryUri('Car sale', $this->paramsHolder,  $this->category);?><li>
+						<li><?php echo $this->basicCategoryUri('Car Sale', $this->paramsHolder,  $this->category);?><li>
 						<li><?php echo $this->basicCategoryUri('Health & Fitness', $this->paramsHolder,  $this->category);?><li>
 						<li><?php echo $this->basicCategoryUri('Events', $this->paramsHolder,  $this->category);?><li>
 						<li><?php echo $this->basicCategoryUri('Activities', $this->paramsHolder,  $this->category);?><li>
