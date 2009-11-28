@@ -6,6 +6,8 @@
 class Zend_View_Helper_BasicCategoryUri
 {
     function basicCategoryUri($showCategory, $value, $currentCategory){
+    	logfire('$showCategory',$showCategory);
+    	logfire('$$currentCategory',$currentCategory);
     	if (strtolower($showCategory) == strtolower($currentCategory))
     	{
 	    	$attributes = 'class="menu_on"';
@@ -15,6 +17,14 @@ class Zend_View_Helper_BasicCategoryUri
     		$attributes = '';
     	} 
     	
-		return Tag::link(str_replace(' ', '', str_replace('&', '', strtolower($showCategory))) . 'basic', $value, $showCategory, $attributes);
+    	switch ($showCategory)
+    	{
+    		case 'Car sale' : 
+    			$showCategory = 'cars';
+    			break;
+    		
+    	}
+    	//echo str_replace(' ', '', str_replace('&', 'and', strtolower($showCategory))) . 'basic' . "     ";
+		return Tag::link(str_replace(' ', '', str_replace('&', 'and', strtolower($showCategory))) . 'basic', $value, $showCategory, $attributes);
     }
 }
