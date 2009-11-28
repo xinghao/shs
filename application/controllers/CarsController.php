@@ -13,7 +13,7 @@ class CarsController extends BusinessController {
     
 		
 	protected $_busTypeId = 9;
-	protected $_busType = 'Cars';
+	protected $_busType = 'Car Sale';
     
     public function getBusiness()
     {
