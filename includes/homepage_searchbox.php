@@ -15,7 +15,7 @@
 							<option value="Restaurants">Restaurants</option>
 							<option value="Activities">Activities</option>
 							<option value="Classifieds">Classifieds</option>
-							<option value="Cars">Cars</option>
+							<option value="Cars">Car Sale</option>
 							<option value="Health & Fitness">Health & Fitness</option>
 							<option value="Businesses">Business Listings</option>
 						</select>
