@@ -14,6 +14,7 @@ class JobsController extends BusinessController {
 		
 	protected $_busTypeId = 5;
 	protected $_busType = 'Jobs';
+	protected $_cat1All = 30;	
     
     public function getBusiness()
     {
@@ -29,7 +30,7 @@ class JobsController extends BusinessController {
     	
     	$view = parent::_setRequiredParamsToView($view);
         	
-    	$view->paramsHolder->cat1 = ($view->paramsHolder->cat1)?($view->paramsHolder->cat1):12;
+    	$view->paramsHolder->cat1 = ($view->paramsHolder->cat1)?($view->paramsHolder->cat1):$this->_cat1All;
     	
     	return $view;
     }  
