@@ -4,7 +4,7 @@ class Jobs extends Business
 	
 	protected $_busTypeId = 5;
 	
-	
+	protected $_cat1All = 12;
 	protected $_cat1Name = 'Select:';
 
 	protected $_cat2Name = 'Job Type';
@@ -50,14 +50,14 @@ class Jobs extends Business
 		
 		$orginalCat1 = $cat1;
 		
-		if ($cat1 == 12)
+		if ($cat1 == $this->_cat1All)
 		{
 			$cat1 = null;
 		}
 		
 		$select = parent::search($location, $limit, $offset, $query, $cat1, $cat2, $cat3, $cat4, $cat5, $addtionalData);
 
-		if ($orginalCat1 == 12)
+		if ($orginalCat1 == $this->_cat1All)
 		{
 			logfire('sdfsdfsdfdsfdsfs',sizeof($this->getCat1Array()));
 			$keys = '';

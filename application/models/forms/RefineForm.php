@@ -52,7 +52,7 @@ class RefineForm extends Zend_Form
        	 
        	$cat1->setMultiOptions($this->_business->getCat1Array());
        	//$cat1->setValue($this->_business->getFirstCat1());
-       	//logfire('key',$this->_business->getFirstCat1());
+       	logfire('FFFkey',$this->_business->getFirstCat1());
        	$cat1->setValue($this->_business->getFirstCat1());
        	$cat1->setAttrib('class','refineformselect');
        	$this->addElement($cat1);
