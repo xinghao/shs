@@ -14,7 +14,7 @@ class JobsController extends BusinessController {
 		
 	protected $_busTypeId = 5;
 	protected $_busType = 'Jobs';
-	protected $_cat1All = 30;	
+	protected $_cat1All = 11;	
     
     public function getBusiness()
     {
