@@ -4,7 +4,7 @@ class Jobs extends Business
 	
 	protected $_busTypeId = 5;
 	
-	protected $_cat1All = 12;
+	protected $_cat1All = 11;
 	protected $_cat1Name = 'Select:';
 
 	protected $_cat2Name = 'Job Type';
