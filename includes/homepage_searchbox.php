@@ -18,6 +18,7 @@
 							<option value="Cars">Car Sale</option>
 							<option value="Health & Fitness">Health & Fitness</option>
 							<option value="Businesses">Business Listings</option>
+							<option value="Resumes">Resumes</option>
 						</select>
 					</div>
 					<div id="q_btn">
