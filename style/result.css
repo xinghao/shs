@@ -103,29 +103,34 @@
     color:#000000;
     font-weight:bold;
 }
-.other
-{
-    font-size:12px;
-}
 .cat
 {
-    font-size:12px;
     width:180px;
 }
 #jobs .title
 {
 	width:300px;
 }
-.price
+.price,th.make,th.model
 {
-    font-size:12px;
     /*width:110px;*/
-    width:100px;
+    width:80px;
 }
-.rate
+.rating
 {
-    font-size:12px;
-    width:130px;
+    width:60px;
+}
+th.cuisine
+{
+	width:100px;
+}
+th.location
+{
+	width:100px;
+}
+th.photo,th.bath,th.bed,th.cars,th.makeyear
+{
+	width:50px;
 }
 .more
 {

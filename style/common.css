@@ -376,6 +376,7 @@ div.refineform dt{
 div.refineform dd{
 	margin-left:0px;
 	margin-bottom:0px;
+	display:inline;
 }
 div.refineform div.quicksearchbtn, div.refineform div.submitbtn{
 	text-align:right;
@@ -392,7 +393,6 @@ div.refineform div.or{
 }
 
 table.resultheader th{
-	background-color:#eee;
 }
 /* -------------- refine form end--------------------*/
 
@@ -405,6 +405,7 @@ div.resultlistwrap div.centercolumn{
 }
 table.resultheader{
 	width:100%;
+	font-size:11px;	
 }
 div.resultlistwrap div.rightcolumn{
 
@@ -488,19 +489,21 @@ div.resultlistwrap tr.postingrow{
 }
 
 div.resultlistwrap td{
-	padding:10px 0px 10px 0px;
-	border-bottom:#ccc 1px solid;
+	padding:10px 5px 10px 0px;
+	border-bottom:red 1px solid;
+	test-aligh:left;
 }
  div.resultlistwrap th{
- 	font-size:14px;
- 	padding:5px 0px 5px 0px;
+ 	font-size:13px;
+ 	padding:0px 0px 4px 0px;
+ 	test-aligh:left;
 }
  
 div.resultsummary{
 	font-wight:bold;
 	text-align:center;
 	font-style:italic;
-	margin:8px 0px 0px 10px;
+	margin:2px 0px 0px 10px;
 }
 div.pagination{
 	width:670px;
@@ -532,5 +535,3 @@ div.cat4, div.cat5, div.cat6, div.priceselectdiv, div.facilityselectdiv
 {
 	margin-bottom: 10px;
 }
-
-
