@@ -171,6 +171,12 @@ class Common {
 		
 	}
 	
+	
+	public static function Rate($rateNumber)
+	{
+		return $rateNumber . '/5';
+	}
+	
 }
 
 
