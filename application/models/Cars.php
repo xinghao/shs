@@ -115,6 +115,16 @@ class Cars extends Business
 		
 	}
 	
+	protected function extraJoin($select)
+	{
+		$psthomes = new Pstcar();
+		$select->joinLeft(array('i' => $psthomes->getTableName()),
+		    					'a.id = i.id',
+		    					array('makeYear'));
+		return $select;
+	}
+	
+	
 /*	
 	protected function extraJoin($select)
 	{
@@ -165,7 +175,7 @@ class Cars extends Business
 		try{
 		echo '<table class="resultheader" id="realesate" cellspacing=0>';
 			echo '<tr>';
-				echo '<th class="type">';
+				echo '<th class="cuisine">';
 					echo 'Type';			
 				echo '</th>';			
 				echo '<th class="make">';
@@ -178,11 +188,8 @@ class Cars extends Business
 					echo 'Title';	
 				echo '</th>';
 
-				echo '<th class="cars">';
-					echo 'Cars';			
-				echo '</th>';
-				echo '<th class="bath">';
-					echo 'Bath';			
+				echo '<th class="makeyear">';
+					echo 'Make<br />Year';			
 				echo '</th>';
 				echo '<th class="photo">';
 					echo 'Photo';	
@@ -205,7 +212,20 @@ class Cars extends Business
 				echo '</td>';
 				echo '<td>';
 					echo $value->title;	
-				echo '</td>';							
+				echo '</td>';
+				echo '<td>';
+					echo $value->makeYear;	
+				echo '</td>';
+				echo '<td>';
+					if (empty($value->photo) || $value->photo == '0000')
+					{
+						echo 'No';
+					}	
+					else
+					{
+						echo 'Yes';
+					}
+				echo '</td>';
 				echo '<td>';
 					echo $value->priceDisplay;			
 				echo '</td>';								

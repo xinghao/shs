@@ -145,14 +145,14 @@ class HealthAndFitness extends Business
 		try{
 		echo '<table class="resultheader" id="realesate" cellspacing=0>';
 			echo '<tr>';
-				echo '<th class="category">';
+				echo '<th class="cuisine">';
 					echo 'Category';			
 				echo '</th>';			
 				echo '<th class="location">';
 					echo 'Location';			
 				echo '</th>';
 				echo '<th class="title">';
-					echo 'Title';			
+					echo 'Business<br />Name';			
 				echo '</th>';	
 				echo '<th class="Rating">';
 					echo 'Rating';	
@@ -174,7 +174,7 @@ class HealthAndFitness extends Business
 					echo $value->title;	
 				echo '</td>';
 				echo '<td>';
-					echo $value->rateNum;			
+					echo Common::Rate($value->rateNum);			
 				echo '</td>';											
 				echo '<td>';
 					echo $value->priceDisplay;			

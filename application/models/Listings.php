@@ -113,8 +113,8 @@ class Listings extends Business
 		try{
 		echo '<table class="resultheader" id="realesate" cellspacing=0>';
 			echo '<tr>';
-				echo '<th class="businesstype">';
-					echo 'Business Type';			
+				echo '<th class="cuisine">';
+					echo 'Business<br />Type';			
 				echo '</th>';
 				echo '<th class="location">';
 					echo 'Location';	
@@ -124,9 +124,6 @@ class Listings extends Business
 				echo '</th>';
 				echo '<th class="rating">';
 					echo 'Rating';	
-				echo '</th>';						
-				echo '<th class="price">';
-					echo 'Price <br />('. $location->getCurrencyAndSymbol() .')';			
 				echo '</th>';	
 			echo '</tr>';
 		foreach($posting as $key=>$value)
@@ -142,11 +139,8 @@ class Listings extends Business
 					echo $value->title;	
 				echo '</td>';	
 				echo '<td>';
-					echo $value->rateNum;			
-				echo '</td>';							
-				echo '<td>';
-					echo $value->priceDisplay;			
-				echo '</td>';								
+					echo Common::Rate($value->rateNum);			
+				echo '</td>';															
 			echo '</tr>';
 		}
 	

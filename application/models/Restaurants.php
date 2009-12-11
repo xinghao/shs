@@ -141,9 +141,6 @@ class Restaurants extends Business
 				echo '<th class="title">';
 					echo 'Title';	
 				echo '</th>';
-				echo '<th class="photo">';
-					echo 'Photo';			
-				echo '</th>';
 				echo '<th class="rating">';
 					echo 'Rating';			
 				echo '</th>';	
@@ -164,17 +161,7 @@ class Restaurants extends Business
 					echo $value->title;	
 				echo '</td>';				
 				echo '<td>';
-					if (empty($value->photo) || $value->photo == '0000')
-					{
-						echo 'No';
-					}	
-					else
-					{
-						echo 'Yes';
-					}
-				echo '</td>';
-				echo '<td>';
-					echo $value->rateNum;			
+					echo Common::Rate($value->rateNum);			
 				echo '</td>';
 				echo '<td>';
 					echo $value->priceDisplay;			

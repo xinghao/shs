@@ -115,7 +115,7 @@ class Classifieds extends Business
 		try{
 		echo '<table class="resultheader" id="realesate" cellspacing=0>';
 			echo '<tr>';
-				echo '<th class="Category">';
+				echo '<th class="cuisine">';
 					echo 'Category';			
 				echo '</th>';
 				echo '<th class="location">';

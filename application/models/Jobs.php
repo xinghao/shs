@@ -86,25 +86,25 @@ class Jobs extends Business
 		echo '<table class="resultheader" id="jobs" cellspacing=0>';
 			echo '<tr>';
 				echo '<th class="jobtype">';
-					echo 'Job Type';			
+					echo 'Job<br />Type';			
 				echo '</th>';
 				echo '<th class="jobcategory1">';
-					echo 'Category1';			
+					echo 'Prim<br />Category';			
 				echo '</th>';
 				echo '<th class="jobcategory2">';
-					echo 'Category2';			
+					echo 'Second<br />Category';			
 				echo '</th>';								
 				echo '<th class="title">';
-					echo 'Title';	
+					echo 'Short<br />Description';	
 				echo '</th>';
-				echo '<th class="other">';
+				echo '<th class="price">';
 					echo 'Salary <br />('. $location->getCurrencyAndSymbol() .')';			
 				echo '</th>';				
 			echo '</tr>';
 		foreach($posting as $key=>$value)
 		{
 				echo '<tr class="postingrow">';
-				echo '<td>' . $value->cat1name . '</td>' . "\n";
+				echo '<td>' . self::JobTypeShortFormat($value->cat1) . '</td>' . "\n";
 				echo '<td>' . $value->cat2name . '</td>' . "\n";
 				echo '<td>' . $value->cat3name . '</td>' . "\n";
 				echo '<td>' . $value->title . '</td>' . "\n";
@@ -116,5 +116,19 @@ class Jobs extends Business
 		return parent::getResultTable($posting);
 	}
 	
+	
+	Public static function JobTypeShortFormat($cat1)
+	{
+		switch($cat1)
+		{
+			case 11: return 'ALL';
+			case 12: return 'FT';
+			case 13: return 'PT';
+			case 14: return 'Cas';
+			case 15: return 'Tem';
+			case 16: return 'Grd';
+			case 17: return 'Vol';			
+		}
+	}
 }    
 ?>

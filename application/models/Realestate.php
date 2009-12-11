@@ -160,8 +160,8 @@ class Realestate extends Business
 		try{
 		echo '<table class="resultheader" id="realesate" cellspacing=0>';
 			echo '<tr>';
-				echo '<th class="property">';
-					echo 'Property Type';			
+				echo '<th class="cuisine">';
+					echo 'Property<br />Type';			
 				echo '</th>';			
 				echo '<th class="location">';
 					echo 'Location';			
