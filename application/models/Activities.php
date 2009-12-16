@@ -86,7 +86,7 @@ class Activities extends Business
 			$select->where('cat1 in ('.$keys.')');
 		}
 			
-		echo $select;
+		//echo $select;
 		return $select;
 		
 	}

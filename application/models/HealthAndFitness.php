@@ -90,7 +90,7 @@ class HealthAndFitness extends Business
 		}
 		
 		
-		echo $select;
+		//echo $select;
 		return $select;
 		
 	}

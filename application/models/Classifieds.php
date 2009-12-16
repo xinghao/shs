@@ -68,7 +68,7 @@ class Classifieds extends Business
 			$select->where('cat2 in ('.$keys.')');
 		}
 			
-		echo $select;
+		//echo $select;
 		return $select;
 		
 	}
