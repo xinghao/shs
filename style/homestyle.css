@@ -1,8 +1,10 @@
 .homepagelogo{
-	height:190px;
-	width:240px;
+	/*height:190px;
+	width:240px;*/
+	height:130px;
+	width:249px;
 	display:block;
-	background-image:url(../images/sitetemplate/homepage_logo.png);
+	background-image:url(../images/sitetemplate/homepage_logo2.png);
 	background-repeat:no-repeat;	
 }
 .homepagelogowrap{
