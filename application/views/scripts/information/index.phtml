@@ -8,7 +8,12 @@
 			<div class="left">
 				<div class="headings2">
 				<?php
-					$this->printHeadings2($this->business->getHeadings2($this->paramsHolder->headingid));
+					echo 'headingid:'.$this->paramsHolder->headingid;
+
+					$headings = $this->business->getHeadings2($this->paramsHolder->headingid);
+
+					print_r($headings);
+					//$this->printHeadings2($this->business->getHeadings2($this->paramsHolder->headingid));
 				?>
 					<div class="clear"></div>
 				</div>
