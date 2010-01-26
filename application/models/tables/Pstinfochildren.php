@@ -21,6 +21,7 @@ class Pstinfochildren extends Zend_Db_Table
  		}catch(Exception $e)
  		{
  			logError('heading2 failed!', $e);
+ 			echo $e;
  			throw $e;
  		}
 
