@@ -1,0 +1,32 @@
+<div class="searchresult"><span class="emphasis"><?php echo $this->headingTitle?></span></div>
+<div class="formandresultlistwrap">
+	<div class="infowrap">
+		<div class="formtop">
+			<div class="formtopleft"></div>
+		</div>
+		<div class="formcontent">
+			<div class="left">
+				<div class="headings2">
+				<?php
+					$this->printHeadings2($this->business->getHeadings2($this->paramsHolder->headingid));
+				?>
+					<div class="clear"></div>
+				</div>
+				<div class="headingtext">
+					<?php echo $this->headingText;?>
+				</div>
+			</div>
+			<div class="right">
+				<div class="headings">
+				<?php
+					$this->printHeadings($this->business->getHeadings(), $this->paramsHolder->headingid, $this->paramsHolder);
+				?>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="formbot">
+			<div class="formbotleft"></div>
+		</div>
+	</div>
+</div>
