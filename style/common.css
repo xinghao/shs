@@ -215,7 +215,7 @@ ul#locationnav li, ul#categorynav li{
 	display:block;
 }
 ul#locationnav li a, ul#categorynav li a{
-    padding:5px 10px 5px 10px;
+    padding:5px 7px 5px 7px;
     background-color:#FFF;
 	display:block;
 	border: 3px solid #FFF;
@@ -306,14 +306,18 @@ div.refineform div.formcontent{
 	font-size:14px;
 }
 
-div.refineform div.formtop{
+div.refineform div.formtop,
+div.infowrap div.formtop
+{
 	width:100%;
   	background-image: url(../images/sitetemplate/form_right_top.jpg);
   	background-position: 100% 0;
   	background-repeat:no-repeat;
 	
 }
-div.refineform div.formtop div.formtopleft{
+div.refineform div.formtop div.formtopleft,
+div.infowrap div.formtop div.formtopleft
+{
 	height:18px;
 	width:27px;
 	display:block;
@@ -323,14 +327,17 @@ div.refineform div.formtop div.formtopleft{
 }
 
 
-div.refineform div.formbot{
+div.refineform div.formbot,
+div.infowrap div.formbot
+{
 	width:100%;
   	background-image: url(../images/sitetemplate/form_right_bot.jpg);
   	background-position: 100% 0;
   	background-repeat:no-repeat;
 	
 }
-div.refineform div.formbot div.formbotleft{
+div.refineform div.formbot div.formbotleft,
+div.infowrap div.formbot div.formbotleft {
 	height:16px;
 	width:27px;
 	display:block;
@@ -534,4 +541,94 @@ div.quicksearch, div.cat1, div.cat2, div.cat3
 div.cat4, div.cat5, div.cat6, div.priceselectdiv, div.facilityselectdiv
 {
 	margin-bottom: 10px;
+}
+
+/*---info page---*/
+div.infowrap {
+	width:100%;
+	background-color:#CCCBCB;
+}
+
+ul.headingsul
+{
+	margin:0px;
+	padding:0px;
+}
+ul.headingsul li{
+	list-style-type:none;
+	display:block;
+	padding:5px 0px;
+	clear:both;
+}
+ul.headingsul li.menuon {
+}
+ul.headingsul li span.liststyle
+{
+	float:left;
+	width:4px;
+	padding-left:10px;
+}
+ul.headingsul li span{
+	display:block;
+	float:right;
+	width:200px;
+	text-align:left;
+	color:#326EA1;
+}
+
+ul.headingsul li:hover{
+	color:red;
+}
+
+ul.headingsul li span a:hover{
+	color:red;
+	text-decoration:none;
+}
+
+ul.headingsul li.menuon span{
+	color:red;
+}
+
+ul.headingsul li.menuon a{
+	color:red;
+}
+
+ul.headingsul li a{
+
+}
+	
+div.infowrap div.formcontent div.left {
+	float:left;
+	width:720px;	
+	padding:5px 10px;
+}
+
+div.infowrap div.formcontent div.right {
+	float:right;
+	width:219px;
+	border-left: 1px solid #000;
+}
+
+ul.headings2ul {
+	margin:0px;
+	paddding:0px;
+}
+ul.headings2ul li {
+	list-style-type:none;
+	display:block;
+	float:left;
+	padding:5px 10px;	
+}
+
+ul.headings2ul li a{
+	text-decoration:underline;
+	color:#000;
+}
+
+div.headingtext{
+	background-color:#aaa;
+	min-height:400px;
+	clear:both;
+	margin:50px 30px 0px 30px;
+	
 }
