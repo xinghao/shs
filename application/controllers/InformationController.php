@@ -97,10 +97,10 @@ class InformationController extends BusinessController {
     		echo $e;
     	}
  */
-    	$this->businessAction();
-    	$heading = $this->view->business->getHeadingById($this->view->paramsHolder->headingid);
-    	$this->view->headingTitle = $heading->heading;
-    	$this->view->headingText = $heading->headingText;
+    	//$this->businessAction();
+    	//$heading = $this->view->business->getHeadingById($this->view->paramsHolder->headingid);
+    	//$this->view->headingTitle = $heading->heading;
+    	//$this->view->headingText = $heading->headingText;
     	$this->renderScript('information/index.phtml');
 
   //  	echo Tag::link('jobsbasic',$this->view->location->toStdClass(),'test');
