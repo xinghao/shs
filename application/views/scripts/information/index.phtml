@@ -8,12 +8,12 @@
 			<div class="left">
 				<div class="headings2">
 				<?php
-					echo 'headingid:'.$this->paramsHolder->headingid;
+					//echo 'headingid:'.$this->paramsHolder->headingid;
 
-					$headings = $this->business->getHeadings2($this->paramsHolder->headingid);
+					//$headings = $this->business->getHeadings2($this->paramsHolder->headingid);
 
-					print_r($headings);
-					//$this->printHeadings2($this->business->getHeadings2($this->paramsHolder->headingid));
+					//print_r($headings);
+					$this->printHeadings2($this->business->getHeadings2($this->paramsHolder->headingid));
 				?>
 					<div class="clear"></div>
 				</div>
@@ -24,7 +24,7 @@
 			<div class="right">
 				<div class="headings">
 				<?php
-					//$this->printHeadings($this->business->getHeadings(), $this->paramsHolder->headingid, $this->paramsHolder);
+					$this->printHeadings($this->business->getHeadings(), $this->paramsHolder->headingid, $this->paramsHolder);
 				?>
 				</div>
 			</div>
