@@ -19,6 +19,7 @@
 							<option value="Health & Fitness">Health & Fitness</option>
 							<option value="Businesses">Business Listings</option>
 							<option value="Resumes">Resumes</option>
+							<option value="Information">Information</option>
 						</select>
 					</div>
 					<div id="q_btn">

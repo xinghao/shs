@@ -8,8 +8,8 @@
 
 				</div>
 				<div class="locationswrap">
-					<ul id="locationnav">				
-						<?php 
+					<ul id="locationnav">
+						<?php
 						// We change regin variable at above so we needs change it back.
 						//$this->paramsHolder->region = $this->location->getRegion();
 						echo $this->listAllCitiesInState($this->router, $this->paramsHolder, $this->location);?>
@@ -30,6 +30,7 @@
 						<li><?php echo $this->basicCategoryUri('Resumes', $this->paramsHolder,  $this->category);?><li>
 						<li><?php echo $this->basicCategoryUri('Restaurants', $this->paramsHolder,  $this->category);?><li>
 						<li><?php echo $this->basicCategoryUri('Business Listings', $this->paramsHolder,  $this->category);?><li>
+						<li><?php echo $this->basicCategoryUri('Information', $this->paramsHolder,  $this->category);?><li>
 					</ul>
 					<div class="clear"></div>
 			</div>
