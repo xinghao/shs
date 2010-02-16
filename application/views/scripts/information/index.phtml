@@ -18,7 +18,15 @@
 					<div class="clear"></div>
 				</div>
 				<div class="headingtext">
-					<?php echo $this->headingText;?>
+					<?php //echo $this->headingText;
+	        			$file_name = "info_content/info_cont".$this->paramsHolder->headingid.".html";
+	        	//logfire('file_name',$file_name);
+		        	if(file_exists($file_name)){
+		        		include($file_name);
+		        	}
+
+					?>
+
 				</div>
 			</div>
 			<div class="right">
