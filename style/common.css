@@ -626,7 +626,7 @@ ul.headings2ul li a{
 }
 
 div.headingtext{
-	background-color:#aaa;
+	/*background-color:#aaa;*/
 	min-height:400px;
 	clear:both;
 	margin:50px 30px 0px 30px;
