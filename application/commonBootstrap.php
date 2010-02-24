@@ -1,19 +1,19 @@
 <?php
 /**
  * commonBootstrap.php
- * 
+ *
  * - Set up applications paths
  * - Set up logs
  * - Set up database pooling
  * - Set up memcached
  * - Set up routes
  * - Et cetera
- * 
+ *
  * This bootstrap file is used both for HTML entry point (index.php),
  * and for batch processing.
  *
  */
- 
+
 define('APPLICATION_PATH', realpath(dirname(__FILE__)));
 define('WEBSITE_ROOT', realpath(dirname(__FILE__)) . '/../');
 
@@ -26,6 +26,7 @@ set_include_path(
     . PATH_SEPARATOR . APPLICATION_PATH . '/controllers'
     . PATH_SEPARATOR . APPLICATION_PATH . '/models/tables'
     . PATH_SEPARATOR . APPLICATION_PATH . '/models/forms'
+    . PATH_SEPARATOR . APPLICATION_PATH . '/models/viewhelper'
     . PATH_SEPARATOR . APPLICATION_PATH . '/models/exceptions'
     . PATH_SEPARATOR . APPLICATION_PATH . '/views/helpers'
     . PATH_SEPARATOR . get_include_path()
