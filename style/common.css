@@ -286,7 +286,7 @@ div.formandresultlistwrap div.refineformwrap{
 	width:240px;
 	margin-right:20px;
 }
-div.formandresultlistwrap div.resultlistwrap{
+div.formandresultlistwrap div.resultlistwrap,div.formandresultlistwrap div.postingwrap{
 	float:right;
 	margion-right:0px;
 	width:690px;
@@ -294,7 +294,10 @@ div.formandresultlistwrap div.resultlistwrap{
 }
 
 
-
+div.postingwrap div.postingtitle{
+	font-size:20px;
+	
+}
 /* -------------- result page end--------------------*/	
 
 /* -------------- refine form start--------------------*/
