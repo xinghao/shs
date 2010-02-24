@@ -9,7 +9,7 @@
  *      @copyright	Copyright (c) 2009 Creagency (www.creagency.com.au)
  */
 
-class BusinessController extends Zend_Controller_Action {
+class PostingController extends Zend_Controller_Action {
 
 	// Initial by the child.
 	protected $_busTypeId;
@@ -31,10 +31,12 @@ class BusinessController extends Zend_Controller_Action {
 
     	$view->location = new Location($view->posting->locId);
 
+    	$view->category = BusinessType::getBusinessType($view->posting->typeID);
+
     	$view->paramsHolder = $view->location->toStdClass();
 
 		//$this->view->paramsHolder = $this->view->location->mergeToAnotherClass($this->view->paramsHolder);
-    	$view->paramsHolder->locationid =  $location_id;
+    	$view->paramsHolder->locationid =  $view->posting_id;
 
 
 
@@ -47,15 +49,7 @@ class BusinessController extends Zend_Controller_Action {
      * Implemented by child
      * @return unknown_type
      */
-    public function getBusiness()
-    {
-   	 	throw new Exception("Must be override by children");
-    }
 
-    public function getForm($business, $location)
-    {
-    	throw new Exception("Must be override by children");
-    }
     /**
      * Job basic for seo.
      * show all the jobs in the city.
@@ -64,8 +58,18 @@ class BusinessController extends Zend_Controller_Action {
     function  indexAction()
     {
 
-    	//echo   "jobs";
+
     	$this->view = $this->_setRequiredParamsToView($this->view);
+       	try{
+	    	$this->view->business = BusinessType::getBusiness($this->view->posting->typeID);
+    		$this->view->form = BusinessType::getBusinessForm($this->view->posting->typeID, $this->view->business, $this->view->location);
+    		//print_r($this->view->form);
+       	}catch(Exception $e)
+	    {
+	    	logError("Posting data error: ", $e);
+	    	echo $e;
+
+	    }
 
     }
 
