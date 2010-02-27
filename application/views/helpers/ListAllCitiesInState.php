@@ -6,27 +6,27 @@
 class Zend_View_Helper_ListAllCitiesInState
 {
     function listAllCitiesInState($routerName, $value, $loc){
-    	
+
     	$retStr = '';
 
-    	
+
     	$currentCity = $value->city;
     	$currentState = $value->state;
-    	    	
+
     	$cities = $loc->getLocations();
 		$searchRule = $loc->getSearchRule();
-		    	
+
     	foreach($cities as $city)
     	{
     		if ($city["current"])
-    		{	
+    		{
     	    	$attributes = 'class="menu_on"';
 	    	}
 	    	else
 	    	{
 	    		$attributes = '';
-	    	} 
-	    	
+	    	}
+
 	    	if ($searchRule == 1 || $searchRule ==2)
 	    	{
 	    		$value->city = $city["location"];
@@ -36,9 +36,16 @@ class Zend_View_Helper_ListAllCitiesInState
 	    		$value->city = $value->state = $city["location"];
 	    	}
 	    	$value->locationid = $city['locationid'];
-	    	$retStr .= '<li>' . Tag::link($routerName, $value, $city["location"], $attributes) . '</li>' . "\n" ; 
+
+
+	    	if ($routerName == "posting")
+	    	{
+				$routerName = BusinessType::getbasicSearchRouter($value->category);
+	    	}
+
+	    	$retStr .= '<li>' . Tag::link($routerName, $value, $city["location"], $attributes) . '</li>' . "\n" ;
     	}
-    	
+
     	$value->city = $currentCity;
     	$value->state = $currentState;
     	//$value->city = strtolower($showRegion);
