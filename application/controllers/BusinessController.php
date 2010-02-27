@@ -132,6 +132,12 @@ class BusinessController extends Zend_Controller_Action {
 			$paginator->setView($this->view);
 
 			$this->view->postings = $paginator;
+			/*
+			foreach($this->view->postings as $key=>$value)
+			{
+			print_r($value);break;
+			}
+			*/
 	  }
 
 
