@@ -9,6 +9,7 @@
 				</div>
 				<div class="locationswrap">
 					<ul id="locationnav">
+
 						<?php
 						// We change regin variable at above so we needs change it back.
 						//$this->paramsHolder->region = $this->location->getRegion();
