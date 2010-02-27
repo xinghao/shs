@@ -38,6 +38,18 @@ class BusinessType
 		}
 	}
 
+	public static function getbasicSearchRouter($categoryName)
+	{
+		return strtolower($categoryName) . 'basic';
+		/*
+		switch($businessId)
+		{
+			case 5: return "jobsbasic";
+			default: throw new Exception("unknow business type for search router." . $businessId);
+		}
+		*/
+	}
+
 
 }
 ?>
