@@ -15,7 +15,7 @@ class BusinessType
 		switch($businessId)
 		{
 			case 5: return new Jobs();
-			default: return new Jobs();
+			default: throw new Exception("unknow business type for business." . $businessId);
 		}
 	}
 
@@ -25,8 +25,19 @@ class BusinessType
 		switch($businessId)
 		{
 			case 5: return new JobsRefineForm($business, $location);
-			default: return new JobsRefineForm($business, $location);
+			default: throw new Exception("unknow business type for businessform." . $businessId);
 		}
 	}
+
+	public static function getPostingTabs($posting)
+	{
+		switch($posting->typeID)
+		{
+			case 5: return new JobDetailTab($posting);
+			default: throw new Exception("unknow business type for posting." . $posting->typeID);
+		}
+	}
+
+
 }
 ?>
