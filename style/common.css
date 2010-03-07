@@ -296,6 +296,7 @@ div.formandresultlistwrap div.resultlistwrap,div.formandresultlistwrap div.posti
 
 div.postingwrap div.postingtitle{
 	font-size:20px;
+	font-weight:bold;
 	
 }
 /* -------------- result page end--------------------*/	
@@ -726,4 +727,30 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  {
 .tab_content table th {
 	padding:10px;
 	color:red;
+}
+
+ul.gallery li{
+	list-style-type:none;
+	float:left;	
+}
+
+ul.gallery li img {
+	padding:2px;
+	margin:5px;
+	cursor:pointer;
+}
+
+div.largeimagewrap {
+	width:500px;
+	height:350px;
+}
+
+ul.gallery li img.currentimg{
+	background-color:#000;
+}
+.transparent_class {
+       filter:alpha(opacity=65);
+       -moz-opacity:0.65;
+       -khtml-opacity: 0.65;
+       opacity: 0.65;
 }
