@@ -104,7 +104,7 @@ class DetailTab
 		echo '</div>';
 
 		echo '<div class="rightcontent">';
-		echo '</div>';
+
 		echo '</div>';
 		echo '</div>';
 
@@ -113,12 +113,8 @@ class DetailTab
 		public function getTab4()
 	{
 		echo '<div id="tab4" class="tab_content">';
-		echo '<div class="leftcontent">';
+		echo '<div id="container">';
 			$this->getTab4Content();
-		echo '</div>';
-
-		echo '<div class="rightcontent">';
-		echo '</div>';
 		echo '</div>';
 		echo '</div>';
 
@@ -133,7 +129,7 @@ class DetailTab
 
 		echo '<div class="rightcontent">';
 		echo '</div>';
-		echo '</div>';
+
 		echo '</div>';
 
 	}
@@ -156,10 +152,92 @@ class DetailTab
 				$this->getTab1();
 				$this->getTab2();
 				$this->getTab3();
+				$this->getTab4();
+				$this->getTab5();
 				echo '<div class="clear"></div>';
 			echo '</div>';
 		echo '</div>';
 	}
+
+
+	public function printPhotoTab()
+	{
+		$photos = $this->_getPhotosList();
+		//print_r($photos);
+
+		if (empty($photos))
+		{
+			return;
+		}
+		echo '<center>';
+
+		echo '<div class="largeimagewrap">'. "\n";
+		echo '<span><img /></span>';
+		echo '</div>';
+		echo '<div class="smallimagewrap"><ul class="gallery">';
+		$icount = 1;
+
+		foreach($photos as $photo)
+		{
+			if ($icount == 1)
+			{
+				$cssClass="currentimg";
+			}
+			else
+			{
+				$cssClass="transparent_class";
+			}
+			$icount++;
+			echo '<li><span>';
+			echo '<img src="/images/publicimages/a/' . $this->_posting->id . 'a' . $photo . '.jpg"  dest ="/images/publicimages/b/' . $this->_posting->id . 'b' . $photo . '.jpg" class="' . $cssClass . '"/>';
+			echo '</span></li>';
+		}
+		echo '</ul><div class="clear"></div></div></center>';
+
+
+	}
+
+
+	/**
+	 * return the array of photos such as (1,3,5) for 10101.
+	 * and empty array for no photos.
+	 * @return unknown_type
+	 */
+	protected function _getPhotosList()
+	{
+		$retArray  = array();
+		$photos = intval($this->_posting->photo);
+		logFire('photo gallery', $photos);
+		if (empty($photos))
+		{
+			return $retArray;
+		}
+
+		if ( $photos >= 10000)
+		{
+			$retArray[] = 1;
+		}
+		if ( ($photos % 10000) >= 1000)
+		{
+			$retArray[] = 2;
+		}
+		if ( ($photos % 1000) >= 100)
+		{
+			$retArray[] = 3;
+		}
+		if ( ($photos % 100) >= 10)
+		{
+			$retArray[] = 4;
+		}
+		if ( ($photos % 10) >= 1)
+		{
+			$retArray[] = 5;
+		}
+
+		return $retArray;
+
+	}
+
 
 	public function getCatsString()
 	{

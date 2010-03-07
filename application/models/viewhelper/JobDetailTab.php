@@ -1,7 +1,7 @@
 <?php
 class JobDetailTab extends  DetailTab
 {
-	protected $_tabCollection = array('General','About','Apply');
+	protected $_tabCollection = array('General','About', 'Apply', 'Photo');
 
 	public function setCategory()
 	{
@@ -166,6 +166,11 @@ class JobDetailTab extends  DetailTab
 							);
 
 		$this->printTable($contentArray);
+	}
+
+	public function getTab4Content()
+	{
+		$this->printPhotoTab();
 	}
 }
 ?>
