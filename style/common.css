@@ -754,3 +754,18 @@ ul.gallery li img.currentimg{
        -khtml-opacity: 0.65;
        opacity: 0.65;
 }
+
+td.imagetd {
+	width:120px;
+	font-size:12px;
+}
+td.imagetd img {
+	padding:2px;
+	margin:0px;
+}
+td.imagetd a{
+	padding-left:7px;
+	line-height:20px;
+}
+
+ 
