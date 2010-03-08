@@ -5,6 +5,7 @@ class DetailTab
 	protected $_posting;
 	protected $_pstCategory;
 	protected $_tabCollection = array();
+	protected $_hasPhotoTab = false;
 
 	public static function DetailTabFactory($posting)
 	{
@@ -61,26 +62,84 @@ class DetailTab
 			$this->getTab1Content();
 		echo '</div>';
 
-		echo '<div class="rightcontent">';
-			$this->getTab1Image();
-		echo '</div>';
 
 		echo '</div>';
 	}
 
-	public function printTable($contentArray)
+	public function printTable($contentArray, $hasPhoto = false)
 	{
-		echo '<table>';
+		echo "\n" . '<table>';
 
-		foreach($contentArray as $entry)
+		if ($hasPhoto && $this->photoExist())
 		{
-			echo '<tr>';
-			echo '<th class=" ' .$entry['cssClass'] . '">'.$entry['head'].' </th>';
-			echo '<td class=" ' .$entry['cssClass'] . '">'.$entry['value'].' </th>';
-			echo '</tr>';
+			$icount = 1;
+			foreach($contentArray as $entry)
+			{
+				if ($icount > 3)
+				{
+					break;
+				}
+				if($icount == 1)
+				{
+					echo '<tr>';
+					echo '<th class=" ' .$entry['cssClass'] . '">'.$entry['head'].' </th>';
+					echo '<td class=" ' .$entry['cssClass'] . '">'.$entry['value'].' </td>';
+					echo '<td class="imagetd" rowspan = "3" align="left" valign="middle"><a class="imgurl" href="" onclick="return showPhotoTab()">';
+					echo  $this->printPhotoextract() . "</a>";
+					echo  '<a href="" onclick="return showPhotoTab()">';
+
+					if ($this->photoAmount() > 1)
+					{
+						echo 'View more photos';
+					}
+					else
+					{
+						echo '&nbsp;View big photo&nbsp;';
+					}
+					echo  '</a></td>';
+
+					echo '</tr>' . "\n";
+
+				}
+				else
+				{
+					echo '<tr>';
+					echo '<th class=" ' .$entry['cssClass'] . '">'.$entry['head'].' </th>';
+					echo '<td class=" ' .$entry['cssClass'] . '">'.$entry['value'].' </td>';
+					echo '</tr>'. "\n";
+				}
+				$icount++;
+			}
+
+			$icount = 1;
+			foreach($contentArray as $entry)
+			{
+				if ($icount <= 3)
+				{
+					$icount++;
+					continue;
+				}
+				echo '<tr>';
+				echo '<th class=" ' .$entry['cssClass'] . '">'.$entry['head'].' </th>';
+				echo '<td class=" ' .$entry['cssClass'] . '" colspan=2>'.$entry['value'].' </td>';
+				echo '</tr>'. "\n";
+
+
+			}
 
 		}
-		echo '</table>';
+		else
+		{
+			foreach($contentArray as $entry)
+			{
+				echo '<tr>';
+				echo '<th class=" ' .$entry['cssClass'] . '">'.$entry['head'].' </th>';
+				echo '<td class=" ' .$entry['cssClass'] . '">'.$entry['value'].' </td>';
+				echo '</tr>'. "\n";
+
+			}
+		}
+		echo '</table>' . "\n";
 
 	}
 
@@ -142,8 +201,19 @@ class DetailTab
 				$icount = 1;
 				foreach($this->_tabCollection as $tab)
 				{
-					echo '<li><a href="#tab' . $icount .'" >' . $tab . '</a></li>';
-					$icount++;
+					if (strtolower($tab) != 'photo' || $this->photoExist() )
+					{
+						if (strtolower($tab) == 'photo')
+						{
+							$photoTab = 'tabname = "photo"';
+						}
+						else
+						{
+							$photoTab = '';
+						}
+						echo '<li ' . $photoTab .'><a href="#tab' . $icount .'" >' . $tab . '</a></li>';
+						$icount++;
+					}
 				}
 				echo '</ul>';
 				echo '<div class="clear"></div>';
@@ -159,6 +229,57 @@ class DetailTab
 		echo '</div>';
 	}
 
+	public function photoExist()
+	{
+		if (!$this->_hasPhotoTab)
+		{
+			return false;
+		}
+
+		$retArray  = array();
+		$photos = intval($this->_posting->photo);
+
+		if (empty($photos))
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	}
+
+	public function photoAmount()
+	{
+		if (!$this->_hasPhotoTab)
+		{
+			return false;
+		}
+
+		$retArray  = array();
+		$photos = $this->_getPhotosList();
+		return sizeof($photos);
+	}
+
+	public function printPhotoextract()
+	{
+		$photos = $this->_getPhotosList();
+		//print_r($photos);
+
+		if (empty($photos))
+		{
+			return;
+		}
+
+		foreach($photos as $photo)
+		{
+			echo '<img src="/images/publicimages/a/' . $this->_posting->id . 'a' . $photo . '.jpg"  dest ="/images/publicimages/b/' . $this->_posting->id . 'b' . $photo . '.jpg" class="imageextract"/>';
+
+			break;
+		}
+
+
+	}
 
 	public function printPhotoTab()
 	{

@@ -1,6 +1,7 @@
 <?php
 class JobDetailTab extends  DetailTab
 {
+	protected $_hasPhotoTab = true;
 	protected $_tabCollection = array('General','About', 'Apply', 'Photo');
 
 	public function setCategory()
@@ -44,7 +45,7 @@ class JobDetailTab extends  DetailTab
 							'cssClass' => ''
 							);
 
-		$this->printTable($contentArray);
+		$this->printTable($contentArray, true);
 		/*
 		echo '<table>';
 
