@@ -725,7 +725,7 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  {
 /*--------------------------------------*/
 
 .tab_content table th {
-	padding:10px;
+	padding:5px;
 	color:red;
 }
 
@@ -768,4 +768,7 @@ td.imagetd a{
 	line-height:20px;
 }
 
- 
+ .tab_content table th.bigblack{
+ 	color:#000;
+ 	font-size:20px;
+ }
