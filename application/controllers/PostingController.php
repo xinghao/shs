@@ -37,6 +37,8 @@ class PostingController extends Zend_Controller_Action {
 
     	$view->paramsHolder->category = $view->category;
 
+    	echo "categoy: " . $view->category;
+
 		//$this->view->paramsHolder = $this->view->location->mergeToAnotherClass($this->view->paramsHolder);
     	$view->paramsHolder->posting_id =  $view->posting_id;
 
