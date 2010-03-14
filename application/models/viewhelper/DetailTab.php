@@ -82,8 +82,8 @@ class DetailTab
 				if($icount == 1)
 				{
 					echo '<tr>';
-					echo '<th class=" ' .$entry['cssClass'] . '">'.$entry['head'].' </th>';
-					echo '<td class=" ' .$entry['cssClass'] . '">'.$entry['value'].' </td>';
+					echo '<th class="' .$entry['cssClass'] . '">'.$entry['head'].' </th>';
+					echo '<td class="' .$entry['cssClass'] . '">'.$entry['value'].' </td>';
 					echo '<td class="imagetd" rowspan = "3" align="left" valign="middle"><a class="imgurl" href="" onclick="return showPhotoTab()">';
 					echo  $this->printPhotoextract() . "</a>";
 					echo  '<a href="" onclick="return showPhotoTab()">';
@@ -104,8 +104,8 @@ class DetailTab
 				else
 				{
 					echo '<tr>';
-					echo '<th class=" ' .$entry['cssClass'] . '">'.$entry['head'].' </th>';
-					echo '<td class=" ' .$entry['cssClass'] . '">'.$entry['value'].' </td>';
+					echo '<th class="' .$entry['cssClass'] . '">'.$entry['head'].' </th>';
+					echo '<td class="' .$entry['cssClass'] . '">'.$entry['value'].' </td>';
 					echo '</tr>'. "\n";
 				}
 				$icount++;
@@ -120,8 +120,8 @@ class DetailTab
 					continue;
 				}
 				echo '<tr>';
-				echo '<th class=" ' .$entry['cssClass'] . '">'.$entry['head'].' </th>';
-				echo '<td class=" ' .$entry['cssClass'] . '" colspan=2>'.$entry['value'].' </td>';
+				echo '<th class="' .$entry['cssClass'] . '">'.$entry['head'].' </th>';
+				echo '<td class="' .$entry['cssClass'] . '" colspan=2>'.$entry['value'].' </td>';
 				echo '</tr>'. "\n";
 
 
@@ -133,8 +133,8 @@ class DetailTab
 			foreach($contentArray as $entry)
 			{
 				echo '<tr>';
-				echo '<th class=" ' .$entry['cssClass'] . '">'.$entry['head'].' </th>';
-				echo '<td class=" ' .$entry['cssClass'] . '">'.$entry['value'].' </td>';
+				echo '<th class="' .$entry['cssClass'] . '">'.$entry['head'].' </th>';
+				echo '<td class="' .$entry['cssClass'] . '">'.$entry['value'].' </td>';
 				echo '</tr>'. "\n";
 
 			}

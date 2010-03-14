@@ -6,7 +6,8 @@ class BusinessType
 		switch($businessId)
 		{
 			case 5: return "Jobs";
-			default: return "Jobs";
+			case 8: return "Real Estate";
+			default: throw new Exception("unknow business name for business." . $businessId);
 		}
 	}
 
@@ -15,6 +16,7 @@ class BusinessType
 		switch($businessId)
 		{
 			case 5: return new Jobs();
+			case 8: return new Realestate();
 			default: throw new Exception("unknow business type for business." . $businessId);
 		}
 	}
@@ -25,6 +27,7 @@ class BusinessType
 		switch($businessId)
 		{
 			case 5: return new JobsRefineForm($business, $location);
+			case 8: return new RealestateRefineForm($business, $location);
 			default: throw new Exception("unknow business type for businessform." . $businessId);
 		}
 	}
@@ -34,13 +37,14 @@ class BusinessType
 		switch($posting->typeID)
 		{
 			case 5: return new JobDetailTab($posting);
+			case 8: return new RealestateDetailTab($posting);
 			default: throw new Exception("unknow business type for posting." . $posting->typeID);
 		}
 	}
 
 	public static function getbasicSearchRouter($categoryName)
 	{
-		return strtolower($categoryName) . 'basic';
+		return strtolower(str_replace(' ', '' , $categoryName)) . 'basic';
 		/*
 		switch($businessId)
 		{

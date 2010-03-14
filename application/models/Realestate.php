@@ -1,26 +1,26 @@
 <?php
 class Realestate extends Business
 {
-	
+
 	protected $_busTypeId = 8;
-	
+
 	protected $_cat2Name = 'Select:';
 
 	protected $_cat3Name = 'Select Property Type';
-	
-	
-	
-	
+
+
+
+
 	public function getBusinessType()
 	{
 		return 'Real Estate';
 	}
-	
+
 	public function getCat1Name(){
 		return $this->_cat1Name;
 	}
 
-	
+
 	protected function _getCat2($cat1 = null)
 	{
 		if (empty($this->_cat2))
@@ -30,9 +30,9 @@ class Realestate extends Business
 		}
 		else
 		{
-			return $this->_cat2; 
+			return $this->_cat2;
 		}
-		
+
 	}
 
 	protected function _getCat3($cat2 = null)
@@ -41,11 +41,11 @@ class Realestate extends Business
 		$select = $refcat3->select();
 		$select->where('SubPrimCatId = (select CONCAT( PrimID, SetID)  from ref_category_en where id = ?)', $cat2);
 		return $this->_cat3 = $refcat3->fetchAll($select);
-		
+
 	}
-	
-	
-	
+
+
+
 	public function search($location, $limit, $offset = 0, $query = null, $cat1 = null, $cat2 = null, $cat3 = null, $cat4 = null, $cat5 = null, $addtionalData = null)
 	{
 		logfire('realstatesearch cat2', $cat2);
@@ -55,15 +55,15 @@ class Realestate extends Business
 		}
 		if ($cat3 == 631||$cat3 == 639)
 		{
-			$cat3 = null;	
+			$cat3 = null;
 		}
-		
+
 		$select = parent::search($location, $limit, $offset, $query, $cat1, $cat2, $cat3, $cat4, $cat5, $addtionalData);
 
 		// TODO price;
 		foreach($addtionalData as $key=>$value)
 		{
-			logfire($key,$value);	
+			logfire($key,$value);
 		}
 		if (!empty($addtionalData['bed']) && $addtionalData['bed'] != 'Any' && $addtionalData['bed'] != 'ALL')
 		{
@@ -78,11 +78,11 @@ class Realestate extends Business
 		if (!empty($addtionalData['bath']) && $addtionalData['bath'] != 'Any' && $addtionalData['bath'] != 'ALL')
 		{
 			$select->where('i.baths = ?', $addtionalData['bath']);
-		}	
+		}
 		if (!empty($addtionalData['min']) && $addtionalData['min'] != 'Any' && $addtionalData['min'] != 'ALL')
 		{
 			$select->where('a.priceCalculate >= ?', $addtionalData['min']);
-		}	
+		}
 		if (!empty($addtionalData['max']) && $addtionalData['max'] != 'Any' && $addtionalData['max'] != 'ALL')
 		{
 			$select->where('a.priceCalculate <= ?', $addtionalData['max']);
@@ -105,13 +105,13 @@ class Realestate extends Business
 			$select->where('cat3 in ('.$keys.')');
 		}
 		*/
-		
+
 		//echo $select;
 		return $select;
-		
+
 	}
-	
-	
+
+
 	protected function extraJoin($select)
 	{
 		$psthomes = new Psthome();
@@ -125,29 +125,29 @@ class Realestate extends Business
 	{
 		echo '<div class="resultheader" id="realesate">';
 			echo '<span class="date">';
-				echo 'Data';			
+				echo 'Data';
 			echo '</span>';
 			echo '<span class="photo">';
-				echo 'Photo';	
+				echo 'Photo';
 			echo '</span>';
 			echo '<span class="title">';
-				echo 'Title';	
-			echo '</span>';			
+				echo 'Title';
+			echo '</span>';
 			echo '<span class="property">';
-				echo 'Property Type';			
+				echo 'Property Type';
 			echo '</span>';
 			echo '<span class="bed">';
-				echo 'Bed';			
+				echo 'Bed';
 			echo '</span>';
 			echo '<span class="cars">';
 				echo 'Cars';
-			echo '</span>';	
+			echo '</span>';
 			echo '<span class="bath">';
-				echo 'Bath';			
+				echo 'Bath';
 			echo '</span>';
 			echo '<span class="price">';
-				echo 'Price ('. iconv("Windows-1252", "UTF-8", $location->getCurrencySymbol()) .')';			
-			echo '</span>';										
+				echo 'Price ('. iconv("Windows-1252", "UTF-8", $location->getCurrencySymbol()) .')';
+			echo '</span>';
 		echo '</div>';
 
 		return parent::getResultTableHeader();
@@ -161,112 +161,112 @@ class Realestate extends Business
 		echo '<table class="resultheader" id="realesate" cellspacing=0>';
 			echo '<tr>';
 				echo '<th class="cuisine">';
-					echo 'Property<br />Type';			
-				echo '</th>';			
+					echo 'Property<br />Type';
+				echo '</th>';
 				echo '<th class="location">';
-					echo 'Location';			
-				echo '</th>';			
+					echo 'Location';
+				echo '</th>';
 				echo '<th class="title">';
-					echo 'Title';	
+					echo 'Title';
 				echo '</th>';
 				echo '<th class="bed">';
-					echo 'Bed';			
-				echo '</th>';	
+					echo 'Bed';
+				echo '</th>';
 				echo '<th class="cars">';
-					echo 'Cars';			
+					echo 'Cars';
 				echo '</th>';
 				echo '<th class="bath">';
-					echo 'Bath';			
+					echo 'Bath';
 				echo '</th>';
 				echo '<th class="photo">';
-					echo 'Photo';	
-				echo '</th>';					
+					echo 'Photo';
+				echo '</th>';
 				echo '<th class="price">';
-					echo 'Price <br />('. $location->getCurrencyAndSymbol() .')';			
-				echo '</th>';	
+					echo 'Price <br />('. $location->getCurrencyAndSymbol() .')';
+				echo '</th>';
 			echo '</tr>';
 		foreach($posting as $key=>$value)
 		{
-			echo '<tr class="postingrow">';		
-				echo '<td>';
-					echo $value->cat3name;			
+			echo '<tr class="postingrow">';
+				echo '<td><a href="/posting/' .$value->postingid .'">';
+					echo $value->cat3name;
 				echo '</td>';
-				echo '<td>';
-					echo $value->state;			
-				echo '</td>';				
-				echo '<td>';
-					echo $value->title;	
-				echo '</td>';			
-				echo '<td>';
-					echo $value->bed;			
+				echo '<td><a href="/posting/' .$value->postingid .'">';
+					echo $value->state;
 				echo '</td>';
-				echo '<td>';
+				echo '<td><a href="/posting/' .$value->postingid .'">';
+					echo $value->title;
+				echo '</td>';
+				echo '<td><a href="/posting/' .$value->postingid .'">';
+					echo $value->bed;
+				echo '</td>';
+				echo '<td><a href="/posting/' .$value->postingid .'">';
 					echo $value->cars;
-				echo '</td>';	
-				echo '<td>';
-					echo $value->bath;			
 				echo '</td>';
-				echo '<td>';
+				echo '<td><a href="/posting/' .$value->postingid .'">';
+					echo $value->bath;
+				echo '</td>';
+				echo '<td><a href="/posting/' .$value->postingid .'">';
 					if (empty($value->photo) || $value->photo == '0000')
 					{
 						echo 'No';
-					}	
+					}
 					else
 					{
 						echo 'Yes';
 					}
 				echo '</td>';
-				
-				echo '<td>';
-					echo $value->priceDisplay;			
-				echo '</td>';								
+
+				echo '<td><a href="/posting/' .$value->postingid .'">';
+					echo $value->priceDisplay;
+				echo '</td>';
 			echo '</tr>';
 		}
-	
+
 		echo '</table>';
 		}catch(Exception $e)
 		{
 			logError('get results for realestate', $e);
 			echo $e;
-		}		
+		}
 		return parent::getResultTable($posting);
 	}
-		
+
 	public function getResultTableContent($posting)
 	{
 		echo '<div class="resultbar">';
 		foreach($posting as $key=>$value)
-		{				
-			echo '<div class="postingrow">' . "\n";	
+		{
+			echo '<div class="postingrow">' . "\n";
 				echo '<span class="date">';
 					echo $value->lastUpdateDate;
 				echo '</span>';
 				echo '<span class="photo">';
-					echo $value->photo;	
+					echo $value->photo;
 				echo '</span>';
 				echo '<span class="title">';
-					echo $value->title;	
-				echo '</span>';			
+					echo $value->title;
+				echo '</span>';
 				echo '<span class="property">';
-					echo $value->cat3name;			
+					echo $value->cat3name;
 				echo '</span>';
 				echo '<span class="bed">';
-					echo $value->rooms;			
+					echo $value->rooms;
 				echo '</span>';
 				echo '<span class="cars">';
 					echo $value->parking;
-				echo '</span>';	
+				echo '</span>';
 				echo '<span class="bath">';
-					echo $value->baths;			
+					echo $value->baths;
 				echo '</span>';
 				echo '<span class="price">';
-					echo $value->priceDisplay;			
+					echo $value->priceDisplay;
 				echo '</span>';
-			echo '</div>';								
+			echo '</div>';
 		}
-	
-		echo '</div>';		
+
+		echo '</div>';
 		return parent::getResultTableContent($posting);
-	}	
-}    
+	}
+}
 ?>
