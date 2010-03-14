@@ -46,8 +46,13 @@ function showPhotoTab()
 		</div>
 		<div class="postingdetail">
 			<?php
+				try{
 				$detailTab = DetailTab::DetailTabFactory($this->posting);
 				$detailTab->printTabs();
+				}catch(Exception $e)
+				{
+					echo $e;
+				}
 			?>
 		</div>
 	</div>
