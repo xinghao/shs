@@ -17,38 +17,33 @@ class RealestateDetailTab extends  DetailTab
 
 		$location = new Location($this->_posting->locId);
 		$contentArray[] = array(
-							'head' => $location->getLocationString(),
-							'value' => '',
-							'cssClass' =>'bigblack'
-							);
-		$contentArray[] = array(
-							'head' => $this->_posting->priceDisplay,
-							'value' => '',
-							'cssClass' =>'bigblack'
-							);
+					'head' => $this->_pstCategory->shortDescription,
+					'value' => 'dummy',
+					'cssClass' => 'black'
+					);
 
-
-		$cat1Table =new Refcat1();
 		$contentArray[] = array(
-							'head' => $cat1Table->getCatNameById($this->_posting->cat1),
-							'value' => '',
+							'head' => '',
+							'value' => 'dummy',
 							'cssClass' =>''
 							);
 
 		$contentArray[] = array(
 							'head' => '',
-							'value' => '',
+							'value' => 'dummy',
 							'cssClass' =>''
 							);
 
-		$categoryTable = new Refcategory();
+
 		$contentArray[] = array(
-							'head' => $categoryTable->getCatNameById($this->_posting->cat2),
-							'value' => '',
+							'head' => 'Location:',
+							'value' => $location->getLocationString(),
 							'cssClass' =>''
 							);
 
 
+
+$categoryTable =new Refcategory();
 		$contentArray[] = array(
 							'head' => 'Property Type:',
 							'value' => $categoryTable->getCatNameById($this->_posting->cat3),

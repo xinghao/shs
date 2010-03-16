@@ -81,9 +81,18 @@ class DetailTab
 				}
 				if($icount == 1)
 				{
+					if (empty($entry['value']))
+					{
+						continue;
+					}
 					echo '<tr>';
 					echo '<th class="' .$entry['cssClass'] . '">'.$entry['head'].' </th>';
-					echo '<td class="' .$entry['cssClass'] . '">'.$entry['value'].' </td>';
+					echo '<td class="' .$entry['cssClass'] . '">';
+					if ($entry['value'] != 'dummy')
+					{
+						echo $entry['value'];
+					}
+					echo '</td>';
 					echo '<td class="imagetd" rowspan = "3" align="left" valign="middle"><a class="imgurl" href="" onclick="return showPhotoTab()">';
 					echo  $this->printPhotoextract() . "</a>";
 					echo  '<a href="" onclick="return showPhotoTab()">';
@@ -103,9 +112,19 @@ class DetailTab
 				}
 				else
 				{
+					if (empty($entry['value']))
+					{
+						continue;
+					}
 					echo '<tr>';
 					echo '<th class="' .$entry['cssClass'] . '">'.$entry['head'].' </th>';
-					echo '<td class="' .$entry['cssClass'] . '">'.$entry['value'].' </td>';
+					echo '<td class="' .$entry['cssClass'] . '">';
+					if ($entry['value'] != 'dummy')
+					{
+						echo $entry['value'];
+					}
+					echo '</td>';
+
 					echo '</tr>'. "\n";
 				}
 				$icount++;
@@ -119,9 +138,19 @@ class DetailTab
 					$icount++;
 					continue;
 				}
+				if (empty($entry['value']))
+				{
+						continue;
+				}
 				echo '<tr>';
 				echo '<th class="' .$entry['cssClass'] . '">'.$entry['head'].' </th>';
-				echo '<td class="' .$entry['cssClass'] . '" colspan=2>'.$entry['value'].' </td>';
+					echo '<td class="' .$entry['cssClass'] . '">';
+					if ($entry['value'] != 'dummy')
+					{
+						echo $entry['value'];
+					}
+					echo '</td>';
+
 				echo '</tr>'. "\n";
 
 
@@ -132,9 +161,19 @@ class DetailTab
 		{
 			foreach($contentArray as $entry)
 			{
+				if (empty($entry['value']))
+				{
+						continue;
+				}
 				echo '<tr>';
 				echo '<th class="' .$entry['cssClass'] . '">'.$entry['head'].' </th>';
-				echo '<td class="' .$entry['cssClass'] . '">'.$entry['value'].' </td>';
+					echo '<td class="' .$entry['cssClass'] . '">';
+					if ($entry['value'] != 'dummy')
+					{
+						echo $entry['value'];
+					}
+					echo '</td>';
+
 				echo '</tr>'. "\n";
 
 			}
