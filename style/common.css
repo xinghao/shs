@@ -727,9 +727,10 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  {
 .tab_content table th{
 	padding:3px;
 	color:red;
+	vertical-align:top;
 }
 
-, .tab_content table td{
+.tab_content table td{
 	padding:3px 0px;
 }
 
