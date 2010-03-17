@@ -17,8 +17,8 @@ class RealestateDetailTab extends  DetailTab
 
 		$location = new Location($this->_posting->locId);
 		$contentArray[] = array(
-					'head' => $this->_pstCategory->shortDescription,
-					'value' => 'dummy',
+					'head' => 'Short Description:',
+					'value' => $this->_pstCategory->shortDescription,
 					'cssClass' => 'black'
 					);
 

@@ -97,7 +97,7 @@ class DetailTab
 					}
 
 
-					echo '<td ' . $td1colspan . ' class="' .$entry['cssClass'] . '">'.$entry['head'].' </td>';
+					echo '<th ' . $td1colspan . ' class="' .$entry['cssClass'] . '">'.$entry['head'].' </th>';
 
 					if ($entry['value'] != 'dummy')
 					{
@@ -139,7 +139,7 @@ class DetailTab
 					{
 						$td1colspan = '';
 					}
-					echo '<td ' . $td1colspan . ' class="' .$entry['cssClass'] . '">'.$entry['head'].' </td>';
+					echo '<th ' . $td1colspan . ' class="' .$entry['cssClass'] . '">'.$entry['head'].' </th>';
 
 					if ($entry['value'] != 'dummy')
 					{
@@ -175,7 +175,7 @@ class DetailTab
 						$td1colspan = '';
 					}
 
-					echo '<td ' . $td1colspan . ' class="' .$entry['cssClass'] . '">'.$entry['head'].' </td>';
+					echo '<th ' . $td1colspan . ' class="' .$entry['cssClass'] . '">'.$entry['head'].' </th>';
 
 					if ($entry['value'] != 'dummy')
 					{
@@ -209,7 +209,7 @@ class DetailTab
 					{
 						$td1colspan = '';
 					}
-					echo '<td ' . $td1colspan . ' class="' .$entry['cssClass'] . '">'.$entry['head'].' </td>';
+					echo '<th ' . $td1colspan . ' class="' .$entry['cssClass'] . '">'.$entry['head'].' </th>';
 
 					if ($entry['value'] != 'dummy')
 					{
