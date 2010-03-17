@@ -19,7 +19,7 @@ class RealestateDetailTab extends  DetailTab
 		$contentArray[] = array(
 					'head' => 'Short Description:',
 					'value' => $this->_pstCategory->shortDescription,
-					'cssClass' => 'black'
+					'cssClass' => ''
 					);
 
 		$contentArray[] = array(
