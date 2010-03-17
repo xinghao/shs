@@ -144,7 +144,7 @@ class DetailTab
 				}
 				echo '<tr>';
 				echo '<th class="' .$entry['cssClass'] . '">'.$entry['head'].' </th>';
-					echo '<td class="' .$entry['cssClass'] . '">';
+					echo '<td colspan = "2" class="' .$entry['cssClass'] . '">';
 					if ($entry['value'] != 'dummy')
 					{
 						echo $entry['value'];
