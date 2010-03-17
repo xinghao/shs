@@ -87,7 +87,7 @@ class DetailTab
 					}
 					echo '<tr>';
 
-					if ($entry['value'] != 'dummy')
+					if ($entry['value'] == 'dummy')
 					{
 						$td1colspan = 'colspan ="2"';
 					}
@@ -131,7 +131,7 @@ class DetailTab
 					}
 					echo '<tr>';
 
-					if ($entry['value'] != 'dummy')
+					if ($entry['value'] == 'dummy')
 					{
 						$td1colspan = 'colspan ="2"';
 					}
@@ -166,7 +166,7 @@ class DetailTab
 						continue;
 				}
 				echo '<tr>';
-				if ($entry['value'] != 'dummy')
+				if ($entry['value'] == 'dummy')
 					{
 						$td1colspan = 'colspan ="3"';
 					}
@@ -201,7 +201,7 @@ class DetailTab
 						continue;
 				}
 				echo '<tr>';
-					if ($entry['value'] != 'dummy')
+					if ($entry['value'] == 'dummy')
 					{
 						$td1colspan = 'colspan ="2"';
 					}
