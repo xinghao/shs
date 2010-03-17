@@ -86,13 +86,26 @@ class DetailTab
 						continue;
 					}
 					echo '<tr>';
-					echo '<th class="' .$entry['cssClass'] . '">'.$entry['head'].' </th>';
-					echo '<td class="' .$entry['cssClass'] . '">';
+
 					if ($entry['value'] != 'dummy')
 					{
-						echo $entry['value'];
+						$td1colspan = 'colspan ="2"';
 					}
-					echo '</td>';
+					else
+					{
+						$td1colspan = '';
+					}
+
+
+					echo '<th ' . $td1colspan . ' class="' .$entry['cssClass'] . '">'.$entry['head'].' </th>';
+
+					if ($entry['value'] != 'dummy')
+					{
+						echo '<td class="' .$entry['cssClass'] . '">';
+						echo $entry['value'];
+						echo '</td>';
+					}
+
 					echo '<td class="imagetd" rowspan = "3" align="left" valign="middle"><a class="imgurl" href="" onclick="return showPhotoTab()">';
 					echo  $this->printPhotoextract() . "</a>";
 					echo  '<a href="" onclick="return showPhotoTab()">';
@@ -117,13 +130,23 @@ class DetailTab
 						continue;
 					}
 					echo '<tr>';
-					echo '<th class="' .$entry['cssClass'] . '">'.$entry['head'].' </th>';
-					echo '<td class="' .$entry['cssClass'] . '">';
+
 					if ($entry['value'] != 'dummy')
 					{
-						echo $entry['value'];
+						$td1colspan = 'colspan ="2"';
 					}
-					echo '</td>';
+					else
+					{
+						$td1colspan = '';
+					}
+					echo '<th ' . $td1colspan . ' class="' .$entry['cssClass'] . '">'.$entry['head'].' </th>';
+
+					if ($entry['value'] != 'dummy')
+					{
+						echo '<td class="' .$entry['cssClass'] . '">';
+						echo $entry['value'];
+						echo '</td>';
+					}
 
 					echo '</tr>'. "\n";
 				}
@@ -143,13 +166,25 @@ class DetailTab
 						continue;
 				}
 				echo '<tr>';
-				echo '<th class="' .$entry['cssClass'] . '">'.$entry['head'].' </th>';
-					echo '<td colspan = "2" class="' .$entry['cssClass'] . '">';
+				if ($entry['value'] != 'dummy')
+					{
+						$td1colspan = 'colspan ="3"';
+					}
+					else
+					{
+						$td1colspan = '';
+					}
+
+					echo '<th ' . $td1colspan . ' class="' .$entry['cssClass'] . '">'.$entry['head'].' </th>';
+
 					if ($entry['value'] != 'dummy')
 					{
+						echo '<td colspan = "2" class="' .$entry['cssClass'] . '">';
 						echo $entry['value'];
+						echo '</td>';
 					}
-					echo '</td>';
+
+
 
 				echo '</tr>'. "\n";
 
@@ -166,13 +201,22 @@ class DetailTab
 						continue;
 				}
 				echo '<tr>';
-				echo '<th class="' .$entry['cssClass'] . '">'.$entry['head'].' </th>';
-					echo '<td class="' .$entry['cssClass'] . '">';
 					if ($entry['value'] != 'dummy')
 					{
-						echo $entry['value'];
+						$td1colspan = 'colspan ="2"';
 					}
-					echo '</td>';
+					else
+					{
+						$td1colspan = '';
+					}
+					echo '<th ' . $td1colspan . ' class="' .$entry['cssClass'] . '">'.$entry['head'].' </th>';
+
+					if ($entry['value'] != 'dummy')
+					{
+						echo '<td colspan = "2" class="' .$entry['cssClass'] . '">';
+						echo $entry['value'];
+						echo '</td>';
+					}
 
 				echo '</tr>'. "\n";
 
