@@ -723,11 +723,14 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  {
 	margin-top:30px;
 }
 /*--------------------------------------*/
-
+.tab_content table{
+	width:100%;
+}
 .tab_content table th{
 	padding:3px;
 	color:red;
 	vertical-align:top;
+	max-width:200px;
 }
 
 .tab_content table td{
