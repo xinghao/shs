@@ -190,22 +190,22 @@ class Realestate extends Business
 			echo '<tr class="postingrow">';
 				echo '<td><a href="/posting/' .$value->postingid .'">';
 					echo $value->cat3name;
-				echo '</td>';
+				echo '</a></td>';
 				echo '<td><a href="/posting/' .$value->postingid .'">';
 					echo $value->state;
-				echo '</td>';
+				echo '</a></td>';
 				echo '<td><a href="/posting/' .$value->postingid .'">';
 					echo $value->title;
-				echo '</td>';
+				echo '</a></td>';
 				echo '<td><a href="/posting/' .$value->postingid .'">';
 					echo $value->bed;
-				echo '</td>';
+				echo '</a></td>';
 				echo '<td><a href="/posting/' .$value->postingid .'">';
 					echo $value->cars;
-				echo '</td>';
+				echo '</a></td>';
 				echo '<td><a href="/posting/' .$value->postingid .'">';
 					echo $value->bath;
-				echo '</td>';
+				echo '</a></td>';
 				echo '<td><a href="/posting/' .$value->postingid .'">';
 					if (empty($value->photo) || $value->photo == '0000')
 					{
@@ -215,11 +215,11 @@ class Realestate extends Business
 					{
 						echo 'Yes';
 					}
-				echo '</td>';
+				echo '</a></td>';
 
 				echo '<td><a href="/posting/' .$value->postingid .'">';
 					echo $value->priceDisplay;
-				echo '</td>';
+				echo '</a></td>';
 			echo '</tr>';
 		}
 

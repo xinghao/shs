@@ -6,6 +6,8 @@ class DetailTab
 	protected $_pstCategory;
 	protected $_tabCollection = array();
 	protected $_hasPhotoTab = false;
+	protected $_hasAttachTab = false;
+	protected $_attachTabCollect = array("menu");
 
 	public static function DetailTabFactory($posting)
 	{
@@ -203,7 +205,7 @@ class DetailTab
 				echo '<tr>';
 					if ($entry['value'] == 'dummy')
 					{
-						$td1colspan = 'colspan ="2"';
+						$td1colspan = 'colspan ="3"';
 					}
 					else
 					{
@@ -282,9 +284,10 @@ class DetailTab
 			echo '<div class="tabs">';
 				echo '<ul class="tabs">';
 				$icount = 1;
+				logfire('pdf exist', $this->attachmentExist());
 				foreach($this->_tabCollection as $tab)
 				{
-					if (strtolower($tab) != 'photo' || $this->photoExist() )
+					if ((strtolower($tab) != 'photo' || $this->photoExist() ) && (!in_array(strtolower($tab), $this->_attachTabCollect) || $this->attachmentExist()) )
 					{
 						if (strtolower($tab) == 'photo')
 						{
@@ -311,6 +314,21 @@ class DetailTab
 			echo '</div>';
 		echo '</div>';
 	}
+
+
+	public function attachmentExist()
+	{
+
+		if ($this->_hasAttachTab && !empty($this->_posting->attachment))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
 
 	public function photoExist()
 	{
@@ -443,11 +461,54 @@ class DetailTab
 	}
 
 
-	public function getCatsString()
+	public function printPdf()
+	{
+		if (empty($this->_posting->attachment))
+		{
+			return "";
+		}
+
+		echo '<div class="downloadwrap"><center>';
+		echo '<a href="/attachments/public/' . $this->_posting->id .'.pdf"><div class="downloadbutton">';
+		echo 'Download Menu';
+		echo '</div></a></center>';
+		echo '</div>';
+
+		echo "<br />";
+		echo "<br />";
+		echo "<br />";
+		echo "<br />";
+		echo "<br />";
+		echo "<br />";
+
+		echo '<div class="adobedownloadinstruction">';
+		echo '<p>Adobe Acrobat Reader is Required to view PDF files. This is a free program available from the Adobe web site. Follow the download directions on the Adobe web site to get your copy of Adobe Acrobat Reader.</p>';
+		echo "<br />";
+		echo '<a target="_blank"  href="http://get.adobe.com/reader/?promoid=BUIGO"><img style="border:none" src = "/images/sitetemplate/get_adobe_reader.png"></a>';
+		echo '</div>';
+
+	}
+
+	public function getCat1()
+	{
+		if (!empty($this->_posting->cat1))
+		{
+			$refcat1 = new Refcat1();
+			return $refcat1->getCatNameById($this->_posting->cat1);
+		}
+		else
+		{
+			return '';
+		}
+
+	}
+
+
+	public function getCatsString($showCat1 = true)
 	{
 		$retString = '';
 
-		if (!empty($this->_posting->cat1))
+		if (!empty($this->_posting->cat1) && $showCat1)
 		{
 			$refcat1 = new Refcat1();
 			$retString = $refcat1->getCatNameById($this->_posting->cat1);

@@ -7,6 +7,7 @@ class BusinessType
 		{
 			case 5: return "Jobs";
 			case 8: return "Real Estate";
+			case 1: return "Restaurants";
 			default: throw new Exception("unknow business name for business." . $businessId);
 		}
 	}
@@ -17,6 +18,7 @@ class BusinessType
 		{
 			case 5: return new Jobs();
 			case 8: return new Realestate();
+			case 1: return new Restaurants();
 			default: throw new Exception("unknow business type for business." . $businessId);
 		}
 	}
@@ -28,6 +30,7 @@ class BusinessType
 		{
 			case 5: return new JobsRefineForm($business, $location);
 			case 8: return new RealestateRefineForm($business, $location);
+			case 1: return new RestaurantsRefineForm($business, $location);
 			default: throw new Exception("unknow business type for businessform." . $businessId);
 		}
 	}
@@ -38,6 +41,7 @@ class BusinessType
 		{
 			case 5: return new JobDetailTab($posting);
 			case 8: return new RealestateDetailTab($posting);
+			case 1: return new RestaurantsDetailTab($posting);
 			default: throw new Exception("unknow business type for posting." . $posting->typeID);
 		}
 	}
