@@ -63,8 +63,9 @@ class PostingController extends Zend_Controller_Action {
     {
 
 
-    	$this->view = $this->_setRequiredParamsToView($this->view);
+
        	try{
+       		$this->view = $this->_setRequiredParamsToView($this->view);
 	    	$this->view->business = BusinessType::getBusiness($this->view->posting->typeID);
     		$this->view->form = BusinessType::getBusinessForm($this->view->posting->typeID, $this->view->business, $this->view->location);
     		//print_r($this->view->form);
