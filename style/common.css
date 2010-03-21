@@ -730,7 +730,7 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  {
 	padding:3px;
 	color:red;
 	vertical-align:top;
-	max-width:200px;
+	width:150px;
 	text-align:left;
 }
 
@@ -787,4 +787,30 @@ td.imagetd a{
  
  .tab_content table th.black{
  	color:#000;
+ 	font-weight:normal;
+ }
+ div.downloadwrap {
+ 	text-align:center;
+ 	width:100%;
+ }
+ div.downloadwrap div.downloadbutton{
+ 	display:block;
+ 	padding:5px 10px;
+ 	background-color:red;
+ 	width:200px;
+  	background-image: url(../images/sitetemplate/download_arrow.png);
+  	background-position: 0 0;
+  	background-repeat:no-repeat;
+ 	
+ }
+ 
+ .tab_content img.downloadarrow {
+ 	border:none;
+ 	margin:0px;
+ 	padding:0px;
+ }
+ 
+ div.adobedownloadinstruction {
+ 	color:#333;
+ 	font-size:11px;
  }
