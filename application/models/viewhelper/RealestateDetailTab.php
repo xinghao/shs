@@ -109,12 +109,12 @@ $categoryTable =new Refcategory();
 							);
 		$contentArray[] = array(
 							'head' => 'Council Rate:',
-							'value' => $this->_pstCategory->buildingLevel,
+							'value' => $this->_pstCategory->councilRate,
 							'cssClass' =>''
 							);
 		$contentArray[] = array(
 							'head' => 'Water Rate:',
-							'value' => $this->_pstCategory->councilRate,
+							'value' => $this->_pstCategory->waterRate,
 							'cssClass' =>''
 							);
 
