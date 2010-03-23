@@ -52,34 +52,40 @@ $categoryTable =new Refcategory();
 
 
 		$contentArray[] = array(
-							'head' => 'Number of Bedrooms:',
+							'head' => 'Bedrooms:',
 							'value' => $this->_pstCategory->rooms,
 							'cssClass' =>''
 							);
 		$contentArray[] = array(
-							'head' => 'Number of Bathrooms:',
+							'head' => 'Bathrooms:',
 							'value' => $this->_pstCategory->baths,
 							'cssClass' =>''
 							);
 
 		$contentArray[] = array(
-							'head' => 'Number of Parking:',
+							'head' => 'Parking:',
 							'value' => $this->_pstCategory->parking,
 							'cssClass' =>''
 							);
 
+
+		if (!empty($this->_pstCategory->buildingArea))
+		{
 		$contentArray[] = array(
 							'head' => 'Building Area:',
-							'value' => $this->_pstCategory->buildingArea,
+							'value' => $this->_pstCategory->buildingArea. ' M&sup2',
 							'cssClass' =>''
 							);
+		}
 
-		$contentArray[] = array(
+		if (!empty($this->_pstCategory->landArea))
+		{
+			$contentArray[] = array(
 							'head' => 'Land Area:',
-							'value' => $this->_pstCategory->landArea,
+							'value' => $this->_pstCategory->landArea . ' M&sup2',
 							'cssClass' =>''
 							);
-
+		}
 		$contentArray[] = array(
 							'head' => 'Property Age:',
 							'value' => $this->_pstCategory->age,
@@ -119,8 +125,8 @@ $categoryTable =new Refcategory();
 							);
 
 		$contentArray[] = array(
-							'head' => 'Review:',
-							'value' => '',
+							'head' => 'View:',
+							'value' => $this->_pstCategory->views,
 							'cssClass' =>''
 							);
 
@@ -274,33 +280,50 @@ $categoryTable =new Refcategory();
 							'cssClass' => ''
 							);
 
-		$contentArray[] = array(
-							'head' => 'Inspection Info:',
-							'value' => Tag::getHtmlDateTime($this->_pstCategory->inspection1Date) . ': ' . $this->_pstCategory->inspection1StartTime . ' ~ ' . $this->_pstCategory->inspection1EndTime,
-							'cssClass' => ''
-							);
+		if (!empty(trim($this->_pstCategory->inspection1Date)) && !empty(trim($this->_pstCategory->inspection1StartTime)) && !empty(trim($this->_pstCategory->inspection1EndTime)))
+		{
+			$contentArray[] = array(
+								'head' => 'Inspection Info:',
+								'value' => Tag::getHtmlDateTime($this->_pstCategory->inspection1Date) . ': ' . $this->_pstCategory->inspection1StartTime . ' ~ ' . $this->_pstCategory->inspection1EndTime,
+								'cssClass' => ''
+								);
+		}
+
+		if (!empty(trim($this->_pstCategory->inspection2Date)) && !empty(trim($this->_pstCategory->inspection2StartTime)) && !empty(trim($this->_pstCategory->inspection2EndTime)))
+		{
 
 		$contentArray[] = array(
 							'head' => '',
 							'value' => Tag::getHtmlDateTime($this->_pstCategory->inspection2Date) . ': ' . $this->_pstCategory->inspection2StartTime . ' ~ ' . $this->_pstCategory->inspection2EndTime,
 							'cssClass' => ''
 							);
-		$contentArray[] = array(
+		}
+
+		if (!empty(trim($this->_pstCategory->inspection3Date)) && !empty(trim($this->_pstCategory->inspection3StartTime)) && !empty(trim($this->_pstCategory->inspection3EndTime)))
+		{
+			$contentArray[] = array(
 							'head' => '',
 							'value' => Tag::getHtmlDateTime($this->_pstCategory->inspection3Date) . ': ' . $this->_pstCategory->inspection3StartTime . ' ~ ' . $this->_pstCategory->inspection3EndTime,
 							'cssClass' => ''
 							);
+		}
+
+		if (!empty(trim($this->_pstCategory->inspection4Date)) && !empty(trim($this->_pstCategory->inspection4StartTime)) && !empty(trim($this->_pstCategory->inspection4EndTime)))
+		{
 		$contentArray[] = array(
 							'head' => '',
 							'value' => Tag::getHtmlDateTime($this->_pstCategory->inspection4Date). ': ' . $this->_pstCategory->inspection3StartTime . ' ~ ' . $this->_pstCategory->inspection4EndTime,
 							'cssClass' => ''
 							);
-		$contentArray[] = array(
+		}
+		if (!empty(trim($this->_pstCategory->inspection5Date)) && !empty(trim($this->_pstCategory->inspection5StartTime)) && !empty(trim($this->_pstCategory->inspection5EndTime)))
+		{
+			$contentArray[] = array(
 							'head' => '',
 							'value' => Tag::getHtmlDateTime($this->_pstCategory->inspection5Date) . ': ' . $this->_pstCategory->inspection3StartTime . ' ~ ' . $this->_pstCategory->inspection5EndTime,
 							'cssClass' => ''
 							);
-
+		}
 
 		$this->printTable($contentArray);
 	}
