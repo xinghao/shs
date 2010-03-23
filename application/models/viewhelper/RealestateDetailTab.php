@@ -280,7 +280,7 @@ $categoryTable =new Refcategory();
 							'cssClass' => ''
 							);
 
-		if (!empty(trim($this->_pstCategory->inspection1Date)) && !empty(trim($this->_pstCategory->inspection1StartTime)) && !empty(trim($this->_pstCategory->inspection1EndTime)))
+		if (!empty($this->_pstCategory->inspection1Date) && !empty($this->_pstCategory->inspection1StartTime) && !empty($this->_pstCategory->inspection1EndTime))
 		{
 			$contentArray[] = array(
 								'head' => 'Inspection Info:',
@@ -289,7 +289,7 @@ $categoryTable =new Refcategory();
 								);
 		}
 
-		if (!empty(trim($this->_pstCategory->inspection2Date)) && !empty(trim($this->_pstCategory->inspection2StartTime)) && !empty(trim($this->_pstCategory->inspection2EndTime)))
+		if (!empty($this->_pstCategory->inspection2Date) && !empty($this->_pstCategory->inspection2StartTime) && !empty($this->_pstCategory->inspection2EndTime))
 		{
 
 		$contentArray[] = array(
@@ -299,7 +299,7 @@ $categoryTable =new Refcategory();
 							);
 		}
 
-		if (!empty(trim($this->_pstCategory->inspection3Date)) && !empty(trim($this->_pstCategory->inspection3StartTime)) && !empty(trim($this->_pstCategory->inspection3EndTime)))
+		if (!empty($this->_pstCategory->inspection3Date) && !empty($this->_pstCategory->inspection3StartTime) && !empty($this->_pstCategory->inspection3EndTime))
 		{
 			$contentArray[] = array(
 							'head' => '',
@@ -308,7 +308,7 @@ $categoryTable =new Refcategory();
 							);
 		}
 
-		if (!empty(trim($this->_pstCategory->inspection4Date)) && !empty(trim($this->_pstCategory->inspection4StartTime)) && !empty(trim($this->_pstCategory->inspection4EndTime)))
+		if (!empty($this->_pstCategory->inspection4Date) && !empty($this->_pstCategory->inspection4StartTime) && !empty($this->_pstCategory->inspection4EndTime))
 		{
 		$contentArray[] = array(
 							'head' => '',
@@ -316,7 +316,7 @@ $categoryTable =new Refcategory();
 							'cssClass' => ''
 							);
 		}
-		if (!empty(trim($this->_pstCategory->inspection5Date)) && !empty(trim($this->_pstCategory->inspection5StartTime)) && !empty(trim($this->_pstCategory->inspection5EndTime)))
+		if (!empty($this->_pstCategory->inspection5Date) && !empty($this->_pstCategory->inspection5StartTime) && !empty($this->_pstCategory->inspection5EndTime))
 		{
 			$contentArray[] = array(
 							'head' => '',
