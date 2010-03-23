@@ -112,7 +112,7 @@ class JobDetailTab extends  DetailTab
 
 		$contentArray[] = array(
 							'head' => 'Travel Requirements:',
-							'value' => $this->_pstCategory->qualifications,
+							'value' => $this->_pstCategory->travelRequirements,
 							'cssClass' => ''
 							);
 
