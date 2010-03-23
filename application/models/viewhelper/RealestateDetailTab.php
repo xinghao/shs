@@ -16,6 +16,7 @@ class RealestateDetailTab extends  DetailTab
 
 
 		$location = new Location($this->_posting->locId);
+
 		$contentArray[] = array(
 					'head' => 'Short Description:',
 					'value' => $this->_pstCategory->shortDescription,
@@ -108,21 +109,34 @@ $categoryTable =new Refcategory();
 							'cssClass' =>''
 							);
 
+		if (!empty($this->_pstCategory->strataRate))
+		{
 		$contentArray[] = array(
 							'head' => 'Strata Rate:',
-							'value' => $this->_pstCategory->strataRate,
+							'value' => $location->getCurrencySymbol() . $this->_pstCategory->strataRate .  ' per quarter',
 							'cssClass' =>''
 							);
+		}
+
+		if (!empty($this->_pstCategory->councilRate))
+		{
+
 		$contentArray[] = array(
 							'head' => 'Council Rate:',
-							'value' => $this->_pstCategory->councilRate,
+							'value' => $location->getCurrencySymbol() . $this->_pstCategory->councilRate.  ' per quarter',
 							'cssClass' =>''
 							);
-		$contentArray[] = array(
+		}
+
+		if (!empty($this->_pstCategory->waterRate))
+		{
+
+							$contentArray[] = array(
 							'head' => 'Water Rate:',
-							'value' => $this->_pstCategory->waterRate,
+							'value' => $location->getCurrencySymbol() . $this->_pstCategory->waterRate.  ' per quarter',
 							'cssClass' =>''
 							);
+		}
 
 		$contentArray[] = array(
 							'head' => 'View:',
