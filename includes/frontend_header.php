@@ -1,11 +1,11 @@
 <div id="headerwrap">
 	<div id="weather">
-	
-		<span class="timeinfo"><?=Common::getTimeByWeekDayMonthDayMonthYearHourMinute()?></span><!-- weather --> 
+
+		<span class="timeinfo"><?=Common::getTimeByWeekDayMonthDayMonthYearHourMinute()?></span><!-- weather -->
 	</div>
 	<!-- <div id="newsletter"><a href="#">E-Newsletter</a> | <a href="#">Language <small>&#9660;</small></a></div>  -->
 	<div id="loginbox">
-		<a href="app/login.action">Sign in</a> | <a href="app/register.action">Sign Up</a>
+		<a href="/UCP/index.php/Authentication">Sign in</a> | <a href="/UCP/index.php/SignUp/newClient/open">Sign Up</a>
 	</div>
 	<div class="clear"></div>
 	<?php /*
@@ -20,7 +20,7 @@
 		}else{
 			%>
 			Welcome <%out.print((String)user_name);%> | <a href="app/logout.action">Sign Out</a></div>
-			<%			
+			<%
 		}
 	%>
 	*/?>
