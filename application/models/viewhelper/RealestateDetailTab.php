@@ -73,7 +73,7 @@ $categoryTable =new Refcategory();
 		{
 		$contentArray[] = array(
 							'head' => 'Building Area:',
-							'value' => $this->_pstCategory->buildingArea. ' M&sup2',
+							'value' => $this->_pstCategory->buildingArea. 'm&sup2',
 							'cssClass' =>''
 							);
 		}
@@ -82,7 +82,7 @@ $categoryTable =new Refcategory();
 		{
 			$contentArray[] = array(
 							'head' => 'Land Area:',
-							'value' => $this->_pstCategory->landArea . ' M&sup2',
+							'value' => $this->_pstCategory->landArea . 'm&sup2',
 							'cssClass' =>''
 							);
 		}
