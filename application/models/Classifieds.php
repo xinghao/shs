@@ -1,26 +1,26 @@
 <?php
 class Classifieds extends Business
 {
-	
+
 	protected $_busTypeId = 6;
-	
+
 	protected $_cat2Name = 'Category';
 
 
-	
-	
-	
-	
+
+
+
+
 	public function getBusinessType()
 	{
 		return 'Classifieds';
 	}
-	
+
 	public function getCat1Name(){
 		return $this->_cat1Name;
 	}
 
-	
+
 	protected function _getCat2($cat1 = null)
 	{
 		if (empty($this->_cat2))
@@ -30,15 +30,15 @@ class Classifieds extends Business
 		}
 		else
 		{
-			return $this->_cat2; 
+			return $this->_cat2;
 		}
-		
+
 	}
 
 
-	
-	
-	
+
+
+
 	public function search($location, $limit, $offset = 0, $query = null, $cat1 = null, $cat2 = null, $cat3 = null, $cat4 = null, $cat5 = null, $addtionalData = null)
 	{
 		logfire('restaurant cat2', $cat2);
@@ -46,11 +46,11 @@ class Classifieds extends Business
 		{
 			$cat2 = null;
 		}
-		
+
 
 		$select = parent::search($location, $limit, $offset, $query, $cat1, $cat2, $cat3, $cat4, $cat5, $addtionalData);
 
-		
+
 		if ($cat2 == null)
 		{
 			$keys = '';
@@ -67,42 +67,42 @@ class Classifieds extends Business
 			}
 			$select->where('cat2 in ('.$keys.')');
 		}
-			
+
 		//echo $select;
 		return $select;
-		
+
 	}
-	
-	
+
+
 
 /*
 	public function getResultTableHeader($location = null)
 	{
 		echo '<div class="resultheader" id="realesate">';
 			echo '<span class="date">';
-				echo 'Data';			
+				echo 'Data';
 			echo '</span>';
 			echo '<span class="photo">';
-				echo 'Photo';	
+				echo 'Photo';
 			echo '</span>';
 			echo '<span class="title">';
-				echo 'Title';	
-			echo '</span>';			
+				echo 'Title';
+			echo '</span>';
 			echo '<span class="property">';
-				echo 'Property Type';			
+				echo 'Property Type';
 			echo '</span>';
 			echo '<span class="bed">';
-				echo 'Bed';			
+				echo 'Bed';
 			echo '</span>';
 			echo '<span class="cars">';
 				echo 'Cars';
-			echo '</span>';	
+			echo '</span>';
 			echo '<span class="bath">';
-				echo 'Bath';			
+				echo 'Bath';
 			echo '</span>';
 			echo '<span class="price">';
-				echo 'Price ('. iconv("Windows-1252", "UTF-8", $location->getCurrencySymbol()) .')';			
-			echo '</span>';										
+				echo 'Price ('. iconv("Windows-1252", "UTF-8", $location->getCurrencySymbol()) .')';
+			echo '</span>';
 		echo '</div>';
 
 		return parent::getResultTableHeader();
@@ -116,45 +116,45 @@ class Classifieds extends Business
 		echo '<table class="resultheader" id="realesate" cellspacing=0>';
 			echo '<tr>';
 				echo '<th class="cuisine">';
-					echo 'Category';			
+					echo 'Category';
 				echo '</th>';
 				echo '<th class="location">';
-					echo 'Location';	
-				echo '</th>';				
+					echo 'Location';
+				echo '</th>';
 				echo '<th class="title">';
-					echo 'Title';	
-				echo '</th>';	
+					echo 'Title';
+				echo '</th>';
 				echo '<th class="price">';
-					echo 'Price <br />('. $location->getCurrencyAndSymbol() .')';			
-				echo '</th>';	
+					echo 'Price <br />('. $location->getCurrencyAndSymbol() .')';
+				echo '</th>';
 			echo '</tr>';
 		foreach($posting as $key=>$value)
 		{
-			echo '<tr class="postingrow">';		
+			echo '<tr class="postingrow">';
 				echo '<td>';
-					echo $value->cat2name;
+					echo '<a href="/posting/' .$value->postingid .'">' . $value->cat2name . '</a> ';
 				echo '</td>';
 				echo '<td>';
-				     echo $value->state;
+				     echo '<a href="/posting/' .$value->postingid .'">' . $value->state . '</a> ';
 				echo '</td>';
 				echo '<td>';
-					echo $value->title;	
-				echo '</td>';				
+					echo '<a href="/posting/' .$value->postingid .'">' . $value->title . '</a> ';
+				echo '</td>';
 				echo '<td>';
-					echo $value->priceDisplay;			
-				echo '</td>';								
+					echo '<a href="/posting/' .$value->postingid .'">' . $value->priceDisplay . '</a> ';
+				echo '</td>';
 			echo '</tr>';
 		}
-	
+
 		echo '</table>';
 		}catch(Exception $e)
 		{
 			logError('get results for classifieds', $e);
 			echo $e;
-		}		
+		}
 		return parent::getResultTable($posting);
 	}
-		
-	
-}    
+
+
+}
 ?>
