@@ -3,9 +3,26 @@
 $(document).ready(function() {
 
 	//Default Action
-	$(".tab_content").hide(); //Hide all content
-	$("ul.tabs li:first").addClass("active").show(); //Activate first tab
-	$(".tab_content:first").show(); //Show first tab content
+	//$(".tab_content").hide(); //Hide all content
+	//$("ul.tabs li:first").addClass("active").show(); //Activate first tab
+
+	<?php
+	 /*
+		if (empty($this->tab))
+		{
+			echo '$("ul.tabs li:first").addClass("active").show();'; //Activate first tab
+ 			echo '$(".tab_content:first").show();'; //Show first tab content
+		}
+		else
+		{
+			echo 'var Tab = $("ul.tabs li[tabname|=' . $this->tab . ']");';
+			echo '$(Tab).addClass("active");';
+			echo 'var activeTab = $(Tab).find("a").attr("href");';
+			echo '$(activeTab).show();';
+		}
+		*/
+	?>
+
 
 	//On Click Event
 	$("ul.tabs li").click(function() {
@@ -47,8 +64,8 @@ function showPhotoTab()
 		<div class="postingdetail">
 			<?php
 				try{
-				$detailTab = DetailTab::DetailTabFactory($this->posting);
-				$detailTab->printTabs();
+
+				$this->detailTab->printTabs();
 				}catch(Exception $e)
 				{
 					echo $e;

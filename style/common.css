@@ -816,3 +816,15 @@ td.imagetd a{
  	color:#333;
  	font-size:11px;
  }
+ 
+ div.contactformhint {
+ 	padding:3px;
+ 	margin-bottom:10px;
+ }
+ 
+ input.contactforminput, textarea.contactforminput{
+ 	width:310px;
+ }
+ textarea.contactforminput{
+ 	height:120px;
+ }

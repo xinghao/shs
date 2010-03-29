@@ -7,34 +7,62 @@
  *      @author		Xinghao <xinghao@airarena.net>
  *      @copyright	Copyright (c) 2009 Creagency (www.creagency.com.au)
  */
+
+require_once (WEBSITE_ROOT."/includes/recaptchalib.php");
 class ContactForm extends Zend_Form
 {
+
+	public $table_name = "";
+	public $hint = "contactformtable";
+	public $_posting_element;
+    public $validationErrorMsg = '';
+
+	public function setHint($hint)
+	{
+		$this->hint = $hint;
+
+	}
+
+	public function setTableName($name)
+	{
+		$this->table_name = $name;
+	}
+
+
+	public function setPostingId($id)
+	{
+		$this->_posting_element = new Zend_Form_Element_Hidden('postingid');
+		$this->_posting_element->setValue($id);
+		$this->addElement($this->_posting_element);
+	}
 
 	protected function buildElements()
 	{
 		// Quick search field
 		$full_name = new Zend_Form_Element_Text('fullname');
 		$full_name->setLabel('Your Name:');
-		$full_name->setAttrib('class','refineforminput');
+		$full_name->setAttrib('class','contactforminput');
 		$this->addElement($full_name);
 
         // create EMAIL input tag
         // Unique check, require, email address valid check, length less than 100(database length for this field)
 		//  do email address validation(default each email element do email address validation)
-        $credit_email = new CrFramework_Form_Element_Email('email_from');
+        $credit_email = new Zend_Form_Element_Text('email_from');
 		$credit_email->setLabel('Your Email:');
-		$credit_email->setStringLength(0,100);
+		$credit_email->setAttrib('class','contactforminput');
+		$this->addElement($credit_email);
 
 		// create Description Textarea tag
 		// filed type in db is Text
-		$description = new CrFramework_Form_Element_Textarea('question');
+		$description = new Zend_Form_Element_Textarea('question');
 		$description->setLabel('Your Question:');
+		$description->setAttrib('class','contactforminput');
 		$this->addElement($description);
 
 
 		// Quick search btn
-        $send = new Zend_Form_Element_Image('quicksearchbtn');
-       	$send->setImage('/images/sitetemplate/find-2-60.png');
+        $send = new Zend_Form_Element_Image('submit');
+       	$send->setImage('/images/sitetemplate/send_button.png');
        	$send->setAttribs(array(
         	'rows' => 22,
         	'cols' => 60
@@ -42,6 +70,8 @@ class ContactForm extends Zend_Form
     	$send->setAttrib('onclick', 'return setsearch(1);');
        	$send->setImageValue(true);
        	$this->addElement($send);
+
+
 
 	}
 
@@ -63,16 +93,12 @@ class ContactForm extends Zend_Form
 	 */
 	public function init()
 	{
-		logfire('dsfsdf','sdfsdfdsfs');
+
 		$this->setMethod('post');
-		$this->setName('refineform');
+		$this->setName('contactform');
 
 
-		$this->buildQuickSearchElements();
-
-       	$this->setAction('/refine/'.str_replace(' ','',strtolower($this->_business->getBusinessType())));
-
-
+		$this->buildElements();
 
 
         //$this->addAttribs(array('onsubmit'=>'beforeSubmit()'));
@@ -80,7 +106,7 @@ class ContactForm extends Zend_Form
 		$this->setDecorators(array(
 			'FormElements',
 			array('ViewScript', array(
-    		'viewScript' => 'forms/_refineform.phtml',
+    		'viewScript' => 'forms/_contactform.phtml',
     		'class'      => 'hotspotform',
 			'placement' => false
 				)),
@@ -98,6 +124,26 @@ class ContactForm extends Zend_Form
 
 		// Call the father's render function.
 		return parent::populate($values);
+	}
+
+
+	public function isValid($data)
+	{
+
+		$resp = recaptcha_check_answer (Common::GetRecaptchaKey("private"),
+                                $_SERVER["REMOTE_ADDR"],
+                                $data["recaptcha_challenge_field"],
+                                $data["recaptcha_response_field"]);
+
+		print_r($resp);
+
+		if (!$resp->is_valid) {
+			$this->validationErrorMsg = "Incorrect Validation Code!";
+			 echo recaptcha_get_html(Common::GetRecaptchaKey("public"), $resp->error);
+			return false;
+		}
+
+		return parent::isValid($data);
 	}
 
 

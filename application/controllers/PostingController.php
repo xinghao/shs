@@ -9,11 +9,14 @@
  *      @copyright	Copyright (c) 2009 Creagency (www.creagency.com.au)
  */
 
+
 class PostingController extends Zend_Controller_Action {
 
 	// Initial by the child.
 	protected $_busTypeId;
 	protected $_busType;
+	//protected $_privatekey = "6LfQHQwAAAAAAIsnkFWW8atwyS9WbVnIaEfLB3Jh";
+
 
 	public function init() {
     	// Used by content header.
@@ -69,6 +72,14 @@ class PostingController extends Zend_Controller_Action {
 	    	$this->view->business = BusinessType::getBusiness($this->view->posting->typeID);
     		$this->view->form = BusinessType::getBusinessForm($this->view->posting->typeID, $this->view->business, $this->view->location);
     		//print_r($this->view->form);
+
+			$this->view->detailTab = DetailTab::DetailTabFactory($this->view->posting);
+			if (!empty($this->view->formData))
+			{
+				$this->view->detailTab->setFormData($this->view->formData);
+			}
+			//$detailTab->printTabs();
+
        	}catch(Exception $e)
 	    {
 	    	logError("Posting data error: ", $e);
@@ -79,206 +90,53 @@ class PostingController extends Zend_Controller_Action {
     }
 
 
-	public function changecat2Action($addALL = true)
+	function contactAction()
 	{
-		Hotspot_Plugin_ViewSetup::setUpSiteTemplate(-1);
-		$this->_helper->viewRenderer->setNoRender();
+	   try{
 
-		$param1 = $this->_getParam('param1', 0);
-		logfire('param1', $param1);
-
-		$cat3 = array();
-
-		$business = $this->getBusiness();
-
-		$cat3 = $business->getCat3Array($param1, $addALL);
-
-		if (!empty($cat3))
-		{
-
-			$jsonArray = array();
-			foreach($cat3 as $id=>$name)
+		   	// Check if the form is posted.
+			if ($this->getRequest()->isPost())
+			// User submit listing form.
 			{
-				$cat3row = array('id' => $id, 'name' => $name);
-				$jsonArray[] = $cat3row;
+				// [Xinghao] Get form data.
+				$this->view->formData = $this->getRequest()->getPost();
+				print_r($this->view->formData);
+
+				$this->indexAction();
+				//$this->view->tab = $this->view->detailTab->getFormTabName();
+				$this->view->detailTab->setTabSequence($this->view->detailTab->formTabSeq);
+
+				$form = $this->view->detailTab->getForm();
+
+				if ($form->isValid($this->view->formData))
+				{
+
+					$this->view->detailTab->setDisplayForm(false);
+					Email::sendMail($this->view->formData["email_from"],
+									$this->view->formData["fullname"],
+									"Query form " . $this->view->formData["fullname"],
+									$this->view->formData["question"]);
+				}
+				else
+				{
+					$this->view->detailTab->setDisplayForm(true);
+				}
+
+				$this->renderScript('posting/index.phtml');
+
+			}
+			else
+			{
+				//TODO::redirect ot 404 page.
 			}
 
 
-			$json = Zend_Json::encode($jsonArray);
-			echo $json;
-			unset($json);
-		}
+        }catch(Exception $e)
+	    {
+	    	logError("contactAction: ", $e);
+	    	echo $e;
 
-	}
-
-/*
-	public function changestateAction()
-	{
-		$this->_helper->viewRenderer->setNoRender();
-
-		$param1 = $this->_getParam('param1', 0);
-		logfire('param1', $param1);
-
-		$location = new Location();
-
-		$cities = $location->getAllCityByStateId($param1);
-
-
-		if (!empty($cities))
-		{
-
-
-			$jsonArray = array();
-			foreach($cities as $city)
-			{
-				$cityrow = array('id' => $city->cityid, 'name' => $city->city);
-				$jsonArray[] = $cityrow;
-			}
-
-
-
-			$json = Zend_Json::encode($jsonArray);
-			echo $json;
-			unset($json);
-		}
-
-
-	}
- */
-
-	function refinedispatchAction()
-	{
-		Hotspot_Plugin_ViewSetup::setUpSiteTemplate(-1);
-		$this->_helper->viewRenderer->setNoRender();
-		echo $businessType = $this->_getParam('controller');
-
-		$formData = array();
-
-    	$request = $this->getRequest();
-
-		// Init lisitng form.
-		//$this->form = new RefineForm();
-
-		if ($request->isPost())
-		// User submit listing form.
-		// We add new listing into the database.
-		{
-			// Get the form data form post.
-			$formData = $request->getPost();
-			foreach($formData as $key=>$value)
-				echo $key . '=>'. $value . "<br />";
-
-			if ($formData['searchtype'] == 1)
-			{
-				echo $this->buildSearchUri($businessType, $formData);
-				$this->_redirect($this->buildSearchUri($businessType, $formData));
-			}
-			elseif ($formData['searchtype'] == 2)
-			{
-				echo $this->buildRefineUri($businessType, $formData);
-				$this->_redirect($this->buildRefineUri($businessType, $formData));
-
-			}
-
-		}
-
-	}
-
-
-	protected function buildSearchUri($businessType, $formData)
-	{
-		try{
-		echo strtolower($businessType). 'search';
-
-		$formData = Common::encodeUriParams($formData);
-
-		if (!array_key_exists('locationid', $formData) || empty($formData['locationid']))
-		{
-			throw new Exception('No location id');
-		}
-
-		$location = new Location($formData['locationid']);
-    	$formData['country'] = $location->getCountry();
-    	$formData['city'] = $location->getUriCity();
-    	$formData['state'] = $location->getUriState();
-
-		return Tag::url(str_replace(' ', '', strtolower($businessType)). 'search', Common::arrayToStdClass($formData));
-		}catch(Exception $e)
-		{
-			echo $e;
-		}
-	}
-
-	protected function buildRefineUri($businessType, $formData)
-	{
-		try{
-		echo str_replace(' ', '', strtolower($businessType)). 'basicrefine';
-
-		if (array_key_exists('cat1', $formData) && !empty($formData['cat1']) && strtolower($formData['cat1']) != strtolower('ALL') && strtolower($formData['cat1']) != strtolower('Any'))
-		{
-			$refcat1 = new Refcat1();
-			$formData['cat1name'] = $refcat1->getCatNameById($formData['cat1']);
-		}
-
-		/*
-		if (strtolower($formData['cat2']) == strtolower('ALL'))
-		{
-			$formData['cat2name'] = 'ALL';
-		}
-		else{
-			$refcat2 = new Refcategory();
-			$formData['cat2name'] = $refcat2->getCatNameById($formData['cat2']);
-		}
-
-		if (strtolower($formData['cat3']) == strtolower('ALL'))
-		{
-			$formData['cat3name'] = 'ALL';
-		}
-		else{
-			$refcat3 = new Refcategory();
-			$formData['cat3name'] = $refcat3->getCatNameById($formData['cat3']);
-		}
-		*/
-
-		if (array_key_exists('suburbid', $formData) && !empty($formData['suburbid']) && strtolower($formData['suburbid']) != strtolower('ALL'))
-		{
-			$locationid = $formData['suburbid'];
-		}
-		elseif (array_key_exists('regionid', $formData) && !empty($formData['regionid']) && strtolower($formData['regionid']) != strtolower('ALL'))
-		{
-			$locationid = $formData['regionid'];
-		}
-		elseif (array_key_exists('cityid', $formData) && !empty($formData['cityid']) && strtolower($formData['cityid']) != strtolower('ALL'))
-		{
-			$locationid = $formData['cityid'];
-		}
-		elseif (array_key_exists('stateid', $formData) && !empty($formData['stateid']) && strtolower($formData['stateid']) != strtolower('ALL'))
-		{
-			$locationid = $formData['stateid'];
-		}
-
-		$location = new Location($locationid);
-    	$formData['country'] = $location->getCountry();
-    	$formData['city'] = $location->getUriCity();
-    	$formData['state'] = $location->getUriState();
-		$formData['locationid'] = $locationid;
-
-		logfire('city', $formData['city']);
-		logfire('state', $formData['state']);
-		//logfire('cat3name', $formData['cat3name']);
-		echo 'sss'.'1';
-
-		$formData = Common::encodeUriParams($formData);
-		return Tag::url(str_replace(' ', '', strtolower($businessType)). 'basicrefine', Common::arrayToStdClass($formData));
-		}catch(Exception $e)
-		{
-			echo $e;
-		}
-	}
-
-
-	protected function _getAdditionalData($view){
-		return null;
+	    }
 	}
 
 }

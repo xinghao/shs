@@ -8,6 +8,13 @@ class DetailTab
 	protected $_hasPhotoTab = false;
 	protected $_hasAttachTab = false;
 	protected $_attachTabCollect = array("menu");
+	protected $_formData = array();
+	protected $_formTabName;
+	protected $_tabSequence = 1;
+	public $formTabSeq = 1;
+	protected $_form;
+	protected $_displayForm=true;
+
 
 	public static function DetailTabFactory($posting)
 	{
@@ -15,6 +22,26 @@ class DetailTab
 		$detailTab->setPosting($posting);
 		$detailTab->setCategory();
 		return $detailTab;
+	}
+
+
+	public function getForm()
+	{
+		return $this->_form;
+	}
+	public function setTabSequence($tabS)
+	{
+		$this->_tabSequence = $tabS;
+	}
+
+	public function getFormTabName()
+	{
+		return $this->_formTabName;
+	}
+
+	public function setFormData($data)
+	{
+		$this->_formData = $data;
 	}
 
 	public function setPosting($posting)
@@ -59,7 +86,15 @@ class DetailTab
 
 	public function getTab1()
 	{
-		echo '<div id="tab1" class="tab_content">';
+		if ($this->_tabSequence == 1)
+		{
+			$sytle = ' style="display:block;" ';
+		}
+		else
+		{
+			$sytle = ' style="display:none;" ';
+		}
+		echo '<div id="tab1" class="tab_content"' .$sytle .'>';
 		echo '<div class="leftcontent">';
 			$this->getTab1Content();
 		echo '</div>';
@@ -230,7 +265,16 @@ class DetailTab
 
 	public function getTab2()
 	{
-		echo '<div id="tab2" class="tab_content">';
+			if ($this->_tabSequence == 2)
+		{
+			$sytle = ' style="display:block;" ';
+		}
+		else
+		{
+			$sytle = ' style="display:none;" ';
+		}
+
+		echo '<div id="tab2" class="tab_content"' .$sytle .'>';
 		echo '<div class="leftcontent">';
 			$this->getTab2Content();
 		echo '</div>';
@@ -242,7 +286,16 @@ class DetailTab
 
 	public function getTab3()
 	{
-		echo '<div id="tab3" class="tab_content">';
+			if ($this->_tabSequence == 3)
+		{
+			$sytle = ' style="display:block;" ';
+		}
+		else
+		{
+			$sytle = ' style="display:none;" ';
+		}
+
+		echo '<div id="tab3" class="tab_content"' .$sytle .'>';
 		echo '<div class="leftcontent">';
 			$this->getTab3Content();
 		echo '</div>';
@@ -256,7 +309,15 @@ class DetailTab
 
 		public function getTab4()
 	{
-		echo '<div id="tab4" class="tab_content">';
+			if ($this->_tabSequence == 4)
+		{
+			$sytle = ' style="display:block;" ';
+		}
+		else
+		{
+			$sytle = ' style="display:none;" ';
+		}
+		echo '<div id="tab4" class="tab_content"' .$sytle .'>';
 		echo '<div id="container">';
 			$this->getTab4Content();
 		echo '</div>';
@@ -266,7 +327,15 @@ class DetailTab
 
 	public function getTab5()
 	{
-		echo '<div id="tab5" class="tab_content">';
+			if ($this->_tabSequence == 5)
+		{
+			$sytle = ' style="display:block;" ';
+		}
+		else
+		{
+			$sytle = ' style="display:none;" ';
+		}
+		echo '<div id="tab5" class="tab_content"' .$sytle .'>';
 		echo '<div class="leftcontent">';
 			$this->getTab5Content();
 		echo '</div>';
@@ -295,9 +364,19 @@ class DetailTab
 						}
 						else
 						{
-							$photoTab = '';
+							$photoTab = 'tabname = tab' . $icount;
 						}
-						echo '<li ' . $photoTab .'><a href="#tab' . $icount .'" >' . $tab . '</a></li>';
+
+						logfire('$this->_tabSequence', $this->_tabSequence);
+						if ($this->_tabSequence == $icount)
+						{
+							$style = ' class="active" ';
+						}
+						else
+						{
+							$style = "";
+						}
+						echo '<li ' . $photoTab . $style .'><a href="#tab' . $icount .'" >' . $tab . '</a></li>';
 						$icount++;
 					}
 				}
@@ -571,6 +650,22 @@ class DetailTab
 		}
 
 		return $retString;
+	}
+
+
+	public function printFormConfirm()
+	{
+		echo "Current developing";
+	}
+
+	public function printForm()
+	{
+		echo "Current developing";
+	}
+
+	public function setDisplayForm($displayForm)
+	{
+		$this->_displayForm = $displayForm;
 	}
 }
 ?>

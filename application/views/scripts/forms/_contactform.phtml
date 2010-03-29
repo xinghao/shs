@@ -1,0 +1,30 @@
+<?php require_once (WEBSITE_ROOT."/includes/recaptchalib.php");?>
+
+
+<div class="contactformhint"><?=$this->element->hint?></div>
+
+<table class="<?=$this->element->table_name?>">
+
+<?php
+foreach($this->element->getElements() as $el){
+	$elName = $el->getname();
+	if ($elName == 'submit')
+	{
+		continue;
+	}
+	echo "<tr>";
+	echo "<th>" .  $el->getLabel() . "</th>";
+	echo "<td>" .  $this->{$el->helper}($el->getName(),$el->getValue(),$el->getAttribs()) . "</td>";
+	echo "</tr>";
+}
+
+//echo "<tr><th></th><td>&nbsp;</td></tr>";
+echo "<tr><th>Verification Code</th><td>" . recaptcha_get_html(Common::GetRecaptchaKey("public")) . "</td></tr>";
+
+echo "<tr><th></th><td>&nbsp;</td></tr>";
+
+$el = $this->element->submit;
+echo "<tr><th></th><td>" .$this->{$el->helper}($el->getName(),$el->getValue(),$el->getAttribs()). "</td></tr>";
+?>
+
+</table>
