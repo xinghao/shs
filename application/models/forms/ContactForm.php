@@ -42,6 +42,7 @@ class ContactForm extends Zend_Form
 		$full_name = new Zend_Form_Element_Text('fullname');
 		$full_name->setLabel('Your Name:');
 		$full_name->setAttrib('class','contactforminput');
+		$full_name->setAttrib('hint','your name');
 		$this->addElement($full_name);
 
         // create EMAIL input tag
@@ -57,7 +58,9 @@ class ContactForm extends Zend_Form
 		$description = new Zend_Form_Element_Textarea('question');
 		$description->setLabel('Your Question:');
 		$description->setAttrib('class','contactforminput');
+		$description->setAttrib('hint','your question');
 		$this->addElement($description);
+
 
 
 		// Quick search btn
@@ -67,12 +70,12 @@ class ContactForm extends Zend_Form
         	'rows' => 22,
         	'cols' => 60
     	));
-    	$send->setAttrib('onclick', 'return setsearch(1);');
+
        	$send->setImageValue(true);
        	$this->addElement($send);
 
-
-
+		$this->setName("contactform");
+		$this->setAttrib("onSubmit", "return ValidateForm();");
 	}
 
 
