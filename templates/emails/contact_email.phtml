@@ -1,0 +1,41 @@
+<center>
+	<div style="width:600px;text-align:left;">
+		<div style="font-weight:bold;font-size:20px;color:#000;">
+			Dear <?=$this->name_to?>
+		</div>
+		<br />
+		<div style="color:#333; font-size: 12px;">
+		<?=$this->name_from?> is interested in your SydneyHotspot <?=$this->businessType?> posting,
+		and has provided contact detail / question for you to get back to them about the purchase.
+		</div>
+		<br />
+		<div style="color:#666; font-size: 10px;">
+		Please refer to the <a href="">govrnment online security recommendation</a> to protect yourself
+		and make your SydneyHotspot and future web experience and safe and enjoyable on.
+		</div>
+
+		<br />
+		<br />
+		<div style="font-weight:bold;font-size:14px;color:#000;">
+			<span style="text-decoration:underline;font-size:18px">
+				You're Posting Info
+			</span>
+			<br />
+			Title: <?=$this->title?><br />
+			Category: <?=$this->category?><br />
+			Price Detail: <?=$this->price?><br />
+			Link to your posting:<a href="<?=$this->uri?>">Click Here</a>
+		</div>
+		<br />
+		<div style="font-weight:bold;font-size:14px;color:#000;">
+			<span style="text-decoration:underline;font-size:18px">
+				Sender's Info
+			</span>
+			<br />
+			Name: <?=$this->name_from?><br />
+			Email: <?=$this->email?><br />
+			Question: <?=$this->question?><br />
+		</div>
+
+	</div>
+</center>
