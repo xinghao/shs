@@ -9,12 +9,12 @@
  */
 class ClassifiedsRefineForm extends RefineForm
 {
-	
+
 	protected function buildCat1Element()
 	{
 
-	}	
-	
+	}
+
 	protected function buildCat2Element()
 	{
     	$cat2 = new Zend_Form_Element_Select('cat2');
@@ -23,23 +23,23 @@ class ClassifiedsRefineForm extends RefineForm
        	$cat2->setValue($this->_business->getFirstCat2(null,true));
        	$cat2->setAttrib('class','refineformselect');
        	$this->addElement($cat2);
-		
+
 	}
-	
 
 
 
-	
-	
-	
-	
-	
+
+
+
+
+
+
 
 	/*
 	public function printLocationElements()
 	{
-		echo 
-		
+		echo
+
 		echo $this->city;
 	    echo $this->state;
 		echo $this->country;
@@ -47,7 +47,7 @@ class ClassifiedsRefineForm extends RefineForm
 
 	}
 
-	
+
 */
 	protected function _getSearchHint($category, $cat1 = null, $cat2 = null, $cat3 = null, $cat4 = null, $Cat5 = null)
 	{
@@ -55,8 +55,8 @@ class ClassifiedsRefineForm extends RefineForm
 		if (empty($cat2))
 		{
 			return  $category;
-		}  
-		
+		}
+
 		if ($cat2 == '630')
 		{
 			$cat2Name = 'For SALE';
@@ -65,16 +65,19 @@ class ClassifiedsRefineForm extends RefineForm
 		{
 			$cat2Name = 'For ' . $this->_business->getCat2NameById($cat2);
 		}
-		
+
 		if ($cat3 == '631')
 		{
 			return 'ALL ' . $cat2Name;
 		}
 		else
 		{
-			return  $this->_business->getCat3NameById($cat3) . ' ' . $cat2Name;	
+			return  $this->_business->getCat3NameById($cat3) . ' ' . $cat2Name;
 		}
 		*/
-		return parent::_getSearchHint($category, $cat1, $cat2, $cat3, $cat4, $Cat5);		
-	}	
+		return parent::_getSearchHint($category, $cat1, $cat2, $cat3, $cat4, $Cat5);
+	}
+
+
+
 }

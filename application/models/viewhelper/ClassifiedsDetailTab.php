@@ -3,6 +3,7 @@ class ClassifiedsDetailTab extends  DetailTab
 {
 	protected $_hasPhotoTab = true;
 	protected $_formTabName = "tab2";
+	protected $_businessType = "Classifieds";
 	public $formTabSeq = 2;
 
 	protected $_tabCollection = array('General','Contact Seller', 'Photo');
@@ -89,6 +90,7 @@ class ClassifiedsDetailTab extends  DetailTab
 		else
 		{
 			$this->printFormConfirm();
+			$this->printForm();
 		}
 	}
 
@@ -114,5 +116,23 @@ class ClassifiedsDetailTab extends  DetailTab
 		$this->printPhotoTab();
 	}
 
+	public function getPostingDataForContactForm()
+	{
+		try{
+
+
+		$postingData = array();
+		$postingData["firstname"] = empty($this->_pstCategory->contactName)? "Sir" : $this->_pstCategory->contactName;
+		$postingData["businesstype"] = $this->_businessType;
+		$postingData["title"] = $this->_posting->getTitle();
+		$postingData["cat"] = $this->getCatsString();
+		$postingData["price"] = $this->_posting->priceDisplay;
+		$postingData["id"] = $this->_posting->id;
+		return $postingData;
+		}catch(Excpetion $e)
+		{
+			echo $e;
+		}
+	}
 }
 ?>

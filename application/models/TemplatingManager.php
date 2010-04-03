@@ -3,20 +3,66 @@
  * Templating system manager.
  * Window - Preferences - PHPeclipse - PHP - Code Templates
  */
-class TemplatingManager 
+class TemplatingManager
 {
 	// Flag to use text version template.
 	const TEXTTEMPLATE = 1;
-	
+
 	// Flag to use html version template.
 	const HTMLTEMPLATE = 2;
-	
+
 	// Html template.
-	
+
 	// Legal template.
 	const HTMLLOCATIONPATH = 'web/location_html.phtml';
 
-	
+	const CONTACTEMAILPATH = 'emails/contact_email.phtml';
+
+
+
+
+	public static function getContactEmail($formData,$postingData)
+	{
+		try{
+			// Get Templating script path.
+			$registry = Zend_Registry::getInstance();
+			$scriptPath = $registry->get('TEMPLATINGSYSTEMPATH');
+
+			$config = $registry->get('CONFIG');
+        	$host =  $config->website->httpprefix;
+
+			// Set view path.
+			$view = new Zend_View();
+
+			$view->name_to   =$postingData["firstname"];
+			$view->businessType = $postingData["businesstype"];
+			$view->title = $postingData["title"];
+			$view->category = $postingData["cat"];
+			$view->price = $postingData["price"];
+			$tempArray = new StdClass();
+			$tempArray->postingid = $postingData["id"];
+			$view->uri = $host . "/" . Tag::url("posting", $tempArray);
+
+			$view->name_from =$formData["fullname"];
+			$view->email     =$formData["email_from"];
+			$view->question  =$formData["question"];
+
+			$view->addScriptPath($scriptPath);
+
+
+			// Get view string.
+			return $view->render(self::CONTACTEMAILPATH);
+
+		}catch(Exception $e)
+		{
+			logError('Read location template file failed! does this file exist or do we have proper rights to read?', $e);
+			//echo $e;
+			throw $e;
+		}
+
+
+	}
+
 	// Text template
 
 	//const VIEWSCRIPTPATH = '../../html/public/template';
@@ -32,10 +78,10 @@ class TemplatingManager
 			// Get Templating script path.
 			$registry = Zend_Registry::getInstance();
 			$scriptPath = $registry->get('TEMPLATINGSYSTEMPATH');
-			
+
 			// Set view path.
 			$view = new Zend_View();
-			
+
 			if (empty($currentLoc))
 			{
 				$locationId = "Aus28";
@@ -44,7 +90,7 @@ class TemplatingManager
 			{
 				/*
 				$searchRule = $currentLoc->getSearchRule();
-	
+
 		    	if ($searchRule == 1 || $searchRule ==2)
 		    	{
 		    		$locationId = $currentLoc->getCityId();
@@ -53,34 +99,34 @@ class TemplatingManager
 		    	{
 		    		$locationId = $currentLoc->getStateId();
 		    	}
-				*/			
+				*/
 				// even search rule 3 has city id.
 				$locationId = $currentLoc->getCityId();
 			}
-			
+
 			//logFire('result page dropdown current locationId', $locationId);
 			//logFire('result page searchRule', $searchRule);
 			//logFire('result page dropdown cityid', $currentLoc->getCityId());
 			//logFire('result page dropdown stateid', $currentLoc->getStateId());
 			//logFire('result page dropdown locationid', $locationId);
-			
-			
+
+
 			$view->locationId = $locationId;
 			$view->addScriptPath($scriptPath);
-			
+
 			// Get html/text template file name
 			if ($templateType == self::HTMLTEMPLATE)
 			{
 				$scriptFile = self::HTMLLOCATIONPATH;
-			} 
+			}
 			else
 			{
 				$scriptFile = self::HTMLLOCATIONPATH;
 			}
-			
+
 			// Get view string.
 			return $view->render($scriptFile);
-			
+
 		}catch(Exception $e)
 		{
 			logError('Read location template file failed! does this file exist or do we have proper rights to read?', $e);
@@ -88,8 +134,8 @@ class TemplatingManager
 			throw $e;
 		}
 	}
-	
-	
+
+
 	/**
 	 * Get Package descripton.
 	 * @param $product_code
@@ -103,11 +149,11 @@ class TemplatingManager
 			// Get Templating script path.
 			$registry = Zend_Registry::getInstance();
 			$scriptPath = $registry->get('TEMPLATINGSYSTEMPATH');
-			
+
 			// Set view path.
-			$view = new Zend_View();	
+			$view = new Zend_View();
 			$view->setScriptPath($scriptPath);
-			
+
 			$view->publisher_name = $publisherName;
 			$view->book_name = $bookname;
 
@@ -115,16 +161,16 @@ class TemplatingManager
 			if ($templateType == self::HTMLTEMPLATE)
 			{
 				$scriptFile = self::HTMLPACKAGEDESCRIPTIONPATH;
-			} 
+			}
 			else
 			{
 				$scriptFile = self::TEXTPACKAGEDESCRIPTIONPATH;
 			}
-			
+
 			// Return view string.
 			$rendScriptPath = 'web/' . strtolower($product_code) . $scriptFile;
 			return $view->render($rendScriptPath);
-			
+
 		}catch(Exception $e)
 		{
 			logError('Read package description template file failed! does this file exist or do we have proper rights to read?', $e);
@@ -132,7 +178,7 @@ class TemplatingManager
 			throw $e;
 		}
 	}
-	
+
 
 	/**
 	 * Get lastest receipt template.
@@ -145,39 +191,39 @@ class TemplatingManager
 			// Get Templating script path.
 			$registry = Zend_Registry::getInstance();
 			$scriptPath = $registry->get('TEMPLATINGSYSTEMPATH');
-			
+
 			// Set view path.
-			$view = new Zend_View();	
+			$view = new Zend_View();
 			$view->setScriptPath($scriptPath);
-			     	    		
-			// Set all the listing detail, subscription detail etc to view 
+
+			// Set all the listing detail, subscription detail etc to view
 			// so that the view script can user those data.
 			$view = self::_setListingSubscriptionPublisherDataToView($listing_id, $view, $templateType);
 
 			$view->receipt_number = $receipt_number;
-			
-			
+
+
 			// Get html/text template file name
 			if ($templateType == self::HTMLTEMPLATE)
 			{
 				$scriptFile = self::HTMLRECEIPTPATH;
-			} 
+			}
 			else
 			{
 				$scriptFile = self::TEXTRECEIPTPATH;
 			}
-			
+
 			// Return view string.
 			//$rendScriptPath = strtolower($product_code) . self::PACKAGEDESCRIPTIONPATH;
 			return $view->render($scriptFile);
-			
+
 		}catch(Exception $e)
 		{
 			logError('Read cancel subscription template file failed! does this file exist or do we have proper rights to read?', $e);
 			throw $e;
-		}		
+		}
 	}
-		
+
 	/**
 	 * Get cancel subscription template.
 	 * @param $listing_id
@@ -189,12 +235,12 @@ class TemplatingManager
 			// Get Templating script path.
 			$registry = Zend_Registry::getInstance();
 			$scriptPath = $registry->get('TEMPLATINGSYSTEMPATH');
-			
+
 			// Set view path.
-			$view = new Zend_View();	
+			$view = new Zend_View();
 			$view->setScriptPath($scriptPath);
-			     	    		
-			// Set all the listing detail, subscription detail etc to view 
+
+			// Set all the listing detail, subscription detail etc to view
 			// so that the view script can user those data.
 			$view = self::_setListingSubscriptionPublisherDataToView($listing_id, $view, $templateType);
 
@@ -202,21 +248,21 @@ class TemplatingManager
 			if ($templateType == self::HTMLTEMPLATE)
 			{
 				$scriptFile = self::HTMLCANCELSUBSCRIPTIONPATH;
-			} 
+			}
 			else
 			{
 				$scriptFile = self::TEXTCANCELSUBSCRIPTIONPATH;
 			}
-			
+
 			// Return view string.
 			//$rendScriptPath = strtolower($product_code) . self::PACKAGEDESCRIPTIONPATH;
 			return $view->render($scriptFile);
-			
+
 		}catch(Exception $e)
 		{
 			logError('Read cancel subscription template file failed! does this file exist or do we have proper rights to read?', $e);
 			throw $e;
-		}		
+		}
 	}
 
 	/**
@@ -230,12 +276,12 @@ class TemplatingManager
 			// Get Templating script path.
 			$registry = Zend_Registry::getInstance();
 			$scriptPath = $registry->get('TEMPLATINGSYSTEMPATH');
-			
+
 			// Set view path.
-			$view = new Zend_View();	
+			$view = new Zend_View();
 			$view->setScriptPath($scriptPath);
-			     	    		
-			// Set all the listing detail, subscription detail etc to view 
+
+			// Set all the listing detail, subscription detail etc to view
 			// so that the view script can user those data.
 			$view = self::_setListingSubscriptionPublisherDataToView($listing_id, $view, $templateType);
 
@@ -243,31 +289,31 @@ class TemplatingManager
 			if ($templateType == self::HTMLTEMPLATE)
 			{
 				$scriptFile = self::HTMLREGISTRATIONPATH;
-			} 
+			}
 			else
 			{
 				$scriptFile = self::TEXTREGISTRATIONPATH;
 			}
-			
+
 			// Return view string.
 			//$rendScriptPath = strtolower($product_code) . self::PACKAGEDESCRIPTIONPATH;
 			return $view->render($scriptFile);
-			
+
 		}catch(Exception $e)
 		{
 			logError('Read cancel subscription template file failed! does this file exist or do we have proper rights to read?', $e);
 			throw $e;
-		}		
-	}	
+		}
+	}
 	/**
 	 * Set all the listing detail and subscription detail to view.
 	 *    1. listing detail (basic info, keywords, categories etc)
 	 *    2. current publisher info.
 	 *    3. subscription detail (payment card, payment history etc)
 	 *    4. current time.
-	 *    5. current listing's business detail page url.  
+	 *    5. current listing's business detail page url.
 	 *    6. current subscripiton's package.
-	 *    7. ypex legal.    
+	 *    7. ypex legal.
 	 * @param $listing_id
 	 * @param $view
 	 * @return zend_view
@@ -276,33 +322,33 @@ class TemplatingManager
 	{
 		//   1. listing detail (basic info, keywords, categories etc)
 		$view = self::_setListingDataToView($listing_id,$view);
-			
+
 		//   2. current publisher info.
 		$view = self::_setPublisherDataToView($view->listing_publisher_id, $view);
-		
-		//   3. subscription detail (payment card, payment history etc)	
+
+		//   3. subscription detail (payment card, payment history etc)
 		//logfire('1', $listing_id);
 		$view = self::_setSubscriptionDataToView($listing_id, $view);
-		
+
 		// 	 4. current time.
-		$tmp = new DateTime();			
+		$tmp = new DateTime();
     	$view->now = date_format($tmp,"m/d/y h:ia");
 
     	// 	 5. current listing's business detail page url.
     	$view->businessURL = self::_getBusinessURL($listing_id, $view->listing_business_name);
- 
+
     	//   6. current subscripiton's package.
 		$view->packageDescription = self::getPackageDescription($view->subscription_product_code, $view->publisher_publisher_name, null, $templateType);
-   		
+
 		//   7. ypex legal.
 		$view->ypexLegal = self::getLegal($templateType);
-		
-		
+
+
 		return $view;
-		
+
 	}
-	
-	
+
+
 	/**
 	 * Set listing detail to view (basic info, keywords, categories etc)
 	 * @param $listing_id
@@ -313,7 +359,7 @@ class TemplatingManager
 	{
 		// Valid listing id.
 		Listings::validateListingId($listing_id);
-		
+
 		// get listing detail.
 		$listingsTable = new Listings();
 		$listing = $listingsTable->getListing($listing_id);
@@ -322,16 +368,16 @@ class TemplatingManager
 		{
 			throw new Exception('[TemplatingManager][setListingDataToView] :Can not get listing info for listing[listing_id = ' . $listing_id .']');
 		}
-		
+
 		foreach($listing->toArray() as $key=>$value)
 		{
 			$keyname = 'listing_' . $key;
 			$view->$keyname = $value;
 			//echo $keyname . "\n";
 		}
-		
+
 		$bdcs = $listingsTable->getListingBDCs($listing_id);
-		
+
 		$categories = '';
 		if (!empty($bdcs))
 		{
@@ -339,21 +385,21 @@ class TemplatingManager
 			{
 				if (empty($categories))
 				{
-					$categories .= $bdc->getName();	
+					$categories .= $bdc->getName();
 				}
 				else
 				{
 					$categories .= ', ' .$bdc->getName();
 				}
-				
+
 			}
 		}
 		$view->listing_categories = $categories;
-		
+
 	    // Get current listing's keywords.
 		$keywordsTable = new ListingKeywords();
 		$keywords = $keywordsTable->getListingKeywords($listing_id);
-		
+
 		$keywordsString = '';
 		if (!empty($keywords))
 		{
@@ -370,10 +416,10 @@ class TemplatingManager
 			}
 		}
 		$view->listing_keywords = $keywordsString;
-		
+
 		return $view;
 	}
-	
+
 	/**
 	 * Set publisher detail to view.
 	 * @param $publisher_id
@@ -386,25 +432,25 @@ class TemplatingManager
 		{
 			throw new Exception('[TemplatingManager][setPublisherDataToView] :Can not get publisher info for publisher[publisher id = ' . $publisher_id .']');
 		}
-		
+
 		$publishersTable = new Publishers();
 		$publisher = $publishersTable->getPublisherByPublisherId($publisher_id);
-		
+
 		if (empty($publisher))
 		{
 			throw new Exception('[TemplatingManager][setPublisherDataToView] :Can not get pubisher info for publisher[publisher id = ' . $publisher_id .']');
 		}
-		
+
 		foreach($publisher->toArray() as $key=>$value)
 		{
 			$keyname = 'publisher_' . $key;
 			$view->$keyname = $value;
 			//echo $keyname . "\n";
 		}
-		
+
 		return $view;
 	}
-	
+
 	/**
 	 * Get subscription info.
 	 * @param $listing_id
@@ -414,18 +460,18 @@ class TemplatingManager
 	{
 		// Valid listing id.
 		Listings::validateListingId($listing_id);
-		
+
 		// Get subscription of current lisitng.
 		$subscription = new Subscription($listing_id);
-		
-		// If current lisitng does not have a subscription we jsut return. 
+
+		// If current lisitng does not have a subscription we jsut return.
 		if (!$subscription->isSubscribed())
 		{
 			return $view;
 		}
-		
+
 		// Get general subscription info (lisitng_id, publisher_id etc)
-		
+
 		$subscriptionGeneral = $subscription->getGeneralSubscriptionInfoArray();
 		if (!empty($subscriptionGeneral))
 		{
@@ -438,16 +484,16 @@ class TemplatingManager
 			// Change postgres timestamp format to ypex datetime format.
 			$view->subscription_start_date = Common::getTimeByMonthDayYearHourMinute($view->subscription_start_date);
 			$view->subscription_expiry_date = Common::getTimeByMonthDayYearHourMinute($view->subscription_expiry_date);
-			
+
 			// Get sales person name.
 			$usersTable = new Users;
 			$view->subscription_sales_person = $usersTable->getUserNamebyId($view->subscription_sales_person);
 		}
-		
-		
+
+
 		// Get price and product of current subscription.
 		$priceAndProduct = $subscription->getPriceContractArray();
-		
+
 		if (!empty($priceAndProduct))
 		{
 			foreach($priceAndProduct as $key=>$value)
@@ -457,7 +503,7 @@ class TemplatingManager
 				//echo $keyName . "\n";
 			}
 		}
-		
+
 		// Get last successful billing history
 		$lastSuccessfulHistory = $subscription->getLastSuccessfulBillHistory();
 		if (!empty($lastSuccessfulHistory))
@@ -470,10 +516,10 @@ class TemplatingManager
 			}
 			// Change postgres timestamp format to ypex datetime format.
 			$view->subscription_successful_payment_datetime = Common::getTimeByMonthDayYearHourMinute($view->subscription_successful_payment_datetime);
-			
-		}		
-		
-		
+
+		}
+
+
 		// Get Payment card info.
 		$paymentCard = $subscription->getPaymentCardArrayWithHashedName();
 		if (!empty($paymentCard))
@@ -484,10 +530,10 @@ class TemplatingManager
 				$view->$keyName = $value;
 				//echo $keyName . "\n";
 			}
-		}		
+		}
 		return $view;
-		
-		
+
+
 	}
 	/**
 	 * Get business detail page's url.
@@ -501,16 +547,16 @@ class TemplatingManager
     	$registry = Zend_Registry::getInstance();
 		$config = $registry->get('CONFIG');
         $hostName =  $config->website->host;
-        
-        // Create a std class and pass it to Tag::url function to 
+
+        // Create a std class and pass it to Tag::url function to
         // build business detail page uri.
 		$doc = new stdClass();
     	$doc->business_name = $business_name;
     	$doc->listing_id = $listing_id;
-        
+
     	// Get business detail page's url.
     	 return $hostName . Tag::url('businessBase', $doc);
-		
+
 	}
-}    
+}
 ?>

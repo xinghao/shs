@@ -655,7 +655,7 @@ class DetailTab
 
 	public function printFormConfirm()
 	{
-		echo "Current developing";
+		echo "Your question has been sent. Feel free to ask more questions. <br /> <br />";
 	}
 
 	public function printForm()
@@ -666,6 +666,11 @@ class DetailTab
 	public function setDisplayForm($displayForm)
 	{
 		$this->_displayForm = $displayForm;
+	}
+
+
+	public function getPostingDataForContactForm()
+	{
 	}
 }
 ?>
