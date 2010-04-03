@@ -100,7 +100,7 @@ class PostingController extends Zend_Controller_Action {
 			{
 				// [Xinghao] Get form data.
 				$this->view->formData = $this->getRequest()->getPost();
-				print_r($this->view->formData);
+				//print_r($this->view->formData);
 
 				$this->indexAction();
 				//$this->view->tab = $this->view->detailTab->getFormTabName();
@@ -112,10 +112,14 @@ class PostingController extends Zend_Controller_Action {
 				{
 
 					$this->view->detailTab->setDisplayForm(false);
+					print_r($this->view->detailTab->getPostingDataForContactForm());
+					EmailManager::sentContactEmail($this->view->formData, $this->view->detailTab->getPostingDataForContactForm());
+/*
 					Email::sendMail($this->view->formData["email_from"],
 									$this->view->formData["fullname"],
 									"Query form " . $this->view->formData["fullname"],
 									$this->view->formData["question"]);
+*/
 				}
 				else
 				{
