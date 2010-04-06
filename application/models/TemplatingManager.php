@@ -130,7 +130,7 @@ class TemplatingManager
 		}catch(Exception $e)
 		{
 			logError('Read location template file failed! does this file exist or do we have proper rights to read?', $e);
-			//echo $e;
+			echo $e;
 			throw $e;
 		}
 	}
