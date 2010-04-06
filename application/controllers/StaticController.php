@@ -25,7 +25,7 @@ class StaticController extends Hotspot_Controller_Action {
 		  $this->view->document = str_replace(' ', '-', $query);
 //$this->_helper->viewRenderer->setNoRender();
 //echo $this->view->document . '.phtml';
-$this->view->addScriptPath("/home/shs/public_html/front/content/");
+$this->view->addScriptPath(WEBSITE_ROOT."/content/");
 
 		$this->renderScript($this->view->document.'.phtml');
 
