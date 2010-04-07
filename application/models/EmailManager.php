@@ -19,16 +19,20 @@ class EmailManager
 {
 
 	// Email subject for receipt.
-	const CONTACTEMAILSUBJECT = 'Question from [Sender] -- SydneyHotspot';
+	const CONTACTEMAILSUBJECT = '[Label] from [Sender] -- SydneyHotspot';
 
 
 	public static function sentContactEmail($formData, $postingData, $isLog = true)
 	{
 		$mail_subject = str_replace('[Sender]', $formData["fullname"], self::CONTACTEMAILSUBJECT);
+		$mail_subject = str_replace('[Label]', $postingData["questionlabel"], $mail_subject);
+
 		$mail_body    = TemplatingManager::getContactEmail($formData, $postingData);
 
 
-		Email::sendMail($formData["email_from"],
+
+
+		Email::sendMail($postingData["email_to"],
 						$formData["fullname"],
 						$mail_subject,
 						$mail_body);

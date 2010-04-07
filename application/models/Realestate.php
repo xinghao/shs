@@ -117,7 +117,7 @@ class Realestate extends Business
 		$psthomes = new Psthome();
 		$select->joinLeft(array('i' => $psthomes->getTableName()),
 		    					'a.id = i.id',
-		    					array('bed' => 'rooms', 'cars'=>'parking', 'bath'=>'baths'));
+		    					array('bed' => 'rooms', 'cars'=>'parking', 'bath'=>'baths', 'address'=>'address'));
 		return $select;
 	}
 /*
@@ -161,7 +161,7 @@ class Realestate extends Business
 		echo '<table class="resultheader" id="realesate" cellspacing=0>';
 			echo '<tr>';
 				echo '<th class="cuisine">';
-					echo 'Property<br />Type';
+					echo 'Type';
 				echo '</th>';
 				echo '<th class="location">';
 					echo 'Location';
@@ -192,10 +192,10 @@ class Realestate extends Business
 					echo $value->cat3name;
 				echo '</a></td>';
 				echo '<td><a href="/posting/' .$value->postingid .'">';
-					echo $value->state;
+					echo $value->suburb;
 				echo '</a></td>';
 				echo '<td><a href="/posting/' .$value->postingid .'">';
-					echo $value->title;
+					echo $value->address;
 				echo '</a></td>';
 				echo '<td><a href="/posting/' .$value->postingid .'">';
 					echo $value->bed;
@@ -268,5 +268,8 @@ class Realestate extends Business
 		echo '</div>';
 		return parent::getResultTableContent($posting);
 	}
+
+
+
 }
 ?>

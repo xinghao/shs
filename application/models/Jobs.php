@@ -87,16 +87,13 @@ class Jobs extends Business
 		echo '<table class="resultheader" id="jobs" cellspacing=0>';
 			echo '<tr>';
 				echo '<th class="jobtype">';
-					echo 'Job<br />Type';
+					echo 'Type';
 				echo '</th>';
 				echo '<th class="jobcategory1">';
-					echo 'Prim<br />Category';
-				echo '</th>';
-				echo '<th class="jobcategory2">';
-					echo 'Second<br />Category';
+					echo 'Category';
 				echo '</th>';
 				echo '<th class="title">';
-					echo 'Short<br />Description';
+					echo 'Description';
 				echo '</th>';
 				echo '<th class="price">';
 					echo 'Salary <br />('. $location->getCurrencyAndSymbol() .')';
@@ -106,8 +103,7 @@ class Jobs extends Business
 		{
 				echo '<tr class="postingrow">';
 				echo '<td><a href="/posting/' .$value->postingid .'">' . self::JobTypeShortFormat($value->cat1) . '</a></td>' . "\n";
-				echo '<td><a href="/posting/' .$value->postingid .'">' . $value->cat2name . '</a></td>' . "\n";
-				echo '<td><a href="/posting/' .$value->postingid .'">' . $value->cat3name . '</a></td>' . "\n";
+				echo '<td><a href="/posting/' .$value->postingid .'">' . $value->cat2name . ' (' . $value->cat3name . ') ' . '</a></td>' . "\n";
 				echo '<td><a href="/posting/' .$value->postingid .'">' . $value->title . '</a></td>' . "\n";
 				echo '<td><a href="/posting/' .$value->postingid .'">' . $value->priceDisplay . '</a></td>' . "\n";
 				echo '</tr>';

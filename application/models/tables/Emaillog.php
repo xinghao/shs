@@ -3,7 +3,7 @@
 
 class Emaillog extends Zend_Db_Table
 {
-	protected $_name = 'emai_lsendlog';
+	protected $_name = 'email_sendlog';
     protected $_primary = 'sendLogId';
 
     public  function getTableName()

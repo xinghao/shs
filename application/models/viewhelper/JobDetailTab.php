@@ -3,6 +3,8 @@ class JobDetailTab extends  DetailTab
 {
 	protected $_hasPhotoTab = true;
 	protected $_tabCollection = array('General','About', 'Apply', 'Photo');
+	protected $_businessType = "Jobs";
+	public $formTabSeq = 3;
 
 	public function setCategory()
 	{
@@ -15,8 +17,14 @@ class JobDetailTab extends  DetailTab
 		$contentArray = array();
 
 		$contentArray[] = array(
-							'head' => 'Classification:',
-							'value' => $this->getCatsString(),
+							'head' => 'Type:',
+							'value' => $this->getCat1(),
+							'cssClass' => ''
+							);
+
+		$contentArray[] = array(
+							'head' => 'Category:',
+							'value' => $this->getCatsString(false),
 							'cssClass' => ''
 							);
 
@@ -148,17 +156,6 @@ class JobDetailTab extends  DetailTab
 							'cssClass' => ''
 							);
 
-		$contentArray[] = array(
-							'head' => 'Contact Phone:',
-							'value' => $this->_pstCategory->contactPhone,
-							'cssClass' => ''
-							);
-
-		$contentArray[] = array(
-							'head' => 'Contact Email:',
-							'value' => $this->_pstCategory->contactEmail,
-							'cssClass' => ''
-							);
 
 		$contentArray[] = array(
 							'head' => 'Contact Name:',
@@ -166,12 +163,62 @@ class JobDetailTab extends  DetailTab
 							'cssClass' => ''
 							);
 
+		$contentArray[] = array(
+							'head' => '',
+							'value' => 'dummy',
+							'cssClass' => ''
+							);
+
 		$this->printTable($contentArray);
+		$this->printForm();
+
+
 	}
 
 	public function getTab4Content()
 	{
 		$this->printPhotoTab();
+	}
+
+	public function getTitle()
+	{
+		$title = parent::getTitle();
+        if (!empty($this->_pstCategory->employerCompany))
+        {
+			$title .= ' <span class="titleend">(' .  $this->_pstCategory->employerCompany . ')</span>';
+        }
+		return $title;
+	}
+
+	public function getForm()
+	{
+		$this->_form = new JobContactForm();
+		$this->_form->setHint('Post a Comment to the employer company:');
+		$this->_form->setAction('/forms/contact');
+		$this->_form->setPostingId($this->_posting->id);
+		return parent::getForm();
+	}
+
+
+	public function getPostingDataForContactForm()
+	{
+		try{
+
+
+		$postingData = array();
+		$postingData["firstname"] = empty($this->_pstCategory->contactName)? "Sir" : $this->_pstCategory->contactName;
+		$postingData["businesstype"] = $this->_businessType;
+		$postingData["title"] = $this->_posting->getTitle();
+		$postingData["cat"] = $this->getCatsString();
+		$postingData["price"] = $this->_posting->priceDisplay;
+		$postingData["id"] = $this->_posting->id;
+		$postingData["questionlabel"] = "Comment";
+		$postingData["email_to"] =$this->_pstCategory->email;
+		return $postingData;
+		}catch(Excpetion $e)
+		{
+			echo $e;
+		}
 	}
 }
 ?>

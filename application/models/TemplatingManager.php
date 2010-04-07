@@ -46,6 +46,7 @@ class TemplatingManager
 			$view->name_from =$formData["fullname"];
 			$view->email     =$formData["email_from"];
 			$view->question  =$formData["question"];
+			$view->qestionLable = $postingData["questionlabel"];
 
 			$view->addScriptPath($scriptPath);
 

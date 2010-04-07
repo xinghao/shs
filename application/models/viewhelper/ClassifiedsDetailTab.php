@@ -83,24 +83,10 @@ class ClassifiedsDetailTab extends  DetailTab
 
 	public function getTab2Content()
 	{
-		if($this->_displayForm)
-		{
+
 			$this->printForm();
-		}
-		else
-		{
-			$this->printFormConfirm();
-			$this->printForm();
-		}
 	}
 
-
-	public function printForm()
-	{
-		$this->getForm();
-		echo $this->_form->populate($this->_formData);
-
-	}
 
 	public function getForm()
 	{
@@ -128,6 +114,8 @@ class ClassifiedsDetailTab extends  DetailTab
 		$postingData["cat"] = $this->getCatsString();
 		$postingData["price"] = $this->_posting->priceDisplay;
 		$postingData["id"] = $this->_posting->id;
+		$postingData["questionlabel"] = "Question";
+		$postingData["email_to"] =$this->_pstCategory->email;
 		return $postingData;
 		}catch(Excpetion $e)
 		{

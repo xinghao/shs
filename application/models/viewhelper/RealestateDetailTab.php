@@ -3,6 +3,8 @@ class RealestateDetailTab extends  DetailTab
 {
 	protected $_hasPhotoTab = true;
 	protected $_tabCollection = array('General','About', 'Apply', 'Photo');
+	protected $_businessType = "Real estates";
+	public $formTabSeq = 3;
 
 	public function setCategory()
 	{
@@ -18,9 +20,9 @@ class RealestateDetailTab extends  DetailTab
 		$location = new Location($this->_posting->locId);
 
 		$contentArray[] = array(
-					'head' => 'Short Description:',
+					'head' => '',
 					'value' => $this->_pstCategory->shortDescription,
-					'cssClass' => ''
+					'cssClass' => 'bigsize'
 					);
 
 		$contentArray[] = array(
@@ -231,7 +233,7 @@ $categoryTable =new Refcategory();
 							'value' => $this->_pstCategory->contactName1,
 							'cssClass' => ''
 							);
-
+/*
 		$contentArray[] = array(
 							'head' => 'Contact 1 Phone:',
 							'value' => $this->_pstCategory->contactPhone1,
@@ -249,13 +251,13 @@ $categoryTable =new Refcategory();
 							'value' => '',
 							'cssClass' => ''
 							);
-
+*/
 		$contentArray[] = array(
 							'head' => 'Contact 2 Name:',
 							'value' => $this->_pstCategory->contactName2,
 							'cssClass' => ''
 							);
-
+/*
 		$contentArray[] = array(
 							'head' => 'Contact 2 Phone:',
 							'value' => $this->_pstCategory->contactPhone2,
@@ -274,7 +276,7 @@ $categoryTable =new Refcategory();
 							'value' => '',
 							'cssClass' => ''
 							);
-
+*/
 
 		$contentArray[] = array(
 							'head' => 'Contact Info:',
@@ -339,12 +341,80 @@ $categoryTable =new Refcategory();
 							);
 		}
 
+		$contentArray[] = array(
+							'head' => '',
+							'value' => 'dummy',
+							'cssClass' => ''
+							);
 		$this->printTable($contentArray);
+		$this->printForm();
 	}
 
 	public function getTab4Content()
 	{
 		$this->printPhotoTab();
+	}
+
+
+	public function getTitle()
+	{
+		$title=$this->_pstCategory->address;
+
+		$location = new Location($this->_posting->locId);
+		$suburb = $location->getSuburb();
+        if (!empty($suburb))
+        {
+			$title .= ' <span class="titleend">(' .  $suburb . ')</span>';
+        }
+
+
+		if ($this->_posting->cat2 == 630)
+			{
+				$type = 'For Sale';
+			}
+			else if ($this->_posting->cat2 == 638)
+			{
+				$type = 'For Lease';
+			}
+			else if ($this->_posting->cat2 == 645)
+			{
+       			$type = 'For Share';
+			}
+			$title .= '<br /><span class="titlesecond">' . $type ;
+			$cat1Table =new Refcat1();
+			$title .= ' - ' . $this->_posting->priceDisplay . ' - ' . $cat1Table->getCatNameById($this->_posting->cat1) . "</span>";
+
+		return $title;
+	}
+
+	public function getForm()
+	{
+		$this->_form = new JobContactForm();
+		$this->_form->setHint('Post a Comment to the employer company:');
+		$this->_form->setAction('/forms/contact');
+		$this->_form->setPostingId($this->_posting->id);
+		return parent::getForm();
+	}
+
+	public function getPostingDataForContactForm()
+	{
+		try{
+
+
+		$postingData = array();
+		$postingData["firstname"] = empty($this->_pstCategory->contactName1)? "Sir" : $this->_pstCategory->contactName1;
+		$postingData["businesstype"] = $this->_businessType;
+		$postingData["title"] = $this->_posting->getTitle();
+		$postingData["cat"] = $this->getCatsString();
+		$postingData["price"] = $this->_posting->priceDisplay;
+		$postingData["id"] = $this->_posting->id;
+		$postingData["questionlabel"] = "Comment";
+		$postingData["email_to"] =$this->_pstCategory->contactEmail1;
+		return $postingData;
+		}catch(Excpetion $e)
+		{
+			echo $e;
+		}
 	}
 }
 ?>

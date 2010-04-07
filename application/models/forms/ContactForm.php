@@ -138,7 +138,7 @@ class ContactForm extends Zend_Form
                                 $data["recaptcha_challenge_field"],
                                 $data["recaptcha_response_field"]);
 
-		print_r($resp);
+		//print_r($resp);
 
 		if (!$resp->is_valid) {
 			$this->validationErrorMsg = "Incorrect Validation Code!";

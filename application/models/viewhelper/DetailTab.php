@@ -660,14 +660,33 @@ class DetailTab
 
 	public function printForm()
 	{
-		echo "Current developing";
+		if($this->_displayForm)
+		{
+			$this->getForm();
+			echo $this->_form->populate($this->_formData);
+
+		}
+		else
+		{
+			$this->printFormConfirm();
+			$this->getForm();
+			echo $this->_form->populate($this->_formData);
+		}
+
+
 	}
+
 
 	public function setDisplayForm($displayForm)
 	{
 		$this->_displayForm = $displayForm;
 	}
 
+
+	public function getTitle()
+	{
+		return $this->_posting->getTitle();
+	}
 
 	public function getPostingDataForContactForm()
 	{

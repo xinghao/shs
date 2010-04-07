@@ -155,7 +155,7 @@ class Restaurants extends Business
 					echo $value->cat2name;
 				echo '</a></td>';
 				echo '<td><a href="/posting/' .$value->postingid .'">';
-				     echo $value->state;
+				     echo $value->suburb;
 				echo '</a></td>';
 				echo '<td><a href="/posting/' .$value->postingid .'">';
 					echo $value->title;
