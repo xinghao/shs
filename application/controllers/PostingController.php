@@ -40,7 +40,7 @@ class PostingController extends Zend_Controller_Action {
 
     	$view->paramsHolder->category = $view->category;
 
-    	echo "categoy: " . $view->category;
+    	//echo "categoy: " . $view->category;
 
 		//$this->view->paramsHolder = $this->view->location->mergeToAnotherClass($this->view->paramsHolder);
     	$view->paramsHolder->posting_id =  $view->posting_id;
@@ -112,7 +112,7 @@ class PostingController extends Zend_Controller_Action {
 				{
 
 					$this->view->detailTab->setDisplayForm(false);
-					print_r($this->view->detailTab->getPostingDataForContactForm());
+				//	print_r($this->view->detailTab->getPostingDataForContactForm());
 					EmailManager::sentContactEmail($this->view->formData, $this->view->detailTab->getPostingDataForContactForm());
 /*
 					Email::sendMail($this->view->formData["email_from"],
