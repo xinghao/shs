@@ -828,3 +828,18 @@ td.imagetd a{
  textarea.contactforminput{
  	height:120px;
  }
+ th.jobtype {
+ 	width:50px;
+ }
+ span.titleend {
+ 	color:#aaa;
+ 	font-size:16px;
+ }
+ 
+ span.titlesecond {
+ 	font-size:16px;
+ }
+ td.bigsize {
+ 	font-size:18px;
+ 	font-weight:bold;
+ }
