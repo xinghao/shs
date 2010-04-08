@@ -142,6 +142,9 @@ class Restaurants extends Business
 					echo 'Title';
 				echo '</th>';
 				echo '<th class="rating">';
+					echo 'Menu';
+				echo '</th>';
+				echo '<th class="rating">';
 					echo 'Rating';
 				echo '</th>';
 				echo '<th class="price">';
@@ -159,6 +162,9 @@ class Restaurants extends Business
 				echo '</a></td>';
 				echo '<td><a href="/posting/' .$value->postingid .'">';
 					echo $value->title;
+				echo '</a></td>';
+				echo '<td><a href="/posting/' .$value->postingid .'">';
+					echo empty($value->attachment)?"No":"Yes";
 				echo '</a></td>';
 				echo '<td><a href="/posting/' .$value->postingid .'">';
 					echo Common::Rate($value->rateNum);

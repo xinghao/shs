@@ -213,7 +213,7 @@ class JobDetailTab extends  DetailTab
 		$postingData["price"] = $this->_posting->priceDisplay;
 		$postingData["id"] = $this->_posting->id;
 		$postingData["questionlabel"] = "Comment";
-		$postingData["email_to"] =$this->_pstCategory->email;
+		$postingData["email_to"] =$this->_pstCategory->contactEmail;
 		return $postingData;
 		}catch(Excpetion $e)
 		{

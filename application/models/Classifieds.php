@@ -119,10 +119,13 @@ class Classifieds extends Business
 					echo 'Category';
 				echo '</th>';
 				echo '<th class="location">';
-					echo 'Location';
+					echo 'Suburb';
 				echo '</th>';
 				echo '<th class="title">';
 					echo 'Title';
+				echo '</th>';
+				echo '<th class="title">';
+					echo 'Photo';
 				echo '</th>';
 				echo '<th class="price">';
 					echo 'Price <br />('. $location->getCurrencyAndSymbol() .')';
@@ -135,10 +138,23 @@ class Classifieds extends Business
 					echo '<a href="/posting/' .$value->postingid .'">' . $value->cat2name . '</a> ';
 				echo '</td>';
 				echo '<td>';
-				     echo '<a href="/posting/' .$value->postingid .'">' . $value->state . '</a> ';
+				     echo '<a href="/posting/' .$value->postingid .'">' . $value->suburb . '</a> ';
 				echo '</td>';
 				echo '<td>';
 					echo '<a href="/posting/' .$value->postingid .'">' . $value->title . '</a> ';
+				echo '</td>';
+				echo '<td>';
+					echo '<a href="/posting/' .$value->postingid .'">' ;
+					if (Pstposting::photoExists($value->photo))
+					{
+						echo "Yes";
+					}
+					else
+					{
+						echo "No";
+					}
+
+					echo '</a> ';
 				echo '</td>';
 				echo '<td>';
 					echo '<a href="/posting/' .$value->postingid .'">' . $value->priceDisplay . '</a> ';

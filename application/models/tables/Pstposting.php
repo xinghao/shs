@@ -163,5 +163,25 @@ class Pstposting extends Zend_Db_Table
  		}
     }
 
+
+    public static function photoExists($photo)
+    {
+    	logfire("photo test1", $photo);
+    	if(empty($photo))
+    	{
+    		return false;
+    	}
+		$photoInt = intval($photo);
+logfire("photo test2", $photoInt);
+		if(empty($photoInt))
+    	{
+    		return false;
+    	}
+
+
+		return true;
+
+    }
+
 }
 
