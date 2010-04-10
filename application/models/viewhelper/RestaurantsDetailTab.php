@@ -50,10 +50,21 @@ class RestaurantsDetailTab extends  DetailTab
 
 		$contentArray[] = array(
 							'head' => 'Website:',
-							'value' => $this->_pstCategory->website,
+							'value' => '<a target="blank" href="' . $this->_pstCategory->website .'">' .  $this->_pstCategory->website . '</a>',
 							'cssClass' => ''
 							);
 
+		$contentArray[] = array(
+							'head' => 'Open Days:',
+							'value' => $this->_pstCategory->openDays,
+							'cssClass' => ''
+							);
+
+		$contentArray[] = array(
+							'head' => 'Price:',
+							'value' => $this->_pstCategory->priceInfo,
+							'cssClass' => ''
+							);
 
 		$contentArray[] = array(
 							'head' => '',
@@ -131,6 +142,21 @@ class RestaurantsDetailTab extends  DetailTab
 		$this->printPhotoTab();
 	}
 
+
+
+
+	public function getTitle()
+	{
+		$title = parent::getTitle();
+
+		$location = new Location($this->_posting->locId);
+		$suburb = $location->getSuburb();
+        if (!empty($suburb))
+        {
+			$title .= ' <span class="titleend">(' .  $suburb . ')</span>';
+        }
+      	return $title;
+	}
 
 }
 ?>

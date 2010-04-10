@@ -122,5 +122,19 @@ class ClassifiedsDetailTab extends  DetailTab
 			echo $e;
 		}
 	}
+
+
+	public function getTitle()
+	{
+		$title = parent::getTitle();
+
+		$location = new Location($this->_posting->locId);
+		$suburb = $location->getSuburb();
+        if (!empty($suburb))
+        {
+			$title .= ' <span class="titleend">(' .  $suburb . ')</span>';
+        }
+      	return $title;
+	}
 }
 ?>
