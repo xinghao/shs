@@ -594,6 +594,18 @@ class DetailTab
 		return "";
 	}
 
+	public function getCat3()
+	{
+		if (!empty($this->_posting->cat3))
+		{
+			$refcat = new Refcategory();
+			return  $refcat->getCatNameById($this->_posting->cat3);
+		}
+
+		return "";
+	}
+
+
 	public function getCatsString($showCat1 = true)
 	{
 		$retString = '';

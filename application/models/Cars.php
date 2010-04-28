@@ -1,28 +1,28 @@
 <?php
 class Cars extends Business
 {
-	
+
 	protected $_busTypeId = 9;
-	
+
 	protected $_cat1Name = 'TYPE';
-	
+
 	protected $_cat2Name = 'Make';
 
 	protected $_cat3Name = 'Model';
-	
-	
-	
-	
+
+
+
+
 	public function getBusinessType()
 	{
 		return 'Cars';
 	}
-	
+
 	public function getCat1Name(){
 		return $this->_cat1Name;
 	}
 
-	
+
 	protected function _getCat2($cat1 = null)
 	{
 		if (empty($this->_cat2))
@@ -32,16 +32,16 @@ class Cars extends Business
 		}
 		else
 		{
-			return $this->_cat2; 
+			return $this->_cat2;
 		}
-		
+
 	}
 
 	protected function _getCat3($cat2 = null)
 	{
 		$refcat3 = new Refcategory();
 		$select = $refcat3->select();
-		
+
 		if ($cat2 == 'Any' || $cat2 == 'All')
 		{
 			$select->where('busPostTypeId = ? and SubPrimCatId is not null', $this->_busTypeId);
@@ -50,22 +50,22 @@ class Cars extends Business
 		{
 			$select->where('SubPrimCatId = (select CONCAT( PrimID, SetID)  from ref_category_en where id = ?)', $cat2);
 		}
-		
+
 		logfire('car cat3 ', $select);
 		return $this->_cat3 = $refcat3->fetchAll($select);
-		
+
 	}
-	
-	
-	
+
+
+
 	public function search($location, $limit, $offset = 0, $query = null, $cat1 = null, $cat2 = null, $cat3 = null, $cat4 = null, $cat5 = null, $addtionalData = null)
 	{
-		
+
 		if ($cat1 == 22)
 		{
-			$cat1 = null;	
+			$cat1 = null;
 		}
-		
+
 		logfire('realstatesearch cat2', $cat2);
 		if (empty($cat2) || $cat2 == 'Any' || $cat2 == 'ALL')
 		{
@@ -73,25 +73,25 @@ class Cars extends Business
 		}
 		if (empty($cat3) || $cat3 == 'Any' || $cat3 == 'ALL')
 		{
-			$cat3 = null;	
+			$cat3 = null;
 		}
-		
+
 		$select = parent::search($location, $limit, $offset, $query, $cat1, $cat2, $cat3, $cat4, $cat5, $addtionalData);
 
 		// TODO price;
 		foreach($addtionalData as $key=>$value)
 		{
-			logfire($key,$value);	
+			logfire($key,$value);
 		}
 		if (!empty($addtionalData['min']) && $addtionalData['min'] != 'Any' && $addtionalData['min'] != 'ALL')
 		{
 			$select->where('a.priceCalculate >= ?', $addtionalData['min']);
-		}	
+		}
 		if (!empty($addtionalData['max']) && $addtionalData['max'] != 'Any' && $addtionalData['max'] != 'ALL')
 		{
 			$select->where('a.priceCalculate <= ?', $addtionalData['max']);
 		}
-		
+
 		if (empty($cat1))
 		{
 			$keys = '';
@@ -108,13 +108,13 @@ class Cars extends Business
 			}
 			$select->where('cat1 in ('.$keys.')');
 		}
-		
-		
+
+
 		//echo $select;
 		return $select;
-		
+
 	}
-	
+
 	protected function extraJoin($select)
 	{
 		$psthomes = new Pstcar();
@@ -123,9 +123,9 @@ class Cars extends Business
 		    					array('makeYear'));
 		return $select;
 	}
-	
-	
-/*	
+
+
+/*
 	protected function extraJoin($select)
 	{
 		$psthomes = new Psthome();
@@ -140,29 +140,29 @@ class Cars extends Business
 	{
 		echo '<div class="resultheader" id="realesate">';
 			echo '<span class="date">';
-				echo 'Data';			
+				echo 'Data';
 			echo '</span>';
 			echo '<span class="photo">';
-				echo 'Photo';	
+				echo 'Photo';
 			echo '</span>';
 			echo '<span class="title">';
-				echo 'Title';	
-			echo '</span>';			
+				echo 'Title';
+			echo '</span>';
 			echo '<span class="property">';
-				echo 'Property Type';			
+				echo 'Property Type';
 			echo '</span>';
 			echo '<span class="bed">';
-				echo 'Bed';			
+				echo 'Bed';
 			echo '</span>';
 			echo '<span class="cars">';
 				echo 'Cars';
-			echo '</span>';	
+			echo '</span>';
 			echo '<span class="bath">';
-				echo 'Bath';			
+				echo 'Bath';
 			echo '</span>';
 			echo '<span class="price">';
-				echo 'Price ('. iconv("Windows-1252", "UTF-8", $location->getCurrencySymbol()) .')';			
-			echo '</span>';										
+				echo 'Price ('. iconv("Windows-1252", "UTF-8", $location->getCurrencySymbol()) .')';
+			echo '</span>';
 		echo '</div>';
 
 		return parent::getResultTableHeader();
@@ -176,71 +176,71 @@ class Cars extends Business
 		echo '<table class="resultheader" id="realesate" cellspacing=0>';
 			echo '<tr>';
 				echo '<th class="cuisine">';
-					echo 'Type';			
-				echo '</th>';			
+					echo 'Type';
+				echo '</th>';
 				echo '<th class="make">';
-					echo 'Make';			
+					echo 'Make';
 				echo '</th>';
 				echo '<th class="model">';
-					echo 'Model';			
-				echo '</th>';	
+					echo 'Model';
+				echo '</th>';
 				echo '<th class="title">';
-					echo 'Title';	
+					echo 'Title';
 				echo '</th>';
 
 				echo '<th class="makeyear">';
-					echo 'Make<br />Year';			
+					echo 'Make<br />Year';
 				echo '</th>';
 				echo '<th class="photo">';
-					echo 'Photo';	
-				echo '</th>';					
+					echo 'Photo';
+				echo '</th>';
 				echo '<th class="price">';
-					echo 'Price <br />('. $location->getCurrencyAndSymbol() .')';			
-				echo '</th>';	
+					echo 'Price <br />('. $location->getCurrencyAndSymbol() .')';
+				echo '</th>';
 			echo '</tr>';
 		foreach($posting as $key=>$value)
 		{
-			echo '<tr class="postingrow">';		
-				echo '<td>';
-					echo $value->cat1name;			
-				echo '</td>';
-				echo '<td>';
-					echo $value->cat2name;			
-				echo '</td>';
-				echo '<td>';
-					echo $value->cat3name;			
-				echo '</td>';
-				echo '<td>';
-					echo $value->title;	
-				echo '</td>';
-				echo '<td>';
-					echo $value->makeYear;	
-				echo '</td>';
-				echo '<td>';
+			echo '<tr class="postingrow">';
+				echo '<td><a href="/posting/' .$value->postingid .'">';
+					echo $value->cat1name;
+				echo '</a></td>';
+				echo '<td><a href="/posting/' .$value->postingid .'">';
+					echo $value->cat2name;
+				echo '</a></td>';
+				echo '<td><a href="/posting/' .$value->postingid .'">';
+					echo $value->cat3name;
+				echo '</a></td>';
+				echo '<td><a href="/posting/' .$value->postingid .'">';
+					echo $value->title;
+				echo '</a></td>';
+				echo '<td><a href="/posting/' .$value->postingid .'">';
+					echo $value->makeYear;
+				echo '</a></td>';
+				echo '<td><a href="/posting/' .$value->postingid .'">';
 					if (empty($value->photo) || $value->photo == '0000')
 					{
 						echo 'No';
-					}	
+					}
 					else
 					{
 						echo 'Yes';
 					}
-				echo '</td>';
-				echo '<td>';
-					echo $value->priceDisplay;			
-				echo '</td>';								
+				echo '</a></td>';
+				echo '<td><a href="/posting/' .$value->postingid .'">';
+					echo $value->priceDisplay;
+				echo '</a></td>';
 			echo '</tr>';
 		}
-	
+
 		echo '</table>';
 		}catch(Exception $e)
 		{
 			logError('get results for realestate', $e);
 			echo $e;
-		}		
+		}
 		return parent::getResultTable($posting);
 	}
-		
 
-}    
+
+}
 ?>

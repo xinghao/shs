@@ -9,16 +9,16 @@
  */
 class CarsRefineForm extends RefineForm
 {
-	
 
-	
+
+
 	protected function buildCat1Element()
 	{
 		parent::buildCat1Element();
-		$this->cat1->setValue(22);
+		$this->cat1->setValue(18);
 		$this->addElement($this->cat1);
 	}
-	
+
 	protected function buildCat2Element()
 	{
     	$cat2 = new Zend_Form_Element_Select('cat2');
@@ -28,9 +28,9 @@ class CarsRefineForm extends RefineForm
        	$cat2->setAttrib('class','refineformselect');
         $cat2->setAttrib('onclick',"changeCat2(this.id,this.value, '/ajax/realestate/changecat2/')");
        	$this->addElement($cat2);
-		
+
 	}
-	
+
 	protected function buildCat3Element()
 	{
        	$cat3 = new Zend_Form_Element_Select('cat3');
@@ -38,39 +38,39 @@ class CarsRefineForm extends RefineForm
        	$cat3->setAttrib('class','refineformselect');
        	$cat2selected = $this->cat2->getValue();
 
-		
+
        	$cat3->addMultiOptions($this->_business->getCat3Array($cat2selected, true));
         $this->addElement($cat3);
-		
+
 	}
 
 	protected function  buildExtraElements()
 	{
 		$pricesTable = new Refprice();
-		
+
 		logfire('$this->_business->getBusinessTypeId()', $this->_business->getBusinessTypeId());
 		$prices = $pricesTable->getPriceOptions($this->_business->getBusinessTypeId(), $this->_location->getSearchRules()->currency);
-		
+
        	$min = new Zend_Form_Element_Select('min');
        	$min->setLabel('Min');
        	$min->setAttrib('class','refineformmoneyselect');
        	$min->addMultiOptions($prices);
        	$this->addElement($min);
-       	
+
        	$max = new Zend_Form_Element_Select('max');
        	$max->setLabel('Max');
        	$max->setAttrib('class','refineformmoneyselect');
        	$max->addMultiOptions($prices);
-       	$this->addElement($max);   
+       	$this->addElement($max);
 
-       	       	
+
 		return parent::buildExtraElements();
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 	public function printExtraElements()
 	{
 		echo '<div class="priceselectdiv">';
@@ -97,22 +97,22 @@ class CarsRefineForm extends RefineForm
             $element->options
         );
         */
-        echo $this->max; 
+        echo $this->max;
         echo '</span>';
         echo '<div class="clear"></div>';
         echo '</div>';
         echo '</div>';
-        
- 		
+
+
 		return parent::printExtraElements();
 	}
-	
-	
+
+
 	/*
 	public function printLocationElements()
 	{
-		echo 
-		
+		echo
+
 		echo $this->city;
 	    echo $this->state;
 		echo $this->country;
@@ -120,7 +120,7 @@ class CarsRefineForm extends RefineForm
 
 	}
 
-	
+
 	/**
 	 * (non-PHPdoc)
 	 * @see library/Zend/Zend_Form#populate()
@@ -128,15 +128,15 @@ class CarsRefineForm extends RefineForm
 
 	public function populate(array $values)
 	{
-				
+
 		if(array_key_exists('cat2',$values) && !empty($values['cat2']))
 		{
 			$this->cat3->setMultiOptions($this->_business->getCat3Array($values['cat2'],false));
 		}
-			
 
 
-		
+
+
 		// Call the father's render function.
 		return parent::populate($values);
 	}
@@ -146,8 +146,8 @@ class CarsRefineForm extends RefineForm
 		if (empty($cat2))
 		{
 			return  $category;
-		}  
-		
+		}
+
 		if ($cat2 == '630')
 		{
 			$cat2Name = 'For SALE';
@@ -156,15 +156,15 @@ class CarsRefineForm extends RefineForm
 		{
 			$cat2Name = 'For ' . $this->_business->getCat2NameById($cat2);
 		}
-		
+
 		if ($cat3 == '631')
 		{
 			return 'ALL ' . $cat2Name;
 		}
 		else
 		{
-			return  $this->_business->getCat3NameById($cat3) . ' ' . $cat2Name;	
-		}		
+			return  $this->_business->getCat3NameById($cat3) . ' ' . $cat2Name;
+		}
 	}
-	*/	
+	*/
 }
