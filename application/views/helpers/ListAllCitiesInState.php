@@ -41,6 +41,7 @@ class Zend_View_Helper_ListAllCitiesInState
 	    	if ($routerName == "posting")
 	    	{
 				$routerName = BusinessType::getbasicSearchRouter($value->category);
+				logfire('posting cities router', $routerName);
 	    	}
 
 	    	$retStr .= '<li>' . Tag::link($routerName, $value, $city["location"], $attributes) . '</li>' . "\n" ;
