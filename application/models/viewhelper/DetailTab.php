@@ -714,5 +714,28 @@ class DetailTab
 	public function getPostingDataForContactForm()
 	{
 	}
+
+
+	public function getFeatures($features, $businessType, $column = 3)
+	{
+		if (!empty($features))
+		{
+			$reffeatures = new Reffeature();
+			$featuresSet = $reffeatures->getFeatures($features, $businessType);
+
+			if (!empty($featuresSet))
+			{
+				$featureArray = array();
+				foreach($featuresSet as $feature)
+				{
+					$featureArray[] = '-  ' . $feature->feature;
+				}
+
+				return Tag::simpleTable($featureArray, $column, 'featurelist', true);
+			}
+		}
+
+		return '';
+	}
 }
 ?>

@@ -18,8 +18,8 @@ class CarsDetailTab extends  DetailTab
 
 		$location = new Location($this->_posting->locId);
 		$contentArray[] = array(
-							'head' => 'Seller:',
-							'value' => $this->getCat1() . "(" . $location->getSuburb() . ")",
+							'head' => 'Location:',
+							'value' => $location->getLocationString(),
 							'cssClass' => ''
 							);
 
@@ -37,14 +37,20 @@ class CarsDetailTab extends  DetailTab
 							);
 
 		$contentArray[] = array(
-							'head' => 'Body:',
-							'value' => $this->_pstCategory->seats . "seats , " .  $this->_pstCategory->bodyType . ' , ' . $this->_pstCategory->drive,
+							'head' => '# Plate:',
+							'value' => $this->_pstCategory->numberPlate,
 							'cssClass' => ''
 							);
 
 		$contentArray[] = array(
-							'head' => 'Transimiton:',
-							'value' => $this->_pstCategory->transmission . ' , ' . $this->_pstCategory->engin . ' Liters , ' . $this->_pstCategory->power . 'KW',
+							'head' => 'Body:',
+							'value' => $this->_pstCategory->seats . " seats , " .  $this->_pstCategory->bodyType . ' , ' . $this->_pstCategory->drive,
+							'cssClass' => ''
+							);
+
+		$contentArray[] = array(
+							'head' => 'Transmission:',
+							'value' => $this->_pstCategory->transmission . ' , ' . $this->_pstCategory->engin . ' Litres , ' . $this->_pstCategory->power . 'KW',
 							'cssClass' => ''
 							);
 
@@ -54,14 +60,27 @@ class CarsDetailTab extends  DetailTab
 							'cssClass' => ''
 							);
 
+
 		$contentArray[] = array(
-							'head' => 'Body Color:',
+							'head' => 'Fuel Consumption:',
+							'value' => $this->_pstCategory->fuelConsumption,
+							'cssClass' => ''
+							);
+
+		$contentArray[] = array(
+							'head' => 'Co2 Rating:',
+							'value' => $this->_pstCategory->co2,
+							'cssClass' => ''
+							);
+
+		$contentArray[] = array(
+							'head' => 'Body colour:',
 							'value' => $this->_pstCategory->bodyColour,
 							'cssClass' => ''
 							);
 
 		$contentArray[] = array(
-							'head' => 'Interior Color:',
+							'head' => 'Interior colour:',
 							'value' => $this->_pstCategory->interiorColour,
 							'cssClass' => ''
 							);
@@ -72,32 +91,44 @@ class CarsDetailTab extends  DetailTab
 							'cssClass' => ''
 							);
 
-			if (!empty($this->_pstCategory->features))
-		{
-			$reffeatures = new Reffeature();
-			$features = $reffeatures->getFeatures($this->_pstCategory->features, $this->_posting->typeID);
 
-			if (!empty($features))
-			{
-				$featureArray = array();
-				foreach($features as $feature)
-				{
-					$featureArray[] = '-  ' . $feature->feature;
-				}
 
-				$contentArray[] = array(
-									'head' => 'Features:',
-									'value' => Tag::simpleTable($featureArray, 3, 'featurelist', true),
-									'cssClass' => ''
-									);
-			}
-		}
 
 		$contentArray[] = array(
 							'head' => '',
 							'value' => $this->_pstCategory->shortDescription,
 							'cssClass' => ''
 							);
+
+		$contentArray[] = array(
+							'head' => 'Entertainmant:',
+							'value' => $this->getFeatures($this->_pstCategory->featuresEntertainmant, $this->_posting->typeID),
+							'cssClass' => ''
+							);
+
+		$contentArray[] = array(
+							'head' => 'Safety:',
+							'value' => $this->getFeatures($this->_pstCategory->featuresSafety, $this->_posting->typeID),
+							'cssClass' => ''
+							);
+
+		$contentArray[] = array(
+							'head' => 'Interior:',
+							'value' => $this->getFeatures($this->_pstCategory->featuresInterior, $this->_posting->typeID),
+							'cssClass' => ''
+							);
+
+
+		$contentArray[] = array(
+							'head' => 'Exterior:',
+							'value' => $this->getFeatures($this->_pstCategory->featuresExterior, $this->_posting->typeID),
+							'cssClass' => ''
+							);
+
+
+
+
+
 
 		$this->printTable($contentArray, true);
 		/*
