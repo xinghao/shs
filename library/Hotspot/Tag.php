@@ -1175,4 +1175,14 @@ $listString .= '<ul>';
     	//return the format as Tuesday, May 12, 2009
     	return date_format($tmp,"F d, Y");
     }
+
+    public static function getHourMinute($strTime){
+    	$tmp = new DateTime($strTime);
+    	//return the format as Tuesday, May 12th, 2009
+    	//return date_format($tmp,"D, F d")."<sup>".date_format($tmp,"S")."</sup>".date_format($tmp,", Y");
+
+    	//return the format as Tuesday, May 12, 2009
+    	return date_format($tmp,"H:i");
+
+    }
 }
