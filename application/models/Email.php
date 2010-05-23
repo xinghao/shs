@@ -11,6 +11,7 @@ class Email
 
 	        $mailer = new Zend_Mail('utf-8');
 	        $mailer->addTo($toMailAddress, $name);
+	        $mailer->setFrom('x3k2pr10oynew@spot101.com','SydneyHostpot');
 	        $mailer->setSubject($subject);
 	        $mailer->setBodyHtml($body, 'utf8');
 	        $mailer->setFrom($config->mail->from);

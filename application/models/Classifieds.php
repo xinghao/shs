@@ -113,7 +113,7 @@ class Classifieds extends Business
 	public function getResultTable($posting, $location = null)
 	{
 		try{
-		echo '<table class="resultheader" id="realesate" cellspacing=0>';
+		echo '<table class="resultheader" id="classifieds" cellspacing=0>';
 			echo '<tr>';
 				echo '<th class="cuisine">';
 					echo 'Category';
@@ -124,7 +124,7 @@ class Classifieds extends Business
 				echo '<th class="title">';
 					echo 'Title';
 				echo '</th>';
-				echo '<th class="title">';
+				echo '<th class="photo">';
 					echo 'Photo';
 				echo '</th>';
 				echo '<th class="price">';

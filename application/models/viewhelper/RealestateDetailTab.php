@@ -141,7 +141,7 @@ $categoryTable =new Refcategory();
 		}
 
 		$contentArray[] = array(
-							'head' => 'View:',
+							'head' => 'Views of:',
 							'value' => $this->_pstCategory->views,
 							'cssClass' =>''
 							);
@@ -228,9 +228,11 @@ $categoryTable =new Refcategory();
 							'cssClass' => ''
 							);
 
+
+
 		$contentArray[] = array(
-							'head' => 'Contact 1 Name:',
-							'value' => $this->_pstCategory->contactName1,
+							'head' => 'Contact:',
+							'value' => $this->strAdd($this->_pstCategory->contactName1 , $this->_pstCategory->contactPhone1),
 							'cssClass' => ''
 							);
 /*
@@ -253,8 +255,8 @@ $categoryTable =new Refcategory();
 							);
 */
 		$contentArray[] = array(
-							'head' => 'Contact 2 Name:',
-							'value' => $this->_pstCategory->contactName2,
+							'head' => 'Contact:',
+							'value' => $this->strAdd($this->_pstCategory->contactName2 , $this->_pstCategory->contactPhone2),
 							'cssClass' => ''
 							);
 /*
@@ -300,7 +302,7 @@ $categoryTable =new Refcategory();
 		{
 			$contentArray[] = array(
 								'head' => 'Inspection Info:',
-								'value' => Tag::getHtmlDateTime($this->_pstCategory->inspection1Date) . ': ' . $this->_pstCategory->inspection1StartTime . ' ~ ' . $this->_pstCategory->inspection1EndTime,
+								'value' => Tag::getHtmlDateTime($this->_pstCategory->inspection1Date) . ': ' . Tag::getHourMinute($this->_pstCategory->inspection1StartTime) . ' ~ ' . Tag::getHourMinute($this->_pstCategory->inspection1EndTime),
 								'cssClass' => ''
 								);
 		}
@@ -310,7 +312,7 @@ $categoryTable =new Refcategory();
 
 		$contentArray[] = array(
 							'head' => '',
-							'value' => Tag::getHtmlDateTime($this->_pstCategory->inspection2Date) . ': ' . $this->_pstCategory->inspection2StartTime . ' ~ ' . $this->_pstCategory->inspection2EndTime,
+							'value' => Tag::getHtmlDateTime($this->_pstCategory->inspection2Date) . ': ' . Tag::getHourMinute($this->_pstCategory->inspection2StartTime) . ' ~ ' . Tag::getHourMinute($this->_pstCategory->inspection2EndTime),
 							'cssClass' => ''
 							);
 		}
@@ -319,7 +321,7 @@ $categoryTable =new Refcategory();
 		{
 			$contentArray[] = array(
 							'head' => '',
-							'value' => Tag::getHtmlDateTime($this->_pstCategory->inspection3Date) . ': ' . $this->_pstCategory->inspection3StartTime . ' ~ ' . $this->_pstCategory->inspection3EndTime,
+							'value' => Tag::getHtmlDateTime($this->_pstCategory->inspection3Date) . ': ' . Tag::getHourMinute($this->_pstCategory->inspection3StartTime) . ' ~ ' . Tag::getHourMinute($this->_pstCategory->inspection3EndTime),
 							'cssClass' => ''
 							);
 		}
@@ -328,7 +330,7 @@ $categoryTable =new Refcategory();
 		{
 		$contentArray[] = array(
 							'head' => '',
-							'value' => Tag::getHtmlDateTime($this->_pstCategory->inspection4Date). ': ' . $this->_pstCategory->inspection3StartTime . ' ~ ' . $this->_pstCategory->inspection4EndTime,
+							'value' => Tag::getHtmlDateTime($this->_pstCategory->inspection4Date). ': ' . Tag::getHourMinute($this->_pstCategory->inspection3StartTime) . ' ~ ' . Tag::getHourMinute($this->_pstCategory->inspection4EndTime),
 							'cssClass' => ''
 							);
 		}
@@ -336,7 +338,7 @@ $categoryTable =new Refcategory();
 		{
 			$contentArray[] = array(
 							'head' => '',
-							'value' => Tag::getHtmlDateTime($this->_pstCategory->inspection5Date) . ': ' . $this->_pstCategory->inspection3StartTime . ' ~ ' . $this->_pstCategory->inspection5EndTime,
+							'value' => Tag::getHtmlDateTime($this->_pstCategory->inspection5Date) . ': ' . Tag::getHourMinute($this->_pstCategory->inspection3StartTime) . ' ~ ' . Tag::getHourMinute($this->_pstCategory->inspection5EndTime),
 							'cssClass' => ''
 							);
 		}
@@ -390,7 +392,7 @@ $categoryTable =new Refcategory();
 	public function getForm()
 	{
 		$this->_form = new JobContactForm();
-		$this->_form->setHint('Post a Comment to the employer company:');
+		$this->_form->setHint('Post a Comment to the property owner:');
 		$this->_form->setAction('/forms/contact');
 		$this->_form->setPostingId($this->_posting->id);
 		return parent::getForm();

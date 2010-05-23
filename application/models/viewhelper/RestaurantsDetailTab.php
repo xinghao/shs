@@ -3,7 +3,7 @@ class RestaurantsDetailTab extends  DetailTab
 {
 	protected $_hasPhotoTab = true;
 	protected $_hasAttachTab = true;
-	protected $_tabCollection = array('General','About', 'Menu', 'Photo');
+	protected $_tabCollection = array('General', 'Menu', 'Photo');
 
 	public function setCategory()
 	{
@@ -54,15 +54,17 @@ class RestaurantsDetailTab extends  DetailTab
 							'cssClass' => ''
 							);
 
+		$opendayTables = new Refopenday();
+
 		$contentArray[] = array(
 							'head' => 'Open Days:',
-							'value' => $this->_pstCategory->openDays,
+							'value' => $opendayTables->getOpenday($this->_pstCategory->openDays),
 							'cssClass' => ''
 							);
 
 		$contentArray[] = array(
 							'head' => 'Price:',
-							'value' => $this->_pstCategory->priceInfo,
+							'value' => $this->strAdd($this->_posting->priceDisplay,$this->_pstCategory->priceInfo),
 							'cssClass' => ''
 							);
 
@@ -84,6 +86,11 @@ class RestaurantsDetailTab extends  DetailTab
 					'cssClass' => 'black'
 					);
 
+		$contentArray[] = array(
+					'head' => $this->_pstCategory->shortDescription,
+					'value' => 'dummy',
+					'cssClass' => 'black'
+					);
 
 		$this->printTable($contentArray, true);
 		/*
@@ -117,28 +124,12 @@ class RestaurantsDetailTab extends  DetailTab
 
 	public function getTab2Content()
 	{
-		$contentArray = array();
-
-		$contentArray[] = array(
-							'head' => $this->_pstCategory->about,
-							'value' => 'dummy',
-							'cssClass' => 'black'
-							);
-
-
-
-
-		$this->printTable($contentArray);
+		$this->printPdf();
 	}
 
 	public function getTab3Content()
 	{
 
-		$this->printPdf();
-	}
-
-	public function getTab4Content()
-	{
 		$this->printPhotoTab();
 	}
 

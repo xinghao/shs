@@ -32,7 +32,7 @@ class CarsDetailTab extends  DetailTab
 
 		$contentArray[] = array(
 							'head' => 'Kilometers:',
-							'value' => $this->_pstCategory->km . "Km's",
+							'value' => $this->addEnding(number_format($this->_pstCategory->km) , "Km's"),
 							'cssClass' => ''
 							);
 
@@ -48,9 +48,23 @@ class CarsDetailTab extends  DetailTab
 							'cssClass' => ''
 							);
 
+		$engine = $this->addEnding($this->_pstCategory->engin, 'Litres');
+
+		$power = '';
+		if (!empty($this->_pstCategory->power))
+		{
+			if (stristr($this->_pstCategory->power, 'KW'))
+			{
+				$power = $this->_pstCategory->power;
+			}
+			else
+			{
+				$power = $this->_pstCategory->power. ' Kw';
+			}
+		}
 		$contentArray[] = array(
 							'head' => 'Transmission:',
-							'value' => $this->_pstCategory->transmission . ' , ' . $this->_pstCategory->engin . ' Litres , ' . $this->_pstCategory->power . 'KW',
+							'value' => $this->strAdds(array($this->_pstCategory->transmission,$engine,$power)),
 							'cssClass' => ''
 							);
 
@@ -63,13 +77,13 @@ class CarsDetailTab extends  DetailTab
 
 		$contentArray[] = array(
 							'head' => 'Fuel Consumption:',
-							'value' => $this->_pstCategory->fuelConsumption,
+							'value' => $this->addEnding($this->_pstCategory->fuelConsumption, 'L/100Km'),
 							'cssClass' => ''
 							);
 
 		$contentArray[] = array(
-							'head' => 'Co2 Rating:',
-							'value' => $this->_pstCategory->co2,
+							'head' => 'CO2 Rating:',
+							'value' => $this->addEnding($this->_pstCategory->co2,'g/Km'),
 							'cssClass' => ''
 							);
 
@@ -86,7 +100,7 @@ class CarsDetailTab extends  DetailTab
 							);
 
 		$contentArray[] = array(
-							'head' => '#of owners:',
+							'head' => '# of owners:',
 							'value' => $this->_pstCategory->owners,
 							'cssClass' => ''
 							);
@@ -102,26 +116,26 @@ class CarsDetailTab extends  DetailTab
 
 		$contentArray[] = array(
 							'head' => 'Entertainmant:',
-							'value' => $this->getFeatures($this->_pstCategory->featuresEntertainmant, $this->_posting->typeID),
+							'value' => $this->getFeatures($this->_pstCategory->featuresEntertainmant, $this->_posting->typeID,2),
 							'cssClass' => ''
 							);
 
 		$contentArray[] = array(
 							'head' => 'Safety:',
-							'value' => $this->getFeatures($this->_pstCategory->featuresSafety, $this->_posting->typeID),
+							'value' => $this->getFeatures($this->_pstCategory->featuresSafety, $this->_posting->typeID,2),
 							'cssClass' => ''
 							);
 
 		$contentArray[] = array(
 							'head' => 'Interior:',
-							'value' => $this->getFeatures($this->_pstCategory->featuresInterior, $this->_posting->typeID),
+							'value' => $this->getFeatures($this->_pstCategory->featuresInterior, $this->_posting->typeID,2),
 							'cssClass' => ''
 							);
 
 
 		$contentArray[] = array(
 							'head' => 'Exterior:',
-							'value' => $this->getFeatures($this->_pstCategory->featuresExterior, $this->_posting->typeID),
+							'value' => $this->getFeatures($this->_pstCategory->featuresExterior, $this->_posting->typeID,2),
 							'cssClass' => ''
 							);
 
@@ -165,43 +179,37 @@ class CarsDetailTab extends  DetailTab
 	public function getTab2Content()
 	{
 		$contentArray = array();
-/*
-		$contentArray[] = array(
-							'head' => 'Employer Company:',
-							'value' => $this->_pstCategory->employerCompany,
-							'cssClass' => ''
-							);
+
+			$contentArray[] = array(
+								'head' => 'Contact Name',
+								'value' =>$this->_pstCategory->contactName,
+								'cssClass' => ''
+								);
+
+			$contentArray[] = array(
+								'head' => 'Phone#:',
+								'value' => $this->_pstCategory->contactPhone,
+								'cssClass' => ''
+								);
+
+			$contentArray[] = array(
+								'head' => 'Email:',
+								'value' => $this->_pstCategory->contactEmail,
+								'cssClass' => ''
+								);
 
 
-		$contentArray[] = array(
-							'head' => 'Agency Company:',
-							'value' => $this->_pstCategory->agencyCompany,
-							'cssClass' => ''
-							);
+			$contentArray[] = array(
+								'head' => '&nbsp;',
+								'value' =>'&nbsp;',
+								'cssClass' => ''
+								);
 
-		$contentArray[] = array(
-							'head' => 'Contact Info:',
-							'value' => $this->_pstCategory->contactInfo,
-							'cssClass' => ''
-							);
+			$this->printTable($contentArray, true);
 
 
-		$contentArray[] = array(
-							'head' => 'Contact Name:',
-							'value' => $this->_pstCategory->contactName,
-							'cssClass' => ''
-							);
 
-		$contentArray[] = array(
-							'head' => '',
-							'value' => 'dummy',
-							'cssClass' => ''
-							);
-
-		$this->printTable($contentArray);
 		$this->printForm();
-*/
-$this->printForm();
 	}
 
 	public function getTab3Content()
@@ -233,9 +241,9 @@ $this->printForm();
 		$location = new Location($this->_posting->locId);
 		$suburb = $location->getSuburb();
 
-			$title .= '<br /><span class="titlesecond grey">' ;
+			$title .= '<br /><span class="titlesecond">' ;
 			$cat1Table =new Refcat1();
-			$title .=  $cat1Table->getCatNameById($this->_posting->cat1) . ' - ' . $this->_posting->priceDisplay  . "(" .$suburb  .")" .  "</span>";
+			$title .=  $cat1Table->getCatNameById($this->_posting->cat1) . ' - ' . $this->_posting->priceDisplay  . '<span class="titleend"> (' .$suburb  .")</span>" .  "</span>";
 
 
 		return $title;

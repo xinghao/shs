@@ -10,7 +10,7 @@ class Refcategory extends Zend_Db_Table
     {
     	return $this->_name;
     }
-    
+
  	public function getAllCat2OfSpecificCategory($busTypeId)
  	{
 		try{
@@ -23,8 +23,8 @@ class Refcategory extends Zend_Db_Table
  			throw $e;
  		}
  	}
- 	
- 	
+
+
  	public function getAllCatsBySubPrimIdBusinessTypeId($SubPrimId, $busTypeId)
  	{
 		try{
@@ -32,28 +32,29 @@ class Refcategory extends Zend_Db_Table
 	 		$select->where('busPostTypeId = ?', $busTypeId);
 	 		$select->where('SubPrimCatId = ?', $SubPrimId);
 	 		$select->order('name');
-	 		
+
 	 		return $this->fetchAll($select);
  	 	}catch(Exception $e)
  		{
  			logError('Refcategory failed!', $e);
  			throw $e;
  		}
- 	}	
- 	
- 	public function getAllCat3OfSpecificCat2($cat2)
+ 	}
+
+ 	public function getAllCat3OfSpecificCat2($cat2, $busTypeId)
  	{
  		try{
 	 		$select = $this->select();
 	 		$select->where('SetID in (select SetId from ' . $this->_name . ' where id = ?)', $cat2)
-	 				->where('PrimId is null');
+	 				->where('PrimId is null')
+	 				->where('busPostTypeId = ?', $busTypeId);
 	 		logfire('select', $select->__toString());
 	 		return $this->fetchAll($select);
  	 	}catch(Exception $e)
  		{
  			logError('Refcategory failed!', $e);
  			throw $e;
- 		}		
+ 		}
  	}
 
 	public function getCatNameById($catId)
@@ -63,7 +64,7 @@ class Refcategory extends Zend_Db_Table
  			$select->where('id = ?', $catId);
  			logfire('select', $select->__toString());
  			$cat =  $this->fetchRow($select);
- 			
+
  			if(empty($cat))
  			{
  				return null;
@@ -76,7 +77,7 @@ class Refcategory extends Zend_Db_Table
  		{
  			logError('ref_cat1 failed!', $e);
  			throw $e;
- 		}		
+ 		}
  	}
 }
 

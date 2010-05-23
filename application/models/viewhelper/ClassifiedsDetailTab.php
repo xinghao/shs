@@ -26,7 +26,7 @@ class ClassifiedsDetailTab extends  DetailTab
 
 		$contentArray[] = array(
 							'head' => 'Price:',
-							'value' => $this->_pstCategory->priceDescription,
+							'value' => $this->strAdd($this->_posting->priceDisplay, $this->_pstCategory->priceDescription),
 							'cssClass' => ''
 							);
 
@@ -83,8 +83,32 @@ class ClassifiedsDetailTab extends  DetailTab
 
 	public function getTab2Content()
 	{
+		if ($this->_pstCategory->contactDisplay)
+		{
+			$contentArray = array();
 
-			$this->printForm();
+			$contentArray[] = array(
+								'head' => 'Contact Name',
+								'value' =>$this->_pstCategory->contactName,
+								'cssClass' => ''
+								);
+
+			$contentArray[] = array(
+								'head' => 'Phone#:',
+								'value' => $this->_pstCategory->contactPhone,
+								'cssClass' => ''
+								);
+
+			$contentArray[] = array(
+								'head' => '&nbsp;',
+								'value' =>'&nbsp;',
+								'cssClass' => ''
+								);
+
+			$this->printTable($contentArray, true);
+		}
+
+		$this->printForm();
 	}
 
 

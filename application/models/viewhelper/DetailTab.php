@@ -678,13 +678,14 @@ class DetailTab
 
 	public function printFormConfirm()
 	{
-		echo "Your question has been sent. Feel free to ask more questions. <br /> <br />";
+		echo '<br /> <br /><span class="formconfirm" >Email has been sent. Feel free to ask more questions.</span> <br/>';
 	}
 
 	public function printForm()
 	{
 		if($this->_displayForm)
 		{
+			//$this->printFormConfirm();
 			$this->getForm();
 			echo $this->_form->populate($this->_formData);
 
@@ -737,5 +738,48 @@ class DetailTab
 
 		return '';
 	}
+
+	public function strAdd($str1, $str2, $addMark = ', ')
+	{
+		if (empty($str1))
+		{
+			return $str2;
+		}
+
+		if (empty($str2))
+		{
+			return $str1;
+		}
+
+		return $str1 . $addMark . $str2;
+	}
+
+	public function strAdds($strs, $addMark = ', ')
+	{
+		$returnStr = '';
+		foreach($strs as $str)
+		{
+			$returnStr = $this->strAdd($returnStr, $str, $addMark);
+		}
+		return $returnStr;
+	}
+
+	public function addEnding($str, $ending, $addingSpace = true)
+	{
+		if(empty($str))
+		{
+			return '';
+		}
+		else
+		{
+			$space = '';
+			if ($addingSpace)
+			{
+				$space = ' ';
+			}
+			return $str . $space .$ending;
+		}
+	}
+
 }
 ?>

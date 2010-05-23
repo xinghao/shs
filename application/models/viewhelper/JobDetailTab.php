@@ -17,8 +17,14 @@ class JobDetailTab extends  DetailTab
 		$contentArray = array();
 
 		$contentArray[] = array(
-							'head' => 'Type:',
-							'value' => $this->getCat1(),
+							'head' => '',
+							'value' => $this->_pstCategory->employerCompany . ', '. $this->getCat1(),
+							'cssClass' => 'bold'
+							);
+
+		$contentArray[] = array(
+							'head' => '',
+							'value' => 'dummy',
 							'cssClass' => ''
 							);
 
@@ -145,7 +151,7 @@ class JobDetailTab extends  DetailTab
 
 
 		$contentArray[] = array(
-							'head' => 'Agency Company:',
+							'head' => 'Hiring Agency:',
 							'value' => $this->_pstCategory->agencyCompany,
 							'cssClass' => ''
 							);

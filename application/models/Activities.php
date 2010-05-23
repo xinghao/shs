@@ -142,6 +142,9 @@ class Activities extends Business
 				echo '<th class="title">';
 					echo 'Title';
 				echo '</th>';
+				echo '<th class="Brochure">';
+					echo 'Brochure';
+				echo '</th>';
 				echo '<th class="rating">';
 					echo 'Rating';
 				echo '</th>';
@@ -160,6 +163,9 @@ class Activities extends Business
 				echo '</a></td>';
 				echo '<td><a href="/posting/' .$value->postingid .'">';
 					echo $value->title;
+				echo '</a></td>';
+				echo '<td><a href="/posting/' .$value->postingid .'">';
+					echo empty($value->attachment)?"No":"Yes";
 				echo '</a></td>';
 				echo '<td><a href="/posting/' .$value->postingid .'">';
 					echo Common::Rate($value->rateNum);

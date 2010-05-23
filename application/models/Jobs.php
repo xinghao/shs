@@ -39,7 +39,7 @@ class Jobs extends Business
 	protected function _getCat3($cat2 = null)
 	{
 		$refcat3 = new Refcategory();
-		return $this->_cat3 = $refcat3->getAllCat3OfSpecificCat2($cat2);
+		return $this->_cat3 = $refcat3->getAllCat3OfSpecificCat2($cat2, $this->_busTypeId);
 
 	}
 
@@ -103,7 +103,7 @@ class Jobs extends Business
 		{
 				echo '<tr class="postingrow">';
 				echo '<td><a href="/posting/' .$value->postingid .'">' . self::JobTypeShortFormat($value->cat1) . '</a></td>' . "\n";
-				echo '<td><a href="/posting/' .$value->postingid .'">' . $value->cat2name . ' (' . $value->cat3name . ') ' . '</a></td>' . "\n";
+				echo '<td><a href="/posting/' .$value->postingid .'">' . $value->cat2name . ' <br/>(' . $value->cat3name . ') ' . '</a></td>' . "\n";
 				echo '<td><a href="/posting/' .$value->postingid .'">' . $value->title . '</a></td>' . "\n";
 				echo '<td><a href="/posting/' .$value->postingid .'">' . $value->priceDisplay . '</a></td>' . "\n";
 				echo '</tr>';
@@ -119,12 +119,12 @@ class Jobs extends Business
 		switch($cat1)
 		{
 			case 11: return 'ALL';
-			case 12: return 'FT';
-			case 13: return 'PT';
-			case 14: return 'Cas';
-			case 15: return 'Tem';
-			case 16: return 'Grd';
-			case 17: return 'Vol';
+			case 12: return 'Full<br/>Time';
+			case 13: return 'Part<br/>Time';
+			case 14: return 'Casual<br/>Vacation';
+			case 15: return 'Contract<br/>Temp';
+			case 16: return 'Graduate';
+			case 17: return 'Volunteer';
 		}
 	}
 }
