@@ -829,7 +829,7 @@ td.imagetd a{
  	height:120px;
  }
  th.jobtype {
- 	width:50px;
+ 	width:60px;
  }
  span.titleend {
  	color:#aaa;
@@ -845,4 +845,23 @@ td.imagetd a{
  }
  span.grey {
  	color:#666;
+ }
+ span.formconfirm {
+ 	background-color:red;
+ 	display:block;
+ 	border:#c9d7f1 2px solid;
+ 	padding:10px;
+ 	text-align:center;
+ 	width:80%;
+ 	color:#fff;
+ }
+ 
+ .bold {
+ 	font-weight:bold;
+ }
+ table#classifieds th.photo {
+ 	width:47px;
+ }
+ table.featurelist td{
+ 	width:240px;
  }
