@@ -16,6 +16,16 @@ class Zend_View_Helper_ListAllCitiesInState
     	$cities = $loc->getLocations();
 		$searchRule = $loc->getSearchRule();
 
+    	if ($searchRule == 1 || $searchRule ==2)
+    	{
+    		$locid = $loc->getCityId();
+    	}
+    	elseif($searchRule ==3)
+    	{
+    		$locid = $loc->getStateId();
+    	}
+
+
     	foreach($cities as $city)
     	{
     		if ($city["current"])
@@ -50,6 +60,7 @@ class Zend_View_Helper_ListAllCitiesInState
     	$value->city = $currentCity;
     	$value->state = $currentState;
     	//$value->city = strtolower($showRegion);
+    	$value->locationid = $locid;
 		return $retStr;
     }
 }
