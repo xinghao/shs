@@ -32,11 +32,13 @@ class PostingController extends Zend_Controller_Action {
     	$pstPosing  =  new Pstposting();
     	$view->posting =$pstPosing->getPosting($view->posting_id);
 
+    	logfire("posting locId", $view->posting->locId);
     	$view->location = new Location($view->posting->locId);
 
     	$view->category = BusinessType::getBusinessType($view->posting->typeID);
 
     	$view->paramsHolder = $view->location->toStdClass();
+
 
     	$view->paramsHolder->category = $view->category;
 
