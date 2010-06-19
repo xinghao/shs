@@ -1,23 +1,23 @@
 <?php
 class HealthAndFitness extends Business
 {
-	
+
 	protected $_busTypeId = 7;
-	
+
 	protected $_cat2Name = 'Health Category';
 
 	protected $_cat3Name = 'Sub Category';
-	
-	
-	
-	
+
+
+
+
 	public function getBusinessType()
 	{
 		return 'Healthandfitness';
 	}
-	
 
-	
+
+
 	protected function _getCat2($cat1 = null)
 	{
 		if (empty($this->_cat2))
@@ -27,16 +27,16 @@ class HealthAndFitness extends Business
 		}
 		else
 		{
-			return $this->_cat2; 
+			return $this->_cat2;
 		}
-		
+
 	}
 
 	protected function _getCat3($cat2 = null)
 	{
 		$refcat3 = new Refcategory();
 		$select = $refcat3->select();
-		
+
 		if ($cat2 == 'Any' || $cat2 == 'All')
 		{
 			$select->where('busPostTypeId = ? and SubPrimCatId is not null', $this->_busTypeId);
@@ -45,19 +45,19 @@ class HealthAndFitness extends Business
 		{
 			$select->where('SubPrimCatId = (select CONCAT( PrimID, SetID)  from ref_category_en where id = ?)', $cat2);
 		}
-		
+
 		logfire('car cat3 ', $select);
 		return $this->_cat3 = $refcat3->fetchAll($select);
-		
+
 	}
-	
-	
-	
+
+
+
 	public function search($location, $limit, $offset = 0, $query = null, $cat1 = null, $cat2 = null, $cat3 = null, $cat4 = null, $cat5 = null, $addtionalData = null)
 	{
-		
 
-		
+
+
 		logfire('realstatesearch cat2', $cat2);
 		if (empty($cat2) || $cat2 == 'Any' || $cat2 == 'ALL')
 		{
@@ -65,13 +65,13 @@ class HealthAndFitness extends Business
 		}
 		if (empty($cat3) || $cat3 == 'Any' || $cat3 == 'ALL')
 		{
-			$cat3 = null;	
+			$cat3 = null;
 		}
-		
+
 		$select = parent::search($location, $limit, $offset, $query, $cat1, $cat2, $cat3, $cat4, $cat5, $addtionalData);
 
 
-		
+
 		if (empty($cat2))
 		{
 			$keys = '';
@@ -88,14 +88,14 @@ class HealthAndFitness extends Business
 			}
 			$select->where('cat2 in ('.$keys.')');
 		}
-		
-		
+
+
 		//echo $select;
 		return $select;
-		
+
 	}
-	
-/*	
+
+/*
 	protected function extraJoin($select)
 	{
 		$psthomes = new Psthome();
@@ -110,29 +110,29 @@ class HealthAndFitness extends Business
 	{
 		echo '<div class="resultheader" id="realesate">';
 			echo '<span class="date">';
-				echo 'Data';			
+				echo 'Data';
 			echo '</span>';
 			echo '<span class="photo">';
-				echo 'Photo';	
+				echo 'Photo';
 			echo '</span>';
 			echo '<span class="title">';
-				echo 'Title';	
-			echo '</span>';			
+				echo 'Title';
+			echo '</span>';
 			echo '<span class="property">';
-				echo 'Property Type';			
+				echo 'Property Type';
 			echo '</span>';
 			echo '<span class="bed">';
-				echo 'Bed';			
+				echo 'Bed';
 			echo '</span>';
 			echo '<span class="cars">';
 				echo 'Cars';
-			echo '</span>';	
+			echo '</span>';
 			echo '<span class="bath">';
-				echo 'Bath';			
+				echo 'Bath';
 			echo '</span>';
 			echo '<span class="price">';
-				echo 'Price ('. iconv("Windows-1252", "UTF-8", $location->getCurrencySymbol()) .')';			
-			echo '</span>';										
+				echo 'Price ('. iconv("Windows-1252", "UTF-8", $location->getCurrencySymbol()) .')';
+			echo '</span>';
 		echo '</div>';
 
 		return parent::getResultTableHeader();
@@ -146,51 +146,46 @@ class HealthAndFitness extends Business
 		echo '<table class="resultheader" id="realesate" cellspacing=0>';
 			echo '<tr>';
 				echo '<th class="cuisine">';
-					echo 'Category';			
-				echo '</th>';			
-				echo '<th class="location">';
-					echo 'Location';			
+					echo 'Category';
+				echo '</th>';
+				echo '<th class="suburb">';
+					echo 'Suburb';
 				echo '</th>';
 				echo '<th class="title">';
-					echo 'Business<br />Name';			
-				echo '</th>';	
+					echo 'Business<br />Name';
+				echo '</th>';
 				echo '<th class="Rating">';
-					echo 'Rating';	
-				echo '</th>';			
-				echo '<th class="price">';
-					echo 'Price <br />('. $location->getCurrencyAndSymbol() .')';			
-				echo '</th>';	
+					echo 'Rating';
+				echo '</th>';
+
 			echo '</tr>';
 		foreach($posting as $key=>$value)
 		{
-			echo '<tr class="postingrow">';		
-				echo '<td>';
-					echo $value->cat1name . '<br />' . $value->cat2name;			
-				echo '</td>';
-				echo '<td>';
-					echo $value->state; 			
-				echo '</td>';
-				echo '<td>';
-					echo $value->title;	
-				echo '</td>';
-				echo '<td>';
-					echo Common::Rate($value->rateNum);			
-				echo '</td>';											
-				echo '<td>';
-					echo $value->priceDisplay;			
-				echo '</td>';								
+			echo '<tr class="postingrow">';
+				echo '<td><a href="/posting/' .$value->postingid .'">';
+					echo $value->cat1name . '<br />' . $value->cat2name;
+				echo '</a></td>';
+				echo '<td><a href="/posting/' .$value->postingid .'">';
+					echo $value->suburb;
+				echo '</a></td>';
+				echo '<td><a href="/posting/' .$value->postingid .'">';
+					echo $value->title;
+				echo '</a></td>';
+				echo '<td><a href="/posting/' .$value->postingid .'">';
+					echo Common::Rate($value->rateNum);
+				echo '</a></td>';
 			echo '</tr>';
 		}
-	
+
 		echo '</table>';
 		}catch(Exception $e)
 		{
 			logError('get results for health and fitness', $e);
 			echo $e;
-		}		
+		}
 		return parent::getResultTable($posting);
 	}
-		
 
-}    
+
+}
 ?>

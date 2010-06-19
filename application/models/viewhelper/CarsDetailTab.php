@@ -186,12 +186,12 @@ class CarsDetailTab extends  DetailTab
 								'cssClass' => ''
 								);
 
-			$contentArray[] = array(
+		/*	$contentArray[] = array(
 								'head' => 'Phone#:',
 								'value' => $this->_pstCategory->contactPhone,
 								'cssClass' => ''
 								);
-
+*/
 			$contentArray[] = array(
 								'head' => 'Email:',
 								'value' => $this->_pstCategory->contactEmail,

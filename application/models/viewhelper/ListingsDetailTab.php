@@ -2,7 +2,7 @@
 class ListingsDetailTab extends  DetailTab
 {
 	protected $_hasPhotoTab = true;
-	protected $_tabCollection = array('General');
+	protected $_tabCollection = array('General', 'Photo');
 	protected $_businessType = "Business Listings";
 
 	public function setCategory()
@@ -56,7 +56,7 @@ class ListingsDetailTab extends  DetailTab
 
 		$contentArray[] = array(
 							'head' => 'Website:',
-							'value' => $this->_pstCategory->website,
+							'value' => '<a target="blank" href="' . $this->_pstCategory->website .'">' .  "Click Here" . '</a>',
 							'cssClass' => ''
 							);
 
@@ -141,6 +141,11 @@ class ListingsDetailTab extends  DetailTab
 		{
 			echo $e;
 		}
+	}
+
+	public function getTab2Content()
+	{
+		$this->printPhotoTab();
 	}
 }
 ?>

@@ -284,7 +284,7 @@ class Location
 		$stdc1->country = $this->getCountry();
 		$stdc1->region = $this->getRegion();
 		$stdc1->suburb = $this->getSuburb();
-
+		$stdc1->locationid = $this->_location_id;
 		return $stdc1;
 	}
 

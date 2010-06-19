@@ -116,8 +116,8 @@ class Listings extends Business
 				echo '<th class="cuisine">';
 					echo 'Business<br />Type';
 				echo '</th>';
-				echo '<th class="location">';
-					echo 'Location';
+				echo '<th class="suburb">';
+					echo 'Suburb';
 				echo '</th>';
 				echo '<th class="businessname">';
 					echo 'Business Name';
@@ -133,7 +133,7 @@ class Listings extends Business
 					echo $value->cat2name;
 				echo '</a></td>' . "\n";
 				echo '<td><a href="/posting/' .$value->postingid .'">';
-				     echo $value->state;
+				     echo $value->suburb;
 				echo '</a></td>' . "\n";
 				echo '<td><a href="/posting/' .$value->postingid .'">';
 					echo $value->title;
