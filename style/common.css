@@ -271,8 +271,8 @@ div.searchresult{
 div.searchresult span.emphasis{
 	font-weight:bold;
 	font-style: italic;
-	font-size:16px;
-	color:red;
+	font-size:20px;
+	color:green;
 }
 
 
