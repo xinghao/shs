@@ -19,7 +19,6 @@
 				</div>
 				<div class="clear"></div>
 			</div>
-
 			<div id="secondline">
 					<ul id="categorynav">
 						<li><?php echo $this->basicCategoryUri('Real Estate', $this->paramsHolder,  $this->category);?><li>
