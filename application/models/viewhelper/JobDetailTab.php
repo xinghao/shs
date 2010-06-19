@@ -17,7 +17,7 @@ class JobDetailTab extends  DetailTab
 		$contentArray = array();
 
 		$contentArray[] = array(
-							'head' => '',
+							'head' => 'Employer:',
 							'value' => $this->_pstCategory->employerCompany . ', '. $this->getCat1(),
 							'cssClass' => 'bold'
 							);
@@ -29,7 +29,7 @@ class JobDetailTab extends  DetailTab
 							);
 
 		$contentArray[] = array(
-							'head' => 'Category:',
+							'head' => 'Job Type:',
 							'value' => $this->getCatsString(false),
 							'cssClass' => ''
 							);

@@ -2,6 +2,7 @@
 class ActivitiesDetailTab extends  DetailTab
 {
 	protected $_hasPhotoTab = true;
+	protected $_hasAttachTab = true;
 	protected $_tabCollection = array('General', 'Menu', 'Photo');
 	protected $_businessType = "Activities";
 
@@ -47,18 +48,13 @@ class ActivitiesDetailTab extends  DetailTab
 
 		$contentArray[] = array(
 							'head' => 'Website:',
-							'value' => '<a target="blank" href="' . $this->_pstCategory->website .'">' .  $this->_pstCategory->website . '</a>',
+							'value' => '<a target="blank" href="' . $this->_pstCategory->website .'">' .  "Click Here" . '</a>',
 							'cssClass' => ''
 							);
 
 		$contentArray[] = array(
 							'head' => 'Average Price:',
-							'value' => $this->_posting->priceDisplay,
-							'cssClass' => ''
-							);
-		$contentArray[] = array(
-							'head' => '',
-							'value' => $this->_pstCategory->priceInfo,
+							'value' => $this->strAdd($this->_posting->priceDisplay,$this->_pstCategory->priceInfo),
 							'cssClass' => ''
 							);
 

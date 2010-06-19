@@ -384,7 +384,7 @@ $categoryTable =new Refcategory();
 			}
 			$title .= '<br /><span class="titlesecond">' . $type ;
 			$cat1Table =new Refcat1();
-			$title .= ' - ' . $this->_posting->priceDisplay . ' - ' . $cat1Table->getCatNameById($this->_posting->cat1) . "</span>";
+			$title .=  ' by ' . $cat1Table->getCatNameById($this->_posting->cat1) . ' - ' . $this->_posting->priceDisplay . "</span>";
 
 		return $title;
 	}

@@ -50,7 +50,7 @@ class RestaurantsDetailTab extends  DetailTab
 
 		$contentArray[] = array(
 							'head' => 'Website:',
-							'value' => '<a target="blank" href="' . $this->_pstCategory->website .'">' .  $this->_pstCategory->website . '</a>',
+							'value' => '<a target="blank" href="' . $this->_pstCategory->website .'">' .  "Click Here" . '</a>',
 							'cssClass' => ''
 							);
 
@@ -87,7 +87,7 @@ class RestaurantsDetailTab extends  DetailTab
 					);
 
 		$contentArray[] = array(
-					'head' => $this->_pstCategory->shortDescription,
+					'head' => $this->_pstCategory->about,
 					'value' => 'dummy',
 					'cssClass' => 'black'
 					);

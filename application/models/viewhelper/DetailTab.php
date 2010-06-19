@@ -354,10 +354,15 @@ class DetailTab
 				echo '<ul class="tabs">';
 				$icount = 1;
 				logfire('pdf exist', $this->attachmentExist());
+				$tabArray = array(false,false,false,false,false);
 				foreach($this->_tabCollection as $tab)
 				{
-					if ((strtolower($tab) != 'photo' || $this->photoExist() ) && (!in_array(strtolower($tab), $this->_attachTabCollect) || $this->attachmentExist()) )
+
+					if ((strtolower($tab) != 'photo' || $this->photoExist() )
+						&& ((!in_array(strtolower($tab), $this->_attachTabCollect)
+						|| $this->attachmentExist())) )
 					{
+						$tabArray[$icount-1] = true;
 						if (strtolower($tab) == 'photo')
 						{
 							$photoTab = 'tabname = "photo"';
@@ -377,18 +382,19 @@ class DetailTab
 							$style = "";
 						}
 						echo '<li ' . $photoTab . $style .'><a href="#tab' . $icount .'" >' . $tab . '</a></li>';
-						$icount++;
+
 					}
+					$icount++;
 				}
 				echo '</ul>';
 				echo '<div class="clear"></div>';
 			echo '</div>';
 			echo '<div class="tab_container">';
-				$this->getTab1();
-				$this->getTab2();
-				$this->getTab3();
-				$this->getTab4();
-				$this->getTab5();
+				if ($tabArray[0]) $this->getTab1();
+				if ($tabArray[1]) $this->getTab2();
+				if ($tabArray[2]) $this->getTab3();
+				if ($tabArray[3]) $this->getTab4();
+				if ($tabArray[4]) $this->getTab5();
 				echo '<div class="clear"></div>';
 			echo '</div>';
 		echo '</div>';
