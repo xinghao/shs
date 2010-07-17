@@ -27,8 +27,14 @@ class PostingController extends Zend_Controller_Action {
     protected function _setRequiredParamsToView($view){
     	//$this->_helper->viewRenderer->setNoRender();
 
-    	$view->posting_id = $this->_getParam('postingid');
+    	$view->posting_id = base64_decode($this->_getParam('postingid'));
 
+		if (!Pstposting::validateId($view->posting_id))
+		{
+			$this->_redirect('/inactiveposting');
+		}
+
+    	echo "posting id:". $view->posting_id;
     	$pstPosing  =  new Pstposting();
     	$view->posting =$pstPosing->getPosting($view->posting_id);
 
@@ -90,6 +96,12 @@ class PostingController extends Zend_Controller_Action {
 	    }
 
     }
+
+	function inactiveAction()
+	{
+		Hotspot_Plugin_ViewSetup::setUpSiteTemplate(Hotspot_Plugin_ViewSetup::SIMPLEVIEW);
+		$this->renderScript('posting/404.phtml');
+	}
 
 
 	function contactAction()
