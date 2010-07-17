@@ -101,6 +101,12 @@ $categoryTable =new Refcategory();
 							'cssClass' =>''
 							);
 		$contentArray[] = array(
+							'head' => 'Views of:',
+							'value' => $this->_pstCategory->views,
+							'cssClass' =>''
+							);
+
+		$contentArray[] = array(
 							'head' => 'Levels in Building:',
 							'value' => $this->_pstCategory->buildingLevel,
 							'cssClass' =>''
@@ -141,10 +147,13 @@ $categoryTable =new Refcategory();
 		}
 
 		$contentArray[] = array(
-							'head' => 'Views of:',
-							'value' => $this->_pstCategory->views,
+							'head' => 'Best Features:',
+							'value' =>  $this->_pstCategory->bestFeatures,
 							'cssClass' =>''
 							);
+
+
+
 
 		$this->printTable($contentArray, true);
 		/*
@@ -231,7 +240,7 @@ $categoryTable =new Refcategory();
 
 
 		$contentArray[] = array(
-							'head' => 'Contact:',
+							'head' => 'Contact 1:',
 							'value' => $this->strAdd($this->_pstCategory->contactName1 , $this->_pstCategory->contactPhone1),
 							'cssClass' => ''
 							);
@@ -255,7 +264,7 @@ $categoryTable =new Refcategory();
 							);
 */
 		$contentArray[] = array(
-							'head' => 'Contact:',
+							'head' => 'Contact 2:',
 							'value' => $this->strAdd($this->_pstCategory->contactName2 , $this->_pstCategory->contactPhone2),
 							'cssClass' => ''
 							);
@@ -384,7 +393,7 @@ $categoryTable =new Refcategory();
 			}
 			$title .= '<br /><span class="titlesecond">' . $type ;
 			$cat1Table =new Refcat1();
-			$title .=  ' by ' . $cat1Table->getCatNameById($this->_posting->cat1) . ' - ' . $this->_posting->priceDisplay . "</span>";
+			$title .=  ' by ' . $cat1Table->getCatNameById($this->_posting->cat1) . ' - ' . $this->_posting->priceDisplay . ' -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' . $this->_pstCategory->rooms .' Bed, '. $this->_pstCategory->baths .' Bath, '.$this->_pstCategory->parking .' Cars'."</span>";
 
 		return $title;
 	}

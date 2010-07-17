@@ -129,18 +129,15 @@ class Listings extends Business
 		foreach($posting as $key=>$value)
 		{
 			echo '<tr class="postingrow">';
-				echo '<td><a href="/posting/' .$value->postingid .'">';
-					echo $value->cat2name;
-				echo '</a></td>' . "\n";
-				echo '<td><a href="/posting/' .$value->postingid .'">';
-				     echo $value->suburb;
-				echo '</a></td>' . "\n";
-				echo '<td><a href="/posting/' .$value->postingid .'">';
-					echo $value->title;
-				echo '</a></td>' . "\n";
-				echo '<td><a href="/posting/' .$value->postingid .'">';
-					echo Common::Rate($value->rateNum);
-				echo '</a></td>' . "\n";
+
+				echo $this->getPostingInfoLinkHtml($value->cat2name, $value->postingid);
+
+				echo $this->getPostingInfoLinkHtml($value->suburb, $value->postingid);
+
+				echo $this->getPostingInfoLinkHtml($value->title, $value->postingid);
+
+				echo $this->getPostingInfoLinkHtml(Common::Rate($value->rateNum), $value->postingid);
+
 			echo '</tr>';
 		}
 

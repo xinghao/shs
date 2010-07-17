@@ -12,6 +12,7 @@ class BusinessType
 			case 2: return "Activities";
 			case 9: return "Car Sale";
 			case 10: return "Business Listings";
+			case 7: return "Health & Fitness";
 			default: throw new Exception("unknow business name for business." . $businessId);
 		}
 	}
@@ -27,6 +28,7 @@ class BusinessType
 			case 2: return new Activities();
 			case 9: return new Cars();
 			case 10: return new Listings();
+			case 7: return new healthAndFitness();
 			default: throw new Exception("unknow business type for business." . $businessId);
 		}
 	}
@@ -43,6 +45,7 @@ class BusinessType
 			case 2: return new ActivitiesRefineForm($business, $location);
 			case 9: return new CarsRefineForm($business, $location);
 			case 10: return new ListingsRefineForm($business, $location);
+			case 7: return new HealthAndFitnessRefineForm($business, $location);
 			default: throw new Exception("unknow business type for businessform." . $businessId);
 		}
 	}
@@ -58,6 +61,7 @@ class BusinessType
 			case 2: return new ActivitiesDetailTab($posting);
 			case 9: return new CarsDetailTab($posting);
 			case 10: return new ListingsDetailTab($posting);
+			case 7: return new HealthDetailTab($posting);
 			default: throw new Exception("unknow business type for posting." . $posting->typeID);
 		}
 	}
@@ -67,6 +71,10 @@ class BusinessType
 		if ($categoryName == 'Car Sale')
 		{
 			return 'carsbasic';
+		}
+		else if ($categoryName == 'Health & Fitness')
+		{
+			return 'healthandfitnessbasic';
 		}
 		return strtolower(str_replace(' ', '' , $categoryName)) . 'basic';
 		/*

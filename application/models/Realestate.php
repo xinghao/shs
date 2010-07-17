@@ -188,38 +188,31 @@ class Realestate extends Business
 		foreach($posting as $key=>$value)
 		{
 			echo '<tr class="postingrow">';
-				echo '<td><a href="/posting/' .$value->postingid .'">';
-					echo $value->cat3name;
-				echo '</a></td>';
-				echo '<td><a href="/posting/' .$value->postingid .'">';
-					echo $value->suburb;
-				echo '</a></td>';
-				echo '<td><a href="/posting/' .$value->postingid .'">';
-					echo $value->address;
-				echo '</a></td>';
-				echo '<td><a href="/posting/' .$value->postingid .'">';
-					echo $value->bed;
-				echo '</a></td>';
-				echo '<td><a href="/posting/' .$value->postingid .'">';
-					echo $value->cars;
-				echo '</a></td>';
-				echo '<td><a href="/posting/' .$value->postingid .'">';
-					echo $value->bath;
-				echo '</a></td>';
-				echo '<td><a href="/posting/' .$value->postingid .'">';
+				echo $this->getPostingInfoLinkHtml($value->cat3name, $value->postingid);
+
+				echo $this->getPostingInfoLinkHtml($value->suburb, $value->postingid);
+
+				echo $this->getPostingInfoLinkHtml($value->address, $value->postingid);
+
+				echo $this->getPostingInfoLinkHtml($value->bed, $value->postingid);
+
+				echo $this->getPostingInfoLinkHtml($value->cars, $value->postingid);
+
+
+				echo $this->getPostingInfoLinkHtml($value->bath, $value->postingid);
+
+
 					if (empty($value->photo) || $value->photo == '0000')
 					{
-						echo 'No';
+						$tmpbool = 'No';
 					}
 					else
 					{
-						echo 'Yes';
+						$tmpbool = 'Yes';
 					}
-				echo '</a></td>';
+				echo $this->getPostingInfoLinkHtml($tmpbool, $value->postingid);
 
-				echo '<td><a href="/posting/' .$value->postingid .'">';
-					echo $value->priceDisplay;
-				echo '</a></td>';
+				echo $this->getPostingInfoLinkHtml($value->priceDisplay, $value->postingid);
 			echo '</tr>';
 		}
 

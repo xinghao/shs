@@ -23,5 +23,6 @@ class Posting extends Zend_Db_Table_Row
 	{
 		$this->_title = $title;
 	}
+
 }
 ?>

@@ -154,24 +154,17 @@ class Restaurants extends Business
 		foreach($posting as $key=>$value)
 		{
 			echo '<tr class="postingrow">';
-				echo '<td><a href="/posting/' .$value->postingid .'">';
-					echo $value->cat2name;
-				echo '</a></td>';
-				echo '<td><a href="/posting/' .$value->postingid .'">';
-				     echo $value->suburb;
-				echo '</a></td>';
-				echo '<td><a href="/posting/' .$value->postingid .'">';
-					echo $value->title;
-				echo '</a></td>';
-				echo '<td><a href="/posting/' .$value->postingid .'">';
-					echo empty($value->attachment)?"No":"Yes";
-				echo '</a></td>';
-				echo '<td><a href="/posting/' .$value->postingid .'">';
-					echo Common::Rate($value->rateNum);
-				echo '</a></td>';
-				echo '<td><a href="/posting/' .$value->postingid .'">';
-					echo $value->priceDisplay;
-				echo '</a></td>';
+				echo $this->getPostingInfoLinkHtml($value->cat2name, $value->postingid);
+
+				echo $this->getPostingInfoLinkHtml($value->suburb, $value->postingid);
+
+				echo $this->getPostingInfoLinkHtml($value->title, $value->postingid);
+
+				echo $this->getPostingInfoLinkHtml(empty($value->attachment)?"No":"Yes", $value->postingid);
+
+				echo $this->getPostingInfoLinkHtml(Common::Rate($value->rateNum), $value->postingid);
+
+				echo $this->getPostingInfoLinkHtml($value->priceDisplay, $value->postingid);
 			echo '</tr>';
 		}
 

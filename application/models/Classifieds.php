@@ -134,31 +134,26 @@ class Classifieds extends Business
 		foreach($posting as $key=>$value)
 		{
 			echo '<tr class="postingrow">';
-				echo '<td>';
-					echo '<a href="/posting/' .$value->postingid .'">' . $value->cat2name . '</a> ';
-				echo '</td>';
-				echo '<td>';
-				     echo '<a href="/posting/' .$value->postingid .'">' . $value->suburb . '</a> ';
-				echo '</td>';
-				echo '<td>';
-					echo '<a href="/posting/' .$value->postingid .'">' . $value->title . '</a> ';
-				echo '</td>';
-				echo '<td>';
-					echo '<a href="/posting/' .$value->postingid .'">' ;
+
+				echo $this->getPostingInfoLinkHtml($value->cat2name, $value->postingid);
+
+				echo $this->getPostingInfoLinkHtml($value->suburb, $value->postingid);
+
+				echo $this->getPostingInfoLinkHtml($value->title, $value->postingid);
+
 					if (Pstposting::photoExists($value->photo))
 					{
-						echo "Yes";
+						$tmpBool = "Yes";
 					}
 					else
 					{
-						echo "No";
+						$tmpBool =  "No";
 					}
 
-					echo '</a> ';
-				echo '</td>';
-				echo '<td>';
-					echo '<a href="/posting/' .$value->postingid .'">' . $value->priceDisplay . '</a> ';
-				echo '</td>';
+
+				echo $this->getPostingInfoLinkHtml($tmpBool, $value->postingid);
+
+				echo $this->getPostingInfoLinkHtml($value->priceDisplay, $value->postingid);
 			echo '</tr>';
 		}
 

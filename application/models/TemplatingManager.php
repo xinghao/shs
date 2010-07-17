@@ -40,8 +40,8 @@ class TemplatingManager
 			$view->category = $postingData["cat"];
 			$view->price = $postingData["price"];
 			$tempArray = new StdClass();
-			$tempArray->postingid = $postingData["id"];
-			$view->uri = $host . "/" . Tag::url("posting", $tempArray);
+			$tempArray->postingid = base64_encode($postingData["id"]);
+			$view->uri = $host . Tag::url("posting", $tempArray);
 
 			$view->name_from =$formData["fullname"];
 			$view->email     =$formData["email_from"];

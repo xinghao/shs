@@ -27,6 +27,23 @@ class Pstposting extends Zend_Db_Table
  			throw $e;
 		}
     }
+
+	Static public function validateId($id)
+	{
+		$pst = new Pstposting();
+		$posting = $pst->getPosting($id);
+		if(empty($posting))
+		{
+			return false;
+		}
+		if ($posting->status == 1)
+		{
+			return true;
+		}
+		return false;
+
+	}
+
 	 /**
 	  *
 	  * @param $limit

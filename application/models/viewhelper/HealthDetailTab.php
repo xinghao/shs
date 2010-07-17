@@ -1,13 +1,14 @@
 <?php
-class ListingsDetailTab extends  DetailTab
+class HealthDetailTab extends  DetailTab
 {
 	protected $_hasPhotoTab = true;
-	protected $_tabCollection = array('General', 'Photo');
-	protected $_businessType = "Business Listings";
+	protected $_tabCollection = array('General', 'Contact Seller');
+	protected $_businessType = "Health and Fitness";
+	public $formTabSeq = 3;
 
 	public function setCategory()
 	{
-		$pstJobTables = new Pstlisting();
+		$pstJobTables = new Psthealth();
 		$this->_pstCategory = $pstJobTables->getPst($this->_posting->id);
 	}
 
@@ -16,65 +17,39 @@ class ListingsDetailTab extends  DetailTab
 		$contentArray = array();
 
 		$contentArray[] = array(
-							'head' => '',
-							'value' => $this->_pstCategory->shortDescription,
-							'cssClass' => 'bold'
-							);
-
-		$contentArray[] = array(
-							'head' => '&nbsp;',
-							'value' => '&nbsp;',
-							'cssClass' => ''
-							);
-
-
-		$contentArray[] = array(
-							'head' => 'Address:',
-							'value' => $this->_pstCategory->address,
-							'cssClass' => ''
-							);
-
-		$opendayTables = new Refopenday();
-
-		$contentArray[] = array(
-							'head' => 'Open Days:',
-							'value' => $opendayTables->getOpenday($this->_pstCategory->openDay),
+							'head' => 'Qualification:',
+							'value' => $this->_pstCategory->qualification,
 							'cssClass' => ''
 							);
 
 		$contentArray[] = array(
-							'head' => 'Phone 1:',
-							'value' => $this->_pstCategory->phoneNumber,
+							'head' => 'Specialty',
+							'value' => $this->_pstCategory->specialty,
 							'cssClass' => ''
 							);
 
 		$contentArray[] = array(
-							'head' => 'Phone 2:',
-							'value' => $this->_pstCategory->phoneNumber2,
+							'head' => 'Experience:',
+							'value' => $this->_pstCategory->experience,
 							'cssClass' => ''
 							);
 
 		$contentArray[] = array(
-							'head' => 'Website:',
-							'value' => '<a target="blank" href="' . $this->_pstCategory->website .'">' .  "Click Here" . '</a>',
-							'cssClass' => ''
-							);
-
-		$contentArray[] = array(
-							'head' => $this->_pstCategory->description,
-							'value' => 'dummy',
-							'cssClass' => 'black'
-							);
-
-		$contentArray[] = array(
-							'head' => 'Specials:',
+							'head' => 'Specials',
 							'value' => $this->_pstCategory->specials,
 							'cssClass' => ''
 							);
 
+
 		$contentArray[] = array(
-							'head' => 'Speciality:',
-							'value' => $this->_pstCategory->speciality,
+							'head' => 'Price Information:',
+							'value' => $this->_pstCategory->priceInfo,
+							'cssClass' => ''
+							);
+
+		$contentArray[] = array(
+							'head' => 'Short Description:',
+							'value' => $this->_pstCategory->shortDescription,
 							'cssClass' => ''
 							);
 
@@ -109,27 +84,76 @@ class ListingsDetailTab extends  DetailTab
 		*/
 	}
 
+	public function getTab2Content()
+	{
+		$contentArray = array();
+
+		$contentArray[] = array(
+							'head' => 'Phone #:',
+							'value' => $this->_pstCategory->contactNumber,
+							'cssClass' => ''
+							);
+
+
+		$contentArray[] = array(
+							'head' => 'Website:',
+							'value' => '<a target="blank" href="' . $this->_pstCategory->website .'">' .  "Click Here" . '</a>',
+							'cssClass' => ''
+							);
+
+		$contentArray[] = array(
+							'head' => 'Address:',
+							'value' => $this->_pstCategory->address,
+							'cssClass' => ''
+							);
+
+		$contentArray[] = array(
+							'head' => '&nbsp;',
+							'value' => '&nbsp;',
+							'cssClass' => ''
+							);
+
+		$contentArray[] = array(
+							'head' => '&nbsp;',
+							'value' => '&nbsp;',
+							'cssClass' => ''
+							);
+
+
+
+		$this->printTable($contentArray);
+		$this->printForm();
+
+	}
+
+	public function getTab3Content()
+	{
+
+	}
+
+
 
 	public function getTitle()
 	{
 		$title = parent::getTitle();
+		$title .= '<br /><span class="titlesecond">';
+		$other = $this->strAdd($this->getCat3(), $this->getCat2(), ' - ');
 
-		$cat2 = $this->getCat2();
 		$location = new Location($this->_posting->locId);
-		$secondLing = $this->strAdd($cat2,$location->getLocationString(), '  -  ');
-		if (!empty($secondLing))
-		{
-			$secondLing = '<span class="titlesecond">' . $secondLing . '</span>';
-		}
-		return $this->strAdd($title,$secondLing, '<br />');
+		$suburb = $location->getSuburb();
+
+		$title .= $this->strAdd( $other , $suburb, ' : ');
+
+		return $title;
 	}
 
 	public function getForm()
 	{
 		$this->_form = new JobContactForm();
-		$this->_form->setHint('Post a Comment to the employer company:');
+		$this->_form->setHint('Post a message to seller:');
 		$this->_form->setAction('/forms/contact');
 		$this->_form->setPostingId($this->_posting->id);
+		$this->_form->setQuestionlabel('Your Question:');
 		return parent::getForm();
 	}
 
@@ -146,18 +170,13 @@ class ListingsDetailTab extends  DetailTab
 		$postingData["cat"] = $this->getCatsString();
 		$postingData["price"] = $this->_posting->priceDisplay;
 		$postingData["id"] = $this->_posting->id;
-		$postingData["questionlabel"] = "Comment";
+		$postingData["questionlabel"] = "Your Question";
 		$postingData["email_to"] =$this->_pstCategory->contactEmail;
 		return $postingData;
 		}catch(Excpetion $e)
 		{
 			echo $e;
 		}
-	}
-
-	public function getTab2Content()
-	{
-		$this->printPhotoTab();
 	}
 }
 ?>

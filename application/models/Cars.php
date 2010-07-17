@@ -201,34 +201,31 @@ class Cars extends Business
 		foreach($posting as $key=>$value)
 		{
 			echo '<tr class="postingrow">';
-				echo '<td><a href="/posting/' .$value->postingid .'">';
-					echo $value->cat1name;
-				echo '</a></td>';
-				echo '<td><a href="/posting/' .$value->postingid .'">';
-				     echo $value->suburb;
-				echo '</a></td>';
-				echo '<td><a href="/posting/' .$value->postingid .'">';
-					echo $value->title;
-				echo '</a></td>';
-				echo '<td><a href="/posting/' .$value->postingid .'">';
-					echo   $value->cat2name . " / " . $value->makeYear;
-				echo '</a></td>';
-				echo '<td><a href="/posting/' .$value->postingid .'">';
-					echo $value->cat3name;
-				echo '</a></td>';
-				echo '<td><a href="/posting/' .$value->postingid .'">';
+
+				echo $this->getPostingInfoLinkHtml($value->cat1name, $value->postingid);
+
+				echo $this->getPostingInfoLinkHtml($value->suburb, $value->postingid);
+
+				echo $this->getPostingInfoLinkHtml($value->title, $value->postingid);
+
+				echo $this->getPostingInfoLinkHtml($value->cat2name . " / " . $value->makeYear, $value->postingid);
+
+				echo $this->getPostingInfoLinkHtml($value->cat3name, $value->postingid);
+
+
 					if (empty($value->photo) || $value->photo == '0000')
 					{
-						echo 'No';
+						$tmpBool = 'No';
 					}
 					else
 					{
-						echo 'Yes';
+						$tmpBool =  'Yes';
 					}
-				echo '</a></td>';
-				echo '<td><a href="/posting/' .$value->postingid .'">';
-					echo $value->priceDisplay;
-				echo '</a></td>';
+
+
+				echo $this->getPostingInfoLinkHtml($tmpBool, $value->postingid);
+
+				echo $this->getPostingInfoLinkHtml($value->priceDisplay, $value->postingid);
 			echo '</tr>';
 		}
 

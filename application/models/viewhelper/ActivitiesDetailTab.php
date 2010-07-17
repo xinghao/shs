@@ -114,7 +114,7 @@ class ActivitiesDetailTab extends  DetailTab
 
 	public function getTitle()
 	{
-		$title = parent::getTitle();
+		$title = $this->getCat2();
 
 		$location = new Location($this->_posting->locId);
 		$suburb = $location->getSuburb();

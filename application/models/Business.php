@@ -497,5 +497,31 @@ class Business
 	{
 		return null;
 	}
+
+
+	public function getPostingInfoLinkHtml($linkText, $postId, $wrapWithTd = true,  $css='', $tdCss = '')
+	{
+		$cssClass = '';
+		if (!empty($css))
+		{
+			$cssClass = 'class = "'. $css.'"';
+		}
+
+		$retStr = '<a href="/posting/' . base64_encode($postId) .'" ' . $cssClass .'>' .  $linkText . '</a>';
+
+		if ($wrapWithTd)
+		{
+			$tdCssClass = '';
+			if (!empty($tdCss))
+			{
+				$tdCssClass = 'class = "'. $tdCss.'"';
+			}
+
+			$retStr = '<td ' .$tdCssClass . '>' . $retStr . '</td>';
+		}
+
+		return $retStr;
+
+	}
 }
 ?>

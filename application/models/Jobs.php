@@ -102,10 +102,14 @@ class Jobs extends Business
 		foreach($posting as $key=>$value)
 		{
 				echo '<tr class="postingrow">';
-				echo '<td><a href="/posting/' .$value->postingid .'">' . self::JobTypeShortFormat($value->cat1) . '</a></td>' . "\n";
-				echo '<td><a href="/posting/' .$value->postingid .'">' . $value->cat2name . ' <br/>(' . $value->cat3name . ') ' . '</a></td>' . "\n";
-				echo '<td><a href="/posting/' .$value->postingid .'">' . $value->title . '</a></td>' . "\n";
-				echo '<td><a href="/posting/' .$value->postingid .'">' . $value->priceDisplay . '</a></td>' . "\n";
+
+				echo $this->getPostingInfoLinkHtml(self::JobTypeShortFormat($value->cat1), $value->postingid);
+
+				echo $this->getPostingInfoLinkHtml($value->cat2name . ' <br/>(' . $value->cat3name . ') ', $value->postingid);
+
+				echo $this->getPostingInfoLinkHtml($value->title, $value->postingid);
+
+				echo $this->getPostingInfoLinkHtml($value->priceDisplay, $value->postingid);
 				echo '</tr>';
 		}
 

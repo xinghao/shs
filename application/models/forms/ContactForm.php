@@ -28,11 +28,16 @@ class ContactForm extends Zend_Form
 		$this->table_name = $name;
 	}
 
+	public function setQuestionlabel($label)
+	{
+		$this->question->setLabel($label);
+		$this->addElement($this->question);
+	}
 
 	public function setPostingId($id)
 	{
 		$this->_posting_element = new Zend_Form_Element_Hidden('postingid');
-		$this->_posting_element->setValue($id);
+		$this->_posting_element->setValue(base64_encode($id));
 		$this->addElement($this->_posting_element);
 	}
 
