@@ -847,7 +847,7 @@ td.imagetd a{
  	color:#666;
  }
  span.formconfirm {
- 	background-color:red;
+ 	background-color:green;
  	display:block;
  	border:#c9d7f1 2px solid;
  	padding:10px;
@@ -864,4 +864,15 @@ td.imagetd a{
  }
  table.featurelist td{
  	width:240px;
+ }
+ .posting404page{
+ 	color:red;
+ 	font-size:34px;
+ 	text-align:center;
+ 	padding:20px;
+ }
+ .Car .featurelist td,
+ .Estate .featurelist td
+ {
+ 	font-size:0.8em;
  }
