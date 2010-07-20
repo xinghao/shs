@@ -138,7 +138,10 @@ class RestaurantsDetailTab extends  DetailTab
 
 	public function getTitle()
 	{
-		$title = $this->getCat2();
+		$title = parent::getTitle();
+		$title .= '<br /><span class="titlesecond">' . $this->getCat2();
+
+		//$title = $this->getCat2();
 
 		$location = new Location($this->_posting->locId);
 		$suburb = $location->getSuburb();
@@ -146,7 +149,7 @@ class RestaurantsDetailTab extends  DetailTab
         {
 			$title .= ' <span class="titleend">(' .  $suburb . ')</span>';
         }
-      	return $title;
+      	return $title. '</span>';
 	}
 
 }
