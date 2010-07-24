@@ -2,7 +2,7 @@
 class HealthDetailTab extends  DetailTab
 {
 	protected $_hasPhotoTab = true;
-	protected $_tabCollection = array('General', 'Contact Seller');
+	protected $_tabCollection = array('General', 'Photo', 'Contact Seller');
 	protected $_businessType = "Health and Fitness";
 	public $formTabSeq = 3;
 
@@ -15,6 +15,37 @@ class HealthDetailTab extends  DetailTab
 	public function getTab1Content()
 	{
 		$contentArray = array();
+
+		$contentArray[] = array(
+							'head' => '',
+							'value' => $this->_pstCategory->shortDescription,
+							'cssClass' => 'bold'
+							);
+
+		$contentArray[] = array(
+							'head' => '&nbsp;',
+							'value' => '&nbsp;',
+							'cssClass' => ''
+							);
+
+		$contentArray[] = array(
+							'head' => 'Address:',
+							'value' => $this->_pstCategory->address,
+							'cssClass' => ''
+							);
+
+		$contentArray[] = array(
+							'head' => '&nbsp;',
+							'value' => '&nbsp;',
+							'cssClass' => ''
+							);
+
+		$contentArray[] = array(
+							'head' => 'Website:',
+							'value' => '<a target="blank" href="' . $this->_pstCategory->website .'">' .  "Click Here" . '</a>',
+							'cssClass' => ''
+							);
+
 
 		$contentArray[] = array(
 							'head' => 'Qualification:',
@@ -84,7 +115,7 @@ class HealthDetailTab extends  DetailTab
 		*/
 	}
 
-	public function getTab2Content()
+	public function getTab3Content()
 	{
 		$contentArray = array();
 
@@ -126,9 +157,9 @@ class HealthDetailTab extends  DetailTab
 
 	}
 
-	public function getTab3Content()
+	public function getTab2Content()
 	{
-
+		$this->printPhotoTab();
 	}
 
 

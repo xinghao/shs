@@ -8,6 +8,7 @@ class Email
 	    	$config		= Zend_Registry::get('CONFIG');
 	        $sitename = $config->website->host;
 
+	        logfire('send email', $toMailAddress);
 
 	        $mailer = new Zend_Mail('utf-8');
 	        $mailer->addTo($toMailAddress, $name);
