@@ -28,7 +28,7 @@ class BusinessType
 			case 2: return new Activities();
 			case 9: return new Cars();
 			case 10: return new Listings();
-			case 7: return new healthAndFitness();
+			case 7: return new HealthAndFitness();
 			default: throw new Exception("unknow business type for business." . $businessId);
 		}
 	}
