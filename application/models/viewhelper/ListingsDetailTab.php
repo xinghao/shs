@@ -2,7 +2,7 @@
 class ListingsDetailTab extends  DetailTab
 {
 	protected $_hasPhotoTab = true;
-	protected $_tabCollection = array('General', 'Photo');
+	protected $_tabCollection = array('General', 'Photo', 'Attachment');
 	protected $_businessType = "Business Listings";
 
 	public function setCategory()
@@ -43,6 +43,12 @@ class ListingsDetailTab extends  DetailTab
 							);
 
 		$contentArray[] = array(
+							'head' => 'Price:',
+							'value' => $this->strAdd($this->_posting->priceDisplay,$this->_pstCategory->priceInfo),
+							'cssClass' => ''
+							);
+
+		$contentArray[] = array(
 							'head' => 'Phone 1:',
 							'value' => $this->_pstCategory->phoneNumber,
 							'cssClass' => ''
@@ -56,7 +62,7 @@ class ListingsDetailTab extends  DetailTab
 
 		$contentArray[] = array(
 							'head' => 'Website:',
-							'value' => '<a target="blank" href="' . $this->_pstCategory->website .'">' .  "Click Here" . '</a>',
+							'value' => Tag::webSites($this->_pstCategory->website),
 							'cssClass' => ''
 							);
 
@@ -159,5 +165,11 @@ class ListingsDetailTab extends  DetailTab
 	{
 		$this->printPhotoTab();
 	}
+
+	public function getTab3Content()
+	{
+		$this->printPdf();
+	}
+
 }
 ?>

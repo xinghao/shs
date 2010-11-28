@@ -524,6 +524,36 @@ class Location
     	}
 	}
 
+	public static function getLocationIdBySuburbId($sub_id)
+	{
+		$refloc = new Refloc();
+		return $refloc->getLocationIdBySuburbId($sub_id);
+	}
+
+	public static function getLocationIdByRegionId($region_id)
+	{
+		$refloc = new Refloc();
+		return $refloc->getLocationIdByRegionId($region_id);
+	}
+
+	public static function getLocationIdByCityId($city_id)
+	{
+		$refloc = new Refloc();
+		return $refloc->getLocationIdByCityId($city_id);
+	}
+
+	public static function getLocationIdByStateId($state_id)
+	{
+		$refloc = new Refloc();
+		return $refloc->getLocationIdByStateId($state_id);
+	}
+
+	public static function getLocationIdByCountryId($country_id)
+	{
+		$refloc = new Refloc();
+		return $refloc->getLocationIdByCountryId($country_id);
+	}
+
 	/*
 
 

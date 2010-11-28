@@ -199,6 +199,12 @@ class Common {
 			echo $e;
 		}
 	}
+
+
+	public static function GetGoogleMap($address)
+	{
+		return '<a target="_blank" href = "http://maps.google.com.au/?q=' + urlencode($address) + '">View Google Map</a>';
+	}
 }
 
 

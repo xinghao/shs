@@ -713,7 +713,7 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  {
 	color: #254588;
 }
 .tab_content img {
-	float: left;
+	/*float: left;*/
 	margin: 0 20px 20px 0;
 	border: 1px solid #ddd;
 	padding: 5px;
@@ -737,13 +737,20 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  {
 .tab_content table td{
 	padding:3px 0px;
 	vertical-align:top;
-	text-align:left;
-	
+	text-align:left;	
+}
+.tab_content table td.imagetd {
+	text-align:center;
 }
 
+ul.gallery {
+margin:0px;
+padding:0px;
+}
 ul.gallery li{
 	list-style-type:none;
 	float:left;	
+	display:inline-block;
 }
 
 ul.gallery li img {
@@ -754,7 +761,7 @@ ul.gallery li img {
 
 div.largeimagewrap {
 	width:500px;
-	height:350px;
+	height:375px;
 }
 
 ul.gallery li img.currentimg{
@@ -778,6 +785,7 @@ td.imagetd img {
 td.imagetd a{
 	padding-left:7px;
 	line-height:20px;
+	display:inline-block;
 }
 
  .tab_content table th.bigblack{

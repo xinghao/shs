@@ -194,12 +194,12 @@ class Realestate extends Business
 
 				echo $this->getPostingInfoLinkHtml($value->address, $value->postingid);
 
-				echo $this->getPostingInfoLinkHtml($value->bed, $value->postingid);
+				echo $this->getPostingInfoLinkHtml(Tag::getUnitsAmount($value->bed), $value->postingid);
 
-				echo $this->getPostingInfoLinkHtml($value->cars, $value->postingid);
+				echo $this->getPostingInfoLinkHtml(Tag::getUnitsAmount($value->cars), $value->postingid);
 
 
-				echo $this->getPostingInfoLinkHtml($value->bath, $value->postingid);
+				echo $this->getPostingInfoLinkHtml(Tag::getUnitsAmount($value->bath), $value->postingid);
 
 
 					if (empty($value->photo) || $value->photo == '0000')
@@ -244,13 +244,13 @@ class Realestate extends Business
 					echo $value->cat3name;
 				echo '</span>';
 				echo '<span class="bed">';
-					echo $value->rooms;
+					echo Tag::getUnitsAmount(intval($value->rooms));
 				echo '</span>';
 				echo '<span class="cars">';
-					echo $value->parking;
+					echo Tag::getUnitsAmount(intval($value->parking));
 				echo '</span>';
 				echo '<span class="bath">';
-					echo $value->baths;
+					echo Tag::getUnitsAmount(intval($value->baths));
 				echo '</span>';
 				echo '<span class="price">';
 					echo $value->priceDisplay;

@@ -83,7 +83,7 @@ class CarsDetailTab extends  DetailTab
 
 		$contentArray[] = array(
 							'head' => 'CO2 Rating:',
-							'value' => $this->addEnding($this->_pstCategory->co2,'g/Km'),
+							'value' => $this->addEnding($this->_pstCategory->co2=="Select"?"":$this->_pstCategory->co2,'g/Km'),
 							'cssClass' => ''
 							);
 
@@ -179,31 +179,6 @@ class CarsDetailTab extends  DetailTab
 	public function getTab2Content()
 	{
 		$contentArray = array();
-
-			$contentArray[] = array(
-								'head' => 'Contact Name',
-								'value' =>$this->_pstCategory->contactName,
-								'cssClass' => ''
-								);
-
-		/*	$contentArray[] = array(
-								'head' => 'Phone#:',
-								'value' => $this->_pstCategory->contactPhone,
-								'cssClass' => ''
-								);
-*/
-			$contentArray[] = array(
-								'head' => 'Email:',
-								'value' => $this->_pstCategory->contactEmail,
-								'cssClass' => ''
-								);
-
-
-			$contentArray[] = array(
-								'head' => '&nbsp;',
-								'value' =>'&nbsp;',
-								'cssClass' => ''
-								);
 
 			$this->printTable($contentArray, true);
 

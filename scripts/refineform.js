@@ -16,7 +16,7 @@
 			       $("select#cat3").html(options);
 			       				
 				});
-				
+		return true;	
 		
 	}
 	
@@ -40,7 +40,7 @@
 			       				
 				});
 				
-		
+		return true;
 	}	
 	
 	

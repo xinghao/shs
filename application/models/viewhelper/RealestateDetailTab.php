@@ -2,7 +2,7 @@
 class RealestateDetailTab extends  DetailTab
 {
 	protected $_hasPhotoTab = true;
-	protected $_tabCollection = array('General','About', 'Apply', 'Photo');
+	protected $_tabCollection = array('General','About', 'Contact', 'Photo');
 	protected $_businessType = "Real estates";
 	public $formTabSeq = 3;
 
@@ -56,18 +56,18 @@ $categoryTable =new Refcategory();
 
 		$contentArray[] = array(
 							'head' => 'Bedrooms:',
-							'value' => $this->_pstCategory->rooms,
+							'value' => Tag::getUnitsAmount($this->_pstCategory->rooms),
 							'cssClass' =>''
 							);
 		$contentArray[] = array(
 							'head' => 'Bathrooms:',
-							'value' => $this->_pstCategory->baths,
+							'value' => Tag::getUnitsAmount($this->_pstCategory->baths),
 							'cssClass' =>''
 							);
 
 		$contentArray[] = array(
 							'head' => 'Parking:',
-							'value' => $this->_pstCategory->parking,
+							'value' => Tag::getUnitsAmount($this->_pstCategory->parking),
 							'cssClass' =>''
 							);
 
@@ -91,7 +91,7 @@ $categoryTable =new Refcategory();
 		}
 		$contentArray[] = array(
 							'head' => 'Property Age:',
-							'value' => $this->_pstCategory->age,
+							'value' => Tag::getAges($this->_pstCategory->age),
 							'cssClass' =>''
 							);
 
@@ -297,7 +297,7 @@ $categoryTable =new Refcategory();
 
 		$contentArray[] = array(
 							'head' => 'Auction Date:',
-							'value' => $this->_pstCategory->auctionDate,
+							'value' => Tag::getHtmlDateTime($this->_pstCategory->auctionDate),
 							'cssClass' => ''
 							);
 
@@ -393,7 +393,7 @@ $categoryTable =new Refcategory();
 			}
 			$title .= '<br /><span class="titlesecond">' . $type ;
 			$cat1Table =new Refcat1();
-			$title .=  ' by ' . $cat1Table->getCatNameById($this->_posting->cat1) . ' - ' . $this->_posting->priceDisplay . ' -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' . $this->_pstCategory->rooms .' Bed, '. $this->_pstCategory->baths .' Bath, '.$this->_pstCategory->parking .' Cars'."</span>";
+			$title .=  ' by ' . $cat1Table->getCatNameById($this->_posting->cat1) . ' - ' . $this->_posting->priceDisplay . ' -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' . ' Bed: ' . Tag::getUnitsAmount($this->_pstCategory->rooms) .', Bath: '.Tag::getUnitsAmount($this->_pstCategory->baths) .', Cars: '. Tag::getUnitsAmount($this->_pstCategory->parking) ."</span>";
 
 		return $title;
 	}

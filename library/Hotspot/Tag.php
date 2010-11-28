@@ -1185,4 +1185,36 @@ $listString .= '<ul>';
     	return date_format($tmp,"H:i");
 
     }
+
+    public static function getUnitsAmount($num){
+		switch($num){
+			case -1:
+				return "NA";
+				break;
+			case 0:
+				return "Studio";
+				break;
+		}
+		return $num;
+    }
+
+    public static function getAges($age, $unit = 'Year') {
+		if (empty($age)) {
+			return '';
+		}else if ($age == 1) {
+			return $age . ' ' . $unit;
+		}
+		else
+		{
+			return $age . ' ' . $unit . 's';
+		}
+    }
+
+    public static function webSites($website) {
+		if (empty($website)){
+			return "";
+		}else{
+			return '<a target="blank" href="' . $website .'">' .  "Click Here" . '</a>';
+		}
+    }
 }

@@ -29,7 +29,7 @@ class RestaurantsDetailTab extends  DetailTab
 
 		$contentArray[] = array(
 							'head' => 'Adress:',
-							'value' => $this->_pstCategory->address,
+							'value' => $this->_pstCategory->address + "&nbsp;&nbsp;&nbsp;"+Common::GetGoogleMap($this->_pstCategory->address),
 							'cssClass' => ''
 							);
 
@@ -50,7 +50,7 @@ class RestaurantsDetailTab extends  DetailTab
 
 		$contentArray[] = array(
 							'head' => 'Website:',
-							'value' => '<a target="blank" href="' . $this->_pstCategory->website .'">' .  "Click Here" . '</a>',
+							'value' => Tag::webSites($this->_pstCategory->website),
 							'cssClass' => ''
 							);
 

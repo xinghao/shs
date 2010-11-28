@@ -2,7 +2,7 @@
 class JobDetailTab extends  DetailTab
 {
 	protected $_hasPhotoTab = true;
-	protected $_tabCollection = array('General','About', 'Apply', 'Photo');
+	protected $_tabCollection = array('General','About', 'Contact', 'Photo');
 	protected $_businessType = "Jobs";
 	public $formTabSeq = 3;
 
@@ -43,7 +43,7 @@ class JobDetailTab extends  DetailTab
 
 		$contentArray[] = array(
 							'head' => 'Salary Info:',
-							'value' => $this->_pstCategory->priceInfo,
+							'value' => $this->strAdd($this->_posting->priceDisplay, $this->_pstCategory->priceInfo),
 							'cssClass' => ''
 							);
 
@@ -191,7 +191,7 @@ class JobDetailTab extends  DetailTab
 		$title = parent::getTitle();
         if (!empty($this->_pstCategory->employerCompany))
         {
-			$title .= ' <span class="titleend">(' .  $this->_pstCategory->employerCompany . ')</span>';
+			$title .= ' <span class="titleend">(' .  $this->_pstCategory->employerCompany . ', ' .  $this->_posting->priceDisplay . ')</span>';
         }
 		return $title;
 	}
@@ -199,7 +199,7 @@ class JobDetailTab extends  DetailTab
 	public function getForm()
 	{
 		$this->_form = new JobContactForm();
-		$this->_form->setHint('Post a Comment to the employer company:');
+		$this->_form->setHint('Post a comment to the employer:');
 		$this->_form->setAction('/forms/contact');
 		$this->_form->setPostingId($this->_posting->id);
 		return parent::getForm();

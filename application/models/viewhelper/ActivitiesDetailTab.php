@@ -48,7 +48,7 @@ class ActivitiesDetailTab extends  DetailTab
 
 		$contentArray[] = array(
 							'head' => 'Website:',
-							'value' => '<a target="blank" href="' . $this->_pstCategory->website .'">' .  "Click Here" . '</a>',
+							'value' => Tag::webSites($this->_pstCategory->website),
 							'cssClass' => ''
 							);
 

@@ -143,7 +143,7 @@ class DetailTab
 						echo '</td>';
 					}
 
-					echo '<td class="imagetd" rowspan = "3" align="left" valign="middle"><a class="imgurl" href="" onclick="return showPhotoTab()">';
+					echo '<td class="imagetd" rowspan = "3" align="" valign="middle"><a class="imgurl" href="" onclick="return showPhotoTab()">';
 					echo  $this->printPhotoextract() . "</a>";
 					echo  '<a href="" onclick="return showPhotoTab()">';
 
@@ -459,7 +459,7 @@ class DetailTab
 
 		foreach($photos as $photo)
 		{
-			echo '<img src="/images/publicimages/a/' . $this->_posting->id . 'a' . $photo . '.jpg"  dest ="/images/publicimages/b/' . $this->_posting->id . 'b' . $photo . '.jpg" class="imageextract"/>';
+			echo '<img src="/images/publicimages/a/' . $this->_posting->id . 'a' . $photo . '.jpg"  dest ="/images/publicimages/b/' . $this->_posting->id . 'b' . $photo . '.jpg" class="imageextract" />';
 
 			break;
 		}
@@ -481,7 +481,7 @@ class DetailTab
 		echo '<div class="largeimagewrap">'. "\n";
 		echo '<span><img /></span>';
 		echo '</div>';
-		echo '<div class="smallimagewrap"><ul class="gallery">';
+		echo '<div class="smallimagewrap"><center><ul class="gallery">';
 		$icount = 1;
 
 		foreach($photos as $photo)
@@ -499,7 +499,7 @@ class DetailTab
 			echo '<img src="/images/publicimages/a/' . $this->_posting->id . 'a' . $photo . '.jpg"  dest ="/images/publicimages/b/' . $this->_posting->id . 'b' . $photo . '.jpg" class="' . $cssClass . '"/>';
 			echo '</span></li>';
 		}
-		echo '</ul><div class="clear"></div></div></center>';
+		echo '<div class="clear"></div></ul></center></div></center>';
 
 
 	}

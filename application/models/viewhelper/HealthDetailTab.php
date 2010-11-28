@@ -2,7 +2,7 @@
 class HealthDetailTab extends  DetailTab
 {
 	protected $_hasPhotoTab = true;
-	protected $_tabCollection = array('General', 'Photo', 'Contact Seller');
+	protected $_tabCollection = array('General', 'Photo', 'Contact', 'Attachment');
 	protected $_businessType = "Health and Fitness";
 	public $formTabSeq = 3;
 
@@ -34,6 +34,13 @@ class HealthDetailTab extends  DetailTab
 							'cssClass' => ''
 							);
 
+		$opendayTables = new Refopenday();
+		$contentArray[] = array(
+							'head' => 'Open Days:',
+							'value' => $opendayTables->getOpenday($this->_pstCategory->openDays),
+							'cssClass' => ''
+							);
+
 		$contentArray[] = array(
 							'head' => '&nbsp;',
 							'value' => '&nbsp;',
@@ -42,7 +49,7 @@ class HealthDetailTab extends  DetailTab
 
 		$contentArray[] = array(
 							'head' => 'Website:',
-							'value' => '<a target="blank" href="' . $this->_pstCategory->website .'">' .  "Click Here" . '</a>',
+							'value' => Tag::webSites($this->_pstCategory->website),
 							'cssClass' => ''
 							);
 
@@ -125,10 +132,16 @@ class HealthDetailTab extends  DetailTab
 							'cssClass' => ''
 							);
 
+		$contentArray[] = array(
+							'head' => 'Phone2 #:',
+							'value' => $this->_pstCategory->contactNumber2,
+							'cssClass' => ''
+							);
+
 
 		$contentArray[] = array(
 							'head' => 'Website:',
-							'value' => '<a target="blank" href="' . $this->_pstCategory->website .'">' .  "Click Here" . '</a>',
+							'value' => Tag::webSites($this->_pstCategory->website),
 							'cssClass' => ''
 							);
 
@@ -162,6 +175,10 @@ class HealthDetailTab extends  DetailTab
 		$this->printPhotoTab();
 	}
 
+	public function getTab4Content()
+	{
+		$this->printPdf();
+	}
 
 
 	public function getTitle()
@@ -172,8 +189,11 @@ class HealthDetailTab extends  DetailTab
 
 		$location = new Location($this->_posting->locId);
 		$suburb = $location->getSuburb();
-
-		$title .= $this->strAdd( $other , $suburb, ' : ');
+	    if (!empty($suburb))
+        {
+			$title .= $other . ' <span class="titleend">(' .  $suburb . ')</span>';
+        }
+		//$title .= $this->strAdd( $other , $suburb, ' : ');
 
 		return $title;
 	}

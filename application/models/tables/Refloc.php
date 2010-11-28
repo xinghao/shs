@@ -1,19 +1,20 @@
 <?php
 
-
+#alter table ref_loc change regionid regionid varchar(15);
+#update ref_loc set `regionid` = concat(cityid, 'reg' , regionid)
 class Refloc extends Zend_Db_Table
 {
 	protected $_name = 'ref_loc';
     protected $_primary = 'id';
-    
+
     public  function getTableName()
     {
     	return $this->_name;
     }
-    
+
     // Use the Book class for returned rows, to add utility methods, like getting zips covered by the book.
-    //protected $_rowClass = 'Book';      
-    
+    //protected $_rowClass = 'Book';
+
     /**
      * Get all cities with country.
      * Called to generate location drop down list.
@@ -26,15 +27,15 @@ class Refloc extends Zend_Db_Table
 	    	$select->from($this->_name, array('country','state', 'city', 'id' => 'min(id)'))
 	    	       ->distinct(true)
 	    	       ->group(array('country', 'state', 'city'));
-	    	
+
 	    	logfire('get all cities by state id: ', $select->__toString());
-	    	
+
 	    	return $cities = $this->fetchAll($select);
     	}catch(Exception $e)
  		{
  			logError('Refloc failed!', $e);
  			throw $e;
- 		}    	
+ 		}
     }
 
     /**
@@ -49,25 +50,25 @@ class Refloc extends Zend_Db_Table
 	    	$select->from($this->_name, array('city', 'cityid'))
 	    	       ->distinct(true)
 	    	       ->where('countryid = ?', $country_id);
-	    	       
+
 	    	logfire('get all cities by country id: ', $select->__toString());
-	    	
+
 	    	$cities = $this->fetchAll($select);
-	    	
+
 	    	if (empty($cities))
 	    	{
-	    		throw new Exception("No cities in this country. Country id = ". $country_id);	
+	    		throw new Exception("No cities in this country. Country id = ". $country_id);
 	    	}
-	    	
+
 	    	return $cities;
-	    	
+
     	}catch(Exception $e)
  		{
  			logError('Refloc failed!', $e);
  			throw $e;
- 		}    	
-    } 
-    
+ 		}
+    }
+
     /**
      * Get all states in country
      * @return unknown_type
@@ -79,23 +80,23 @@ class Refloc extends Zend_Db_Table
 	    	$select->from($this->_name, array('state', 'stateid'))
 	    	       ->distinct(true)
 	    	       ->where('countryid = ?', $country_id);
-	    	    
-	    	
+
+
 	    	logfire('get all states by country id: ', $select->__toString());
-	    	
-    		$states = $this->fetchAll($select); 
+
+    		$states = $this->fetchAll($select);
 	    	if (empty($states))
 	    	{
-	    		throw new Exception("No states in this country. Country id = ". $country_id);	
+	    		throw new Exception("No states in this country. Country id = ". $country_id);
 	    	}
-	    	
+
 	    	return $states;
     	}catch(Exception $e)
  		{
  			logError('Refloc failed!', $e);
  			throw $e;
- 		}    	
-    }     
+ 		}
+    }
     /**
      * Get all states in country
      * @return unknown_type
@@ -107,17 +108,17 @@ class Refloc extends Zend_Db_Table
 	    	$select->from($this->_name, array('state', 'stateid'))
 	    	       ->distinct(true)
 	    	       ->where('country = ?', $country);
-	    	    
-	    	
+
+
 	    	logfire('select', $select->__toString());
-	    		    	
+
 	    	return $states = $this->fetchAll($select);
     	}catch(Exception $e)
  		{
  			logError('Refloc failed!', $e);
  			throw $e;
- 		}    	
-    }   
+ 		}
+    }
 
     /**
      * Get all cities in one state.
@@ -131,26 +132,26 @@ class Refloc extends Zend_Db_Table
 	    	$select->from($this->_name, array('city', 'cityid'))
 	    	       ->distinct(true)
 	    	       ->where('stateid = ?', $stateid);
-	    	    
-	    	
+
+
 	    	logfire('state select', $select->__toString());
-	    	
+
 	    	$cities = $this->fetchAll($select);
-	    	
+
 	    	if (empty($cities))
 	    	{
-	    		throw new Exception("No cities in this state. state id = ". $stateid);	
+	    		throw new Exception("No cities in this state. state id = ". $stateid);
 	    	}
-	    	
+
 	    	return $cities;
-	    	
+
     	}catch(Exception $e)
  		{
  			logError('Refloc failed!', $e);
  			throw $e;
- 		}   	
+ 		}
     }
-    
+
     /**
      * Get all cities in one state.
      * @param $stateid
@@ -163,26 +164,26 @@ class Refloc extends Zend_Db_Table
 	    	$select->from($this->_name, array('region', 'regionid'))
 	    	       ->distinct(true)
 	    	       ->where('cityid = ?', $cityid);
-	    	    
-	    	
+
+
 	    	logfire('etAllRegionByCityId', $select->__toString());
-	    	
+
 	    	$regions = $this->fetchAll($select);
-	    	
+
 	    	if (empty($regions))
 	    	{
-	    		throw new Exception("No regiond in this city. city id = ". $cityid);	
+	    		throw new Exception("No regiond in this city. city id = ". $cityid);
 	    	}
-	    	
+
 	    	return $regions;
-	    	
+
     	}catch(Exception $e)
  		{
  			logError('Refloc failed!', $e);
  			throw $e;
- 		}   	
+ 		}
     }
-        
+
     /**
      * Get all cities in one state.
      * @param $stateid
@@ -195,29 +196,29 @@ class Refloc extends Zend_Db_Table
 	    	$select->from($this->_name, array('suburb', 'suburbid'))
 	    	       ->distinct(true)
 	    	       ->where('regionid = ?', $regionid);
-	    	    
-	    	
+
+
 	    	logfire('getAllSuburbByRegionId', $select->__toString());
-	    	
+
 	    	$suburbs = $this->fetchAll($select);
-	    	
+
 	    	if (empty($suburbs))
 	    	{
-	    		throw new Exception("No suburb in this region. region id = ". $regionid);	
+	    		throw new Exception("No suburb in this region. region id = ". $regionid);
 	    	}
-	    	
+
 	    	return $suburbs;
-	    	
+
     	}catch(Exception $e)
  		{
  			logError('Refloc failed!', $e);
  			throw $e;
- 		}   	
+ 		}
     }
 
-    
+
 	/**
-	 * 
+	 *
 	 * @param $stateName
 	 * @param $country  mixed   country_id or country_name.
 	 * @return unknown_type
@@ -232,7 +233,7 @@ class Refloc extends Zend_Db_Table
 	    	       //->where('country = ? or countryid = ?', Common::titleCaseUpper($country));
 	    	logfire('select', $select->__toString());
 	    	$state = $this->fetchRow($select);
-	    	
+
 	    	if (empty($state))
 	    	{
 	    		return null;
@@ -245,10 +246,10 @@ class Refloc extends Zend_Db_Table
  		{
  			logError('Refloc failed!', $e);
  			throw $e;
- 		}   	
+ 		}
     }
 
-    
+
         /**
      * Get State id by name
      * @param $stateid
@@ -261,11 +262,11 @@ class Refloc extends Zend_Db_Table
 	    	$select->from($this->_name, array('state'))
 	    	       ->distinct(true)
 	    	       ->where('stateid = ?', $stateid);
-	    	    
-	    	
+
+
 	    	logfire('select', $select->__toString());
 	    	$state = $this->fetchRow($select);
-	    	
+
 	    	if (empty($state))
 	    	{
 	    		return null;
@@ -278,11 +279,11 @@ class Refloc extends Zend_Db_Table
  		{
  			logError('Refloc failed!', $e);
  			throw $e;
- 		}   	
+ 		}
     }
-    
+
 	/**
-	 * 
+	 *
 	 * @param $stateName
 	 * @param $country  mixed   country_id or country_name.
 	 * @return unknown_type
@@ -297,7 +298,7 @@ class Refloc extends Zend_Db_Table
 	    	       //->where('country = ? or countryid = ?', Common::titleCaseUpper($country));
 	    	//logfire('select', $select->__toString());
 	    	$country = $this->fetchRow($select);
-	    	
+
 	    	if (empty($country))
 	    	{
 	    		return null;
@@ -310,8 +311,8 @@ class Refloc extends Zend_Db_Table
  		{
  			logError('Refloc failed!', $e);
  			throw $e;
- 		}   	
-    }    
+ 		}
+    }
     /**
      * Get State id by name
      * @param $stateid
@@ -324,11 +325,11 @@ class Refloc extends Zend_Db_Table
 	    	$select->from($this->_name, array('cityid'))
 	    	       ->distinct(true)
 	    	       ->where('city = ?', Common::titleCase($cityName));
-	    	    
-	    	
+
+
 	    	logfire('select', $select->__toString());
 	    	$city = $this->fetchRow($select);
-	    	
+
 	    	if (empty($city))
 	    	{
 	    		return null;
@@ -341,8 +342,8 @@ class Refloc extends Zend_Db_Table
  		{
  			logError('Refloc failed!', $e);
  			throw $e;
- 		}   	
-    } 
+ 		}
+    }
 
        /**
      * Get State id by name
@@ -356,11 +357,11 @@ class Refloc extends Zend_Db_Table
 	    	$select->from($this->_name, array('city'))
 	    	       ->distinct(true)
 	    	       ->where('cityid = ?', Common::titleCase($cityid));
-	    	    
-	    	
+
+
 	    	logfire('select', $select->__toString());
 	    	$city = $this->fetchRow($select);
-	    	
+
 	    	if (empty($city))
 	    	{
 	    		return null;
@@ -373,10 +374,10 @@ class Refloc extends Zend_Db_Table
  		{
  			logError('Refloc failed!', $e);
  			throw $e;
- 		}   	
-    } 
-    
-    
+ 		}
+    }
+
+
     public function getRegionIdByName($regionName)
     {
         try{
@@ -384,11 +385,11 @@ class Refloc extends Zend_Db_Table
 	    	$select->from($this->_name, array('regionid'))
 	    	       ->distinct(true)
 	    	       ->where('region = ?', Common::titleCase($regionName));
-	    	    
-	    	
+
+
 	    	logfire('region select', $select->__toString());
 	    	$region = $this->fetchRow($select);
-	    	
+
 	    	if (empty($region))
 	    	{
 	    		return null;
@@ -401,24 +402,125 @@ class Refloc extends Zend_Db_Table
  		{
  			logError('Refloc failed!', $e);
  			throw $e;
- 		}   	
-    }   
+ 		}
+    }
 
     public function getAllCityByCountryAndStateName($state, $country = null)
     {
     	$stateId = $this->getStateIdByName($state, $country);
-    	
+
     	return $this->getAllCityByStateId($stateId);
     }
-    
-    
+
+
     public function getAllCityByCountry($country)
     {
     	$countryId = $this->getCountryIdByName($country);
-    	
+
     	return $this->getAllCityByCountryId($countryId);
-    }    
-    
+    }
+
+    public function getLocationIdBySuburbId($sub_id)
+    {
+    	return $sub_id;
+    }
+
+    public function getLocationIdByRegionId($region_id)
+    {
+		try{
+			$select = $this->select();
+			$select->where("regionid <> 0 and regionid = ?", $region_id);
+			$location = $this->fetchRow($select);
+	    	if (empty($location))
+	    	{
+	    		throw new Exception('Location does not exist. region_id:['.$region_id.']');
+	    	}
+	    	else
+	    	{
+
+	    		return $location->id;
+	    	}
+
+		}catch(Exception $e)
+ 		{
+ 			logError('get location by region failed!', $e);
+ 			throw $e;
+ 		}
+
+    }
+
+    public function getLocationIdByCityId($city_id)
+    {
+		try{
+			$select = $this->select();
+			$select->where("cityid <> 0 and cityid = ?", $city_id);
+			$location = $this->fetchRow($select);
+	    	if (empty($location))
+	    	{
+	    		throw new Exception('Location does not exist. city_id:['.$city_id.']');
+	    	}
+	    	else
+	    	{
+
+	    		return $location->id;
+	    	}
+
+		}catch(Exception $e)
+ 		{
+ 			logError('get location by region failed!', $e);
+ 			throw $e;
+ 		}
+
+    }
+
+    public function getLocationIdByStateId($state_id)
+    {
+		try{
+			$select = $this->select();
+			$select->where("stateid <> 0 and stateid = ?", $state_id);
+			$location = $this->fetchRow($select);
+	    	if (empty($location))
+	    	{
+	    		throw new Exception('Location does not exist. city_id:['.$state_id.']');
+	    	}
+	    	else
+	    	{
+
+	    		return $location->id;
+	    	}
+
+		}catch(Exception $e)
+ 		{
+ 			logError('get location by region failed!', $e);
+ 			throw $e;
+ 		}
+
+    }
+
+    public function getLocationIdByCountryId($country_id)
+    {
+		try{
+			$select = $this->select();
+			$select->where("countryid <> 0 and countryid = ?", $country_id);
+			$location = $this->fetchRow($select);
+	    	if (empty($location))
+	    	{
+	    		throw new Exception('Location does not exist. countryid:['.$country_id.']');
+	    	}
+	    	else
+	    	{
+
+	    		return $location->id;
+	    	}
+
+		}catch(Exception $e)
+ 		{
+ 			logError('get location by region failed!', $e);
+ 			throw $e;
+ 		}
+
+    }
+
     /**
      * Get city, regin, suburb, state, country by it.
      * @param $location_id
@@ -427,7 +529,7 @@ class Refloc extends Zend_Db_Table
      */
     public function getLocationById($location_id)
     {
-    	
+
     	if (empty($location_id))
     	{
     		throw new Exception('Location id passed in is empty. location_id:['.$location_id.']');
@@ -439,26 +541,26 @@ class Refloc extends Zend_Db_Table
 	    	       ->orWhere('countryid <> 0 and countryid = ?', $location_id)
 	    	       ->orWhere('stateid = ?', $location_id)
 	    	       ->orWhere('cityid = ?', $location_id)
-	    	       ->orWhere('regionid <> 0 and regionid = ?', $location_id)
+	    	       ->orWhere('regionid = ?', $location_id)
 	    	       ->orWhere('suburbid <> 0 and suburbid = ?', $location_id);
-	    	       
+
 	    	logfire('getlocationbyId: ', $select->__toString());
 	    	$location = $this->fetchRow($select);
-	    	
+
 	    	if (empty($location))
 	    	{
 	    		throw new Exception('Location id does not exist. location_id:['.$location_id.']');
 	    	}
 	    	else
 	    	{
-	    		
+
 	    		return $location;
 	    	}
     	}catch(Exception $e)
  		{
  			logError('Refloc failed!', $e);
  			throw $e;
- 		}     	
+ 		}
     }
 }
 
