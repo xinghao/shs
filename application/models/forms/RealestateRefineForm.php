@@ -9,12 +9,12 @@
  */
 class RealestateRefineForm extends RefineForm
 {
-	
+
 	protected function buildCat1Element()
 	{
 
-	}	
-	
+	}
+
 	protected function buildCat2Element()
 	{
     	$cat2 = new Zend_Form_Element_Radio('cat2');
@@ -24,9 +24,9 @@ class RealestateRefineForm extends RefineForm
        	$cat2->setAttrib('class','refineformselect');
         $cat2->setAttrib('onclick',"changeCat2(this.id,this.value, '/ajax/realestate/changecat2/')");
        	$this->addElement($cat2);
-		
+
 	}
-	
+
 	protected function buildCat3Element()
 	{
        	$cat3 = new Zend_Form_Element_Select('cat3');
@@ -34,59 +34,59 @@ class RealestateRefineForm extends RefineForm
        	$cat3->setAttrib('class','refineformselect');
        	$cat2selected = $this->cat2->getValue();
 
-		
+
        	$cat3->addMultiOptions($this->_business->getCat3Array($cat2selected, false));
         $this->addElement($cat3);
-		
+
 	}
 
 	protected function  buildExtraElements()
 	{
 		$pricesTable = new Refprice();
-		
+
 		logfire('$this->_business->getBusinessTypeId()', $this->_business->getBusinessTypeId());
 		$prices = $pricesTable->getPriceOptions($this->_business->getBusinessTypeId(), $this->_location->getSearchRules()->currency);
-		
+
        	$min = new Zend_Form_Element_Select('min');
        	$min->setLabel('Min');
        	$min->setAttrib('class','refineformmoneyselect');
        	$min->addMultiOptions($prices);
        	$this->addElement($min);
-       	
+
        	$max = new Zend_Form_Element_Select('max');
        	$max->setLabel('Max');
        	$max->setAttrib('class','refineformmoneyselect');
        	$max->addMultiOptions($prices);
-       	$this->addElement($max);   
+       	$this->addElement($max);
 
-       	$facilifies = array('Any'=>'Any', '0'=>'0', '1'=>'1', '2'=>'2', '3'=>'3', '4'=>'4', '5'=>'5', '6'=>'6', '7'=>'7');
-       	$bedOptions = array('Any'=>'Any', '1'=>'Studio', '2'=>'2', '3'=>'3', '4'=>'4', '5'=>'5', '6'=>'6', '7'=>'7');
+       	$facilifies = array('Any'=>'Any', '-1'=>'NA', '1'=>'1', '2'=>'2', '3'=>'3', '4'=>'4', '5'=>'5', '6'=>'6', '7'=>'7');
+       	$bedOptions = array('Any'=>'Any', '-1'=>'NA', '0'=>'Studio', '1'=>'1','2'=>'2', '3'=>'3', '4'=>'4', '5'=>'5', '6'=>'6', '7'=>'7');
 
        	$bed = new Zend_Form_Element_Select('bed');
        	$bed->setLabel('Bed');
        	$bed->setAttrib('class','refineformmoneyselect');
        	$bed->addMultiOptions($bedOptions);
-       	$this->addElement($bed);   
-       	
+       	$this->addElement($bed);
+
       	$cars = new Zend_Form_Element_Select('cars');
        	$cars->setLabel('Cars');
        	$cars->setAttrib('class','refineformmoneyselect');
        	$cars->addMultiOptions($facilifies);
-       	$this->addElement($cars); 
+       	$this->addElement($cars);
 
       	$bath = new Zend_Form_Element_Select('bath');
        	$bath->setLabel('Bath');
        	$bath->setAttrib('class','refineformmoneyselect');
        	$bath->addMultiOptions($facilifies);
-       	$this->addElement($bath); 
-       	       	
+       	$this->addElement($bath);
+
 		return parent::buildExtraElements();
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 	public function printExtraElements()
 	{
 		echo '<div class="priceselectdiv">';
@@ -113,12 +113,12 @@ class RealestateRefineForm extends RefineForm
             $element->options
         );
         */
-        echo $this->max; 
+        echo $this->max;
         echo '</span>';
         echo '<div class="clear"></div>';
         echo '</div>';
         echo '</div>';
-        
+
         echo '<div class="facilityselectdiv">';
         echo '<span class="facilityselect">';
 		echo $this->bed;
@@ -127,16 +127,16 @@ class RealestateRefineForm extends RefineForm
 		echo '</span><span class="facilityselect">';
 		echo $this->bath;
 		echo '</span></div>';
-		
+
 		return parent::printExtraElements();
 	}
-	
-	
+
+
 	/*
 	public function printLocationElements()
 	{
-		echo 
-		
+		echo
+
 		echo $this->city;
 	    echo $this->state;
 		echo $this->country;
@@ -144,7 +144,7 @@ class RealestateRefineForm extends RefineForm
 
 	}
 
-	
+
 	/**
 	 * (non-PHPdoc)
 	 * @see library/Zend/Zend_Form#populate()
@@ -152,15 +152,15 @@ class RealestateRefineForm extends RefineForm
 
 	public function populate(array $values)
 	{
-				
+
 		if(array_key_exists('cat2',$values) && !empty($values['cat2']))
 		{
 			$this->cat3->setMultiOptions($this->_business->getCat3Array($values['cat2'],false));
 		}
-			
 
 
-		
+
+
 		// Call the father's render function.
 		return parent::populate($values);
 	}
@@ -170,8 +170,8 @@ class RealestateRefineForm extends RefineForm
 		if (empty($cat2))
 		{
 			return  $category;
-		}  
-		
+		}
+
 		if ($cat2 == '630')
 		{
 			$cat2Name = 'For SALE';
@@ -180,14 +180,14 @@ class RealestateRefineForm extends RefineForm
 		{
 			$cat2Name = 'For ' . $this->_business->getCat2NameById($cat2);
 		}
-		
+
 		if ($cat3 == '631')
 		{
 			return 'ALL ' . $cat2Name;
 		}
 		else
 		{
-			return  $this->_business->getCat3NameById($cat3) . ' ' . $cat2Name;	
-		}		
-	}	
+			return  $this->_business->getCat3NameById($cat3) . ' ' . $cat2Name;
+		}
+	}
 }

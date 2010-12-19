@@ -2,9 +2,9 @@
 class JobDetailTab extends  DetailTab
 {
 	protected $_hasPhotoTab = true;
-	protected $_tabCollection = array('General','About', 'Contact', 'Photo');
+	protected $_tabCollection = array('General','About', 'Photo', 'Contact');
 	protected $_businessType = "Jobs";
-	public $formTabSeq = 3;
+	public $formTabSeq = 4;
 
 	public function setCategory()
 	{
@@ -139,7 +139,7 @@ class JobDetailTab extends  DetailTab
 		$this->printTable($contentArray);
 	}
 
-	public function getTab3Content()
+	public function getTab4Content()
 	{
 		$contentArray = array();
 
@@ -181,7 +181,7 @@ class JobDetailTab extends  DetailTab
 
 	}
 
-	public function getTab4Content()
+	public function getTab3Content()
 	{
 		$this->printPhotoTab();
 	}
@@ -209,8 +209,6 @@ class JobDetailTab extends  DetailTab
 	public function getPostingDataForContactForm()
 	{
 		try{
-
-
 		$postingData = array();
 		$postingData["firstname"] = empty($this->_pstCategory->contactName)? "Sir" : $this->_pstCategory->contactName;
 		$postingData["businesstype"] = $this->_businessType;

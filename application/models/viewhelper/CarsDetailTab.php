@@ -2,9 +2,9 @@
 class CarsDetailTab extends  DetailTab
 {
 	protected $_hasPhotoTab = true;
-	protected $_tabCollection = array('General', 'Contact', 'Photo');
+	protected $_tabCollection = array('General', 'Photo', 'Contact');
 	protected $_businessType = "Car Sales";
-	public $formTabSeq = 2;
+	public $formTabSeq = 3;
 
 	public function setCategory()
 	{
@@ -25,7 +25,7 @@ class CarsDetailTab extends  DetailTab
 
 		$contentArray[] = array(
 							'head' => 'Vehicle:',
-							'value' => $this->_pstCategory->makeYear . ',' . $this->getCat2() . ',' . $this->getCat3(),
+							'value' => $this->strAdds(array($this->getCat2(),$this->getCat3(),$this->_pstCategory->makeYear)),
 							'cssClass' => ''
 							);
 
@@ -41,6 +41,13 @@ class CarsDetailTab extends  DetailTab
 							'value' => $this->_pstCategory->numberPlate,
 							'cssClass' => ''
 							);
+
+		$contentArray[] = array(
+							'head' => 'Registration Expire:',
+							'value' => Tag::getHtmlDateTime($this->_pstCategory->registrationExpire),
+							'cssClass' => ''
+							);
+
 
 		$contentArray[] = array(
 							'head' => 'Body:',
@@ -105,6 +112,11 @@ class CarsDetailTab extends  DetailTab
 							'cssClass' => ''
 							);
 
+		$contentArray[] = array(
+							'head' => 'Faults:',
+							'value' => $this->_pstCategory->faults,
+							'cssClass' => ''
+							);
 
 
 
@@ -227,7 +239,7 @@ class CarsDetailTab extends  DetailTab
 	public function getForm()
 	{
 		$this->_form = new JobContactForm();
-		$this->_form->setHint('Post a Comment to the seller:');
+		$this->_form->setHint('Post comment to the car owner:');
 		$this->_form->setAction('/forms/contact');
 		$this->_form->setPostingId($this->_posting->id);
 		return parent::getForm();

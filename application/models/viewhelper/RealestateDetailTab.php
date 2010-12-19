@@ -2,9 +2,9 @@
 class RealestateDetailTab extends  DetailTab
 {
 	protected $_hasPhotoTab = true;
-	protected $_tabCollection = array('General','About', 'Contact', 'Photo');
+	protected $_tabCollection = array('General','About', 'Photo', 'Contact');
 	protected $_businessType = "Real estates";
-	public $formTabSeq = 3;
+	public $formTabSeq = 4;
 
 	public function setCategory()
 	{
@@ -19,24 +19,6 @@ class RealestateDetailTab extends  DetailTab
 
 		$location = new Location($this->_posting->locId);
 
-		$contentArray[] = array(
-					'head' => '',
-					'value' => $this->_pstCategory->shortDescription,
-					'cssClass' => 'bigsize'
-					);
-
-		$contentArray[] = array(
-							'head' => '',
-							'value' => 'dummy',
-							'cssClass' =>''
-							);
-
-		$contentArray[] = array(
-							'head' => '',
-							'value' => 'dummy',
-							'cssClass' =>''
-							);
-
 
 		$contentArray[] = array(
 							'head' => 'Location:',
@@ -46,7 +28,7 @@ class RealestateDetailTab extends  DetailTab
 
 
 
-$categoryTable =new Refcategory();
+		$categoryTable =new Refcategory();
 		$contentArray[] = array(
 							'head' => 'Property Type:',
 							'value' => $categoryTable->getCatNameById($this->_posting->cat3),
@@ -401,7 +383,7 @@ $categoryTable =new Refcategory();
 	public function getForm()
 	{
 		$this->_form = new JobContactForm();
-		$this->_form->setHint('Post a Comment to the property owner:');
+		$this->_form->setHint('Post comment to the property owner:');
 		$this->_form->setAction('/forms/contact');
 		$this->_form->setPostingId($this->_posting->id);
 		return parent::getForm();

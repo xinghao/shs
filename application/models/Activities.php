@@ -66,7 +66,8 @@ class Activities extends Business
 			$cat3 = null;
 		}
 
-		$select = parent::search($location, $limit, $offset, $query, $cat1, $cat2, $cat3, $cat4, $cat5, $addtionalData);
+		// cat3 actually is cat1
+		$select = parent::search($location, $limit, $offset, $query, $cat3, $cat2, null, $cat4, $cat5, $addtionalData);
 
 
 		if ($cat3 == null)

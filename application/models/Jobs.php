@@ -123,11 +123,11 @@ class Jobs extends Business
 		switch($cat1)
 		{
 			case 11: return 'ALL';
-			case 12: return 'Full<br/>Time';
-			case 13: return 'Part<br/>Time';
-			case 14: return 'Casual<br/>Vacation';
-			case 15: return 'Contract<br/>Temp';
-			case 16: return 'Graduate';
+			case 14: return 'Full<br/>Time';
+			case 16: return 'Part<br/>Time';
+			case 12: return 'Casual<br/>Vacation';
+			case 13: return 'Contract<br/>Temp';
+			case 15: return 'Graduate';
 			case 17: return 'Volunteer';
 		}
 	}

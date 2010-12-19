@@ -43,7 +43,7 @@ class ListingsDetailTab extends  DetailTab
 							);
 
 		$contentArray[] = array(
-							'head' => 'Price:',
+							'head' => 'Price Info:',
 							'value' => $this->strAdd($this->_posting->priceDisplay,$this->_pstCategory->priceInfo),
 							'cssClass' => ''
 							);
@@ -122,7 +122,7 @@ class ListingsDetailTab extends  DetailTab
 
 		$cat2 = $this->getCat2();
 		$location = new Location($this->_posting->locId);
-		$secondLing = $this->strAdd($cat2,$location->getLocationString(), '  -  ');
+		$secondLing = $this->strAdd($cat2,'<span class="titleend"> (' . $location->getLocationString() . ")</span>", '');
 		if (!empty($secondLing))
 		{
 			$secondLing = '<span class="titlesecond">' . $secondLing . '</span>';

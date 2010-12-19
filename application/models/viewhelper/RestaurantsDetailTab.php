@@ -28,7 +28,7 @@ class RestaurantsDetailTab extends  DetailTab
 							);
 
 		$contentArray[] = array(
-							'head' => 'Adress:',
+							'head' => 'Address:',
 							'value' => $this->_pstCategory->address + "&nbsp;&nbsp;&nbsp;"+Common::GetGoogleMap($this->_pstCategory->address),
 							'cssClass' => ''
 							);

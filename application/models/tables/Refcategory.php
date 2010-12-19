@@ -48,7 +48,7 @@ class Refcategory extends Zend_Db_Table
 	 		$select->where('SetID in (select SetId from ' . $this->_name . ' where id = ?)', $cat2)
 	 				->where('PrimId is null')
 	 				->where('busPostTypeId = ?', $busTypeId);
-	 		logfire('select', $select->__toString());
+	 		logfire('select cat3 from cat3', $select->__toString());
 	 		return $this->fetchAll($select);
  	 	}catch(Exception $e)
  		{

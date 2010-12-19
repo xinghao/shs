@@ -20,7 +20,7 @@ class ActivitiesDetailTab extends  DetailTab
 
 		$contentArray[] = array(
 							'head' => 'Activity:',
-							'value' => $this->strAdd($this->getCat1(),$this->getCat2()),
+							'value' => $this->strAdd($this->getCat2(),$this->getCat1()),
 							'cssClass' => ''
 							);
 

@@ -2,9 +2,9 @@
 class HealthDetailTab extends  DetailTab
 {
 	protected $_hasPhotoTab = true;
-	protected $_tabCollection = array('General', 'Photo', 'Contact', 'Attachment');
+	protected $_tabCollection = array('General', 'Photo',  'Brochure', 'Contact');
 	protected $_businessType = "Health and Fitness";
-	public $formTabSeq = 3;
+	public $formTabSeq = 4;
 
 	public function setCategory()
 	{
@@ -15,18 +15,6 @@ class HealthDetailTab extends  DetailTab
 	public function getTab1Content()
 	{
 		$contentArray = array();
-
-		$contentArray[] = array(
-							'head' => '',
-							'value' => $this->_pstCategory->shortDescription,
-							'cssClass' => 'bold'
-							);
-
-		$contentArray[] = array(
-							'head' => '&nbsp;',
-							'value' => '&nbsp;',
-							'cssClass' => ''
-							);
 
 		$contentArray[] = array(
 							'head' => 'Address:',
@@ -41,11 +29,6 @@ class HealthDetailTab extends  DetailTab
 							'cssClass' => ''
 							);
 
-		$contentArray[] = array(
-							'head' => '&nbsp;',
-							'value' => '&nbsp;',
-							'cssClass' => ''
-							);
 
 		$contentArray[] = array(
 							'head' => 'Website:',
@@ -53,6 +36,18 @@ class HealthDetailTab extends  DetailTab
 							'cssClass' => ''
 							);
 
+
+		$contentArray[] = array(
+							'head' => 'Business Number:',
+							'value' => $this->_pstCategory->businessNumber,
+							'cssClass' => ''
+							);
+
+		$contentArray[] = array(
+							'head' => 'Short Description:',
+							'value' => $this->_pstCategory->shortDescription,
+							'cssClass' => ''
+							);
 
 		$contentArray[] = array(
 							'head' => 'Qualification:',
@@ -85,11 +80,6 @@ class HealthDetailTab extends  DetailTab
 							'cssClass' => ''
 							);
 
-		$contentArray[] = array(
-							'head' => 'Short Description:',
-							'value' => $this->_pstCategory->shortDescription,
-							'cssClass' => ''
-							);
 
 
 		$this->printTable($contentArray, true);
@@ -201,7 +191,7 @@ class HealthDetailTab extends  DetailTab
 	public function getForm()
 	{
 		$this->_form = new JobContactForm();
-		$this->_form->setHint('Post a message to seller:');
+		$this->_form->setHint('Post a message to business owner:');
 		$this->_form->setAction('/forms/contact');
 		$this->_form->setPostingId($this->_posting->id);
 		$this->_form->setQuestionlabel('Your Question:');
