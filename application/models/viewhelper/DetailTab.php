@@ -143,7 +143,7 @@ class DetailTab
 						echo '</td>';
 					}
 
-					echo '<td class="imagetd" rowspan = "3" align="" valign="middle"><a class="imgurl" href="" onclick="return showPhotoTab()">';
+					echo '<td class="imagetd" width = "120px" rowspan = "3" align="" valign="middle"><a class="imgurl" href="" onclick="return showPhotoTab()">';
 					echo  $this->printPhotoextract() . "</a>";
 					echo  '<a href="" onclick="return showPhotoTab()">';
 
