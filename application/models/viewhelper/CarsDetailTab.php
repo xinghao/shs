@@ -188,7 +188,7 @@ class CarsDetailTab extends  DetailTab
 
 
 
-	public function getTab2Content()
+	public function getTab3Content()
 	{
 		$contentArray = array();
 
@@ -199,7 +199,7 @@ class CarsDetailTab extends  DetailTab
 		$this->printForm();
 	}
 
-	public function getTab3Content()
+	public function getTab2Content()
 	{
 		$this->printPhotoTab();
 	}

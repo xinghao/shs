@@ -112,7 +112,7 @@ class HealthDetailTab extends  DetailTab
 		*/
 	}
 
-	public function getTab3Content()
+	public function getTab4Content()
 	{
 		$contentArray = array();
 
@@ -165,7 +165,7 @@ class HealthDetailTab extends  DetailTab
 		$this->printPhotoTab();
 	}
 
-	public function getTab4Content()
+	public function getTab3Content()
 	{
 		$this->printPdf();
 	}

@@ -9,7 +9,7 @@
 			<?php echo $this->element->query;?>
 		</div>
 		<div class="quicksearchbtn">
-			<?php 
+			<?php
 			echo $this->{$this->element->quicksearchbtn->helper}($this->element->quicksearchbtn->getName(),$this->element->quicksearchbtn->getImageValue(),$this->element->quicksearchbtn->getAttribs());
 			//echo $this->element->quicksearchbtn;
 			?>
@@ -22,47 +22,47 @@
 		</div>
 		<div class="cat2">
 			<?php echo $this->element->cat2;?>
-		</div>	
+		</div>
 		<div class="cat3">
 			<?php echo $this->element->cat3;?>
 		</div>
 		<div class="cat4">
 			<?php echo $this->element->cat4;?>
-		</div>		
+		</div>
 		<div class="cat5">
-			<?php echo $this->element->cat5;?>			
-		</div>			
+			<?php echo $this->element->cat5;?>
+		</div>
 		<?php $this->element->printExtraElements()?>
 		<div class="cat6">
 			<?php echo $this->element->stateid;?>
-		</div>	
+		</div>
 		<div class="cat6">
 			<?php echo $this->element->cityid;?>
 		</div>
 		<div class="cat6">
 			<?php echo $this->element->regionid;?>
-		</div>		
-		<div class="cat6">
-			<?php echo $this->element->suburbid;?>			
 		</div>
-		<?php 
+		<div class="cat6">
+			<?php echo $this->element->suburbid;?>
+		</div>
+		<?php
 			$el = $this->element->searchtype;
-          	echo $this->{$el->helper}($el->getName(),$el->getValue(),$el->getAttribs());
+          	echo $this->{$el->helper}($el->getName(),1,$el->getAttribs());
 			$el = $this->element->locationid;
 			echo $this->{$el->helper}($el->getName(),$el->getValue(),$el->getAttribs());
-		?>			
-		
+		?>
+
 		<div class="submitbtn">
-			<?php 
+			<?php
 			echo $this->{$this->element->submit->helper}($this->element->submit->getName(),$this->element->submit->getImageValue(),$this->element->submit->getAttribs());
 			//echo $this->element->quicksearchbtn;
 			?>
-		</div>		
+		</div>
 	</div>
 	<div class="formbot">
 		<div class="formbotleft">
 		</div>
-	</div>			
+	</div>
 </div>
 
 

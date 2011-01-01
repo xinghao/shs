@@ -208,7 +208,7 @@ class RealestateDetailTab extends  DetailTab
 		$this->printTable($contentArray);
 	}
 
-	public function getTab3Content()
+	public function getTab4Content()
 	{
 		$contentArray = array();
 
@@ -343,7 +343,7 @@ class RealestateDetailTab extends  DetailTab
 		$this->printForm();
 	}
 
-	public function getTab4Content()
+	public function getTab3Content()
 	{
 		$this->printPhotoTab();
 	}

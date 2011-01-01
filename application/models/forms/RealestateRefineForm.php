@@ -59,8 +59,8 @@ class RealestateRefineForm extends RefineForm
        	$max->addMultiOptions($prices);
        	$this->addElement($max);
 
-       	$facilifies = array('Any'=>'Any', '-1'=>'NA', '1'=>'1', '2'=>'2', '3'=>'3', '4'=>'4', '5'=>'5', '6'=>'6', '7'=>'7');
-       	$bedOptions = array('Any'=>'Any', '-1'=>'NA', '0'=>'Studio', '1'=>'1','2'=>'2', '3'=>'3', '4'=>'4', '5'=>'5', '6'=>'6', '7'=>'7');
+       	$facilifies = array('Any'=>'Any', '-1'=>'NA', '1'=>'1', '2'=>'2', '3'=>'3', '4'=>'4', '5'=>'5', '100'=>'6+');
+       	$bedOptions = array('Any'=>'Any', '-1'=>'NA', '0'=>'Studio', '1'=>'1','2'=>'2', '3'=>'3', '4'=>'4', '5'=>'5',  '100'=>'6+');
 
        	$bed = new Zend_Form_Element_Select('bed');
        	$bed->setLabel('Bed');

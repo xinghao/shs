@@ -2,7 +2,7 @@
 class ListingsDetailTab extends  DetailTab
 {
 	protected $_hasPhotoTab = true;
-	protected $_tabCollection = array('General', 'Photo', 'Attachment');
+	protected $_tabCollection = array('General', 'Attachment', 'Photo');
 	protected $_businessType = "Business Listings";
 
 	public function setCategory()
@@ -161,12 +161,12 @@ class ListingsDetailTab extends  DetailTab
 		}
 	}
 
-	public function getTab2Content()
+	public function getTab3Content()
 	{
 		$this->printPhotoTab();
 	}
 
-	public function getTab3Content()
+	public function getTab2Content()
 	{
 		$this->printPdf();
 	}

@@ -32,7 +32,7 @@ class Refcategory extends Zend_Db_Table
 	 		$select->where('busPostTypeId = ?', $busTypeId);
 	 		$select->where('SubPrimCatId = ?', $SubPrimId);
 	 		$select->order('name');
-
+			//logfire("getAllCatsBySubPrimIdBusinessTypeId", $select);
 	 		return $this->fetchAll($select);
  	 	}catch(Exception $e)
  		{

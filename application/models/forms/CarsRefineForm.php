@@ -26,7 +26,7 @@ class CarsRefineForm extends RefineForm
        	$cat2->addMultiOptions($this->_business->getCat2Array(null, true));
        	$cat2->setValue($this->_business->getFirstCat2(null,true));
        	$cat2->setAttrib('class','refineformselect');
-        $cat2->setAttrib('onclick',"changeCat2(this.id,this.value, '/ajax/realestate/changecat2/')");
+        $cat2->setAttrib('onclick',"changeCat2(this.id,this.value, '/ajax/cars/changecat2/')");
        	$this->addElement($cat2);
 
 	}
@@ -131,7 +131,7 @@ class CarsRefineForm extends RefineForm
 
 		if(array_key_exists('cat2',$values) && !empty($values['cat2']))
 		{
-			$this->cat3->setMultiOptions($this->_business->getCat3Array($values['cat2'],false));
+			$this->cat3->setMultiOptions($this->_business->getCat3Array($values['cat2'],true));
 		}
 
 

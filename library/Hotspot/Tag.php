@@ -1186,6 +1186,7 @@ $listString .= '<ul>';
 
     }
 
+    // dont forget realestate drop down menu
     public static function getUnitsAmount($num){
 		switch($num){
 			case -1:

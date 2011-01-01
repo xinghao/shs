@@ -554,7 +554,7 @@ class DetailTab
 		}
 
 		echo '<div class="downloadwrap"><center>';
-		echo '<a href="/attachments/public/' . $this->_posting->id .'.pdf"><div class="downloadbutton">';
+		echo '<a target="_blank" href="/attachments/public/' . $this->_posting->id .'.pdf"><div class="downloadbutton">';
 		echo 'Download Menu';
 		echo '</div></a></center>';
 		echo '</div>';

@@ -65,19 +65,33 @@ class Realestate extends Business
 		{
 			logfire($key,$value);
 		}
-		if (!empty($addtionalData['bed']) && $addtionalData['bed'] != 'Any' && $addtionalData['bed'] != 'ALL')
+
+
+		if ( $addtionalData['bed'] != 'Any' && $addtionalData['bed'] != 'ALL')
 		{
-			$select->where('i.rooms = ?', $addtionalData['bed']);
+			if ($addtionalData['bed'] == 100) {
+				$select->where('i.rooms >= 6');
+			} else {
+				$select->where('i.rooms = ?', $addtionalData['bed']);
+			}
 		}
 
 		if (!empty($addtionalData['cars']) && $addtionalData['cars'] != 'Any' && $addtionalData['cars'] != 'ALL')
 		{
-			$select->where('i.parking = ?', $addtionalData['cars']);
+			if ($addtionalData['cars'] == 100) {
+				$select->where('i.parking >= 6');
+			} else {
+				$select->where('i.parking = ?', $addtionalData['cars']);
+			}
 		}
 
 		if (!empty($addtionalData['bath']) && $addtionalData['bath'] != 'Any' && $addtionalData['bath'] != 'ALL')
 		{
-			$select->where('i.baths = ?', $addtionalData['bath']);
+			if ($addtionalData['bath'] == 100) {
+				$select->where('i.baths >= 6');
+			} else {
+				$select->where('i.baths = ?', $addtionalData['bath']);
+			}
 		}
 		if (!empty($addtionalData['min']) && $addtionalData['min'] != 'Any' && $addtionalData['min'] != 'ALL')
 		{

@@ -60,15 +60,17 @@ class Restaurants extends Business
 		{
 			$cat2 = null;
 		}
-
-		if (empty($cat3) || $cat3 == 'Any' || $cat3 == 'ALL' || $cat3 == 25)
+		// temp fix for the router
+		$cat1 = $cat3;
+		$cat3 = null;
+		if (empty($cat1) || $cat1 == 'Any' || $cat1 == 'ALL' || $cat1 == 25)
 		{
-			$cat3 = null;
+			$cat1 = null;
 		}
 
 		$select = parent::search($location, $limit, $offset, $query, $cat1, $cat2, $cat3, $cat4, $cat5, $addtionalData);
 
-		if ($cat3 == null)
+		if ($cat1 == null)
 		{
 			$keys = '';
 			foreach($this->getCat1Array() as $key=>$value)
