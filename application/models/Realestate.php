@@ -67,7 +67,7 @@ class Realestate extends Business
 		}
 
 
-		if ( $addtionalData['bed'] != 'Any' && $addtionalData['bed'] != 'ALL')
+		if ( $addtionalData['bed'] != '' && $addtionalData['bed'] != 'Any' && $addtionalData['bed'] != 'ALL')
 		{
 			if ($addtionalData['bed'] == 100) {
 				$select->where('i.rooms >= 6');
@@ -76,7 +76,7 @@ class Realestate extends Business
 			}
 		}
 
-		if (!empty($addtionalData['cars']) && $addtionalData['cars'] != 'Any' && $addtionalData['cars'] != 'ALL')
+		if ($addtionalData['cars'] != '' && $addtionalData['cars'] != 'Any' && $addtionalData['cars'] != 'ALL')
 		{
 			if ($addtionalData['cars'] == 100) {
 				$select->where('i.parking >= 6');
@@ -85,7 +85,7 @@ class Realestate extends Business
 			}
 		}
 
-		if (!empty($addtionalData['bath']) && $addtionalData['bath'] != 'Any' && $addtionalData['bath'] != 'ALL')
+		if ($addtionalData['bath'] != '' && $addtionalData['bath'] != 'Any' && $addtionalData['bath'] != 'ALL')
 		{
 			if ($addtionalData['bath'] == 100) {
 				$select->where('i.baths >= 6');
