@@ -8,7 +8,7 @@
 RewriteBase /
 RewriteEngine On
 
-RewriteRule ^aa /info.php
+#RewriteRule ^aa /info.php
 
 
 RewriteRule ^Mehdone/([^/]+)/?$          Mehdone/$1 [L]
@@ -18,5 +18,5 @@ RewriteRule ^Mehdone/([^/]+)/?$          Mehdone/$1 [L]
 #
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-#RewriteRule !\.(pdf|php|js|ico|txt|gif|jpg|png|css|zip|tar\.gz)$ /index.php
-RewriteRule !\.(pdf|php|js|ico|txt|gif|jpg|png|css|zip|tar\.gz)$ /offline.html
+RewriteRule !\.(pdf|php|js|ico|txt|gif|jpg|png|css|zip|tar\.gz)$ /index.php
+#RewriteRule !\.(pdf|php|js|ico|txt|gif|jpg|png|css|zip|tar\.gz)$ /offline.html
