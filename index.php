@@ -1,18 +1,17 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php
+/**
+ * index.php - Main HTML entry point for the YPEX application.
+ *
+ * @version		$Id: index.php 5231 2009-06-02 05:34:13Z Xinghao $
+ * @package		Public
+ * @author      Xinghao Yu
+ * @copyright	Copyright (c) 2009
+ */
 
-<html xmlns="http://www.w3.org/1999/xhtml" >
-<head>
-    <title>Spot101</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+// Bootstrap (initialize Zend Framework, connect to database, etc.).
+require_once 'application/webBootstrap.php';
+ 
+// Start Zend Framework's webpage processing.
+$frontController->dispatch(null, null);
 
-	<link rel="shortcut icon" href="/style/sitetemplateimage/favicon.ico" />    
-
-</head>
-<body>
-
-<center>
-	<img src="images/sitetemplate/offline.gif"/>
-</center>
-
-</body>
-</html>
+//echo phpinfo();
